@@ -6,5 +6,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class Room extends Model
 {
-    //
+    public function hotel()
+    {
+        return $this->belongsTo(Hotel::class);
+    }
+
+    public function roomType()
+    {
+        return $this->belongsTo(RoomType::class);
+    }
+
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
+
+    public function amenities()
+    {
+        return $this->belongsToMany(Amenity::class, 'room_amenity');
+    }
 }
