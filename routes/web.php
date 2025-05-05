@@ -60,6 +60,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/user/permissions/{user}', [UserController::class, 'assignPermissionForm'])->name('user.permission.form');
     Route::post('/user/permissions/{user}', [UserController::class, 'assignPermissionToUser'])->name('user.assign-permission');
 
+    Route::prefix('hotel')->name('hotel.')->controller(\App\Http\Controllers\HotelController::class)->group(function(){
+       Route::get('/', 'index')->name('index');
+       Route::get('/create', 'create')->name('create');
+       Route::post('/store', 'store')->name('store');
+       Route::post('/update/{hotel}', 'update')->name('update');
+    });
 
 
 

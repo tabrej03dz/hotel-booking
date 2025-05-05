@@ -53,6 +53,18 @@
 
                         </div>
                     </div>
+
+                    <div class="relative">
+                        <a href="{{route('hotel.index')}}"  class="flex items-center space-x-1 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-md">
+                            <i class="fas fa-users-cog text-gray-600"></i>
+                            <span>Admin Tools</span>
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </a>
+
+                    </div>
                 </div>
             </div>
 
