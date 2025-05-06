@@ -1,6 +1,6 @@
 @extends('component.main')
-@section('content')
 
+@section('content')
     <style>
         /* Parallax Effect for Background */
         .parallax-bg {
@@ -290,14 +290,14 @@
 
                         <!-- CTA Section -->
                         <div class="flex items-center gap-6 pt-4">
-                            <a href="#"
+                            <a href="{{ route('about') }}"
                                 class="group relative px-8 py-4 bg-[#8B4513] text-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
                                 <div
                                     class="absolute inset-0 bg-[#6B3410] transform translate-y-full transition-transform duration-300 group-hover:translate-y-0">
                                 </div>
                                 <span class="relative z-10 font-semibold">Know More</span>
                             </a>
-                            <a href="#"
+                            <a href="{{ route('gallery') }}"
                                 class="group flex items-center gap-3 text-[#1a1a2e] font-semibold hover:text-[#8B4513] transition-colors duration-300">
                                 <span>View Gallery</span>
                                 <i
@@ -411,7 +411,7 @@
 
                         <a href="#booking"
                             class="mt-6 block py-4 text-center font-semibold rounded-lg bg-gradient-to-r from-[#8B4513] to-[#D4A017] text-white
-                                hover:from-[#D4A017] hover:to-[#8B4513] transition-all transform hover:scale-105">
+                            hover:from-[#D4A017] hover:to-[#8B4513] transition-all transform hover:scale-105">
                             Book This Room
                         </a>
                     </div>
@@ -730,14 +730,14 @@
                     </div>
                 </div>
 
-                <!-- Tit Bit Cafe -->
+                <!-- Open TRace -->
                 <div
                     class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-transform duration-700 ease-in-out hover:scale-105">
                     <img src="{{ asset('asset/cafe/cafe (1).jpg') }}" alt="Tit Bit Cafe"
                         class="w-full h-[300px] object-cover hover:scale-110 transition-transform duration-1000">
                     <div
                         class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex items-end p-4">
-                        <h3 class="text-white text-lg md:text-xl font-semibold uppercase tracking-wide">Tit Bit Café</h3>
+                        <h3 class="text-white text-lg md:text-xl font-semibold uppercase tracking-wide">Open Trace</h3>
                     </div>
                 </div>
 
@@ -767,7 +767,7 @@
 
             <!-- Optional CTA Section -->
             <div class="mt-20 text-center">
-                <a href="#"
+                <a href="{{route('crescentfacilities')}}"
                     class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#8B4513] to-[#D4A017] text-white rounded-lg transition-all duration-500 ease-in-out transform hover:from-[#D4A017] hover:to-[#8B4513] hover:scale-105 shadow-2xl hover:shadow-2xl">
                     Explore All Facilities
                     <i class="fas fa-arrow-right ml-2"></i>
@@ -892,7 +892,7 @@
     </section>
 
 
-    {{-- @include('components.booking') --}}
+    @include('component.booking')
 
     <!-- Our Accommodation Section -->
     <section class="py-20 bg-gradient-to-b from-[#1a1a2e] via-[#16213e] to-[#1a1a2e]">
@@ -922,7 +922,7 @@
                         Tastefully designed with essential conveniences, ensuring comfort and a memorable experience
                         throughout your stay.
                     </p>
-                    <a href="#"
+                    <a href="{{ route('accommodation.standard') }}"
                         class="inline-block bg-[#8B4513] text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-[#6B3410] transition-all duration-300 transform hover:scale-105">
                         Know More
                     </a>
@@ -940,7 +940,7 @@
                         Experience bespoke elegance in our Deluxe Room—crafted for ultimate comfort, with lavish amenities
                         and modern luxury.
                     </p>
-                    <a href="#"
+                    <a href="{{ route('accommodation.deluxe') }}"
                         class="inline-block bg-[#8B4513] text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-[#6B3410] transition-all duration-300 transform hover:scale-105">
                         Know More
                     </a>
@@ -958,7 +958,7 @@
                         The epitome of grandeur and sophistication, our Luxury Room combines exclusivity and indulgence for
                         a truly unforgettable escape.
                     </p>
-                    <a href="#"
+                    <a href="{{ route('accommodation.suite') }}"
                         class="inline-block bg-[#8B4513] text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-[#6B3410] transition-all duration-300 transform hover:scale-105">
                         Know More
                     </a>
@@ -990,7 +990,7 @@
                     <h3 class="text-2xl font-bold text-white mb-4">Lawn Package</h3>
                     <p class="text-gray-300 mb-6">Envision opulence in our Deluxe haven—where lavish comforts meet bespoke
                         elegance, weaving a tapestry of indulgence for an unforgettable retreat.</p>
-                    <a href="#"
+                    <a href="{{ route('banquets.lawn') }}"
                         class="bg-[#8B4513] text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-[#6B3410] transition-all duration-300 transform hover:scale-105">
                         Know More
                     </a>
@@ -1005,7 +1005,7 @@
                     <h3 class="text-2xl font-bold text-white mb-4">Ballroom Package</h3>
                     <p class="text-gray-300 mb-6">Discover the epitome of grandeur in our Suite—a symphony of
                         sophistication, where indulgence meets exclusivity for an unparalleled escape.</p>
-                    <a href="#"
+                    <a href="{{ route('banquets.ballroom') }}"
                         class="bg-[#8B4513] text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-[#6B3410] transition-all duration-300 transform hover:scale-105">
                         Know More
                     </a>
@@ -1063,7 +1063,7 @@
 
             <!-- See Gallery Button -->
             <div class="mt-12 text-center">
-                <a href="#"
+                <a href="{{ route('gallery') }}"
                     class="inline-block bg-gradient-to-r from-[#8B4513] to-[#D4A017] text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition-transform transform hover:scale-105">
                     See Gallery
                 </a>
@@ -1073,7 +1073,7 @@
 
 
     <!-- What Our Guests Say -->
-    {{-- @include('components.testimonial') --}}
+    @include('component.testimonial')
 
 
     <!-- Contact Us -->
@@ -1134,27 +1134,27 @@
                 <!-- Contact Form -->
                 <form action="#" method="POST"
                     class="bg-white p-6 sm:p-8 rounded-xl shadow-lg transition-transform duration-700 
-           hover:shadow-2xl hover:-translate-y-2 space-y-4">
+       hover:shadow-2xl hover:-translate-y-2 space-y-4">
 
                     <div>
                         <label for="name" class="block text-sm font-medium text-gray-700">Your Name</label>
                         <input type="text" name="name" id="name" required
                             class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm 
-                   focus:ring-yellow-500 focus:border-yellow-500">
+               focus:ring-yellow-500 focus:border-yellow-500">
                     </div>
 
                     <div>
                         <label for="email" class="block text-sm font-medium text-gray-700">Your Email</label>
                         <input type="email" name="email" id="email" required
                             class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm 
-                   focus:ring-yellow-500 focus:border-yellow-500">
+               focus:ring-yellow-500 focus:border-yellow-500">
                     </div>
 
                     <div>
                         <label for="phone" class="block text-sm font-medium text-gray-700">Your Mobile Number</label>
                         <input type="tel" name="phone" id="phone" required
                             class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm 
-                   focus:ring-yellow-500 focus:border-yellow-500"
+               focus:ring-yellow-500 focus:border-yellow-500"
                             placeholder="+91-7275002525">
                     </div>
 
@@ -1162,13 +1162,13 @@
                         <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
                         <textarea name="message" id="message" rows="4" required
                             class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm 
-                   focus:ring-yellow-500 focus:border-yellow-500"></textarea>
+               focus:ring-yellow-500 focus:border-yellow-500"></textarea>
                     </div>
 
                     <div>
                         <button type="submit"
                             class="w-full bg-gradient-to-r from-[#8B4513] to-[#D4A017] text-white font-medium py-3 
-                   rounded-lg shadow-lg hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-yellow-500">
+               rounded-lg shadow-lg hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-yellow-500">
                             Send Message
                         </button>
                     </div>
@@ -1352,6 +1352,4 @@
             },
         });
     </script>
-
-    
 @endsection

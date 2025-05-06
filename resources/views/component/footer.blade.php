@@ -108,42 +108,42 @@
                 <h3 class="text-xl font-semibold text-white mb-6">Useful Links</h3>
                 <ul class="space-y-3">
                     <li>
-                        <a href="#"
+                        <a href="{{ route('termandcondition') }}"
                             class="footer-link text-sm hover:text-white transition-colors duration-300">Terms and
                             Conditions</a>
                     </li>
                     <li>
-                        <a href="#"
+                        <a href="{{ route('conditons') }}"
                             class="footer-link text-sm hover:text-white transition-colors duration-300">General Terms
                             and Conditions For Online-Payments</a>
                     </li>
                     <li>
-                        <a href="#"
+                        <a href="{{ route('liability') }}"
                             class="footer-link text-sm hover:text-white transition-colors duration-300">Limitation of
                             Liability</a>
                     </li>
                     <li>
-                        <a href="#"
+                        <a href="{{ route('miscelleneous') }}"
                             class="footer-link text-sm hover:text-white transition-colors duration-300">Miscellaneous
                             Conditions</a>
                     </li>
                     <li>
-                        <a href="#"
+                        <a href="{{ route('details') }}"
                             class="footer-link text-sm hover:text-white transition-colors duration-300">Debit/Credit
                             Card, Bank Account Details</a>
                     </li>
                     <li>
-                        <a href="#"
+                        <a href="{{ route('information') }}"
                             class="footer-link text-sm hover:text-white transition-colors duration-300">Personal
                             Information</a>
                     </li>
                     <li>
-                        <a href="#"
+                        <a href="{{ route('policy') }}"
                             class="footer-link text-sm hover:text-white transition-colors duration-300">Cancellation
                             Policy</a>
                     </li>
                     <li>
-                        <a href="#"
+                        <a href="{{ route('crescentfacilities') }}"
                             class="footer-link text-sm hover:text-white transition-colors duration-300">Crescent
                             Facilities</a>
                     </li>
