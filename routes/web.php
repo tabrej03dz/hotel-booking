@@ -6,6 +6,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\HomeController;
 
 use App\Http\Controllers\UserController;
 
@@ -15,12 +16,12 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/', function () {
-    return view('front.index');
-});
-Route::get('/contact', function () {
-    return view('front.contact');
-});
+// Route::get('/', function () {
+//     return view('front.index');
+// });
+// Route::get('/contact', function () {
+//     return view('front.contact');
+// });
 
 
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->middleware(['auth','verified'])->name('dashboard');
@@ -74,3 +75,56 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+
+// Home route
+Route::get('/', [HomeController::class, 'home'])->name('home');
+
+// About route
+Route::get('/about', [HomeController::class, 'about'])->name('about');
+
+// Accommodation route
+Route::get('/accommodation', [HomeController::class, 'accommodation'])->name('accommodation');
+
+// Banquets and Meetings route
+Route::get('/banquets-and-meetings', [HomeController::class, 'banquetsAndMeetings'])->name('banquets-and-meetings');
+
+// Rules and Regulations route
+Route::get('/rules-and-regulations', [HomeController::class, 'rulesAndRegulations'])->name('rules-and-regulations');
+
+// Careers route
+Route::get('/careers', [HomeController::class, 'careers'])->name('careers');
+
+// Gallery route
+Route::get('/gallery', [HomeController::class, 'gallery'])->name('gallery');
+
+// Contact Us route
+Route::get('/contact-us', [HomeController::class, 'contactUs'])->name('contact-us');
+
+Route::get('/crescent', [HomeController::class, 'crescent'])->name('crescent');
+
+Route::get('/crescentfacilities', [HomeController::class, 'crescentfacilities'])->name('crescentfacilities');
+
+// Accommodation Routes
+Route::get('/accommodation/standard-room', [HomeController::class, 'standardRoom'])->name('accommodation.standard');
+Route::get('/accommodation/deluxe-room', [HomeController::class, 'deluxeRoom'])->name('accommodation.deluxe');
+Route::get('/accommodation/suite-room', [HomeController::class, 'suiteRoom'])->name('accommodation.suite');
+
+// Banquets and Meetings Routes
+Route::get('/banquets/lawn-package', [HomeController::class, 'lawnPackage'])->name('banquets.lawn');
+Route::get('/banquets/ballroom-package', [HomeController::class, 'ballroomPackage'])->name('banquets.ballroom');
+Route::get('/banquets/elite1', [HomeController::class, 'elite1'])->name('banquets.elite1');
+Route::get('/banquets/elite2', [HomeController::class, 'elite2'])->name('banquets.elite2');
+
+// footerpages
+Route::get('/termandcondition', [HomeController::class, 'termandcondition'])->name('termandcondition');
+Route::get('/conditions', [HomeController::class, 'conditions'])->name('conditons');
+Route::get('/liability', [HomeController::class, 'liability'])->name('liability');
+Route::get('/miscelleneous', [HomeController::class, 'miscelleneous'])->name('miscelleneous');
+Route::get('/details', [HomeController::class, 'details'])->name('details');
+Route::get('/information', [HomeController::class, 'information'])->name('information');
+Route::get('/policy', [HomeController::class, 'policy'])->name('policy');
+
+Route::post('/send-booking-email', [BookingController::class, 'sendBookingEmail'])->name('booking.send');
+Route::get('/thank-you', [BookingController::class, 'thankyou'])->name('thankyou');
