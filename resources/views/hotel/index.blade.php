@@ -5,7 +5,7 @@
                 {{ __('Hotels') }}
             </h2>
             @can('create permission')
-                <a href="{{ route('permission.create') }}"
+                <a href="{{ route('hotel.create') }}"
                    class="inline-block px-6 py-2.5 bg-gradient-to-r from-[#c21108] to-[#000308] text-white font-medium text-sm leading-tight uppercase rounded-lg shadow-md hover:from-[#000308] hover:to-[#c21108] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#c21108] transition duration-300 ease-in-out">
                     + Create Permission
                 </a>
