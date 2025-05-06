@@ -21,7 +21,7 @@
                     </div>
                 @endif
                 <form
-                    action="{{ isset($otel) ? route('hotel.update', $hotel->id) : route('hotel.store') }}"
+                    action="{{ isset($hotel) ? route('hotel.update', $hotel->id) : route('hotel.store') }}"
                     method="POST" class="space-y-4">
                     @csrf
                     {{-- @if (isset($hotel))
