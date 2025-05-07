@@ -128,3 +128,6 @@ Route::get('/policy', [HomeController::class, 'policy'])->name('policy');
 
 Route::post('/send-booking-email', [BookingController::class, 'sendBookingEmail'])->name('booking.send');
 Route::get('/thank-you', [BookingController::class, 'thankyou'])->name('thankyou');
+
+Route::get('/bookingdetail', [HomeController::class, 'bookingdetail'])->name('bookingdetail');
+Route::get('/roomdetail', [HomeController::class, 'roomdetail'])->name('frontend.roomdetail');

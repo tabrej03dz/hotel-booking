@@ -123,4 +123,12 @@ class HomeController extends Controller
     {
         return view('frontend.policy');
     }
+
+    public function bookingdetail(){
+        return view('frontend.bookingdetail');
+    }
+
+    public function roomdetail(){
+        return view('frontend.roomdetail');
+    }
 }
