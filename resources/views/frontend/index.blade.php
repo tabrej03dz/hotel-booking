@@ -140,6 +140,8 @@
         }
     </style>
 
+
+
     <!-- Hero Section with Video Background -->
     <section class="relative h-screen overflow-hidden">
         <!-- Video Background with improved loading -->
@@ -891,8 +893,51 @@
         </div>
     </section>
 
+    <section id="booking" class="py-12 animated-gradient">
+        <div class="container mx-auto px-4">
+            <!-- Title Section -->
+            <h2 class="text-3xl font-bold text-white mb-8 text-center">
+                Book Your Stay
+                <div class="w-16 h-1 bg-gradient-to-r from-[#8B4513] to-[#D4A017] mx-auto mt-2 rounded-full"></div>
+            </h2>
+            <div class="w-full max-w-7xl mx-auto bg-white rounded-lg shadow-lg p-6">
 
-    @include('component.booking')
+                <form action="{{ route('rooms.available') }}" method="POST"
+                      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                    @csrf
+
+                    <!-- Check-in Date Picker -->
+                    <div class="flex flex-col">
+                        <label class="text-gray-700 font-medium">Check-in</label>
+                        <input type="date" id="checkin" name="check_in_date" placeholder="Select Check-in" required
+                               class="border border-gray-300 rounded-md p-2 bg-white outline-none
+                                       focus:border-[#8B4513] focus:ring-2 focus:ring-[#8B4513]">
+                    </div>
+
+                    <!-- Check-out Date Picker -->
+                    <div class="flex flex-col">
+                        <label class="text-gray-700 font-medium">Check-out</label>
+                        <input type="date" id="checkout" name="check_out_date" placeholder="Select Check-out" required
+                               class="border border-gray-300 rounded-md p-2 bg-white outline-none
+                                       focus:border-[#8B4513] focus:ring-2 focus:ring-[#8B4513]">
+                    </div>
+
+                    <div class="flex flex-col">
+                        <br>
+                        <button type="submit"
+                                class="px-6 py-2 bg-gradient-to-r from-[#8B4513] to-[#D4A017] text-white rounded-md transition
+                                    hover:from-[#D4A017] hover:to-[#8B4513]">
+                            Search
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+{{--    @include('component.booking')--}}
 
     <!-- Our Accommodation Section -->
     <section class="py-20 bg-gradient-to-b from-[#1a1a2e] via-[#16213e] to-[#1a1a2e]">
@@ -1133,27 +1178,27 @@
 
                 <!-- Contact Form -->
                 <form action="#" method="POST"
-                    class="bg-white p-6 sm:p-8 rounded-xl shadow-lg transition-transform duration-700 
+                    class="bg-white p-6 sm:p-8 rounded-xl shadow-lg transition-transform duration-700
        hover:shadow-2xl hover:-translate-y-2 space-y-4">
 
                     <div>
                         <label for="name" class="block text-sm font-medium text-gray-700">Your Name</label>
                         <input type="text" name="name" id="name" required
-                            class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm 
+                            class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm
                focus:ring-yellow-500 focus:border-yellow-500">
                     </div>
 
                     <div>
                         <label for="email" class="block text-sm font-medium text-gray-700">Your Email</label>
                         <input type="email" name="email" id="email" required
-                            class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm 
+                            class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm
                focus:ring-yellow-500 focus:border-yellow-500">
                     </div>
 
                     <div>
                         <label for="phone" class="block text-sm font-medium text-gray-700">Your Mobile Number</label>
                         <input type="tel" name="phone" id="phone" required
-                            class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm 
+                            class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm
                focus:ring-yellow-500 focus:border-yellow-500"
                             placeholder="+91-7275002525">
                     </div>
@@ -1161,13 +1206,13 @@
                     <div>
                         <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
                         <textarea name="message" id="message" rows="4" required
-                            class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm 
+                            class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm
                focus:ring-yellow-500 focus:border-yellow-500"></textarea>
                     </div>
 
                     <div>
                         <button type="submit"
-                            class="w-full bg-gradient-to-r from-[#8B4513] to-[#D4A017] text-white font-medium py-3 
+                            class="w-full bg-gradient-to-r from-[#8B4513] to-[#D4A017] text-white font-medium py-3
                rounded-lg shadow-lg hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-yellow-500">
                             Send Message
                         </button>

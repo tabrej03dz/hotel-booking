@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Room;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -84,7 +85,7 @@ class HomeController extends Controller
         return view('frontend.ballroom-package');
     }
 
-    
+
     public function elite1()
     {
         return view('frontend.elite1');
@@ -124,6 +125,23 @@ class HomeController extends Controller
         return view('frontend.policy');
     }
 
+
+    public function availableRoom(Request $request)
+    {
+        $checkIn = $request->check_in_date;
+        $checkOut = $request->check_out_date;
+        $availableRooms = Room::
+        whereDoesntHave('bookings', function ($query) use ($checkIn, $checkOut) {
+            $query->where('status', '!=', 'cancelled') // Ignore cancelled bookings
+            ->where(function ($q) use ($checkIn, $checkOut) {
+                $q->where('check_in_date', '<', $checkOut)
+                    ->where('check_out_date', '>', $checkIn);
+            });
+        })
+            ->get();
+
+        return view('frontend.roomdetail', compact('availableRooms'));
+    }
     public function bookingdetail(){
         return view('frontend.bookingdetail');
     }
@@ -131,4 +149,6 @@ class HomeController extends Controller
     public function roomdetail(){
         return view('frontend.roomdetail');
     }
+
+
 }

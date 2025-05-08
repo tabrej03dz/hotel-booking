@@ -2,23 +2,26 @@
     <x-slot name="header">
         <div class="flex justify-between items-center bg-white shadow-md px-6 py-4 rounded-lg">
             <h2 class="font-bold text-2xl text-gray-800">
-                {{ __('Rooms') }}
+                {{ __('Amenity') }}
             </h2>
-            @can('create room')
-                <a wire:navigate href="{{ route('rooms.create') }}"
+            @can('create amenity')
+                <a href="{{ route('amenity.create') }}"
                    class="inline-block px-6 py-2.5 bg-gradient-to-r from-[#c21108] to-[#000308] text-white font-medium text-sm leading-tight uppercase rounded-lg shadow-md hover:from-[#000308] hover:to-[#c21108] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#c21108] transition duration-300 ease-in-out">
-                    + Create Room
+                    + Create Room Type
                 </a>
             @endcan
+
         </div>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
+            <!-- Success Message -->
             @if (session('success'))
                 <div class="flex items-center bg-green-100 text-green-800 px-4 py-3 rounded-lg mb-6 shadow-md">
-                    <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                               d="M5 13l4 4L19 7" />
                     </svg>
@@ -26,9 +29,11 @@
                 </div>
             @endif
 
+            <!-- Error Messages -->
             @if ($errors->any())
                 <div class="flex items-start bg-red-100 text-red-700 px-4 py-3 rounded-lg mb-6 shadow-md">
-                    <svg class="w-6 h-6 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-6 h-6 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                               d="M6 18L18 6M6 6l12 12" />
                     </svg>
@@ -40,58 +45,54 @@
                 </div>
             @endif
 
+
             <div class="bg-white shadow-xl rounded-2xl p-6 border border-gray-100">
-                <h2 class="text-2xl font-bold text-gray-800 mb-6">🛏️ Rooms</h2>
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">🔐 Amenity</h2>
 
                 <div class="overflow-x-auto">
                     <table class="w-full text-sm text-left border border-gray-200 rounded-lg overflow-hidden">
                         <thead class="bg-gradient-to-r from-indigo-50 to-indigo-100 text-gray-700 uppercase font-semibold text-xs">
                         <tr>
                             <th class="px-6 py-4">#</th>
-                            <th class="px-6 py-4">Room Number</th>
-                            <th class="px-6 py-4">Hotel</th>
-                            <th class="px-6 py-4">Room Type</th>
+                            <th class="px-6 py-4">Name</th>
                             <th class="px-6 py-4">Price</th>
-                            <th class="px-6 py-4">Discounted Price</th>
-                            <th class="px-6 py-4">Status</th>
+                            <th class="px-6 py-4">Description</th>
                             <th class="px-6 py-4 text-center">Actions</th>
                         </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-100">
-                        @forelse ($rooms as $room)
+                        @forelse ($roomTypes as $roomType)
                             <tr class="hover:bg-gray-50 transition">
                                 <td class="px-6 py-4 font-medium text-gray-800">{{ $loop->iteration }}</td>
-                                <td class="px-6 py-4 text-gray-700">{{ $room->room_number }}</td>
-                                <td class="px-6 py-4 text-gray-700">{{ $room->hotel->name ?? '-' }}</td>
-                                <td class="px-6 py-4 text-gray-700">{{ $room->roomType->name ?? '-' }}</td>
-                                <td class="px-6 py-4 text-gray-700">{{ $room->price ?? '-' }}</td>
-                                <td class="px-6 py-4 text-gray-700">{{ $room->discounted_price ?? '-' }}</td>
-                                <td class="px-6 py-4 text-gray-700 capitalize">{{ $room->status }}</td>
+                                <td class="px-6 py-4 text-gray-700">{{ $roomType->name }}</td>
+                                <td class="px-6 py-4 text-gray-700">{{ $roomType->price }}</td>
+                                <td class="px-6 py-4 text-gray-700">{{ $roomType->description }}</td>
                                 <td class="px-6 py-4 text-center">
                                     <div class="flex justify-center gap-3">
-                                        @can('edit room')
-                                            <a href="{{ route('rooms.edit', $room->id) }}"
+                                        @can('edit amenity')
+                                            <a href="{{ route('room-type.edit', $roomType->id) }}"
                                                class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-md text-sm font-semibold transition shadow">
                                                 ✏️ Edit
                                             </a>
                                         @endcan
 
-                                        @can('delete room')
-                                            <form action="{{ route('rooms.destroy', $room->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this room?');" class="inline">
+                                        @can('delete amenity')
+                                            <form action="{{ route('room-type.delete', $roomType->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this roomType?');" class="inline">
                                                 @csrf
                                                 <button type="submit"
                                                         class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md text-sm font-semibold transition shadow">
                                                     🗑️ Delete
                                                 </button>
                                             </form>
+
                                         @endcan
                                     </div>
                                 </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="6" class="text-center py-6 text-gray-400 text-base">
-                                    No rooms found.
+                                <td colspan="3" class="text-center py-6 text-gray-400 text-base">
+                                    No roomType found.
                                 </td>
                             </tr>
                         @endforelse
@@ -102,4 +103,5 @@
 
         </div>
     </div>
+
 </x-app-layout>

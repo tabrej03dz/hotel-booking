@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 
@@ -109,15 +111,24 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('payment')->name('payment.')->controller(\App\Http\Controllers\PaymentController::class)->group(function(){
         Route::get('/', 'index')->name('index');
-        Route::get('/create?{booking}', 'create')->name('create');
+        Route::get('/create/{booking}', 'create')->name('create');
         Route::post('/store', 'store')->name('store');
         Route::get('/edit/{payment}', 'edit')->name('edit');
         Route::get('/show/{payment}', 'show')->name('show');
         Route::get('/status/{payment}', 'status')->name('status');
         Route::post('/update/{payment}', 'update')->name('update');
         Route::post('/update/{payment}', 'update')->name('update');
-        Route::post('/update/{payment}', 'update')->name('update');
         Route::post('/destroy/{payment}', 'destroy')->name('destroy');
+    });
+
+
+    Route::prefix('amenity')->name('amenity.')->controller(\App\Http\Controllers\AmenityController::class)->group(function(){
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/store', 'store')->name('store');
+        Route::get('/edit/{amenity}', 'edit')->name('edit');
+        Route::post('/update/{amenity}', 'update')->name('update');
+        Route::post('/destroy/{amenity}', 'destroy')->name('destroy');
     });
 
 
@@ -150,6 +161,8 @@ Route::get('/gallery', [HomeController::class, 'gallery'])->name('gallery');
 
 // Contact Us route
 Route::get('/contact-us', [HomeController::class, 'contactUs'])->name('contact-us');
+Route::post('/contact/save', [ContactController::class, 'contactSave'])->name('contact.save');
+
 
 Route::get('/crescent', [HomeController::class, 'crescent'])->name('crescent');
 
@@ -178,5 +191,9 @@ Route::get('/policy', [HomeController::class, 'policy'])->name('policy');
 Route::post('/send-booking-email', [BookingController::class, 'sendBookingEmail'])->name('booking.send');
 Route::get('/thank-you', [BookingController::class, 'thankyou'])->name('thankyou');
 
+
+Route::post('rooms/available', [HomeController::class, 'availableRoom'])->name('rooms.available');
+
 Route::get('/bookingdetail', [HomeController::class, 'bookingdetail'])->name('bookingdetail');
 Route::get('/roomdetail', [HomeController::class, 'roomdetail'])->name('frontend.roomdetail');
+

@@ -44,7 +44,7 @@
                     <label class="text-gray-700 font-medium">Your Email or Phone</label>
                     <input type="text" name="contact" id="contact" placeholder="Enter email or phone number"
                         required
-                        class="border border-gray-300 rounded-md p-2 bg-white outline-none 
+                        class="border border-gray-300 rounded-md p-2 bg-white outline-none
                focus:border-[#8B4513] focus:ring-2 focus:ring-[#8B4513]">
                     <span id="contact-error" class="text-red-500 text-sm hidden">Invalid email or phone number</span>
                 </div>
@@ -113,7 +113,7 @@
                 <!-- Submit Button -->
                 <div class="col-span-1 sm:col-span-2 md:col-span-3 flex justify-center">
                     <button type="submit"
-                        class="px-6 py-2 bg-gradient-to-r from-[#8B4513] to-[#D4A017] text-white rounded-md transition 
+                        class="px-6 py-2 bg-gradient-to-r from-[#8B4513] to-[#D4A017] text-white rounded-md transition
                             hover:from-[#D4A017] hover:to-[#8B4513]">
                         Book Now
                     </button>

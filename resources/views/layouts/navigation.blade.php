@@ -68,6 +68,14 @@
                     <x-nav-link :href="route('booking.index')" :active="request()->routeIs('booking*')">
                         Bookings
                     </x-nav-link>
+
+                    <x-nav-link :href="route('payment.index')" :active="request()->routeIs('payment*')">
+                        Payments
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('amenity.index')" :active="request()->routeIs('amenity*')">
+                        Amenity
+                    </x-nav-link>
                 </div>
             </div>
 
