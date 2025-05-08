@@ -207,27 +207,29 @@
                                         class="block px-4 py-2 text-sm text-gray-300 hover:bg-purple-600/20 hover:text-white">Ballroom</a>
 
                                   <!-- Submenu: Conference Room -->
-<div class="relative group">
-    <!-- Trigger button (always visible on desktop) -->
-    <button
-        class="w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-purple-600/20 hover:text-white flex justify-between items-center">
-        Conference Hall
-        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M9 5l7 7-7 7" />
-        </svg>
-    </button>
-
-    <!-- Dropdown (visible on hover for desktop) -->
-    <div
-        class="absolute top-0 left-full mt-0 ml-1 w-48 rounded-md shadow-lg bg-[#0D0630] ring-1 ring-black ring-opacity-5 z-50 hidden group-hover:block group-focus-within:block">
-        <a href="{{route('banquets.elite1')}}"
-            class="block px-4 py-2 text-sm text-gray-300 hover:bg-purple-600/20 hover:text-white">Elite 1</a>
-        <a href="{{route('banquets.elite2')}}"
-            class="block px-4 py-2 text-sm text-gray-300 hover:bg-purple-600/20 hover:text-white">Elite 2</a>
-    </div>
-</div>
-
+                                  <div class="flex items-center justify-center h-auto">
+                                    <div x-data="{ open: false }" class="relative inline-block text-left">
+                                        <button @click="open = !open"
+                                            class="inline-flex justify-between w-56 px-4 py-2 text-sm font-medium text-gray-300 hover:bg-purple-600/20 hover:text-white focus:outline-none focus:ring-offset-gray-100">
+                                            Conference Room
+                                            <svg class="h-5 w-5 ml-2 transform transition-transform duration-200" :class="{ 'rotate-0': open, '-rotate-180': !open }" fill="none"
+                                                stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                            </svg>
+                                        </button>
+                                    
+                                        <div x-show="open" @click.away="open = false" x-transition
+                                            class="origin-top-left absolute left-full top-0 ml-2 w-56 rounded-md shadow-lg bg-[#0D0630] text-gray-300 hover:text-white px-2 py-2 z-10">
+                                            <a href="{{ route('banquets.elite1') }}"
+                                                class="block px-4 py-2 text-sm text-gray-300 hover:bg-purple-600/20 hover:text-white focus:outline-none focus:ring-offset-gray-100 rounded-md">Elite 1</a>
+                                            <a href="{{ route('banquets.elite2') }}"
+                                                class="block px-4 py-2 text-sm text-gray-300 hover:bg-purple-600/20 hover:text-white focus:outline-none focus:ring-offset-gray-100 rounded-md">Elite 2</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
+                                <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
 
                                 </div>
                             </div>

@@ -187,4 +187,9 @@ Route::get('/policy', [HomeController::class, 'policy'])->name('policy');
 Route::post('/send-booking-email', [BookingController::class, 'sendBookingEmail'])->name('booking.send');
 Route::get('/thank-you', [BookingController::class, 'thankyou'])->name('thankyou');
 
+<<<<<<< HEAD
 Route::post('rooms/available', [HomeController::class, 'availableRoom'])->name('rooms.available');
+=======
+Route::get('/bookingdetail', [HomeController::class, 'bookingdetail'])->name('bookingdetail');
+Route::get('/roomdetail', [HomeController::class, 'roomdetail'])->name('frontend.roomdetail');
+>>>>>>> 4444eb500961afd4bd9337f8e3088e554b51cf6b

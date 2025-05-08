@@ -125,6 +125,7 @@ class HomeController extends Controller
         return view('frontend.policy');
     }
 
+<<<<<<< HEAD
     public function availableRoom(Request $request){
         $checkIn = $request->check_in_date;
         $checkOut = $request->check_out_date;
@@ -139,5 +140,13 @@ class HomeController extends Controller
             ->get();
 
         return view('frontend.available-rooms', compact('availableRooms'));
+=======
+    public function bookingdetail(){
+        return view('frontend.bookingdetail');
+    }
+
+    public function roomdetail(){
+        return view('frontend.roomdetail');
+>>>>>>> 4444eb500961afd4bd9337f8e3088e554b51cf6b
     }
 }
