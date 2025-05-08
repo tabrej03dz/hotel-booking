@@ -13,7 +13,7 @@
         <div class="relative container mx-auto text-center z-10">
             <!-- Title with Enhanced Focus -->
             <h1 class="text-5xl font-extrabold uppercase leading-tight mb-4 text-[#ecf0f1] drop-shadow-lg">
-                Lawn 
+                Lawn
             </h1>
 
             <!-- Description Text with Focus -->
@@ -30,7 +30,7 @@
     <div class="container mx-auto py-16 px-6">
         <div class="py-4">
             <h2 class="text-4xl font-bold text-center text-gray-700 mb-4">
-                Our Lawn 
+                Our Lawn
             </h2>
             <span class="block border-b-4 border-gray-700 w-1/6 mx-auto"></span>
         </div>
@@ -39,32 +39,39 @@
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
                 <img src="{{ asset('asset/lawn-img/lawn-1.JPG') }}" class="w-full h-56 object-cover cursor-pointer"
                     onclick="openModal(this)">
-                <img src="{{asset('asset/lawn-img/lawn-2.JPG') }}" class="w-full h-56 object-cover cursor-pointer"
+                <img src="{{ asset('asset/lawn-img/lawn-2.JPG') }}" class="w-full h-56 object-cover cursor-pointer"
                     onclick="openModal(this)">
-                <img src="{{asset('asset/lawn-img/lawn-3.JPG') }}" class="w-full h-56 object-cover cursor-pointer"
+                <img src="{{ asset('asset/lawn-img/lawn-3.JPG') }}" class="w-full h-56 object-cover cursor-pointer"
                     onclick="openModal(this)">
-                <img src="{{asset('asset/lawn-img/lawn-4.JPG') }}" class="w-full h-56 object-cover cursor-pointer"
+                <img src="{{ asset('asset/lawn-img/lawn-4.JPG') }}" class="w-full h-56 object-cover cursor-pointer"
                     onclick="openModal(this)">
-                <img src="{{asset('asset/lawn-img/lawn-5.JPG') }}" class="w-full h-56 object-cover cursor-pointer"
+                <img src="{{ asset('asset/lawn-img/lawn-5.JPG') }}" class="w-full h-56 object-cover cursor-pointer"
                     onclick="openModal(this)">
-                <img src="{{asset('asset/lawn-img/lawn-6.JPG') }}" class="w-full h-56 object-cover cursor-pointer"
+                <img src="{{ asset('asset/lawn-img/lawn-6.JPG') }}" class="w-full h-56 object-cover cursor-pointer"
                     onclick="openModal(this)">
-                <img src="{{asset('asset/lawn-img/lawn-7.JPG') }}" class="w-full h-56 object-cover cursor-pointer"
+                <img src="{{ asset('asset/lawn-img/lawn-7.JPG') }}" class="w-full h-56 object-cover cursor-pointer"
                     onclick="openModal(this)">
-                <img src="{{asset('asset/lawn-img/lawn-8.JPG') }}" class="w-full h-56 object-cover cursor-pointer"
+                <img src="{{ asset('asset/lawn-img/lawn-8.JPG') }}" class="w-full h-56 object-cover cursor-pointer"
                     onclick="openModal(this)">
-                <img src="{{asset('asset/lawn-img/lawn-9.JPG') }}" class="w-full h-56 object-cover cursor-pointer"
+                <img src="{{ asset('asset/lawn-img/lawn-9.JPG') }}" class="w-full h-56 object-cover cursor-pointer"
                     onclick="openModal(this)">
-                <img src="{{asset('asset/lawn-img/lawn-10.JPG') }}" class="w-full h-56 object-cover cursor-pointer"
+                <img src="{{ asset('asset/lawn-img/lawn-10.JPG') }}" class="w-full h-56 object-cover cursor-pointer"
                     onclick="openModal(this)">
-                <img src="{{asset('asset/lawn-img/lawn-11.JPG') }}" class="w-full h-56 object-cover cursor-pointer"
+                <img src="{{ asset('asset/lawn-img/lawn-11.JPG') }}" class="w-full h-56 object-cover cursor-pointer"
                     onclick="openModal(this)">
             </div>
 
             <div class="p-6 text-center">
                 <h3 class="text-2xl font-semibold text-gray-800 mb-3">Exclusive Lawn Package</h3>
                 <p class="text-gray-600">Enjoy a premium Lawn experience with elegant decor, lighting, and catering.</p>
-
+                <!-- Optional CTA Section -->
+                <div class="my-10 text-center">
+                    <a href="{{ route('crescent') }}"
+                        class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#8B4513] to-[#D4A017] text-white rounded-lg transition-all duration-500 ease-in-out transform hover:from-[#D4A017] hover:to-[#8B4513] hover:scale-105 shadow-2xl hover:shadow-2xl">
+                        Discover Our Services
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -169,5 +176,4 @@
             modalImage.dataset.index = newIndex;
         }
     </script>
-
 @endsection

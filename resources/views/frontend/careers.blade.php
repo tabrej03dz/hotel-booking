@@ -22,7 +22,7 @@
     </div>
 
     <!-- Career Page Section -->
-    <section class="py-20">
+    {{-- <section class="py-20">
         <div class="container mx-auto px-4">
             <h2 class="text-5xl font-bold text-[#16213e] text-center mb-12">
                 Join Our Team
@@ -83,7 +83,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <!-- Why Join Us Section -->
     <section class="py-20 bg-white">
