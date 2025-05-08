@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 
@@ -159,6 +161,8 @@ Route::get('/gallery', [HomeController::class, 'gallery'])->name('gallery');
 
 // Contact Us route
 Route::get('/contact-us', [HomeController::class, 'contactUs'])->name('contact-us');
+Route::post('/contact/save', [ContactController::class, 'contactSave'])->name('contact.save');
+
 
 Route::get('/crescent', [HomeController::class, 'crescent'])->name('crescent');
 
@@ -187,9 +191,9 @@ Route::get('/policy', [HomeController::class, 'policy'])->name('policy');
 Route::post('/send-booking-email', [BookingController::class, 'sendBookingEmail'])->name('booking.send');
 Route::get('/thank-you', [BookingController::class, 'thankyou'])->name('thankyou');
 
-<<<<<<< HEAD
+
 Route::post('rooms/available', [HomeController::class, 'availableRoom'])->name('rooms.available');
-=======
+
 Route::get('/bookingdetail', [HomeController::class, 'bookingdetail'])->name('bookingdetail');
 Route::get('/roomdetail', [HomeController::class, 'roomdetail'])->name('frontend.roomdetail');
->>>>>>> 4444eb500961afd4bd9337f8e3088e554b51cf6b
+

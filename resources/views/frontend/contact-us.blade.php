@@ -84,29 +84,42 @@
                 </div>
 
                 <!-- Contact Form -->
-                <form action="#" method="POST"
+                <form action="{{route('contact.save')}}" method="POST"
                     class="space-y-6 bg-white p-8 rounded-xl shadow-lg transition-transform duration-700 hover:shadow-2xl hover:-translate-y-2">
                     @csrf
                     <div>
                         <label for="name" class="block text-sm font-medium text-gray-700">Your Name</label>
-                        <input type="text" name="name" id="name" required
+                        <input type="text" name="name" id="name" required value="{{old('name')}}"
                             class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-[#D4A017] focus:border-[#D4A017]">
+                    
+                            @error('name')
+                                <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+                            @enderror
                     </div>
                     <div>
                         <label for="email" class="block text-sm font-medium text-gray-700">Your Email</label>
-                        <input type="email" name="email" id="email" required
+                        <input type="email" name="email" id="email" required value="{{old('email')}}"
                             class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-[#D4A017] focus:border-[#D4A017]">
+                            @error('email')
+                                <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+                            @enderror
                     </div>
                     <div>
                         <label for="phone" class="block text-sm font-medium text-gray-700">Your Mobile Number</label>
-                        <input type="tel" name="phone" id="phone" required
+                        <input type="tel" name="phone" id="phone" required value="{{old('phone')}}"
                             class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-[#D4A017] focus:border-[#D4A017]"
                             placeholder="+91-7275092525">
+                            @error('phone')
+                                <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+                            @enderror
                     </div>
                     <div>
                         <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
-                        <textarea name="message" id="message" rows="4" required
-                            class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-[#D4A017] focus:border-[#D4A017]"></textarea>
+                        <textarea name="message" id="message" rows="4" required 
+                            class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-[#D4A017] focus:border-[#D4A017]">{{old('name')}}</textarea>
+                            @error('message')
+                                <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+                            @enderror
                     </div>
                     <div>
                         <button type="submit"

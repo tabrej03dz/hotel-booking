@@ -125,28 +125,30 @@ class HomeController extends Controller
         return view('frontend.policy');
     }
 
-<<<<<<< HEAD
-    public function availableRoom(Request $request){
+
+    public function availableRoom(Request $request)
+    {
         $checkIn = $request->check_in_date;
         $checkOut = $request->check_out_date;
         $availableRooms = Room::
-            whereDoesntHave('bookings', function ($query) use ($checkIn, $checkOut) {
-                $query->where('status', '!=', 'cancelled') // Ignore cancelled bookings
-                ->where(function ($q) use ($checkIn, $checkOut) {
-                    $q->where('check_in_date', '<', $checkOut)
-                        ->where('check_out_date', '>', $checkIn);
-                });
-            })
+        whereDoesntHave('bookings', function ($query) use ($checkIn, $checkOut) {
+            $query->where('status', '!=', 'cancelled') // Ignore cancelled bookings
+            ->where(function ($q) use ($checkIn, $checkOut) {
+                $q->where('check_in_date', '<', $checkOut)
+                    ->where('check_out_date', '>', $checkIn);
+            });
+        })
             ->get();
 
-        return view('frontend.available-rooms', compact('availableRooms'));
-=======
+        return view('frontend.roomdetail', compact('availableRooms'));
+    }
     public function bookingdetail(){
         return view('frontend.bookingdetail');
     }
 
     public function roomdetail(){
         return view('frontend.roomdetail');
->>>>>>> 4444eb500961afd4bd9337f8e3088e554b51cf6b
     }
+
+
 }

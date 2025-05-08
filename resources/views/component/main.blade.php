@@ -99,6 +99,29 @@
 
     <!-- Swiper JS (For Sliders) -->
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <!-- In <head> or before </body> -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if(session('success'))
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Success',
+        text: '{{ session('success') }}',
+    });
+</script>
+@endif
+
+@if(session('error'))
+<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: '{{ session('error') }}',
+    });
+</script>
+@endif
+
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
