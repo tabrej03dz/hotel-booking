@@ -38,10 +38,10 @@ class BookingController extends Controller
 
         // 1. Find or create customer
         $customer = Customer::firstOrCreate(
-            ['email' => $request->email],
+            ['phone' => $request->phone],
             [
                 'name' => $request->name,
-                'phone' => $request->phone,
+                'email' => $request->email,
                 'address' => $request->address ?? null,
             ]
         );
@@ -62,7 +62,10 @@ class BookingController extends Controller
             'check_in_date' => $request->check_in_date,
             'check_out_date' => $request->check_out_date,
             'status' => 'pending',
-            'total_amount' => $room->roomType->price, // basic cost
+            'total_amount' => $room->discounted_price
+                ?? $room->price
+                ?? $room->roomType->discounted_price
+                ?? $room->roomType->price, // basic cost
         ]);
 
         // 4. Update room status
