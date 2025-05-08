@@ -121,15 +121,20 @@
               <p class="text-gray-600 text-sm mb-4">{{$room->roomType->description}}</p>
               <div class="flex items-center justify-between">
                 <p class="text-amber-700 font-bold text-lg">₹{{($room->discounted_price ?? $room->price) ?? ($room->roomType->discounted_price ?? $room->roomType->price) }} <span class="text-gray-500 text-sm font-normal">/night</span></p>
-               <a href="{{route('booking.room', ['room' => $room->id, 'check-in' => $checkIn, 'check-out' => $checkOut])}}"> <button class="text-sm font-medium text-amber-600 hover:text-amber-700 transition-colors">Explore →</button>
-               </a>
+                <form action="{{route('booking.room', ['room' => $room->id])}}" method="post">
+                  @csrf
+                  <input type="hidden" name="check_in_date" value="{{$checkIn}}">
+                  <input type="hidden" name="check_out_date" value="{{$checkOut}}">
+                  <input type="hidden" name="days" value="{{$days}}">
+                  <button type="submit" class="text-sm font-medium text-amber-600 hover:text-amber-700 transition-colors">Explore →</button>
+                </form>
             </div>
             </div>
           </div>
           @endforeach
 
           <!-- Suite Card 2 -->
-          <div class="group relative bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl">
+          {{-- <div class="group relative bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl">
             <div class="relative h-64 overflow-hidden">
               <img src="{{asset('asset/ballroom/ballroom-2.JPG')}}" alt="Oceanfront Villa" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
               <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
@@ -161,7 +166,7 @@
                 <a href="{{route('bookingdetail')}}"><button class="text-sm font-medium text-amber-600 hover:text-amber-700 transition-colors">Explore →</button></a>
               </div>
             </div>
-          </div>
+          </div> --}}
         </div>
 
         <div class="mt-12 text-center">

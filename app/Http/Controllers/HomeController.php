@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
+use App\Models\Customer;
 use App\Models\Room;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
@@ -130,6 +135,8 @@ class HomeController extends Controller
     {
         $checkIn = $request->check_in_date;
         $checkOut = $request->check_out_date;
+
+        $days = Carbon::parse($request->check_in_date)->diffInDays(Carbon::parse($request->check_out_date));
         $availableRooms = Room::
         whereDoesntHave('bookings', function ($query) use ($checkIn, $checkOut) {
             $query->where('status', '!=', 'cancelled') // Ignore cancelled bookings
@@ -140,12 +147,61 @@ class HomeController extends Controller
         })
             ->get();
 
-        return view('frontend.roomdetail', compact('availableRooms', 'checkIn', 'checkOut'));
+        return view('frontend.roomdetail', compact('availableRooms', 'checkIn', 'checkOut', 'days'));
     }
 
-    public function bookingRoom(Room $room, $checkIn, $checkOut){
-        return view('frontend.bookindetail', compact('room', 'checkIn', 'checkOut'));
+    public function bookingRoom(Request $request, Room $room){
+        $checkInDate = $request->check_in_date;
+        $checkOutDate = $request->check_out_date;
+        $days = $request->days;
+        return view('frontend.bookingdetail', compact('room', 'checkInDate', 'checkOutDate', 'days'));
     }
+
+    public function bookingSave(Request $request, Room $room){
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'check_in_date' => 'required',
+            'check_out_date' => 'required',
+        ]);
+
+        // 1. Find or create customer
+        $user = User::firstOrCreate(
+            ['email' => $request->email],
+            [
+                'name' => $request->name,
+                'phone' => $request->phone,
+                'address' => $request->address ?? null,
+                'password' => Hash::make('password'),
+            ]
+        );
+
+        // 2. Find available room
+        $room = Room::where('id', $room->id)->first();
+
+        if (!$room) {
+            return back()->with('error', 'No available rooms of this type.');
+        }
+
+        $price = ($room->discounted_price ?? $room->price) ?? ($room->roomType->discounted_price ?? $room->roomType->price) * $request->days;
+        $tax = ($price * 18)/100;
+
+        // 3. Create booking
+        $booking = Booking::create([
+            'user_id' => $user->id,
+            'room_id' => $room->id,
+            'check_in_date' => $request->check_in_date,
+            'check_out_date' => $request->check_out_date,
+            'status' => 'pending',
+            'staying_days' => $request->days,
+            'amount' => $price,
+            'tax_and_fee' => $tax,
+            'total_amount' => $price + $tax, // basic cost
+        ]);
+
+    }
+
     public function bookingdetail(){
         return view('frontend.bookingdetail');
     }

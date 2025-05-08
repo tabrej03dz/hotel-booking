@@ -6,7 +6,9 @@ use App\Models\Booking;
 use App\Models\Customer;
 use App\Models\Room;
 use App\Models\RoomType;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class BookingController extends Controller
 {
@@ -37,12 +39,13 @@ class BookingController extends Controller
         ]);
 
         // 1. Find or create customer
-        $customer = Customer::firstOrCreate(
+        $customer = User::firstOrCreate(
             ['phone' => $request->phone],
             [
                 'name' => $request->name,
                 'email' => $request->email,
                 'address' => $request->address ?? null,
+                'password' => Hash::make('password'),
             ]
         );
 
