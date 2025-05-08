@@ -193,6 +193,8 @@ Route::get('/thank-you', [BookingController::class, 'thankyou'])->name('thankyou
 
 
 Route::post('rooms/available', [HomeController::class, 'availableRoom'])->name('rooms.available');
+Route::get('booking/room/{room}/{check-in}/{check-out}', [HomeController::class, 'bookingRoom'])->name('booking.room');
+
 
 Route::get('/bookingdetail', [HomeController::class, 'bookingdetail'])->name('bookingdetail');
 Route::get('/roomdetail', [HomeController::class, 'roomdetail'])->name('frontend.roomdetail');

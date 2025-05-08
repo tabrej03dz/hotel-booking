@@ -107,6 +107,7 @@
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           <!-- Suite Card 1 -->
+          @foreach($availableRooms as $room)
           <div class="group relative bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl">
             <div class="relative h-64 overflow-hidden">
               <img src="{{asset('asset/deluxe/deluxe-4.jpg')}}" alt="Presidential Suite" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
@@ -116,15 +117,16 @@
               </div>
             </div>
             <div class="p-6">
-              <h4 class="text-xl font-bold text-gray-900 mb-2 font-serif">Presidential Suite</h4>
-              <p class="text-gray-600 text-sm mb-4">360° city views • Private terrace • Butler service • Luxury amenities</p>
+              <h4 class="text-xl font-bold text-gray-900 mb-2 font-serif">{{$room->roomType->name}}</h4>
+              <p class="text-gray-600 text-sm mb-4">{{$room->roomType->description}}</p>
               <div class="flex items-center justify-between">
-                <p class="text-amber-700 font-bold text-lg">₹24,999 <span class="text-gray-500 text-sm font-normal">/night</span></p>
-               <a href="{{route('bookingdetail')}}"> <button class="text-sm font-medium text-amber-600 hover:text-amber-700 transition-colors">Explore →</button>
+                <p class="text-amber-700 font-bold text-lg">₹{{($room->discounted_price ?? $room->price) ?? ($room->roomType->discounted_price ?? $room->roomType->price) }} <span class="text-gray-500 text-sm font-normal">/night</span></p>
+               <a href="{{route('booking.room', ['room' => $room->id, 'check-in' => $checkIn, 'check-out' => $checkOut])}}"> <button class="text-sm font-medium text-amber-600 hover:text-amber-700 transition-colors">Explore →</button>
                </a>
             </div>
             </div>
           </div>
+          @endforeach
 
           <!-- Suite Card 2 -->
           <div class="group relative bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl">

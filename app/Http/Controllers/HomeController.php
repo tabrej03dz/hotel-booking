@@ -140,7 +140,11 @@ class HomeController extends Controller
         })
             ->get();
 
-        return view('frontend.roomdetail', compact('availableRooms'));
+        return view('frontend.roomdetail', compact('availableRooms', 'checkIn', 'checkOut'));
+    }
+
+    public function bookingRoom(Room $room, $checkIn, $checkOut){
+        return view('frontend.bookindetail', compact('room', 'checkIn', 'checkOut'));
     }
     public function bookingdetail(){
         return view('frontend.bookingdetail');
