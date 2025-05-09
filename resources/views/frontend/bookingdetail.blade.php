@@ -1,6 +1,4 @@
 
-
-
 @extends('component.main')
 @section('content')
 

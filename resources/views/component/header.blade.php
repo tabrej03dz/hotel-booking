@@ -204,7 +204,7 @@
                                     <a href="{{ route('banquets.lawn') }}"
                                         class="block px-4 py-2 text-sm text-gray-300 hover:bg-purple-600/20 hover:text-white">Lawn</a>
                                     <a href="{{ route('banquets.ballroom') }}"
-                                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-purple-600/20 hover:text-white">Ballroom</a>
+                                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-purple-600/20 hover:text-white">Banquet Hall</a>
 
                                   <!-- Submenu: Conference Room -->
                                   <div class="flex items-center justify-center h-auto">

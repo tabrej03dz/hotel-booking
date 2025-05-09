@@ -100,30 +100,30 @@
     <!-- Swiper JS (For Sliders) -->
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <!-- In <head> or before </body> -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-@if(session('success'))
-<script>
-    Swal.fire({
-        icon: 'success',
-        title: 'Success',
-        text: '{{ session('success') }}',
-    });
-</script>
-@endif
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: '{{ session('success') }}',
+            });
+        </script>
+    @endif
 
-@if(session('error'))
-<script>
-    Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: '{{ session('error') }}',
-    });
-</script>
-@endif
+    @if (session('error'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: '{{ session('error') }}',
+            });
+        </script>
+    @endif
 
 
-    <script>
+    {{-- <script>
         document.addEventListener("DOMContentLoaded", function() {
             const preloader = document.getElementById("preloader");
             const backToTop = document.getElementById("backToTop");
@@ -155,7 +155,47 @@
                 });
             });
         });
+    </script> --}}
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const preloader = document.getElementById("preloader");
+            const backToTop = document.getElementById("backToTop");
+
+            const isHome = window.location.pathname === "/" || window.location.pathname === "/index.html";
+
+            // Preloader only on home screen
+            if (preloader && isHome) {
+                window.addEventListener("load", function() {
+                    preloader.style.opacity = "0";
+                    setTimeout(() => {
+                        preloader.style.display = "none";
+                    }, 500);
+                });
+            } else if (preloader) {
+                // Immediately hide preloader on non-home pages
+                preloader.style.display = "none";
+            }
+
+            // Show/hide Back to Top button
+            window.addEventListener("scroll", function() {
+                if (window.scrollY > 400) {
+                    backToTop.style.display = "flex";
+                } else {
+                    backToTop.style.display = "none";
+                }
+            });
+
+            // Scroll back to top smoothly when button clicked
+            backToTop.addEventListener("click", function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            });
+        });
     </script>
+
 
 </body>
 

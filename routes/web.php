@@ -200,3 +200,5 @@ Route::post('booking/save/{room}', [HomeController::class, 'bookingSave'])->name
 Route::get('/bookingdetail', [HomeController::class, 'bookingdetail'])->name('bookingdetail');
 Route::get('/roomdetail', [HomeController::class, 'roomdetail'])->name('frontend.roomdetail');
 
+// profile page::::
+Route::get('/profile', [HomeController::class, 'profile'])->name('frontend.profile');

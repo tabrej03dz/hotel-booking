@@ -131,6 +131,10 @@ class HomeController extends Controller
         return view('frontend.policy');
     }
 
+    public function profile(){
+        return view('frontend.profile');
+    }
+
 
     public function availableRoom(Request $request)
     {
