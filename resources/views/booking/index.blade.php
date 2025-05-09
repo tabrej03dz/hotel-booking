@@ -63,7 +63,7 @@
                         @forelse ($bookings as $booking)
                             <tr class="hover:bg-gray-50 transition">
                                 <td class="px-6 py-4 font-medium text-gray-800">{{ $loop->iteration }}</td>
-                                <td class="px-6 py-4 text-gray-700">{{ $booking->customer->name ?? '-' }}</td>
+                                <td class="px-6 py-4 text-gray-700">{{ $booking->user->name ?? '-' }}</td>
                                 <td class="px-6 py-4 text-gray-700">{{ $booking->room->room_number ?? '-' }}</td>
                                 <td class="px-6 py-4 text-gray-700">{{ $booking->check_in_date }}</td>
                                 <td class="px-6 py-4 text-gray-700">{{ $booking->check_out_date }}</td>

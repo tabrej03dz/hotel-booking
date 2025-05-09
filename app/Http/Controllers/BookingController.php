@@ -14,7 +14,7 @@ class BookingController extends Controller
 {
     public function index()
     {
-        $bookings = Booking::with(['customer', 'room'])->latest()->get();
+        $bookings = Booking::with(['user', 'room'])->latest()->get();
         return view('booking.index', compact('bookings'));
     }
 
@@ -60,7 +60,7 @@ class BookingController extends Controller
 
         // 3. Create booking
         $booking = Booking::create([
-            'customer_id' => $customer->id,
+            'user_id' => $customer->id,
             'room_id' => $room->id,
             'check_in_date' => $request->check_in_date,
             'check_out_date' => $request->check_out_date,

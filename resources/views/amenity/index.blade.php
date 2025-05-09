@@ -55,36 +55,31 @@
                         <tr>
                             <th class="px-6 py-4">#</th>
                             <th class="px-6 py-4">Name</th>
-                            <th class="px-6 py-4">Price</th>
-                            <th class="px-6 py-4">Description</th>
                             <th class="px-6 py-4 text-center">Actions</th>
                         </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-100">
-                        @forelse ($roomTypes as $roomType)
+                        @forelse ($amenities as $amenity)
                             <tr class="hover:bg-gray-50 transition">
                                 <td class="px-6 py-4 font-medium text-gray-800">{{ $loop->iteration }}</td>
-                                <td class="px-6 py-4 text-gray-700">{{ $roomType->name }}</td>
-                                <td class="px-6 py-4 text-gray-700">{{ $roomType->price }}</td>
-                                <td class="px-6 py-4 text-gray-700">{{ $roomType->description }}</td>
+                                <td class="px-6 py-4 text-gray-700">{{ $amenity->name }}</td>
                                 <td class="px-6 py-4 text-center">
                                     <div class="flex justify-center gap-3">
                                         @can('edit amenity')
-                                            <a href="{{ route('room-type.edit', $roomType->id) }}"
+                                            <a href="{{ route('amenity.edit', $amenity->id) }}"
                                                class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-md text-sm font-semibold transition shadow">
                                                 ✏️ Edit
                                             </a>
                                         @endcan
 
                                         @can('delete amenity')
-                                            <form action="{{ route('room-type.delete', $roomType->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this roomType?');" class="inline">
+                                            <form action="{{ route('amenity.destroy', $amenity->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this amenity?');" class="inline">
                                                 @csrf
                                                 <button type="submit"
                                                         class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md text-sm font-semibold transition shadow">
                                                     🗑️ Delete
                                                 </button>
                                             </form>
-
                                         @endcan
                                     </div>
                                 </td>
@@ -92,7 +87,7 @@
                         @empty
                             <tr>
                                 <td colspan="3" class="text-center py-6 text-gray-400 text-base">
-                                    No roomType found.
+                                    No amenity found.
                                 </td>
                             </tr>
                         @endforelse

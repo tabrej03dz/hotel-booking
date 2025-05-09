@@ -44,6 +44,10 @@ class PermissionsTableSeeder extends Seeder
             'create room type',
             'edit room type',
             'delete room type',
+            'create amenity',
+            'edit amenity',
+            'delete amenity',
+            'add payment',
             
         ];
 
