@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Booking extends Model
 {
     protected $guarded = ['id'];
-    public function customer()
+    public function user()
     {
-        return $this->belongsTo(Customer::class);
+        return $this->belongsTo(User::class);
     }
 
     public function room()
