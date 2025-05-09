@@ -108,7 +108,7 @@
                         <label for="phone" class="block text-sm font-medium text-gray-700">Your Mobile Number</label>
                         <input type="tel" name="phone" id="phone" required value="{{old('phone')}}"
                             class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-[#D4A017] focus:border-[#D4A017]"
-                            placeholder="+91-7275092525">
+                            placeholder="+91">
                             @error('phone')
                                 <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
                             @enderror

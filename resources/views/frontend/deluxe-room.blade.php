@@ -45,7 +45,7 @@
     </div>
 
     <!-- Delux Room Section -->
-    <section class="relative py-32 overflow-hidden bg-gradient-to-b from-white to-gray-50">
+    <section class="relative py-32 overflow-hidden bg-gradient-to-b from-white to-gray-50">+
         <!-- Decorative Elements -->
         <div
             class="absolute top-0 left-0 w-64 h-64 bg-[#8B4513] opacity-5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2">

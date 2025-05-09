@@ -201,14 +201,14 @@
             </div>
         </div>
 
-        <!-- Optional CTA Section -->
+        {{-- <!-- Optional CTA Section -->
         <div class="my-10 text-center">
             <a href="{{ route('crescent') }}"
                 class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#8B4513] to-[#D4A017] text-white rounded-lg transition-all duration-500 ease-in-out transform hover:from-[#D4A017] hover:to-[#8B4513] hover:scale-105 shadow-2xl hover:shadow-2xl">
                 Discover Our Services
                 <i class="fas fa-arrow-right ml-2"></i>
             </a>
-        </div>
+        </div> --}}
 
     </section>
 @endsection

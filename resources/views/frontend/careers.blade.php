@@ -146,7 +146,7 @@
                         <h3 class="text-lg font-medium text-gray-800">Submit Your Application</h3>
                         <p class="text-gray-700">Use our application form or email us at <a
                                 href="mailto:careers@krinoscco.com"
-                                class="text-[#8B4513] hover:underline">careers@krinoscco.com
+                                class="text-[#8B4513] hover:underline">hr@krinoscco.com
                             </a> to apply.</p>
                     </div>
                 </div>
