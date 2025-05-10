@@ -15,8 +15,11 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('customer_id')->constrained()->onDelete('cascade');
-            $table->foreignId('room_id')->constrained()->onDelete('cascade');
+            $table->string('name');
+            $table->string('email');
+            $table->string('phone');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('room_id')->constrained('rooms')->onDelete('cascade');
             $table->date('check_in_date');
             $table->date('check_out_date');
             $table->enum('status', ['pending', 'confirmed', 'cancelled', 'completed'])->default('pending');

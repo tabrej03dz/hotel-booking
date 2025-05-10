@@ -4,7 +4,7 @@
 
 <div class="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
   <div class="max-w-5xl mx-auto">
-    
+
     <!-- Header -->
     <div class="text-center mb-12">
       <h1 class="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-2">Your Luxury Escape Awaits</h1>
@@ -20,8 +20,8 @@
       <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-10 border border-gray-100">
         <!-- Hotel Image -->
         <div class="relative h-48 md:h-64 w-full overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
-              alt="The Grand Palisades" 
+          <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+              alt="The Grand Palisades"
               class="w-full h-full object-cover">
           <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
           <div class="absolute bottom-4 left-4">
@@ -66,30 +66,31 @@
           <div class="border-t border-gray-200 pt-6">
             <h3 class="text-lg font-semibold text-gray-900 mb-4">Royal Suite</h3>
             <div class="flex flex-wrap gap-4 mb-6">
-              <div class="flex items-center text-sm text-gray-600">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                </svg>
-                King Bed • 65 m²
-              </div>
-              <div class="flex items-center text-sm text-gray-600">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7a4 4 0 100 8M4 7a4 4 0 011.732-3H2v5h2V4h1.732A4 4 0 014 7zm6 0a4 4 0 100 8 4 4 0 000-8zm-6 6a4 4 0 011.732 3H2v-5h2v5h1.732A4 4 0 0110 13zm6 0a4 4 0 011.732 3H12v-5h2v5h1.732A4 4 0 0116 13z" />
-                </svg>
-                2 Adults
-              </div>
-              <div class="flex items-center text-sm text-gray-600">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                Ocean View
-              </div>
+{{--              <div class="flex items-center text-sm text-gray-600">--}}
+{{--                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">--}}
+{{--                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />--}}
+{{--                </svg>--}}
+{{--                King Bed • 65 m²--}}
+{{--              </div>--}}
+{{--              <div class="flex items-center text-sm text-gray-600">--}}
+{{--                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">--}}
+{{--                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7a4 4 0 100 8M4 7a4 4 0 011.732-3H2v5h2V4h1.732A4 4 0 014 7zm6 0a4 4 0 100 8 4 4 0 000-8zm-6 6a4 4 0 011.732 3H2v-5h2v5h1.732A4 4 0 0110 13zm6 0a4 4 0 011.732 3H12v-5h2v5h1.732A4 4 0 0116 13z" />--}}
+{{--                </svg>--}}
+{{--                2 Adults--}}
+{{--              </div>--}}
+{{--              <div class="flex items-center text-sm text-gray-600">--}}
+{{--                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">--}}
+{{--                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />--}}
+{{--                </svg>--}}
+{{--                Ocean View--}}
+{{--              </div>--}}
+
               @foreach ($room->amenities as $amenity)
               <div class="flex items-center text-sm text-gray-600">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                Ocean View
+                {{$amenity->name}}
               </div>
               @endforeach
             </div>
@@ -103,27 +104,27 @@
         <!-- Left Column -->
         <div class="lg:col-span-2 space-y-8">
           <!-- Upgrade Options -->
-          <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100">
-            <h3 class="text-xl font-serif font-bold text-gray-900 mb-4">Enhance Your Stay</h3>
-            <div class="space-y-4">
-              <div class="flex items-start">
-                <input type="checkbox" id="upgrade1" class="mt-1 h-5 w-5 text-amber-600 border-gray-300 rounded focus:ring-amber-500">
-                <label for="upgrade1" class="ml-3 flex-1">
-                  <span class="block font-medium text-gray-900">Private Butler Service</span>
-                  <span class="block text-sm text-gray-500">Dedicated butler for your entire stay</span>
-                  <span class="block font-bold text-amber-700 mt-1">$422.70 per stay</span>
-                </label>
-              </div>
-              <div class="flex items-start">
-                <input type="checkbox" id="upgrade2" class="mt-1 h-5 w-5 text-amber-600 border-gray-300 rounded focus:ring-amber-500">
-                <label for="upgrade2" class="ml-3 flex-1">
-                  <span class="block font-medium text-gray-900">Spa Retreat Package</span>
-                  <span class="block text-sm text-gray-500">Includes 2 massages and full spa access</span>
-                  <span class="block font-bold text-amber-700 mt-1">$1,000.00 per stay</span>
-                </label>
-              </div>
-            </div>
-          </div>
+{{--          <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100">--}}
+{{--            <h3 class="text-xl font-serif font-bold text-gray-900 mb-4">Enhance Your Stay</h3>--}}
+{{--            <div class="space-y-4">--}}
+{{--              <div class="flex items-start">--}}
+{{--                <input type="checkbox" id="upgrade1" class="mt-1 h-5 w-5 text-amber-600 border-gray-300 rounded focus:ring-amber-500">--}}
+{{--                <label for="upgrade1" class="ml-3 flex-1">--}}
+{{--                  <span class="block font-medium text-gray-900">Private Butler Service</span>--}}
+{{--                  <span class="block text-sm text-gray-500">Dedicated butler for your entire stay</span>--}}
+{{--                  <span class="block font-bold text-amber-700 mt-1">$422.70 per stay</span>--}}
+{{--                </label>--}}
+{{--              </div>--}}
+{{--              <div class="flex items-start">--}}
+{{--                <input type="checkbox" id="upgrade2" class="mt-1 h-5 w-5 text-amber-600 border-gray-300 rounded focus:ring-amber-500">--}}
+{{--                <label for="upgrade2" class="ml-3 flex-1">--}}
+{{--                  <span class="block font-medium text-gray-900">Spa Retreat Package</span>--}}
+{{--                  <span class="block text-sm text-gray-500">Includes 2 massages and full spa access</span>--}}
+{{--                  <span class="block font-bold text-amber-700 mt-1">$1,000.00 per stay</span>--}}
+{{--                </label>--}}
+{{--              </div>--}}
+{{--            </div>--}}
+{{--          </div>--}}
 
           <!-- Guest Details -->
           <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100">
@@ -133,22 +134,22 @@
                 <label class="block text-sm font-medium text-gray-700 mb-1">Name</label>
                 <input type="text" name="name" placeholder="Full Name" class="w-full border border-gray-300 p-2 rounded font-medium text-gray-900" required/>
               </div>
-              
+
               <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
                 <input type="email" name="email" placeholder="john.smith@example.com" class="w-full border border-gray-300 p-2 rounded font-medium text-gray-900" required/>
               </div>
-              
+
               <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Phone</label>
                 <input type="text" name="phone" placeholder="+1 (555) 123-4567" class="w-full border border-gray-300 p-2 rounded font-medium text-gray-900" required/>
               </div>
-              
+
               <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Address</label>
                 <textarea name="address" placeholder="City, State, Country" class="w-full border border-gray-300 p-2 rounded font-medium text-gray-900" ></textarea>
               </div>
-              
+
               {{-- <div class="md:col-span-2">
                 <label class="block text-sm font-medium text-gray-700 mb-1">Special Requests</label>
                 <p class="font-medium text-gray-900">Early check-in requested if possible</p>
@@ -166,7 +167,7 @@
           @endphp
           <div class="space-y-4">
             <div class="flex justify-between">
-              <span class="text-gray-600">Room ({{$days}} days)</span>
+              <span class="text-gray-600">Room ({{$days}} nights)</span>
               <span class="font-medium">₹{{number_format($price, 2)}}</span>
             </div>
             <div class="flex justify-between">

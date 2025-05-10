@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Hotel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class HotelController extends Controller
 {
@@ -25,7 +26,8 @@ class HotelController extends Controller
             'state' => 'required',
             'country' => 'required',
             'phone' => 'nullable|string',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'images' => 'nullable|array',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // max is in KB (2MB)
         ]);
 
 
@@ -58,15 +60,32 @@ class HotelController extends Controller
             'state' => 'required',
             'country' => 'required',
             'phone' => 'nullable|string',
+            'images' => 'nullable|array',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $hotel->update($request->all());
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $imageFile) {
+                $imagePath = $imageFile->store('hotels', 'public'); // stores in storage/app/public/hotels
+    
+                $hotel->images()->create([
+                    'path' => $imagePath,
+                ]);
+            }
+        }
 
         return redirect()->route('hotel.index')->with('success', 'Hotel updated successfully.');
     }
 
     public function destroy(Hotel $hotel)
     {
+        foreach ($hotel->images as $image) {
+            if (Storage::disk('public')->exists($image->path)) {
+                Storage::disk('public')->delete($image->path);
+            }
+            $image->delete();
+        }
         $hotel->delete();
         return back()->with('success', 'Hotel deleted successfully.');
     }

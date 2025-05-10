@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\BookingConfirmationMail;
+use App\Mail\UserRegistrationMail;
 use App\Models\Booking;
 use App\Models\Customer;
 use App\Models\Room;
@@ -10,6 +12,8 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class HomeController extends Controller
 {
@@ -131,8 +135,9 @@ class HomeController extends Controller
         return view('frontend.policy');
     }
 
-    public function profile(){
-        return view('frontend.profile');
+    public function userDashboard(){
+        $bookings = Auth::user()->bookings()->orderBy('created_at', 'desc')->get();
+        return view('frontend.profile.bookingDetail', compact('bookings'));
     }
 
 
@@ -172,19 +177,22 @@ class HomeController extends Controller
         ]);
 
         // 1. Find or create customer
-        $user = User::firstOrCreate(
-            ['email' => $request->email],
-            [
-                'name' => $request->name,
-                'phone' => $request->phone,
-                'address' => $request->address ?? null,
-                'password' => Hash::make('password'),
-            ]
-        );
-
         if(!auth()->check()){
+            $tempPassword = Str::random(8);
+            $user = User::firstOrCreate(
+                ['email' => $request->email],
+                [
+                    'name' => $request->name,
+                    'phone' => $request->phone,
+                    'address' => $request->address ?? null,
+                    'password' => Hash::make($tempPassword),
+                ]
+            );
             Auth::login($user);
+            $user->tempPassword = $tempPassword;
+            Mail::to($request->email)->send(new UserRegistrationMail($user));
         }
+        $user = Auth::user();
 
         // 2. Find available room
         $room = Room::where('id', $room->id)->first();
@@ -198,6 +206,9 @@ class HomeController extends Controller
 
         // 3. Create booking
         $booking = Booking::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
             'user_id' => $user->id,
             'room_id' => $room->id,
             'check_in_date' => $request->check_in_date,
@@ -208,6 +219,10 @@ class HomeController extends Controller
             'tax_and_fee' => $tax,
             'total_amount' => $price + $tax, // basic cost
         ]);
+
+        Mail::to($request->email)->send(new BookingConfirmationMail($booking));
+
+        return redirect()->route('user.dashboard')->with('success', 'Your reservation at Hotel Krinoscco is confirmed. A confirmation email has been sent to '.$request->email.'.');
 
     }
 

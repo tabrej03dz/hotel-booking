@@ -24,12 +24,14 @@ class RoomRequest extends FormRequest
         return [
             'hotel_id' => 'required|exists:hotels,id',
             'room_type_id' => 'required|exists:room_types,id',
-            'room_number' => 'required|unique:rooms,room_number,' . $room->id,
+            'room_number' => 'required|unique:rooms,room_number,' . ($this->room->id ?? 'NULL'),
             'status' => 'required|in:available,booked,maintenance',
             'price' => 'nullable|numeric',
             'discounted_price' => 'nullable|numeric',
             'amenities' => 'nullable|array',
             'amenities.*' => 'exists:amenities,id',
+            'images' => 'nullable|array',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 }
