@@ -26,4 +26,8 @@ class Room extends Model
     {
         return $this->belongsToMany(Amenity::class, 'room_amenity');
     }
+
+    public function images(){
+        return $this->morphMany(Image::class, 'model');
+    }
 }

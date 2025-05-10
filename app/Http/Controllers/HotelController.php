@@ -25,9 +25,21 @@ class HotelController extends Controller
             'state' => 'required',
             'country' => 'required',
             'phone' => 'nullable|string',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        Hotel::create($request->all());
+
+        $hotel = Hotel::create($request->all());
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $imageFile) {
+                $imagePath = $imageFile->store('hotels', 'public'); // stores in storage/app/public/hotels
+    
+                $hotel->images()->create([
+                    'path' => $imagePath,
+                ]);
+            }
+        }
 
         return redirect()->route('hotel.index')->with('success', 'Hotel created successfully.');
     }

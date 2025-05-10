@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RoomRequest;
+use App\Models\Amenity;
 use App\Models\Hotel;
 use App\Models\Room;
 use App\Models\RoomType;
@@ -19,21 +21,16 @@ class RoomController extends Controller
     {
         $hotels = Hotel::all();
         $roomTypes = RoomType::all();
-        return view('room.create', compact('hotels', 'roomTypes'));
+        $amenities = Amenity::all();
+        return view('room.create', compact('hotels', 'roomTypes', 'amenities'));
     }
 
-    public function store(Request $request)
+    public function store(RoomRequest $request)
     {
-        $request->validate([
-            'hotel_id' => 'required|exists:hotels,id',
-            'room_type_id' => 'required|exists:room_types,id',
-            'room_number' => 'required|unique:rooms,room_number',
-            'status' => 'required|in:available,booked,maintenance',
-            'price' => 'nullable|numeric',
-            'discounted_price' => 'nullable|numeric',
-        ]);
-
-        Room::create($request->all());
+        $room = Room::create($request->all());
+        if ($request->has('amenities')) {
+            $room->amenities()->sync($request->input('amenities'));
+        }
 
         return redirect()->route('rooms.index')->with('success', 'Room created successfully.');
     }
@@ -43,22 +40,17 @@ class RoomController extends Controller
     {
         $hotels = Hotel::all();
         $roomTypes = RoomType::all();
-        return view('room.create', compact('room', 'hotels', 'roomTypes'));
+        $amenities = Amenity::all();
+        return view('room.create', compact('room', 'hotels', 'roomTypes', 'amenities'));
     }
 
-    public function update(Request $request, Room $room)
+    public function update(RoomRequest $request, Room $room)
     {
-        $request->validate([
-            'hotel_id' => 'required|exists:hotels,id',
-            'room_type_id' => 'required|exists:room_types,id',
-            'room_number' => 'required|unique:rooms,room_number,' . $room->id,
-            'status' => 'required|in:available,booked,maintenance',
-            'price' => 'nullable|numeric',
-            'discounted_price' => 'nullable|numeric',
-        ]);
-
         $room->update($request->all());
 
+        if ($request->has('amenities')) {
+            $room->amenities()->sync($request->input('amenities'));
+        }
         return redirect()->route('rooms.index')->with('success', 'Room updated successfully.');
     }
 

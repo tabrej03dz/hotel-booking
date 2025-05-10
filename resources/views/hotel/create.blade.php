@@ -73,6 +73,14 @@
                                class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-200"
                                   placeholder="Enter hotel address" required>{{ old('address', isset($hotel) ? $hotel->address : '') }}</textarea>
                     </div>
+
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">Hotel Images</label>
+                        <input type="file" name="images[]" multiple
+                               class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-200">
+                        <p class="text-sm text-gray-500 mt-1">You can upload multiple images (JPEG, PNG, max 2MB each).</p>
+                    </div>
+                    
                     <div>
                         <button type="submit"
                                 class="px-6 py-2 bg-green-500 text-black font-semibold rounded-lg shadow-md hover:bg-green-600 transition">

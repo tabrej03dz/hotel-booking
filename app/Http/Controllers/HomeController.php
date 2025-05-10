@@ -8,6 +8,7 @@ use App\Models\Room;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
@@ -180,6 +181,10 @@ class HomeController extends Controller
                 'password' => Hash::make('password'),
             ]
         );
+
+        if(!auth()->check()){
+            Auth::login($user);
+        }
 
         // 2. Find available room
         $room = Room::where('id', $room->id)->first();

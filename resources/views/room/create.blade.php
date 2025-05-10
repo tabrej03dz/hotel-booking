@@ -5,6 +5,9 @@
         </h2>
     </x-slot>
 
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white p-6 rounded-lg shadow-md">
@@ -61,7 +64,7 @@
                     <div>
                         <label class="block text-gray-700 font-medium mb-2">Price (optional)</label>
                         <input type="number" name="price"
-                               value="{{ old('price', isset($roomType) ? $roomType->price : '') }}"
+                               value="{{ old('price', isset($room) ? $room->price : '') }}"
                                class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-200"
                                placeholder="Enter room price">
                     </div>
@@ -69,7 +72,7 @@
                     <div>
                         <label class="block text-gray-700 font-medium mb-2">Discounted Price (optional)</label>
                         <input type="number" name="discounted_price"
-                               value="{{ old('discounted_price', isset($roomType) ? $roomType->discounted_price : '') }}"
+                               value="{{ old('discounted_price', isset($room) ? $room->discounted_price : '') }}"
                                class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-200"
                                placeholder="Enter room discounted price">
                     </div>
@@ -89,6 +92,21 @@
                     </div>
 
                     <div>
+                        <label class="block text-gray-700 font-medium mb-2">Amenities</label>
+                        <select name="amenities[]" multiple class="select2 w-full" id="select2" required>
+                            @foreach($amenities as $amenity)
+                                <option value="{{ $amenity->id }}"
+                                    {{ in_array($amenity->id, old('amenities', isset($room) ? $room->amenities->pluck('id')->toArray() : [])) ? 'selected' : '' }}>
+                                    {{ $amenity->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    
+                    
+                    
+
+                    <div>
                         <button type="submit"
                                 class="px-6 py-2 bg-green-500 text-black font-semibold rounded-lg shadow-md hover:bg-green-600 transition">
                             {{ isset($room) ? 'Update' : 'Submit' }}
@@ -97,5 +115,19 @@
                 </form>
             </div>
         </div>
+        @push('scripts')
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+            <script>
+                $(document).ready(function() {
+                    $('.select2').select2({
+                        placeholder: "Select amenities",
+                        allowClear: true,
+                        width: '100%'
+                    });
+                });
+            </script>
+        @endpush
+
     </div>
 </x-app-layout>
