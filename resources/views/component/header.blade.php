@@ -126,13 +126,13 @@
 
     <!-- Rest of the header content remains the same but with updated classes -->
     <div class="relative mx-auto max-w-7xl">
-        <div class="px-4 sm:px-6 lg:px-8">
+        <div class="px-4 py-2 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <!-- Logo Section with 3D effect -->
-                <div class="logo-container flex-shrink-0 flex items-center space-x-4">
-                    <img src="{{ asset('asset/images/logo.png') }}" alt="Hotel Krinoscco Logo"
+                <div class="logo-container flex-shrink-0 flex items-center space-x-4 ">
+                   <a href="/"> <img src="{{ asset('asset/images/logo.png') }}" alt="Hotel Krinoscco Logo"
                         class="w-20 h-20 rounded-full flex items-center justify-center">
-                    </img>
+                    </img></a>
                 </div>
 
                 <!-- Desktop Navigation remains the same but will use the enhanced nav-item styles -->

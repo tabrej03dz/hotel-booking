@@ -82,16 +82,16 @@
                     <img src="{{ asset('asset/cafe/cafe (1).jpg') }}" alt="Tit Bit Cafe Image 1"
                         class="w-full h-[250px] object-cover hover:scale-110 transition-transform duration-1000">
                 </div>
-                {{-- <div
+                <div
                     class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-transform duration-700 ease-in-out hover:scale-105">
-                    <img src="{{ asset('asset/cafe/cafe (2).jpg') }}" alt="Tit Bit Cafe Image 2"
+                    <img src="{{ asset('asset/gallery/gallery-51.jpg') }}" alt="Tit Bit Cafe Image 2"
                         class="w-full h-[250px] object-cover hover:scale-110 transition-transform duration-1000">
-                </div> --}}
-                {{-- <div
+                </div>
+                <div
                     class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-transform duration-700 ease-in-out hover:scale-105">
-                    <img src="{{ asset('asset/cafe/cafe (3).jpg') }}" alt="Tit Bit Cafe Image 3"
+                    <img src="{{ asset('asset/gallery/gallery-52.jpg') }}" alt="Tit Bit Cafe Image 3"
                         class="w-full h-[250px] object-cover hover:scale-110 transition-transform duration-1000">
-                </div> --}}
+                </div>
                 {{-- <div
                     class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-transform duration-700 ease-in-out hover:scale-105">
                     <img src="{{ asset('asset/cafe/cafe (4).jpg') }}" alt="Tit Bit Cafe Image 4"
