@@ -85,7 +85,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
-                    <span class="text-sm">Hotel Krinoscco, Amaniganj Ram Path, Ayodhya U.P, 224001</span>
+                    <span class="text-sm">Hotel Krinoscco, Ayodhya, Amaniganj Ram Path U.P, 224001</span>
                 </div>
                 <div class="flex items-center space-x-2">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

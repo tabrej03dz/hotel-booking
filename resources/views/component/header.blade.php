@@ -211,7 +211,7 @@
                                     <div x-data="{ open: false }" class="relative inline-block text-left">
                                         <button @click="open = !open"
                                             class="inline-flex justify-between w-56 px-4 py-2 text-sm font-medium text-gray-300 hover:bg-purple-600/20 hover:text-white focus:outline-none focus:ring-offset-gray-100">
-                                            Conference Room
+                                            Conference Hall
                                             <svg class="h-5 w-5 ml-2 transform transition-transform duration-200" :class="{ 'rotate-0': open, '-rotate-180': !open }" fill="none"
                                                 stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>

@@ -286,22 +286,50 @@
         }
     </script> --}}
 
-   <section class="py-20 bg-white">
+  
+
+<section class="py-20 bg-white">
     <div class="container mx-auto px-6 lg:px-10">
-        <h2 class="text-5xl font-bold text-[#1a1a2e] mb-16 text-center">
+        <h2 class="text-5xl font-bold text-[#1a1a2e] mb-8 text-center">
             Gallery
             <div class="w-24 h-1 bg-gradient-to-r from-[#8B4513] to-[#D4A017] mx-auto mt-4 rounded-full"></div>
         </h2>
 
-        <!-- Gallery Grid with position numbers matching their visual order -->
+        <!-- Filter Tabs -->
+        <div class="flex justify-center mb-12">
+            <div class="inline-flex rounded-md shadow-sm" role="group">
+                <button type="button" 
+                    class="filter-btn px-6 py-3 text-sm font-medium rounded-l-lg border border-gray-200 bg-[#1a1a2e] text-white hover:bg-[#2a2a3e] transition-all duration-300 focus:z-10 focus:outline-none focus:ring-2 focus:ring-[#D4A017]"
+                    data-filter="all">
+                    All Works
+                </button>
+                <button type="button" 
+                    class="filter-btn px-6 py-3 text-sm font-medium border-t border-b border-gray-200 bg-white text-[#1a1a2e] hover:bg-gray-50 transition-all duration-300 focus:z-10 focus:outline-none focus:ring-2 focus:ring-[#D4A017]"
+                    data-filter="digital-art">
+                    Digital Art
+                </button>
+                <button type="button" 
+                    class="filter-btn px-6 py-3 text-sm font-medium border-t border-b border-gray-200 bg-white text-[#1a1a2e] hover:bg-gray-50 transition-all duration-300 focus:z-10 focus:outline-none focus:ring-2 focus:ring-[#D4A017]"
+                    data-filter="terrace">
+                    Open Terrace
+                </button>
+                <button type="button" 
+                    class="filter-btn px-6 py-3 text-sm font-medium rounded-r-lg border border-gray-200 bg-white text-[#1a1a2e] hover:bg-gray-50 transition-all duration-300 focus:z-10 focus:outline-none focus:ring-2 focus:ring-[#D4A017]"
+                    data-filter="gym">
+                    Gym
+                </button>
+            </div>
+        </div>
+
+        <!-- Gallery Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8" id="galleryGrid">
+            <!-- Digital Art Items -->
             <!-- Image 28 displayed in position 1 -->
-            <div class="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+            <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300" data-category="digital-art">
                 <img src="{{ asset('asset/gallery/gallery-28.jpg') }}"
                     alt="Digital Artwork 1"
                     class="w-full h-64 object-cover rounded-lg cursor-pointer transition-all duration-300 group-hover:scale-105"
-                    onclick="openModal('{{ asset('asset/gallery/gallery-28.jpg') }}', 'Digital Artwork 1', 1)"
-                    loading="lazy" data-index="1"
+                    loading="lazy" 
                     data-src="{{ asset('asset/gallery/gallery-28.jpg') }}"
                     onerror="this.onerror=null; this.src='{{ asset('asset/gallery/gallery-16.jpg') }}'">
                 <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -309,52 +337,44 @@
                 </div>
             </div>
 
-            <!-- Counter for tracking visual position -->
-            @php $positionCounter = 2; @endphp
-            
-            <!-- All other images except excluded ones -->
+            <!-- All other digital art images except excluded ones -->
             @for ($i = 1; $i <= 50; $i++)
                 @if($i != 2 && $i != 28) <!-- Skip original positions of swapped images -->
                     @if(!in_array($i, [5, 7, 12, 15, 19, 22, 25, 30, 33, 37, 40, 45, 48])) <!-- Remove duplicates and rotated versions -->
-                        <div class="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+                        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300" data-category="digital-art">
                             <img src="{{ asset('asset/gallery/gallery-' . $i . '.jpg') }}"
-                                alt="Digital Artwork {{ $positionCounter }}"
+                                alt="Digital Artwork {{ $i }}"
                                 class="w-full h-64 object-cover rounded-lg cursor-pointer transition-all duration-300 group-hover:scale-105"
-                                onclick="openModal('{{ asset('asset/gallery/gallery-' . $i . '.jpg') }}', 'Digital Artwork {{ $positionCounter }}', {{ $positionCounter }})"
-                                loading="lazy" data-index="{{ $positionCounter }}"
+                                loading="lazy" 
                                 data-src="{{ asset('asset/gallery/gallery-' . $i . '.jpg') }}"
                                 onerror="this.onerror=null; this.src='{{ asset('asset/gallery/gallery-16.jpg') }}'">
                             <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <h3 class="text-white font-medium">Digital Artwork {{ $positionCounter }}</h3>
+                                <h3 class="text-white font-medium">Digital Artwork {{ $i }}</h3>
                             </div>
                         </div>
-                        @php $positionCounter++; @endphp
                     @endif
                 @endif
             @endfor
 
             <!-- Image 2 now at the end position -->
-            <div class="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+            <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300" data-category="digital-art">
                 <img src="{{ asset('asset/gallery/gallery-2.jpg') }}"
-                    alt="Digital Artwork {{ $positionCounter }}"
+                    alt="Digital Artwork 2"
                     class="w-full h-64 object-cover rounded-lg cursor-pointer transition-all duration-300 group-hover:scale-105"
-                    onclick="openModal('{{ asset('asset/gallery/gallery-2.jpg') }}', 'Digital Artwork {{ $positionCounter }}', {{ $positionCounter }})"
-                    loading="lazy" data-index="{{ $positionCounter }}"
+                    loading="lazy" 
                     data-src="{{ asset('asset/gallery/gallery-2.jpg') }}"
                     onerror="this.onerror=null; this.src='{{ asset('asset/gallery/gallery-16.jpg') }}'">
                 <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <h3 class="text-white font-medium">Digital Artwork {{ $positionCounter }}</h3>
+                    <h3 class="text-white font-medium">Digital Artwork 2</h3>
                 </div>
             </div>
 
             <!-- Tit Bit Cafe Images -->
-            @php $positionCounter++; @endphp
-            <div class="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+            <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300" data-category="terrace">
                 <img src="{{ asset('asset/cafe/cafe (1).jpg') }}"
                     alt="Open Terrace 1"
                     class="w-full h-64 object-cover rounded-lg cursor-pointer transition-all duration-300 group-hover:scale-105"
-                    onclick="openModal('{{ asset('asset/cafe/cafe (1).jpg') }}', 'Open Terrace 1', {{ $positionCounter }})"
-                    loading="lazy" data-index="{{ $positionCounter }}"
+                    loading="lazy" 
                     data-src="{{ asset('asset/cafe/cafe (1).jpg') }}"
                     onerror="this.onerror=null; this.src='{{ asset('asset/gallery/gallery-16.jpg') }}'">
                 <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -362,13 +382,11 @@
                 </div>
             </div>
 
-            @php $positionCounter++; @endphp
-            <div class="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+            <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300" data-category="terrace">
                 <img src="{{ asset('asset/gallery/gallery-51.jpg') }}"
                     alt="Open Terrace 2"
                     class="w-full h-64 object-cover rounded-lg cursor-pointer transition-all duration-300 group-hover:scale-105"
-                    onclick="openModal('{{ asset('asset/gallery/gallery-51.jpg') }}', 'Open Terrace 2', {{ $positionCounter }})"
-                    loading="lazy" data-index="{{ $positionCounter }}"
+                    loading="lazy" 
                     data-src="{{ asset('asset/gallery/gallery-51.jpg') }}"
                     onerror="this.onerror=null; this.src='{{ asset('asset/gallery/gallery-16.jpg') }}'">
                 <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -376,13 +394,11 @@
                 </div>
             </div>
 
-            @php $positionCounter++; @endphp
-            <div class="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+            <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300" data-category="terrace">
                 <img src="{{ asset('asset/cafe/cafe (5).jpg') }}"
                     alt="Open Terrace 3"
                     class="w-full h-64 object-cover rounded-lg cursor-pointer transition-all duration-300 group-hover:scale-105"
-                    onclick="openModal('{{ asset('asset/cafe/cafe (5).jpg') }}', 'Open Terrace 3', {{ $positionCounter }})"
-                    loading="lazy" data-index="{{ $positionCounter }}"
+                    loading="lazy" 
                     data-src="{{ asset('asset/cafe/cafe (5).jpg') }}"
                     onerror="this.onerror=null; this.src='{{ asset('asset/gallery/gallery-16.jpg') }}'">
                 <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -391,13 +407,11 @@
             </div>
 
             <!-- Gym Images -->
-            @php $positionCounter++; @endphp
-            <div class="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+            <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300" data-category="gym">
                 <img src="{{ asset('asset/gym/gym (1).jpg') }}"
                     alt="Gym 1"
                     class="w-full h-64 object-cover rounded-lg cursor-pointer transition-all duration-300 group-hover:scale-105"
-                    onclick="openModal('{{ asset('asset/gym/gym (1).jpg') }}', 'Gym 1', {{ $positionCounter }})"
-                    loading="lazy" data-index="{{ $positionCounter }}"
+                    loading="lazy" 
                     data-src="{{ asset('asset/gym/gym (1).jpg') }}"
                     onerror="this.onerror=null; this.src='{{ asset('asset/gallery/gallery-16.jpg') }}'">
                 <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -405,13 +419,11 @@
                 </div>
             </div>
 
-            @php $positionCounter++; @endphp
-            <div class="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+            <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300" data-category="gym">
                 <img src="{{ asset('asset/gym/gym (2).jpg') }}"
                     alt="Gym 2"
                     class="w-full h-64 object-cover rounded-lg cursor-pointer transition-all duration-300 group-hover:scale-105"
-                    onclick="openModal('{{ asset('asset/gym/gym (2).jpg') }}', 'Gym 2', {{ $positionCounter }})"
-                    loading="lazy" data-index="{{ $positionCounter }}"
+                    loading="lazy" 
                     data-src="{{ asset('asset/gym/gym (2).jpg') }}"
                     onerror="this.onerror=null; this.src='{{ asset('asset/gallery/gallery-16.jpg') }}'">
                 <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -419,13 +431,11 @@
                 </div>
             </div>
 
-            @php $positionCounter++; @endphp
-            <div class="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+            <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300" data-category="gym">
                 <img src="{{ asset('asset/gym/gym (3).jpg') }}"
                     alt="Gym 3"
                     class="w-full h-64 object-cover rounded-lg cursor-pointer transition-all duration-300 group-hover:scale-105"
-                    onclick="openModal('{{ asset('asset/gym/gym (3).jpg') }}', 'Gym 3', {{ $positionCounter }})"
-                    loading="lazy" data-index="{{ $positionCounter }}"
+                    loading="lazy" 
                     data-src="{{ asset('asset/gym/gym (3).jpg') }}"
                     onerror="this.onerror=null; this.src='{{ asset('asset/gallery/gallery-16.jpg') }}'">
                 <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -433,13 +443,11 @@
                 </div>
             </div>
 
-            @php $positionCounter++; @endphp
-            <div class="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+            <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300" data-category="gym">
                 <img src="{{ asset('asset/gym/gym (4).jpg') }}"
                     alt="Gym 4"
                     class="w-full h-64 object-cover rounded-lg cursor-pointer transition-all duration-300 group-hover:scale-105"
-                    onclick="openModal('{{ asset('asset/gym/gym (4).jpg') }}', 'Gym 4', {{ $positionCounter }})"
-                    loading="lazy" data-index="{{ $positionCounter }}"
+                    loading="lazy" 
                     data-src="{{ asset('asset/gym/gym (4).jpg') }}"
                     onerror="this.onerror=null; this.src='{{ asset('asset/gallery/gallery-16.jpg') }}'">
                 <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -463,7 +471,7 @@
             </svg>
         </button>
 
-        <!-- Navigation buttons - Fixed positioning and increased visibility -->
+        <!-- Navigation buttons -->
         <button id="prevButton"
             class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-80 hover:bg-opacity-100 text-white p-3 rounded-full transition-all duration-200 focus:outline-none z-20 shadow-lg">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
@@ -537,26 +545,45 @@
     const zoomStep = 0.25;
     const minZoom = 0.5;
     const maxZoom = 3;
-    let imagePaths = [];
+    let currentFilter = 'all';
+    let filteredItems = [];
 
-    // Initialize modal with keyboard event listeners
+    // Initialize gallery
     document.addEventListener("DOMContentLoaded", function() {
-        // Collect all image paths from the grid
-        const imageElements = document.querySelectorAll('#galleryGrid img');
-        
-        // Create a map of image indices to their paths
-        imageElements.forEach(img => {
-            const index = parseInt(img.getAttribute('data-index'));
-            const src = img.getAttribute('data-src');
-            imagePaths[index] = src;
+        // Set up filter buttons
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Update active button styling
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('bg-[#1a1a2e]', 'text-white', 'hover:bg-[#2a2a3e]');
+                    btn.classList.add('bg-white', 'text-[#1a1a2e]', 'hover:bg-gray-50');
+                });
+                
+                this.classList.add('bg-[#1a1a2e]', 'text-white', 'hover:bg-[#2a2a3e]');
+                this.classList.remove('bg-white', 'text-[#1a1a2e]', 'hover:bg-gray-50');
+                
+                // Filter items
+                currentFilter = this.dataset.filter;
+                filterGalleryItems();
+            });
         });
 
-        // Update totalImages to reflect the actual number of images displayed
-        const totalImages = imageElements.length;
+        // Set first button as active
+        document.querySelector('.filter-btn[data-filter="all"]').classList.add('bg-[#1a1a2e]', 'text-white', 'hover:bg-[#2a2a3e]');
+        document.querySelector('.filter-btn[data-filter="all"]').classList.remove('bg-white', 'text-[#1a1a2e]', 'hover:bg-gray-50');
 
-        // Debug output to console
-        console.log("Collected image paths:", imagePaths);
-        console.log("Total images after filtering:", totalImages);
+        // Initialize gallery items
+        filterGalleryItems();
+
+        // Add click event listeners to all gallery items
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const img = this.querySelector('img');
+                const caption = this.querySelector('h3')?.textContent || img.alt;
+                openModal(img.src, caption);
+            });
+        });
 
         // Add keyboard navigation
         document.addEventListener('keydown', function(e) {
@@ -577,38 +604,56 @@
 
         // Add navigation button listeners
         document.getElementById('prevButton').addEventListener('click', function(e) {
-            e.stopPropagation(); // Prevent event bubbling
+            e.stopPropagation();
             navigateImage(-1);
         });
 
         document.getElementById('nextButton').addEventListener('click', function(e) {
-            e.stopPropagation(); // Prevent event bubbling
+            e.stopPropagation();
             navigateImage(1);
         });
-
-        console.log("Gallery initialized with " + totalImages + " images");
     });
 
-    function openModal(imageUrl, caption, index) {
-        // Set current index
-        currentIndex = index || 1;
+    // Filter gallery items based on current filter
+    function filterGalleryItems() {
+        const allItems = document.querySelectorAll('.gallery-item');
+        
+        allItems.forEach(item => {
+            item.style.display = 'none';
+            
+            if (currentFilter === 'all' || item.dataset.category === currentFilter) {
+                item.style.display = 'block';
+            }
+        });
+        
+        // Update filtered items array for navigation
+        filteredItems = Array.from(document.querySelectorAll(`.gallery-item${currentFilter === 'all' ? '' : `[data-category="${currentFilter}"]`}`));
+    }
+
+    function openModal(imageUrl, caption) {
+        // Reset zoom when opening new image
+        resetZoom();
 
         const modal = document.getElementById('imageModal');
         const modalImage = document.getElementById('modalImage');
         const modalCaption = document.getElementById('modalCaption');
         const downloadButton = document.getElementById('downloadButton');
 
-        // Reset zoom when opening new image
-        resetZoom();
-
         // Set image and caption
         modalImage.src = imageUrl;
-        modalImage.alt = caption || `Digital Artwork ${currentIndex}`;
-        modalCaption.textContent = caption || `Digital Artwork ${currentIndex}`;
+        modalImage.alt = caption;
+        modalCaption.textContent = caption;
 
         // Set download link
         downloadButton.href = imageUrl;
-        downloadButton.download = `digital-artwork-${currentIndex}.jpg`;
+        downloadButton.download = caption.toLowerCase().replace(/\s+/g, '-') + '.jpg';
+
+        // Update current index based on filtered items
+        filteredItems = Array.from(document.querySelectorAll(`.gallery-item${currentFilter === 'all' ? '' : `[data-category="${currentFilter}"]`}`));
+        currentIndex = filteredItems.findIndex(item => {
+            const img = item.querySelector('img');
+            return img.src === imageUrl;
+        });
 
         // Show modal with animation
         modal.classList.remove('hidden');
@@ -619,8 +664,6 @@
 
         // Prevent scrolling on body
         document.body.style.overflow = 'hidden';
-
-        console.log("Modal opened with image index:", currentIndex);
     }
 
     function closeModal() {
@@ -632,47 +675,30 @@
 
         setTimeout(() => {
             modal.classList.add('hidden');
-
             // Reset zoom when closing
             resetZoom();
-
             // Re-enable scrolling
             document.body.style.overflow = '';
         }, 300);
     }
 
     function navigateImage(direction) {
-        // Get all image elements in the grid
-        const imageElements = Array.from(document.querySelectorAll('#galleryGrid img'));
-        
-        // Get current index position in the array
-        let currentPosition = imageElements.findIndex(img => 
-            parseInt(img.getAttribute('data-index')) === currentIndex
-        );
-        
-        // Calculate new position with wrapping
-        let newPosition = (currentPosition + direction + imageElements.length) % imageElements.length;
+        // Update current index with wrapping
+        currentIndex = (currentIndex + direction + filteredItems.length) % filteredItems.length;
         
         // Get the new image element
-        const newImage = imageElements[newPosition];
-        
-        // Update currentIndex
-        currentIndex = parseInt(newImage.getAttribute('data-index'));
-        
-        console.log("Navigating to image index:", currentIndex);
-
-        // Get image URL and caption
-        const newImageUrl = newImage.getAttribute('data-src');
-        const newCaption = `Digital Artwork ${currentIndex}`;
+        const newItem = filteredItems[currentIndex];
+        const newImage = newItem.querySelector('img');
+        const newCaption = newItem.querySelector('h3')?.textContent || newImage.alt;
 
         // Update modal content
-        document.getElementById('modalImage').src = newImageUrl;
+        document.getElementById('modalImage').src = newImage.src;
         document.getElementById('modalImage').alt = newCaption;
         document.getElementById('modalCaption').textContent = newCaption;
 
         // Update download link
-        document.getElementById('downloadButton').href = newImageUrl;
-        document.getElementById('downloadButton').download = `digital-artwork-${currentIndex}.jpg`;
+        document.getElementById('downloadButton').href = newImage.src;
+        document.getElementById('downloadButton').download = newCaption.toLowerCase().replace(/\s+/g, '-') + '.jpg';
 
         // Reset zoom when navigating
         resetZoom();
