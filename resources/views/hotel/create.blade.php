@@ -22,7 +22,7 @@
                 @endif
                 <form
                     action="{{ isset($hotel) ? route('hotel.update', $hotel->id) : route('hotel.store') }}"
-                    method="POST" class="space-y-4">
+                    method="POST" class="space-y-4" enctype="multipart/form-data">
                     @csrf
                     {{-- @if (isset($hotel))
                         @method('POST') <!-- Laravel doesn't allow PUT/PATCH via form, so using POST -->
@@ -88,6 +88,25 @@
                         </button>
                     </div>
                 </form>
+                @if (isset($hotel) && $hotel->images)
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+                        @foreach ($hotel->images as $image)
+                            <div class="relative group border rounded-lg overflow-hidden">
+                                <img src="{{ asset('storage/' . $image->path) }}" alt="Hotel Image" class="w-full h-40 object-cover">
+
+                                <!-- Remove button -->
+                                <form action="{{ route('image.delete', $image->id) }}" method="POST"
+                                    class="absolute top-2 right-2 hidden group-hover:block">
+                                    @csrf
+                                    <button type="submit"
+                                            class="bg-red-600 text-white text-xs px-2 py-1 rounded hover:bg-red-700">
+                                        ✕
+                                    </button>
+                                </form>
+                            </div>
+                        @endforeach
+                    </div>
+                @endif
             </div>
         </div>
     </div>

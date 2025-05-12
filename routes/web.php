@@ -9,14 +9,12 @@ use App\Http\Controllers\ProfileController;
 
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\HomeController;
-
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\UserController;
 
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
-
-
-
+use Nette\Utils\ImageColor;
 
 // Route::get('/', function () {
 //     return view('front.index');
@@ -131,6 +129,10 @@ Route::middleware('auth')->group(function () {
         Route::post('/destroy/{amenity}', 'destroy')->name('destroy');
     });
 
+    Route::prefix('image')->name('image.')->controller(ImageController::class)->group(function(){
+        Route::post('delete/{image}', 'delete')->name('delete');
+    });
+
 
 });
 
@@ -201,4 +203,6 @@ Route::get('/bookingdetail', [HomeController::class, 'bookingdetail'])->name('bo
 Route::get('/roomdetail', [HomeController::class, 'roomdetail'])->name('frontend.roomdetail');
 
 // profile page::::
-Route::get('/profile', [HomeController::class, 'profile'])->name('frontend.profile');
+Route::prefix('user')->name('user.')->group(function(){
+    Route::get('/dashboard', [HomeController::class, 'userDashboard'])->name('dashboard');
+});

@@ -26,7 +26,7 @@
                 @endif
 
                 <form action="{{ isset($room) ? route('rooms.update', $room->id) : route('rooms.store') }}"
-                      method="POST" class="space-y-4">
+                      method="POST" class="space-y-4" enctype="multipart/form-data">
                     @csrf
 
                     <div>
@@ -103,7 +103,13 @@
                         </select>
                     </div>
                     
-                    
+
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">Room Images</label>
+                        <input type="file" name="images[]" multiple
+                               class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-200">
+                        <p class="text-sm text-gray-500 mt-1">You can upload multiple images (JPEG, PNG, max 2MB each).</p>
+                    </div>
                     
 
                     <div>
@@ -113,6 +119,24 @@
                         </button>
                     </div>
                 </form>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+                        @foreach ($room->images as $image)
+                            <div class="relative group border rounded-lg overflow-hidden">
+                                <img src="{{ asset('storage/' . $image->path) }}" alt="Room Image" class="w-full h-40 object-cover">
+
+                                <!-- Remove button -->
+                                <form action="{{ route('image.delete', $image->id) }}" method="POST"
+                                    class="absolute top-0 right-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10">
+                                    @csrf
+                                    <button type="submit"
+                                            class="bg-red-600 text-white text-xs px-2 py-1 rounded hover:bg-red-700">
+                                        ✕
+                                    </button>
+                                </form>
+                            </div>
+                        @endforeach
+                    </div>
             </div>
         </div>
         @push('scripts')

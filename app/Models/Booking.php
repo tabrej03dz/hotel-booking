@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Booking extends Model
 {
     protected $guarded = ['id'];
+
+    protected $casts = [
+        'check_in_date' => 'date',
+        'check_out_date' => 'date',
+    ];
     public function user()
     {
         return $this->belongsTo(User::class);

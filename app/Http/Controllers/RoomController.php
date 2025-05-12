@@ -8,6 +8,7 @@ use App\Models\Hotel;
 use App\Models\Room;
 use App\Models\RoomType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class RoomController extends Controller
 {
@@ -32,6 +33,16 @@ class RoomController extends Controller
             $room->amenities()->sync($request->input('amenities'));
         }
 
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $imageFile) {
+                $imagePath = $imageFile->store('rooms', 'public'); // stores in storage/app/public/hotels
+    
+                $room->images()->create([
+                    'path' => $imagePath,
+                ]);
+            }
+        }
+
         return redirect()->route('rooms.index')->with('success', 'Room created successfully.');
     }
 
@@ -51,11 +62,26 @@ class RoomController extends Controller
         if ($request->has('amenities')) {
             $room->amenities()->sync($request->input('amenities'));
         }
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $imageFile) {
+                $imagePath = $imageFile->store('rooms', 'public'); // stores in storage/app/public/hotels
+    
+                $room->images()->create([
+                    'path' => $imagePath,
+                ]);
+            }
+        }
         return redirect()->route('rooms.index')->with('success', 'Room updated successfully.');
     }
 
     public function destroy(Room $room)
     {
+        foreach ($room->images as $image) {
+            if (Storage::disk('public')->exists($image->path)) {
+                Storage::disk('public')->delete($image->path);
+            }
+            $image->delete();
+        }
         $room->delete();
         return back()->with('success', 'Room deleted successfully.');
     }
