@@ -130,9 +130,9 @@
             <div class="flex items-center justify-between h-20">
                 <!-- Logo Section with 3D effect -->
                 <div class="logo-container flex-shrink-0 flex items-center space-x-4 ">
-                   <a href="/"> <img src="{{ asset('asset/images/logo.png') }}" alt="Hotel Krinoscco Logo"
-                        class="w-20 h-20 rounded-full flex items-center justify-center">
-                    </img></a>
+                    <a href="/"> <img src="{{ asset('asset/images/logo.png') }}" alt="Hotel Krinoscco Logo"
+                            class="w-20 h-20 rounded-full flex items-center justify-center">
+                        </img></a>
                 </div>
 
                 <!-- Desktop Navigation remains the same but will use the enhanced nav-item styles -->
@@ -204,32 +204,37 @@
                                     <a href="{{ route('banquets.lawn') }}"
                                         class="block px-4 py-2 text-sm text-gray-300 hover:bg-purple-600/20 hover:text-white">Lawn</a>
                                     <a href="{{ route('banquets.ballroom') }}"
-                                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-purple-600/20 hover:text-white">Banquet Hall</a>
+                                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-purple-600/20 hover:text-white">Banquet
+                                        Hall</a>
 
-                                  <!-- Submenu: Conference Room -->
-                                  <div class="flex items-center justify-center h-auto">
-                                    <div x-data="{ open: false }" class="relative inline-block text-left">
-                                        <button @click="open = !open"
-                                            class="inline-flex justify-between w-56 px-4 py-2 text-sm font-medium text-gray-300 hover:bg-purple-600/20 hover:text-white focus:outline-none focus:ring-offset-gray-100">
-                                            Conference Hall
-                                            <svg class="h-5 w-5 ml-2 transform transition-transform duration-200" :class="{ 'rotate-0': open, '-rotate-180': !open }" fill="none"
-                                                stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                            </svg>
-                                        </button>
-                                    
-                                        <div x-show="open" @click.away="open = false" x-transition
-                                            class="origin-top-left absolute left-full top-0 ml-2 w-56 rounded-md shadow-lg bg-[#0D0630] text-gray-300 hover:text-white px-2 py-2 z-10">
-                                            <a href="{{ route('banquets.elite1') }}"
-                                                class="block px-4 py-2 text-sm text-gray-300 hover:bg-purple-600/20 hover:text-white focus:outline-none focus:ring-offset-gray-100 rounded-md">Elite 1</a>
-                                            <a href="{{ route('banquets.elite2') }}"
-                                                class="block px-4 py-2 text-sm text-gray-300 hover:bg-purple-600/20 hover:text-white focus:outline-none focus:ring-offset-gray-100 rounded-md">Elite 2</a>
+                                    <!-- Submenu: Conference Room -->
+                                    <div class="flex items-center justify-center h-auto">
+                                        <div x-data="{ open: false }" class="relative inline-block text-left">
+                                            <button @click="open = !open"
+                                                class="inline-flex justify-between w-56 px-4 py-2 text-sm font-medium text-gray-300 hover:bg-purple-600/20 hover:text-white focus:outline-none focus:ring-offset-gray-100">
+                                                Conference Hall
+                                                <svg class="h-5 w-5 ml-2 transform transition-transform duration-200"
+                                                    :class="{ 'rotate-0': open, '-rotate-180': !open }" fill="none"
+                                                    stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                                </svg>
+                                            </button>
+
+                                            <div x-show="open" @click.away="open = false" x-transition
+                                                class="origin-top-left absolute left-full top-0 ml-2 w-56 rounded-md shadow-lg bg-[#0D0630] text-gray-300 hover:text-white px-2 py-2 z-10">
+                                                <a href="{{ route('banquets.elite1') }}"
+                                                    class="block px-4 py-2 text-sm text-gray-300 hover:bg-purple-600/20 hover:text-white focus:outline-none focus:ring-offset-gray-100 rounded-md">Elite
+                                                    1</a>
+                                                <a href="{{ route('banquets.elite2') }}"
+                                                    class="block px-4 py-2 text-sm text-gray-300 hover:bg-purple-600/20 hover:text-white focus:outline-none focus:ring-offset-gray-100 rounded-md">Elite
+                                                    2</a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                
-                                <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
-                                <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
+
+                                    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
+                                    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
 
                                 </div>
                             </div>
@@ -253,6 +258,15 @@
                         class="nav-item text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">
                         Contact Us
                     </a>
+
+                    <a href="#" class="nav-item text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                            fill="#e3e3e3">
+                            <path
+                                d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z" />
+                        </svg>
+                    </a>
+
                 </nav>
 
                 <!-- Mobile menu button with enhanced styling -->
@@ -287,7 +301,8 @@
                         onclick="toggleSubmenu('accommodation-submenu')">
                         Accommodation
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
                     <div id="accommodation-submenu" class="hidden pl-4">
@@ -345,7 +360,7 @@
                             Ballroom Package
                         </a>
                     </div>
-                
+
                     <!-- Conference Room -->
                     <button
                         class="w-full text-left text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5 flex justify-between items-center"
@@ -357,17 +372,17 @@
                         </svg>
                     </button>
                     <div id="conference-submenu" class="hidden pl-4">
-                        <a href="{{route('banquets.elite1')}}"
+                        <a href="{{ route('banquets.elite1') }}"
                             class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5">
                             Elite 1
                         </a>
-                        <a href="{{route('banquets.elite2')}}"
+                        <a href="{{ route('banquets.elite2') }}"
                             class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5">
                             Elite 2
                         </a>
                     </div>
                 </div>
-                
+
 
                 <a href="{{ route('rules-and-regulations') }}"
                     class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5">Rules
@@ -379,6 +394,8 @@
                 <a href="{{ route('contact-us') }}"
                     class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5">Contact
                     Us</a>
+                <a href="#"
+                    class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"/></svg></a>
             </div>
         </div>
     </div>
