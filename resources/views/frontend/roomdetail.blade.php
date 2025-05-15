@@ -121,7 +121,7 @@
               <p class="text-gray-600 text-sm mb-4">{{$room->roomType->description}}</p>
               <div class="flex items-center justify-between">
                 <p class="text-amber-700 font-bold text-lg">₹{{($room->discounted_price ?? $room->price) ?? ($room->roomType->discounted_price ?? $room->roomType->price) }} <span class="text-gray-500 text-sm font-normal">/night</span></p>
-                <form action="{{route('booking.room', ['room' => $room->id])}}" method="post">
+                <form action="{{route('booking.room', ['room' => $room->id])}}" method="get">
                   @csrf
                   <input type="hidden" name="check_in_date" value="{{$checkIn}}">
                   <input type="hidden" name="check_out_date" value="{{$checkOut}}">

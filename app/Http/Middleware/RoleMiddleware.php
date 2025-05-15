@@ -16,12 +16,13 @@ class RoleMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         // Check if the user is logged in and has the role 'user'
-        if (auth()->check() && auth()->user()->hasRole('User')) {
+        if (auth()->check() && auth()->user()->hasRole('Super Admin|Admin|Editor')) {
             // Redirect to some other route (e.g., user homepage)
-            return redirect('/');
+            return $next($request);
+
         }
+        return redirect('/');
 
         // Otherwise, allow the request to continue
-        return $next($request);
     }
 }

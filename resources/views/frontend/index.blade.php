@@ -902,7 +902,7 @@
             </h2>
             <div class="w-full max-w-7xl mx-auto bg-white rounded-lg shadow-lg p-6">
 
-                <form action="{{ route('rooms.available') }}" method="POST"
+                <form action="{{ route('rooms.available') }}" method="GET"
                       class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                     @csrf
 
