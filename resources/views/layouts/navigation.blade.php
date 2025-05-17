@@ -54,28 +54,40 @@
                         </div>
                     </div>
 
+                    @can('view hotel')
                     <x-nav-link :href="route('hotel.index')" :active="request()->routeIs('hotel*')">
                         Hotels
                     </x-nav-link>
+                    @endcan
 
+                    @can('view room type')
                     <x-nav-link :href="route('room-type.index')" :active="request()->routeIs('room-type*')">
                         Room type
                     </x-nav-link>
+                    @endcan
+                    @can('view room')
                     <x-nav-link :href="route('rooms.index')" :active="request()->routeIs('rooms*')">
                         Rooms
                     </x-nav-link>
+                    @endcan
 
+                    @can('view booking')
                     <x-nav-link :href="route('booking.index')" :active="request()->routeIs('booking*')">
                         Bookings
                     </x-nav-link>
+                    @endcan
 
+                    @can('view payment')
                     <x-nav-link :href="route('payment.index')" :active="request()->routeIs('payment*')">
                         Payments
                     </x-nav-link>
+                    @endcan
 
+                    @can('view amenity')
                     <x-nav-link :href="route('amenity.index')" :active="request()->routeIs('amenity*')">
                         Amenity
                     </x-nav-link>
+                    @endcan
                 </div>
             </div>
 

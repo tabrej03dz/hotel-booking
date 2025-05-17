@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\BookingConfirmationMail;
 use App\Models\Booking;
 use App\Models\Payment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class PaymentController extends Controller
 {
@@ -31,4 +33,32 @@ class PaymentController extends Controller
         Payment::create($request->all());
         return redirect('payment')->with('success', 'Payment Added successfully');
     }
+
+
+
+    public function paymentResponse(Request $request)
+{
+    $res = $request->all();
+    $booking = Booking::find($res['txnId']); // Assuming txnId is booking ID or use mapping
+
+    if ($res['paymentMethod']['paymentTransaction']['statusCode'] === '0300') {
+        $booking->update(['status' => 'confirmed']);
+        $booking->payment->update(['status' => 'completed']);
+        Mail::to($booking->email)->send(new BookingConfirmationMail($booking));
+        return redirect()->route('payment.success');
+    }
+
+    return redirect()->route('payment.failed');
+}
+
+public function paymentSuccess()
+{
+    return view('payment.success');
+}
+
+public function paymentFailed()
+{
+    return view('payment.failed');
+}
+
 }

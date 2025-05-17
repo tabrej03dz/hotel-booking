@@ -7,7 +7,7 @@
 
   <div class="relative max-w-7xl mx-auto">
     <div class="bg-white/80 backdrop-blur-lg rounded-xl lg:rounded-2xl shadow-xl overflow-hidden">
-      
+
       <!-- Best Rate Guarantee Badge -->
       <div class="absolute top-0 right-0 bg-gradient-to-r from-amber-400 to-amber-500 text-black text-xs md:text-sm font-bold px-4 py-2 rounded-bl-lg md:rounded-bl-xl shadow-md z-10 transform rotate-1 hover:rotate-0 transition-transform duration-300">
         ✨ BEST RATE GUARANTEE
@@ -20,97 +20,97 @@
       </div>
 
       <!-- Booking Form -->
-      <form class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 p-6 bg-white/90 backdrop-blur-sm border-t border-gray-100">
-        <!-- Hotel Selection -->
-        <div class="relative">
-          <label for="hotel" class="block text-xs font-medium text-gray-700 mb-1 uppercase tracking-wider">Hotel</label>
-          <div class="relative">
-            <select id="hotel" name="hotel" class="appearance-none w-full border border-gray-200 rounded-lg px-4 py-3 text-sm shadow-sm focus:ring-2 focus:ring-amber-500 focus:border-amber-500 bg-white pr-8">
-              <option value="">Select Property</option>
-              <option>The Grand Palisades</option>
-              <option>Azure Waters Resort</option>
-              <option>Montage Serenity</option>
-              <option>Royal Orchid Suites</option>
-            </select>
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 mt-5">
-              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-            </div>
-          </div>
-        </div>
-      
-        <!-- Check-In -->
-        <div>
-          <label for="checkin" class="block text-xs font-medium text-gray-700 mb-1 uppercase tracking-wider">Check-In</label>
-          <div class="relative">
-            <input type="date" id="checkin" name="checkin" class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm shadow-sm focus:ring-2 focus:ring-amber-500 focus:border-amber-500">
-            <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none mt-5">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-            </div>
-          </div>
-        </div>
-      
-        <!-- Check-Out -->
-        <div>
-          <label for="checkout" class="block text-xs font-medium text-gray-700 mb-1 uppercase tracking-wider">Check-Out</label>
-          <div class="relative">
-            <input type="date" id="checkout" name="checkout" class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm shadow-sm focus:ring-2 focus:ring-amber-500 focus:border-amber-500">
-            <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none mt-5">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-            </div>
-          </div>
-        </div>
-      
-        <!-- Rooms & Guests -->
-        <div class="grid grid-cols-2 gap-3">
-          <div>
-            <label class="block text-xs font-medium text-gray-700 mb-1 uppercase tracking-wider">Rooms</label>
-            <select class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm shadow-sm focus:ring-2 focus:ring-amber-500 focus:border-amber-500">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4+</option>
-            </select>
-          </div>
-          <div>
-            <label class="block text-xs font-medium text-gray-700 mb-1 uppercase tracking-wider">Guests</label>
-            <select class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm shadow-sm focus:ring-2 focus:ring-amber-500 focus:border-amber-500">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5+</option>
-            </select>
-          </div>
-        </div>
-      
-        <!-- Submit Button -->
-        <div class="flex items-end">
-          <button type="submit" class="w-full bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-semibold text-sm py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center space-x-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-            <span>FIND ROOMS</span>
-          </button>
-        </div>
-      </form>
-      
+{{--      <form class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 p-6 bg-white/90 backdrop-blur-sm border-t border-gray-100">--}}
+{{--        <!-- Hotel Selection -->--}}
+{{--        <div class="relative">--}}
+{{--          <label for="hotel" class="block text-xs font-medium text-gray-700 mb-1 uppercase tracking-wider">Hotel</label>--}}
+{{--          <div class="relative">--}}
+{{--            <select id="hotel" name="hotel" class="appearance-none w-full border border-gray-200 rounded-lg px-4 py-3 text-sm shadow-sm focus:ring-2 focus:ring-amber-500 focus:border-amber-500 bg-white pr-8">--}}
+{{--              <option value="">Select Property</option>--}}
+{{--              <option>The Grand Palisades</option>--}}
+{{--              <option>Azure Waters Resort</option>--}}
+{{--              <option>Montage Serenity</option>--}}
+{{--              <option>Royal Orchid Suites</option>--}}
+{{--            </select>--}}
+{{--            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 mt-5">--}}
+{{--              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>--}}
+{{--            </div>--}}
+{{--          </div>--}}
+{{--        </div>--}}
+{{--      --}}
+{{--        <!-- Check-In -->--}}
+{{--        <div>--}}
+{{--          <label for="checkin" class="block text-xs font-medium text-gray-700 mb-1 uppercase tracking-wider">Check-In</label>--}}
+{{--          <div class="relative">--}}
+{{--            <input type="date" id="checkin" name="checkin" class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm shadow-sm focus:ring-2 focus:ring-amber-500 focus:border-amber-500">--}}
+{{--            <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none mt-5">--}}
+{{--              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">--}}
+{{--                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />--}}
+{{--              </svg>--}}
+{{--            </div>--}}
+{{--          </div>--}}
+{{--        </div>--}}
+{{--      --}}
+{{--        <!-- Check-Out -->--}}
+{{--        <div>--}}
+{{--          <label for="checkout" class="block text-xs font-medium text-gray-700 mb-1 uppercase tracking-wider">Check-Out</label>--}}
+{{--          <div class="relative">--}}
+{{--            <input type="date" id="checkout" name="checkout" class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm shadow-sm focus:ring-2 focus:ring-amber-500 focus:border-amber-500">--}}
+{{--            <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none mt-5">--}}
+{{--              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">--}}
+{{--                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />--}}
+{{--              </svg>--}}
+{{--            </div>--}}
+{{--          </div>--}}
+{{--        </div>--}}
+{{--      --}}
+{{--        <!-- Rooms & Guests -->--}}
+{{--        <div class="grid grid-cols-2 gap-3">--}}
+{{--          <div>--}}
+{{--            <label class="block text-xs font-medium text-gray-700 mb-1 uppercase tracking-wider">Rooms</label>--}}
+{{--            <select class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm shadow-sm focus:ring-2 focus:ring-amber-500 focus:border-amber-500">--}}
+{{--              <option>1</option>--}}
+{{--              <option>2</option>--}}
+{{--              <option>3</option>--}}
+{{--              <option>4+</option>--}}
+{{--            </select>--}}
+{{--          </div>--}}
+{{--          <div>--}}
+{{--            <label class="block text-xs font-medium text-gray-700 mb-1 uppercase tracking-wider">Guests</label>--}}
+{{--            <select class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm shadow-sm focus:ring-2 focus:ring-amber-500 focus:border-amber-500">--}}
+{{--              <option>1</option>--}}
+{{--              <option>2</option>--}}
+{{--              <option>3</option>--}}
+{{--              <option>4</option>--}}
+{{--              <option>5+</option>--}}
+{{--            </select>--}}
+{{--          </div>--}}
+{{--        </div>--}}
+{{--      --}}
+{{--        <!-- Submit Button -->--}}
+{{--        <div class="flex items-end">--}}
+{{--          <button type="submit" class="w-full bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-semibold text-sm py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center space-x-2">--}}
+{{--            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">--}}
+{{--              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />--}}
+{{--            </svg>--}}
+{{--            <span>FIND ROOMS</span>--}}
+{{--          </button>--}}
+{{--        </div>--}}
+{{--      </form>--}}
+{{--      --}}
       <!-- Featured Suites -->
       <div class="px-6 py-8 sm:p-10 md:p-12 bg-gradient-to-b from-white to-gray-50">
         <div class="max-w-4xl mx-auto text-center mb-10">
           <h3 class="text-2xl md:text-3xl font-bold text-gray-900 font-serif">Our Signature Collections</h3>
           <p class="text-gray-600 mt-2">Indulge in our most exclusive accommodations, designed for the discerning traveler.</p>
         </div>
-        
+
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           <!-- Suite Card 1 -->
           @foreach($availableRooms as $room)
           <div class="group relative bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl">
             <div class="relative h-64 overflow-hidden">
-              <img src="{{asset('asset/deluxe/deluxe-4.jpg')}}" alt="Presidential Suite" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+              <img src="{{  asset($room->images?->first() ? 'storage/'.$room->images->first()->path: 'asset/deluxe/deluxe-4.jpg')}}" alt="Presidential Suite" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
               <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
               <div class="absolute bottom-4 left-4">
                 <span class="bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full">MOST POPULAR</span>

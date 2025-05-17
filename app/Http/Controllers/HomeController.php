@@ -6,12 +6,15 @@ use App\Mail\BookingConfirmationMail;
 use App\Mail\UserRegistrationMail;
 use App\Models\Booking;
 use App\Models\Customer;
+use App\Models\Payment;
 use App\Models\Room;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
@@ -167,17 +170,98 @@ class HomeController extends Controller
         return view('frontend.bookingdetail', compact('room', 'checkInDate', 'checkOutDate', 'days'));
     }
 
-    public function bookingSave(Request $request, Room $room){
+    // public function bookingSave(Request $request, Room $room){
+    //     $request->validate([
+    //         'name' => 'required',
+    //         'email' => 'required',
+    //         'phone' => 'required',
+    //         'check_in_date' => 'required',
+    //         'check_out_date' => 'required',
+    //     ]);
+
+    //     // 1. Find or create customer
+    //     if(!auth()->check()){
+    //         $tempPassword = Str::random(8);
+    //         $user = User::firstOrCreate(
+    //             ['email' => $request->email],
+    //             [
+    //                 'name' => $request->name,
+    //                 'phone' => $request->phone,
+    //                 'address' => $request->address ?? null,
+    //                 'password' => Hash::make($tempPassword),
+    //             ]
+    //         );
+    //         if ($user->roles->isEmpty()) {
+    //             $user->assignRole('User');
+    //         }
+    //         Auth::login($user);
+    //         $user->tempPassword = $tempPassword;
+    //         Mail::to($request->email)->send(new UserRegistrationMail($user));
+    //     }
+    //     $user = Auth::user();
+
+    //     // 2. Find available room
+    //     $room = Room::where('id', $room->id)->first();
+
+    //     if (!$room) {
+    //         return back()->with('error', 'No available rooms of this type.');
+    //     }
+
+    //     $price = ($room->discounted_price ?? $room->price) ?? ($room->roomType->discounted_price ?? $room->roomType->price) * $request->days;
+    //     $tax = ($price * 18)/100;
+
+    //     // 3. Create booking
+    //     $booking = Booking::create([
+    //         'name' => $request->name,
+    //         'email' => $request->email,
+    //         'phone' => $request->phone,
+    //         'user_id' => $user->id,
+    //         'room_id' => $room->id,
+    //         'check_in_date' => $request->check_in_date,
+    //         'check_out_date' => $request->check_out_date,
+    //         'status' => 'pending',
+    //         'staying_days' => $request->days,
+    //         'amount' => $price,
+    //         'tax_and_fee' => $tax,
+    //         'total_amount' => $price + $tax, // basic cost
+    //     ]);
+
+    //     if ($booking){
+    //         Payment::create([
+    //             'booking_id' => $booking->id,
+    //             'payment_method' => 'online',
+    //             'amount' => $price,
+    //             'tax_and_fee' => $tax,
+    //             'total_amount' => $price + $tax,
+    //             'status' => 'pending',
+    //         ]);
+    //     }
+
+    //     Mail::to($request->email)->send(new BookingConfirmationMail($booking));
+
+    //     return redirect()->route('user.dashboard')->with('success', 'Your reservation at Hotel Krinoscco is confirmed. A confirmation email has been sent to '.$request->email.'.');
+
+    // }
+
+
+
+
+
+
+
+    public function bookingSave(Request $request, Room $room)
+    {
         $request->validate([
             'name' => 'required',
-            'email' => 'required',
+            'email' => 'required|email',
             'phone' => 'required',
             'check_in_date' => 'required',
             'check_out_date' => 'required',
+            'days' => 'required|integer|min:1'
         ]);
 
-        // 1. Find or create customer
-        if(!auth()->check()){
+        // Handle guest login or register
+        if (!auth()->check()) {
             $tempPassword = Str::random(8);
             $user = User::firstOrCreate(
                 ['email' => $request->email],
@@ -188,23 +272,27 @@ class HomeController extends Controller
                     'password' => Hash::make($tempPassword),
                 ]
             );
+
+            if ($user->roles->isEmpty()) {
+                $user->assignRole('User');
+            }
+
             Auth::login($user);
             $user->tempPassword = $tempPassword;
             Mail::to($request->email)->send(new UserRegistrationMail($user));
         }
-        $user = Auth::user();
 
-        // 2. Find available room
-        $room = Room::where('id', $room->id)->first();
+        $user = Auth::user();
+        $room = Room::find($room->id);
 
         if (!$room) {
             return back()->with('error', 'No available rooms of this type.');
         }
 
-        $price = ($room->discounted_price ?? $room->price) ?? ($room->roomType->discounted_price ?? $room->roomType->price) * $request->days;
-        $tax = ($price * 18)/100;
+        $price = (($room->discounted_price ?? $room->price) ?? ($room->roomType->discounted_price ?? $room->roomType->price)) * $request->days;
+        $tax = ($price * 18) / 100;
+        $total = $price + $tax;
 
-        // 3. Create booking
         $booking = Booking::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -217,14 +305,78 @@ class HomeController extends Controller
             'staying_days' => $request->days,
             'amount' => $price,
             'tax_and_fee' => $tax,
-            'total_amount' => $price + $tax, // basic cost
+            'total_amount' => $total,
         ]);
 
-        Mail::to($request->email)->send(new BookingConfirmationMail($booking));
+        $payment = Payment::create([
+            'booking_id' => $booking->id,
+            'payment_method' => 'online',
+            'amount' => $price,
+            'tax_and_fee' => $tax,
+            'total_amount' => $total,
+            'status' => 'pending',
+        ]);
 
-        return redirect()->route('user.dashboard')->with('success', 'Your reservation at Hotel Krinoscco is confirmed. A confirmation email has been sent to '.$request->email.'.');
+        return redirect()->route('user.dashboard')->with('success', 'Booking record created successfully');
 
+
+        // ✅ Generate Token from Worldline
+        $transactionId = 'TXN_' . Str::random(10);
+        $tokenPayload = [
+            "merchant" => [
+                "identifier" => 'L1028547'
+            ],
+            "transaction" => [
+                "deviceIdentifier" => "S",
+                "currency" => "INR",
+                "dateTime" => now()->format('d-m-Y H:i:s'),
+                "token" => "",
+                "requestType" => "Payment",
+                "merchantTransactionIdentifier" => $transactionId,
+                "amount" => (string) number_format($total, 2, '.', '')
+            ],
+            "customer" => [
+                "identifier" => "CUST_" . $user->id,
+                "email" => $user->email,
+                "mobile" => $user->phone
+            ],
+            "returnUrl" => 'https://krinoscco.com/'
+        ];
+
+
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+        ])->post('https://www.paynimo.com/api/paynimoV2.req', $tokenPayload);
+
+        $data = $response->json();
+
+        if (!isset($data['paymentMethod']['paymentTransaction']['token'])) {
+            return back()->with('error', 'Payment token generation failed.');
+        }
+
+        $token = $data['paymentMethod']['paymentTransaction']['token'];
+
+        return view('payment.paynimo-checkout', compact('token', 'transactionId', 'total', 'user'));
     }
+
+
+
+//$txnId = now()->timestamp;
+//$data = [
+//'booking' => $booking,
+//'payment' => $payment,
+//'merchantId' => 'L3348', // your merchant ID
+//'consumerId' => $user->id,
+//'txnId' => $txnId,
+//'token' => $this->generatePaynimoToken($booking, $payment, $txnId), // See next step
+//];
+
+
+
+
+
+
+
 
     public function bookingdetail(){
         return view('frontend.bookingdetail');
@@ -233,6 +385,66 @@ class HomeController extends Controller
     public function roomdetail(){
         return view('frontend.roomdetail');
     }
+
+    public function generateInvoice(Booking $booking){
+        return view('frontend.profile.booking-invoice', compact('booking'));
+    }
+
+
+
+
+
+    public function generatePaymentToken(Request $request)
+    {
+        $merchantId = env('WORLDLINE_MERCHANT_ID');
+        $secretKey = env('WORLDLINE_SECRET_KEY');
+        $returnUrl = env('WORLDLINE_RETURN_URL');
+
+        $transactionId = uniqid("TXN_");
+        $amount = "100.00"; // Or from request
+        $customerId = "CUST123"; // Should be dynamic
+
+        $requestData = [
+            "merchant" => [
+                "identifier" => $merchantId
+            ],
+            "transaction" => [
+                "deviceIdentifier" => "S",
+                "currency" => "INR",
+                "dateTime" => now()->format('d-m-Y H:i:s'),
+                "token" => "",
+                "requestType" => "Payment",
+                "merchantTransactionIdentifier" => $transactionId,
+                "amount" => $amount
+            ],
+            "customer" => [
+                "identifier" => $customerId,
+                "email" => "test@example.com",
+                "mobile" => "9999999999"
+            ],
+            "returnUrl" => $returnUrl
+        ];
+
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+        ])->post(env('WORLDLINE_API_URL'), $requestData);
+
+        $data = $response->json();
+
+        if ($data['paymentMethod']['paymentTransaction']['statusCode'] == '0300') {
+            // Success
+            return response()->json([
+                'token' => $data['paymentMethod']['paymentTransaction']['token'],
+                'txnId' => $transactionId
+            ]);
+        } else {
+            // Error
+            return response()->json([
+                'error' => $data['paymentMethod']['paymentTransaction']['statusMessage'] ?? 'Token generation failed'
+            ], 400);
+        }
+    }
+
 
 
 }

@@ -123,7 +123,7 @@ class BookingController extends Controller
 
         $booking->delete();
 
-        return redirect()->route('bookings.index')->with('success', 'Booking cancelled.');
+        return redirect()->route('booking.index')->with('success', 'Booking cancelled.');
     }
 
     public function status(Request $request, Booking $booking){
