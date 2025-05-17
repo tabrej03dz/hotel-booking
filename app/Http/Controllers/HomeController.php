@@ -143,6 +143,41 @@ class HomeController extends Controller
         return view('frontend.profile.bookingDetail', compact('bookings'));
     }
 
+    public function userProfile(){
+        $user = \auth()->user();
+        return view('frontend.profile.user-profile', compact('user'));
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email|unique:users,email,' . auth()->id(),
+            'phone' => 'nullable|string',
+        ]);
+
+        auth()->user()->update($request->only('name', 'email', 'phone'));
+
+        return back()->with('success', 'Profile updated successfully!');
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|min:6|confirmed',
+        ]);
+
+        if (!Hash::check($request->current_password, auth()->user()->password)) {
+            return back()->withErrors(['current_password' => 'Current password is incorrect']);
+        }
+
+        auth()->user()->update(['password' => Hash::make($request->new_password)]);
+
+        return back()->with('password_success', 'Password updated successfully!');
+    }
+
+
 
     public function availableRoom(Request $request)
     {

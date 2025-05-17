@@ -65,24 +65,31 @@
                 <ul class="space-y-2">
 
                     <li>
-                        <a href="#"
-                           class="block p-3 rounded hover:bg-opacity-20 hover:bg-black smooth-transition">
+                        <a href="{{ route('user.dashboard') }}"
+                           class="block p-3 rounded smooth-transition
+           {{ Route::is('user.dashboard') ? 'bg-black bg-opacity-20 text-white' : '' }}
+           hover:bg-opacity-20 hover:bg-black">
                             <i class="fas fa-calendar-alt mr-2"></i> My Bookings
                         </a>
                     </li>
 
+
                     <li>
-                        <a href="#"
+                        <a href="{{ route('user.profile') }}"
                            class="block p-3 rounded hover:bg-opacity-20 hover:bg-black smooth-transition">
                             <i class="fas fa-user mr-2"></i> Profile
                         </a>
                     </li>
 
                     <li>
-                        <a href="#"
-                           class="block p-3 rounded hover:bg-opacity-20 hover:bg-black smooth-transition text-red-200 hover:text-red-100">
-                            <i class="fas fa-sign-out-alt mr-2"></i> Logout
-                        </a>
+                        <form action="{{ route('logout') }}" method="POST" class="block">
+                            @csrf
+                            <button type="submit"
+                                    class="w-full text-left p-3 rounded hover:bg-opacity-20 hover:bg-black smooth-transition text-red-200 hover:text-red-100">
+                                <i class="fas fa-sign-out-alt mr-2"></i> Logout
+                            </button>
+                        </form>
+
                     </li>
                 </ul>
 

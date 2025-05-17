@@ -43,15 +43,23 @@
                                 <td class="px-6 py-4 text-gray-700 capitalize">{{ $payment->payment_method }}</td>
                                 <td class="px-6 py-4 text-gray-700">₹{{ number_format($payment->amount, 2) }}</td>
                                 <td class="px-6 py-4 text-gray-700 capitalize">
-                                        <span class="
-                                            px-2 py-1 rounded text-xs font-semibold
+                                    <form action="{{ route('payment.status', $payment->id) }}" method="GET" onsubmit="return confirm('Are you sure you want to change the payment status?')">
+                                        @csrf
+                                        <select name="status"
+                                                onchange="if(confirm('Are you sure you want to change the payment status?')) this.form.submit(); else this.value = '{{ $payment->status }}';"
+                                                class="px-2 py-1 rounded text-xs font-semibold
                                             @if($payment->status == 'paid') bg-green-100 text-green-700
                                             @elseif($payment->status == 'pending') bg-yellow-100 text-yellow-700
                                             @else bg-red-100 text-red-700
                                             @endif">
-                                            {{ $payment->status }}
-                                        </span>
+                                            <option value="paid" {{ $payment->status == 'paid' ? 'selected' : '' }}>Paid</option>
+                                            <option value="pending" {{ $payment->status == 'pending' ? 'selected' : '' }}>Pending</option>
+                                            <option value="failed" {{ $payment->status == 'failed' ? 'selected' : '' }}>Failed</option>
+                                        </select>
+                                    </form>
+
                                 </td>
+
                                 <td class="px-6 py-4 text-gray-700">{{ $payment->created_at->format('d M Y') }}</td>
                             </tr>
                         @empty
