@@ -54,9 +54,9 @@
                         </div>
                         <div>
                             <h4 class="font-semibold text-gray-800 text-lg">Functional Office</h4>
-                            <p class="text-gray-600">
-                                Hotel Krinoscco, Amaniganj Ram Path, Ayodhya, Uttar Pradesh, 224001
-                            </p>
+                           <a href="https://www.google.com/maps?ll=26.783073,82.165321&z=16&t=m&hl=en&gl=IN&mapclient=embed&cid=18420098021593240393"><p class="text-gray-600">
+                                Hotel Krinoscco, Ayodhya, Amaniganj Ram Path Uttar Pradesh, 224001
+                            </p></a> 
                         </div>
                     </div>
 
@@ -131,7 +131,7 @@
             </div>
 
             <!-- Google Map -->
-            <div class="mt-16">
+            <a href="https://www.google.com/maps?ll=26.783073,82.165321&z=16&t=m&hl=en&gl=IN&mapclient=embed&cid=18420098021593240393"><div class="mt-16">
                 <h3 class="text-2xl font-bold text-gray-900 text-center mb-6">Find Us on the Map</h3>
                 <div class="w-full h-96 rounded-lg overflow-hidden shadow-lg">
                     <iframe
@@ -139,7 +139,7 @@
                         width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
                     </iframe>
                 </div>
-            </div>
+            </div></a> 
         </div>
     </section>
 @endsection
