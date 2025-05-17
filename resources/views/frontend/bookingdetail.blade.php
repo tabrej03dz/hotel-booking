@@ -99,7 +99,7 @@
                                             @endif
 
                                         </div>
-              
+
                                         {{ $amenity->name }}
                                     </div>
                                 @endforeach
@@ -144,21 +144,21 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Name</label>
-                                    <input type="text" name="name" placeholder="Full Name"
+                                    <input type="text" name="name" placeholder="Full Name" value="{{auth()->check() ? auth()->user()->name : ''}}"
                                         class="w-full border border-gray-300 p-2 rounded font-medium text-gray-900"
                                         required />
                                 </div>
 
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                                    <input type="email" name="email" placeholder="john.smith@example.com"
+                                    <input type="email" name="email" placeholder="john.smith@example.com" value="{{auth()->check() ? auth()->user()->email : ''}}"
                                         class="w-full border border-gray-300 p-2 rounded font-medium text-gray-900"
                                         required />
                                 </div>
 
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Phone</label>
-                                    <input type="text" name="phone" placeholder="+1 (555) 123-4567"
+                                    <input type="text" name="phone" placeholder="+1 (555) 123-4567" value="{{auth()->check() ? auth()->user()->phone_number : ''}}"
                                         class="w-full border border-gray-300 p-2 rounded font-medium text-gray-900"
                                         required />
                                 </div>

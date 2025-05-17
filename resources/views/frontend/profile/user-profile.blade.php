@@ -27,7 +27,7 @@
 
             <div>
                 <label class="block text-sm font-medium text-gray-700">Phone</label>
-                <input type="text" name="phone" value="{{ old('phone', auth()->user()->phone) }}"
+                <input type="text" name="phone_number" value="{{ old('phone', auth()->user()->phone_number) }}"
                        class="mt-1 block w-full bg-white text-gray-800 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-opacity-50">
             </div>
 

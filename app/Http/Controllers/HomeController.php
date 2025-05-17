@@ -153,10 +153,10 @@ class HomeController extends Controller
         $request->validate([
             'name' => 'required|string',
             'email' => 'required|email|unique:users,email,' . auth()->id(),
-            'phone' => 'nullable|string',
+            'phone_number' => 'nullable|string',
         ]);
 
-        auth()->user()->update($request->only('name', 'email', 'phone'));
+        auth()->user()->update($request->only('name', 'email', 'phone_number'));
 
         return back()->with('success', 'Profile updated successfully!');
     }
