@@ -20,11 +20,13 @@ class AmenityController extends Controller
 
     public function store(Request $request)
     {
+     
         $request->validate([
+            'icon'=>'nullable',
             'name' => 'required|string|max:255',
         ]);
 
-        Amenity::create($request->only('name'));
+        Amenity::create($request->all());
 
         return redirect()->route('amenity.index')->with('success', 'Amenity created successfully.');
     }
@@ -40,7 +42,7 @@ class AmenityController extends Controller
             'name' => 'required|string|max:255',
         ]);
 
-        $amenity->update($request->only('name'));
+        $amenity->update($request->all());
 
         return redirect()->route('amenity.index')->with('success', 'Amenity updated successfully.');
     }

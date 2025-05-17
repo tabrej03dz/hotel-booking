@@ -339,7 +339,7 @@
 
             <!-- All other digital art images except excluded ones -->
             @for ($i = 1; $i <= 50; $i++)
-                @if($i != 2 && $i != 28) <!-- Skip original positions of swapped images -->
+                @if($i != 2 && $i !=  28 && $i != 23 && $i != 24) <!-- Skip original positions of swapped images -->
                     @if(!in_array($i, [5, 7, 12, 15, 19, 22, 25, 30, 33, 37, 40, 45, 48])) <!-- Remove duplicates and rotated versions -->
                         <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300" data-category="digital-art">
                             <img src="{{ asset('asset/gallery/gallery-' . $i . '.jpg') }}"

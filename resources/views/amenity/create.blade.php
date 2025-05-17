@@ -27,7 +27,13 @@
                     {{-- @if (isset($roomType))
                         @method('POST') <!-- Laravel doesn't allow PUT/PATCH via form, so using POST -->
                     @endif --}}
-
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">Name</label>
+                        <input type="text" name="icon"
+                               value="{{ old('icon', isset($amenity) ? $amenity->icon : '') }}"
+                               class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-200"
+                               placeholder="Enter room type icon" required>
+                    </div>
                     <div>
                         <label class="block text-gray-700 font-medium mb-2">Name</label>
                         <input type="text" name="name"
