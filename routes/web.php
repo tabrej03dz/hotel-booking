@@ -24,7 +24,6 @@ use Nette\Utils\ImageColor;
 // });
 
 
-Route::get('/dashboard', [DashboardController::class, 'dashboard'])->middleware(['auth','verified'])->name('dashboard');
 
 
 
@@ -35,106 +34,117 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    // Permission Routes
-    Route::get('permission/index',[PermissionController::class,'index'])->name('permission.index');
-    Route::get('permission/create',[PermissionController::class,'create'])->name('permission.create');
-    Route::post('permission/store',[PermissionController::class,'store'])->name('permission.store');
-    Route::get('permission/edit/{permission}',[PermissionController::class,'edit'])->name('permission.edit');
-    Route::post('permission/update/{permission}',[PermissionController::class,'update'])->name('permission.update');
-    Route::get('permission/delete/{permission}',[PermissionController::class,'delete'])->name('permission.delete');
+    Route::middleware(\App\Http\Middleware\RoleMiddleware::class)->group(function(){
 
-    // Role Routes
-    Route::get('role/index',[RoleController::class,'index'])->name('role.index');
-    Route::get('role/create',[RoleController::class,'create'])->name('role.create');
-    Route::post('role/store',[RoleController::class,'store'])->name('role.store');
-    Route::get('role/edit/{role}',[RoleController::class,'edit'])->name('role.edit');
-    Route::post('role/update/{role}',[RoleController::class,'update'])->name('role.update');
-    Route::get('role/delete/{role}',[RoleController::class,'delete'])->name('role.delete');
+        Route::get('/dashboard', [DashboardController::class, 'dashboard'])->middleware(['auth','verified'])->name('dashboard');
 
-    // User Routes
-    Route::get('user/index',[UserController::class,'index'])->name('user.index');
-    Route::get('user/create',[UserController::class,'create'])->name('user.create');
-    Route::post('user/store',[UserController::class,'store'])->name('user.store');
-    Route::get('user/edit/{user}',[UserController::class,'edit'])->name('user.edit');
-    Route::post('user/update/{user}',[UserController::class,'update'])->name('user.update');
-    Route::get('user/delete/{user}',[UserController::class,'delete'])->name('user.delete');
-    Route::get('/user/permissions/{user}', [UserController::class, 'assignPermissionForm'])->name('user.permission.form');
-    Route::post('/user/permissions/{user}', [UserController::class, 'assignPermissionToUser'])->name('user.assign-permission');
 
-    Route::prefix('hotel')->name('hotel.')->controller(\App\Http\Controllers\HotelController::class)->group(function(){
-       Route::get('/', 'index')->name('index');
-       Route::get('/create', 'create')->name('create');
-        Route::post('/store', 'store')->name('store');
-        Route::get('/edit/{hotel}', 'edit')->name('edit');
-        Route::post('/update/{hotel}', 'update')->name('update');
-        Route::post('/delete/{hotel}', 'destroy')->name('delete');
+        // Permission Routes
+        Route::get('permission/index',[PermissionController::class,'index'])->name('permission.index');
+        Route::get('permission/create',[PermissionController::class,'create'])->name('permission.create');
+        Route::post('permission/store',[PermissionController::class,'store'])->name('permission.store');
+        Route::get('permission/edit/{permission}',[PermissionController::class,'edit'])->name('permission.edit');
+        Route::post('permission/update/{permission}',[PermissionController::class,'update'])->name('permission.update');
+        Route::get('permission/delete/{permission}',[PermissionController::class,'delete'])->name('permission.delete');
+
+        // Role Routes
+        Route::get('role/index',[RoleController::class,'index'])->name('role.index');
+        Route::get('role/create',[RoleController::class,'create'])->name('role.create');
+        Route::post('role/store',[RoleController::class,'store'])->name('role.store');
+        Route::get('role/edit/{role}',[RoleController::class,'edit'])->name('role.edit');
+        Route::post('role/update/{role}',[RoleController::class,'update'])->name('role.update');
+        Route::get('role/delete/{role}',[RoleController::class,'delete'])->name('role.delete');
+
+        // User Routes
+        Route::get('user/index',[UserController::class,'index'])->name('user.index');
+        Route::get('user/create',[UserController::class,'create'])->name('user.create');
+        Route::post('user/store',[UserController::class,'store'])->name('user.store');
+        Route::get('user/edit/{user}',[UserController::class,'edit'])->name('user.edit');
+        Route::post('user/update/{user}',[UserController::class,'update'])->name('user.update');
+        Route::get('user/delete/{user}',[UserController::class,'delete'])->name('user.delete');
+        Route::get('/user/permissions/{user}', [UserController::class, 'assignPermissionForm'])->name('user.permission.form');
+        Route::post('/user/permissions/{user}', [UserController::class, 'assignPermissionToUser'])->name('user.assign-permission');
+
+        Route::prefix('hotel')->name('hotel.')->controller(\App\Http\Controllers\HotelController::class)->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/store', 'store')->name('store');
+            Route::get('/edit/{hotel}', 'edit')->name('edit');
+            Route::post('/update/{hotel}', 'update')->name('update');
+            Route::post('/delete/{hotel}', 'destroy')->name('delete');
+        });
+
+        Route::prefix('room-type')->name('room-type.')->controller(\App\Http\Controllers\RoomTypeController::class)->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/store', 'store')->name('store');
+            Route::get('/edit/{roomType}', 'edit')->name('edit');
+            Route::post('/update/{roomType}', 'update')->name('update');
+            Route::post('/update/{roomType}', 'update')->name('update');
+            Route::post('/update/{roomType}', 'update')->name('update');
+            Route::post('/delete/{roomType}', 'destroy')->name('delete');
+        });
+
+        Route::prefix('rooms')->name('rooms.')->controller(\App\Http\Controllers\RoomController::class)->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/store', 'store')->name('store');
+            Route::get('/edit/{room}', 'edit')->name('edit');
+            Route::post('/update/{room}', 'update')->name('update');
+            Route::post('/update/{room}', 'update')->name('update');
+            Route::post('/update/{room}', 'update')->name('update');
+            Route::post('/destroy/{room}', 'destroy')->name('destroy');
+        });
+
+        Route::prefix('booking')->name('booking.')->controller(\App\Http\Controllers\BookingController::class)->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/store', 'store')->name('store');
+            Route::get('/edit/{booking}', 'edit')->name('edit');
+            Route::get('/show/{booking}', 'show')->name('show');
+            Route::get('/status/{booking}', 'status')->name('status');
+            Route::post('/update/{booking}', 'update')->name('update');
+            Route::post('/update/{booking}', 'update')->name('update');
+            Route::post('/update/{booking}', 'update')->name('update');
+            Route::post('/destroy/{booking}', 'destroy')->name('destroy');
+            Route::post('/cancel/{booking}', 'cancel')->name('cancel');
+        });
+
+
+        Route::prefix('payment')->name('payment.')->controller(\App\Http\Controllers\PaymentController::class)->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::get('/create/{booking}', 'create')->name('create');
+            Route::post('/store', 'store')->name('store');
+            Route::get('/edit/{payment}', 'edit')->name('edit');
+            Route::get('/show/{payment}', 'show')->name('show');
+            Route::get('/status/{payment}', 'status')->name('status');
+            Route::post('/update/{payment}', 'update')->name('update');
+            Route::post('/update/{payment}', 'update')->name('update');
+            Route::post('/destroy/{payment}', 'destroy')->name('destroy');
+        });
+
+
+        Route::prefix('amenity')->name('amenity.')->controller(\App\Http\Controllers\AmenityController::class)->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/store', 'store')->name('store');
+            Route::get('/edit/{amenity}', 'edit')->name('edit');
+            Route::post('/update/{amenity}', 'update')->name('update');
+            Route::post('/destroy/{amenity}', 'destroy')->name('destroy');
+        });
+
+        Route::prefix('image')->name('image.')->controller(ImageController::class)->group(function(){
+            Route::post('delete/{image}', 'delete')->name('delete');
+        });
+
     });
-
-    Route::prefix('room-type')->name('room-type.')->controller(\App\Http\Controllers\RoomTypeController::class)->group(function(){
-       Route::get('/', 'index')->name('index');
-       Route::get('/create', 'create')->name('create');
-       Route::post('/store', 'store')->name('store');
-       Route::get('/edit/{roomType}', 'edit')->name('edit');
-       Route::post('/update/{roomType}', 'update')->name('update');
-       Route::post('/update/{roomType}', 'update')->name('update');
-       Route::post('/update/{roomType}', 'update')->name('update');
-       Route::post('/delete/{roomType}', 'destroy')->name('delete');
-    });
-
-    Route::prefix('rooms')->name('rooms.')->controller(\App\Http\Controllers\RoomController::class)->group(function(){
-        Route::get('/', 'index')->name('index');
-        Route::get('/create', 'create')->name('create');
-        Route::post('/store', 'store')->name('store');
-        Route::get('/edit/{room}', 'edit')->name('edit');
-        Route::post('/update/{room}', 'update')->name('update');
-        Route::post('/update/{room}', 'update')->name('update');
-        Route::post('/update/{room}', 'update')->name('update');
-        Route::post('/destroy/{room}', 'destroy')->name('destroy');
-    });
-
-    Route::prefix('booking')->name('booking.')->controller(\App\Http\Controllers\BookingController::class)->group(function(){
-        Route::get('/', 'index')->name('index');
-        Route::get('/create', 'create')->name('create');
-        Route::post('/store', 'store')->name('store');
-        Route::get('/edit/{booking}', 'edit')->name('edit');
-        Route::get('/show/{booking}', 'show')->name('show');
-        Route::get('/status/{booking}', 'status')->name('status');
-        Route::post('/update/{booking}', 'update')->name('update');
-        Route::post('/update/{booking}', 'update')->name('update');
-        Route::post('/update/{booking}', 'update')->name('update');
-        Route::post('/destroy/{booking}', 'destroy')->name('destroy');
-        Route::post('/cancel/{booking}', 'cancel')->name('cancel');
-    });
-
-
-    Route::prefix('payment')->name('payment.')->controller(\App\Http\Controllers\PaymentController::class)->group(function(){
-        Route::get('/', 'index')->name('index');
-        Route::get('/create/{booking}', 'create')->name('create');
-        Route::post('/store', 'store')->name('store');
-        Route::get('/edit/{payment}', 'edit')->name('edit');
-        Route::get('/show/{payment}', 'show')->name('show');
-        Route::get('/status/{payment}', 'status')->name('status');
-        Route::post('/update/{payment}', 'update')->name('update');
-        Route::post('/update/{payment}', 'update')->name('update');
-        Route::post('/destroy/{payment}', 'destroy')->name('destroy');
-    });
-
-
-    Route::prefix('amenity')->name('amenity.')->controller(\App\Http\Controllers\AmenityController::class)->group(function(){
-        Route::get('/', 'index')->name('index');
-        Route::get('/create', 'create')->name('create');
-        Route::post('/store', 'store')->name('store');
-        Route::get('/edit/{amenity}', 'edit')->name('edit');
-        Route::post('/update/{amenity}', 'update')->name('update');
-        Route::post('/destroy/{amenity}', 'destroy')->name('destroy');
-    });
-
-    Route::prefix('image')->name('image.')->controller(ImageController::class)->group(function(){
-        Route::post('delete/{image}', 'delete')->name('delete');
-    });
-
 
 });
+
+Route::post('/payment/response', [App\Http\Controllers\PaymentController::class, 'paymentResponse'])->name('payment.response');
+Route::get('/payment/success', [App\Http\Controllers\PaymentController::class, 'paymentSuccess'])->name('payment.success');
+Route::get('/payment/failed', [App\Http\Controllers\PaymentController::class, 'paymentFailed'])->name('payment.failed');
+
 
 require __DIR__.'/auth.php';
 
@@ -203,6 +213,7 @@ Route::get('/bookingdetail', [HomeController::class, 'bookingdetail'])->name('bo
 Route::get('/roomdetail', [HomeController::class, 'roomdetail'])->name('frontend.roomdetail');
 
 // profile page::::
-Route::prefix('user')->name('user.')->group(function(){
+Route::prefix('user')->name('user.')->middleware('auth')->group(function(){
     Route::get('/dashboard', [HomeController::class, 'userDashboard'])->name('dashboard');
+    Route::get('booking/generate-invoice/{booking}', [HomeController::class, 'generateInvoice'])->name('booking.generate-invoice');
 });

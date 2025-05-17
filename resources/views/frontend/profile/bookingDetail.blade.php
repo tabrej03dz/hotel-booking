@@ -72,14 +72,14 @@
         </div>
 
         <div class="flex flex-col sm:flex-row justify-center gap-4">
-            <button
-                class="bg-gradient-to-r from-luxuryPurple to-luxuryBrown text-white px-6 py-3 rounded-lg hover:shadow-lg transition-all transform hover:scale-105 smooth-transition flex items-center justify-center">
-                <i class="fas fa-eye mr-2"></i> View Booking Details
-            </button>
-            <button
+{{--            <button--}}
+{{--                class="bg-gradient-to-r from-luxuryPurple to-luxuryBrown text-white px-6 py-3 rounded-lg hover:shadow-lg transition-all transform hover:scale-105 smooth-transition flex items-center justify-center">--}}
+{{--                <i class="fas fa-eye mr-2"></i> View Booking Details--}}
+{{--            </button>--}}
+            <a href="{{route('user.booking.generate-invoice', $booking->id)}}"
                 class="border border-luxuryBrown text-luxuryBrown px-6 py-3 rounded-lg hover:bg-gray-50 hover:shadow-lg transition-all smooth-transition flex items-center justify-center">
-                <i class="fas fa-download mr-2"></i> Download Invoice
-            </button>
+                <i class="fas fa-download mr-2"></i> Generate Invoice
+            </a>
         </div>
     </div>
         @endforeach
