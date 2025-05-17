@@ -41,7 +41,7 @@
                         <input type="number" name="price"
                                value="{{ old('price', isset($roomType) ? $roomType->price : '') }}"
                                class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-200"
-                               placeholder="Enter room type price" required>
+                               placeholder="Enter room type price" >
                     </div>
 
                     <div>
@@ -49,7 +49,7 @@
                         <input type="number" name="discounted_price"
                                value="{{ old('discounted_price', isset($roomType) ? $roomType->discounted_price : '') }}"
                                class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-200"
-                               placeholder="Enter room type discounted price" required>
+                               placeholder="Enter room type discounted price" >
                     </div>
 
                     <div>

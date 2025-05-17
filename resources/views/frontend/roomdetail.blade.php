@@ -110,7 +110,7 @@
           @foreach($availableRooms as $room)
           <div class="group relative bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl">
             <div class="relative h-64 overflow-hidden">
-              <img src="{{asset('asset/deluxe/deluxe-4.jpg')}}" alt="Presidential Suite" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+              <img src="{{  asset($room->images?->first() ? 'storage/'.$room->images->first()->path: 'asset/deluxe/deluxe-4.jpg')}}" alt="Presidential Suite" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
               <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
               <div class="absolute bottom-4 left-4">
                 <span class="bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full">MOST POPULAR</span>
