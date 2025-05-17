@@ -19,6 +19,8 @@ return new class extends Migration
             $table->enum('status', ['available', 'booked', 'maintenance'])->default('available');
             $table->decimal('price', 10, 2)->nullable();
             $table->decimal('discounted_price', 10, 2)->nullable();
+            $table->string('title')->nullable();
+            $table->string('label')->nullable();
             $table->timestamps();
         });
     }

@@ -204,8 +204,8 @@ Route::post('/send-booking-email', [BookingController::class, 'sendBookingEmail'
 Route::get('/thank-you', [BookingController::class, 'thankyou'])->name('thankyou');
 
 
-Route::post('rooms/available', [HomeController::class, 'availableRoom'])->name('rooms.available');
-Route::post('booking/room/{room}', [HomeController::class, 'bookingRoom'])->name('booking.room');
+Route::get('rooms/available', [HomeController::class, 'availableRoom'])->name('rooms.available');
+Route::get('booking/room/{room}', [HomeController::class, 'bookingRoom'])->name('booking.room');
 Route::post('booking/save/{room}', [HomeController::class, 'bookingSave'])->name('booking.save');
 
 
@@ -215,5 +215,8 @@ Route::get('/roomdetail', [HomeController::class, 'roomdetail'])->name('frontend
 // profile page::::
 Route::prefix('user')->name('user.')->middleware('auth')->group(function(){
     Route::get('/dashboard', [HomeController::class, 'userDashboard'])->name('dashboard');
+    Route::get('profile', [HomeController::class, 'userProfile'])->name('profile');
+    Route::post('profile/update', [HomeController::class, 'updateProfile'])->name('profile.update');
+    Route::post('password/update', [HomeController::class, 'updatePassword'])->name('password.update');
     Route::get('booking/generate-invoice/{booking}', [HomeController::class, 'generateInvoice'])->name('booking.generate-invoice');
 });

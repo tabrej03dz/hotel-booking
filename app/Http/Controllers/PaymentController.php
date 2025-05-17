@@ -34,6 +34,11 @@ class PaymentController extends Controller
         return redirect('payment')->with('success', 'Payment Added successfully');
     }
 
+    public function status(Request $request, Payment $payment){
+        $payment->update(['status' => $request->status]);
+        return back()->with('success', 'Status changed successfully');
+    }
+
 
 
     public function paymentResponse(Request $request)
