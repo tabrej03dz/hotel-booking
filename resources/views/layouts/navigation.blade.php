@@ -54,6 +54,12 @@
                         </div>
                     </div>
 
+                     @can('view carriar')
+                    <x-nav-link :href="route('carriar.index')" :active="request()->routeIs('carriar*')">
+                        Carriar
+                    </x-nav-link>
+                    
+                    @endcan
                     @can('view hotel')
                     <x-nav-link :href="route('hotel.index')" :active="request()->routeIs('hotel*')">
                         Hotels

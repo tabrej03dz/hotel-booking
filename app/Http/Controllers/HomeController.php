@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\BookingConfirmationMail;
 use App\Mail\UserRegistrationMail;
 use App\Models\Booking;
+use App\Models\Carriar;
 use App\Models\Customer;
 use App\Models\Payment;
 use App\Models\Room;
@@ -47,7 +48,8 @@ class HomeController extends Controller
 
     public function careers()
     {
-        return view('frontend.careers');
+        $careers = Carriar::all();
+        return view('frontend.careers', compact('careers'));
     }
 
     public function gallery()
