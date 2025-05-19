@@ -1,6 +1,6 @@
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-200 h-24 z-50 relative">
     <!-- Container -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 bg-white">
+    <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 bg-white">
         <div class="flex justify-between h-16">
             <!-- Left: Logo & Main Nav -->
             <div class="flex">
@@ -88,6 +88,19 @@
                         Amenity
                     </x-nav-link>
                     @endcan
+
+
+                    @can('view availabilities and rates')
+                        <x-nav-link :href="route('availability-rate.index')" :active="request()->routeIs('availability-rate*')">
+                            Availabilities & Rates
+                        </x-nav-link>
+                    @endcan
+
+                    @can('view additional services')
+                        <x-nav-link :href="route('additional-service.index')" :active="request()->routeIs('additional-service*')">
+                            Additional Services
+                        </x-nav-link>
+                    @endcan
                 </div>
             </div>
 
@@ -169,6 +182,8 @@
                 <i class="fas fa-users mr-1"></i> Users
             </x-responsive-nav-link>
             @endcan
+
+
 
 
         </div>

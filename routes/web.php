@@ -137,6 +137,20 @@ Route::middleware('auth')->group(function () {
             Route::post('delete/{image}', 'delete')->name('delete');
         });
 
+        Route::prefix('availability-rate')->name('availability-rate.')->controller(\App\Http\Controllers\AvailabilityRateController::class)->group(function(){
+           Route::get('/', 'index')->name('index');
+           Route::post('store', 'store')->name('store');
+           Route::post('update/{record}', 'update')->name('update');
+        });
+
+        Route::prefix('additional-service')->name('additional-service.')->controller(\App\Http\Controllers\AdditionalServiceController::class)->group(function(){
+           Route::get('/', 'index')->name('index');
+           Route::get('create', 'create')->name('create');
+           Route::post('store', 'store')->name('store');
+           Route::get('edit/{service}', 'edit')->name('edit');
+           Route::post('update/{service}', 'update')->name('update');
+           Route::post('delete/{service}', 'delete')->name('delete');
+        });
     });
 
 });

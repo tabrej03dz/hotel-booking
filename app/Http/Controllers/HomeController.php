@@ -343,7 +343,10 @@ class HomeController extends Controller
             'total_amount' => $total,
         ]);
 
+        $transactionId = 'TXN' . now()->format('YmdHis') . strtoupper(Str::random(6));
+
         $payment = Payment::create([
+            'transaction_id' => $transactionId,
             'booking_id' => $booking->id,
             'payment_method' => 'online',
             'amount' => $price,
@@ -352,46 +355,73 @@ class HomeController extends Controller
             'status' => 'pending',
         ]);
 
-        return redirect()->route('user.dashboard')->with('success', 'Booking record created successfully');
+//        return redirect()->route('user.dashboard')->with('success', 'Booking record created successfully');
 
 
-        // ✅ Generate Token from Worldline
-        $transactionId = 'TXN_' . Str::random(10);
-        $tokenPayload = [
-            "merchant" => [
-                "identifier" => 'L1028547'
-            ],
-            "transaction" => [
-                "deviceIdentifier" => "S",
-                "currency" => "INR",
-                "dateTime" => now()->format('d-m-Y H:i:s'),
-                "token" => "",
-                "requestType" => "Payment",
-                "merchantTransactionIdentifier" => $transactionId,
-                "amount" => (string) number_format($total, 2, '.', '')
-            ],
-            "customer" => [
-                "identifier" => "CUST_" . $user->id,
-                "email" => $user->email,
-                "mobile" => $user->phone
-            ],
-            "returnUrl" => 'https://krinoscco.com/'
-        ];
-
-
-        $response = Http::withHeaders([
-            'Content-Type' => 'application/json',
-        ])->post('https://www.paynimo.com/api/paynimoV2.req', $tokenPayload);
-
-        $data = $response->json();
-
-        if (!isset($data['paymentMethod']['paymentTransaction']['token'])) {
-            return back()->with('error', 'Payment token generation failed.');
+        $path = storage_path() . "/json/worldline_AdminData.json";
+        $mer_array = json_decode(file_get_contents($path), true);
+        $txnId = $transactionId;
+        $consumerId = 123;
+        $amount = $total;
+        if($mer_array['typeOfPayment'] == "TEST")
+        {
+            $amount = 1;
         }
 
-        $token = $data['paymentMethod']['paymentTransaction']['token'];
+        if($mer_array['enableEmandate'] == 1 && $mer_array['enableSIDetailsAtMerchantEnd'] == 1){
+            $request->debitStartDate = date('d-m-Y');
+            $request->debitEndDate = date('d-m-Y', strtotime($request->debitStartDate ));
+        }
+        $maxAmount = $amount *2;
+        if($mer_array['enableEmandate'] == 1){
+            $amt = $amount;
+            $maxAmount = $amt *2;
+        }
+        $mobile = $user->mobile_number ?? '9999999999';
+        $email = $user->email;
 
-        return view('payment.paynimo-checkout', compact('token', 'transactionId', 'total', 'user'));
+        $datastring = $mer_array['merchantCode'] . "|" . $txnId . "|" . $amount . "|" . "|" . $consumerId . "|" . $mobile . "|" . $email . "||||||||||" . $mer_array['salt'];
+
+//        if($mer_array['enableEmandate'] == 1){
+//            $datastring = $mer_array['merchantCode'] . "|" . $txnId . "|" . $amount . "|" . "|" . $consumerId . "|" . $mobile . "|" . $email . "||||||||||" . $mer_array['salt'];
+//        }
+//        if($mer_array['enableEmandate'] == 1 && $mer_array['enableSIDetailsAtMerchantEnd'] == 1 )
+//        {
+//            $datastring = $mer_array['merchantCode']."|".$txnId."|".$amount."|".$request->accNo."|".$consumerId."|".$mobile . "|" . $email."|".$request->debitStartDate."|".$request->debitEndDate."|".$request->maxAmount."|".$amountType."|".$request->frequency."|".$request->cardNumber."|".$request->expMonth."|".$request->expYear."|".$request->cvvCode."|".$mer_array['salt'];
+//        }
+
+        $hashVal = hash('sha512', $datastring);
+        $paymentDetails = array(
+            'marchantId' => $mer_array['merchantCode'],
+            'txnId' => $txnId,
+            'amount' => $amount,
+            'currencycode' => 'INR',
+            'schemecode' => $mer_array['merchantSchemeCode'],
+            'consumerId' => $consumerId,
+            'mobileNumber' => $user->mobile_number ?? '9999999999',
+            'email' => $user->email,
+            'customerName' => $user->name,
+            'accNo' => '',
+            'accountName' => '',
+            'aadharNumber' => '',
+            'ifscCode' => '',
+            'accountType' => '',
+            'debitStartDate' => '',
+            'debitEndDate' => '',
+            'maxAmount' => $maxAmount,
+            'amountType' => 'M',
+            'frequency' => 'ADHO',
+            'cardNumber' => '',
+            'expMonth' => '',
+            'expYear' => '',
+            'cvvCode' => '',
+            'hash' => $hashVal
+        );
+        return view('payment.paynimo-checkout', ['payval' => $paymentDetails],compact('mer_array'));
+
+
+
+//        return view('payment.paynimo-checkout', compact('token', 'transactionId', 'total', 'user'));
     }
 
 

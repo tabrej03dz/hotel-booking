@@ -56,9 +56,25 @@ class PaymentController extends Controller
     return redirect()->route('payment.failed');
 }
 
-public function paymentSuccess()
+public function paymentSuccess(Request $request)
 {
-    return view('payment.success');
+    $validated = $request->validate([
+        'txnId' => 'required|string',
+        'status' => 'required|string',
+        'amount' => 'required',
+    ]);
+
+    // Example: update your order/payment record
+    $payment = Payment::where('transaction_id', $validated['txnId'])->first();
+
+    if ($payment) {
+        $payment->status = 'success';
+        $payment->payment_mode = $request->paymentMode;
+        $payment->paid_amount = $request->amount;
+        $payment->response_data = json_encode($request->response);
+        $payment->save();
+    }
+    return response()->json(['message' => 'Payment recorded']);
 }
 
 public function paymentFailed()
