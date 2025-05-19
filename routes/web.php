@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\CarriarController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
@@ -146,6 +147,12 @@ Route::get('/payment/success', [App\Http\Controllers\PaymentController::class, '
 Route::get('/payment/failed', [App\Http\Controllers\PaymentController::class, 'paymentFailed'])->name('payment.failed');
 
 
+Route::get('carriar', [CarriarController::class, 'index'])->name('carriar.index');
+Route::get('carriar/create', [CarriarController::class, 'create'])->name('carriar.create');
+Route::post('carriar/store', [CarriarController::class, 'storeJob'])->name('carriar.store');
+Route::get('carriar/edit/{carriar}', [CarriarController::class, 'edit'])->name('carriar.edit');
+Route::post('carriar/update/{carriar}', [CarriarController::class, 'updateJob'])->name('carriar.update');
+Route::get('carriar/delete/{carriar}', [CarriarController::class, 'delete'])->name('carriar.delete');
 require __DIR__.'/auth.php';
 
 

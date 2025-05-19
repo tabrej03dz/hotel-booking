@@ -14,8 +14,7 @@
         {{-- <link rel="preconnect" href="https://fonts.bunny.net"> --}}
         <link rel="icon" href="{{ asset('logo.png') }}" type="image/x-icon">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-        {{-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> --}}
-        <!-- Font Awesome CDN -->
+      
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
 
@@ -42,5 +41,6 @@
         </div>
         
         @stack('scripts')
+          
     </body>
 </html>
