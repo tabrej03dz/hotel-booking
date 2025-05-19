@@ -46,7 +46,7 @@
                     </div>
 
                     <div>
-                        <label class="block text-gray-700 font-medium mb-2">Title(optional)</label>
+                        <label class="block text-gray-700 font-medium mb-2">Label(optional)</label>
                         <input type="text" name="label"
                                value="{{ old('label', $room->label ?? '') }}"
                                class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-200"

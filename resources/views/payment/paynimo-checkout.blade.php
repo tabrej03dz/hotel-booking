@@ -4,6 +4,8 @@
 <script type="text/javascript" src="https://www.paynimo.com/Paynimocheckout/server/lib/checkout.js"></script>
 <script type="text/javascript">
 
+
+
     $(document).ready(function() {
         var configJson = {
             'tarCall': false,
@@ -26,7 +28,7 @@
             'consumerData': {
                 'deviceId': 'WEBSH2',	//possible values 'WEBSH1' or 'WEBSH2'
                 'token':'{{$payval['hash']}}',
-                'returnUrl': '/user/dashboard',
+                'returnUrl': '/payment/response',
                 'responseHandler': handleResponse,
                 'paymentMode': '{{  $mer_array['paymentMode'] }}',
                 'checkoutElement': '{{ ($mer_array['embedPaymentGatewayOnPage'] == 1) ? '#worldline_embeded_popup' : '' }}',

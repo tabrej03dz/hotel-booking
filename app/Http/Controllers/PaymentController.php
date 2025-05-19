@@ -6,6 +6,7 @@ use App\Mail\BookingConfirmationMail;
 use App\Models\Booking;
 use App\Models\Payment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class PaymentController extends Controller
@@ -41,41 +42,84 @@ class PaymentController extends Controller
 
 
 
-    public function paymentResponse(Request $request)
-{
-    $res = $request->all();
-    $booking = Booking::find($res['txnId']); // Assuming txnId is booking ID or use mapping
+    public function handleResponse(Request $request)
+    {
+        $rawMsg = $request->input('msg');
+        Log::info('Worldline Raw Response:', ['msg' => $rawMsg]);
 
-    if ($res['paymentMethod']['paymentTransaction']['statusCode'] === '0300') {
-        $booking->update(['status' => 'confirmed']);
-        $booking->payment->update(['status' => 'completed']);
-        Mail::to($booking->email)->send(new BookingConfirmationMail($booking));
-        return redirect()->route('payment.success');
+        if (!$rawMsg) {
+            return redirect()->route('user.dashboard')->with('error', 'Invalid response from payment gateway.');
+        }
+
+        // Split the message using pipe (|) delimiter
+        $parts = explode('|', $rawMsg);
+
+        // Worldline response order (based on your string):
+        // 0: statusCode
+        // 1: statusMessage
+        // 2: statusDescription
+        // 3: txnId
+        // 4: bankTransactionId
+        // 5: merchantTransactionIdentifier
+        // 6: some code (possibly merchant code)
+        // 7: amount
+        // 8: user details
+        // 9: txnDate
+        // 10+: other optional fields
+
+        $statusCode = $parts[0] ?? null;
+        $statusMessage = $parts[1] ?? null;
+        $txnId = $parts[3] ?? null;
+        $merchantTransactionId = $parts[5] ?? null;
+
+        // Lookup payment using either txnId or merchantTransactionId
+        $payment = Payment::where('transaction_id', $txnId)->first();
+
+        if (!$payment && $merchantTransactionId) {
+            $payment = Payment::where('transaction_id', $merchantTransactionId)->first();
+        }
+
+        if ($payment) {
+            if ($statusCode === '0300') {
+                $payment->status = 'paid';
+                $payment->booking->update(['status' => 'confirmed']);
+            } else {
+                $payment->status = 'failed';
+                $payment->response_data = $statusMessage;
+            }
+
+            $payment->save();
+        }
+
+        // Redirect with appropriate message
+        return redirect()->route('user.dashboard')->with(
+            $statusCode === '0300' ? 'success' : 'error',
+            $statusCode === '0300' ? 'Payment successful' : 'Payment failed: ' . $statusMessage
+        );
     }
 
-    return redirect()->route('payment.failed');
-}
 
-public function paymentSuccess(Request $request)
-{
-    $validated = $request->validate([
-        'txnId' => 'required|string',
-        'status' => 'required|string',
-        'amount' => 'required',
-    ]);
 
-    // Example: update your order/payment record
-    $payment = Payment::where('transaction_id', $validated['txnId'])->first();
-
-    if ($payment) {
-        $payment->status = 'success';
-        $payment->payment_mode = $request->paymentMode;
-        $payment->paid_amount = $request->amount;
-        $payment->response_data = json_encode($request->response);
-        $payment->save();
-    }
-    return response()->json(['message' => 'Payment recorded']);
-}
+//public function paymentSuccess(Request $request)
+//{
+//    $validated = $request->validate([
+//        'txnId' => 'required|string',
+//        'status' => 'required|string',
+//        'amount' => 'required',
+//    ]);
+//
+//    // Example: update your order/payment record
+//    $payment = Payment::where('transaction_id', $validated['txnId'])->first();
+//
+//    if ($payment) {
+//        $payment->status = 'success';
+//        $payment->payment_mode = $request->paymentMode;
+//        $payment->paid_amount = $request->amount;
+//        $payment->response_data = json_encode($request->response);
+//        $payment->save();
+//    }
+//    return response()->json(['message' => 'Payment recorded']);
+//}
 
 public function paymentFailed()
 {

@@ -156,7 +156,7 @@ Route::middleware('auth')->group(function () {
 
 });
 
-Route::post('/payment/response', [App\Http\Controllers\PaymentController::class, 'paymentResponse'])->name('payment.response');
+Route::post('/payment/response', [App\Http\Controllers\PaymentController::class, 'handleResponse'])->name('payment.response');
 Route::get('/payment/success', [App\Http\Controllers\PaymentController::class, 'paymentSuccess'])->name('payment.success');
 Route::get('/payment/failed', [App\Http\Controllers\PaymentController::class, 'paymentFailed'])->name('payment.failed');
 
