@@ -54,19 +54,6 @@ class PaymentController extends Controller
         // Split the message using pipe (|) delimiter
         $parts = explode('|', $rawMsg);
 
-        // Worldline response order (based on your string):
-        // 0: statusCode
-        // 1: statusMessage
-        // 2: statusDescription
-        // 3: txnId
-        // 4: bankTransactionId
-        // 5: merchantTransactionIdentifier
-        // 6: some code (possibly merchant code)
-        // 7: amount
-        // 8: user details
-        // 9: txnDate
-        // 10+: other optional fields
-
         $statusCode = $parts[0] ?? null;
         $statusMessage = $parts[1] ?? null;
         $txnId = $parts[3] ?? null;
@@ -83,11 +70,12 @@ class PaymentController extends Controller
             if ($statusCode === '0300') {
                 $payment->status = 'paid';
                 $payment->booking->update(['status' => 'confirmed']);
+                $payment->booking->availabilityRate->update(['rooms' => $payment->booking->availabilityRate->rooms -1]);
             } else {
                 $payment->status = 'failed';
-                $payment->response_data = $statusMessage;
+                $payment->response_data = $rawMsg;
+                $payment->booking->update(['status' => 'failed']);
             }
-
             $payment->save();
         }
 

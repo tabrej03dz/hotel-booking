@@ -150,7 +150,7 @@ Route::middleware('auth')->group(function () {
            Route::post('store', 'store')->name('store');
            Route::get('edit/{service}', 'edit')->name('edit');
            Route::post('update/{service}', 'update')->name('update');
-           Route::post('delete/{service}', 'delete')->name('delete');
+           Route::post('destroy/{service}', 'delete')->name('destroy');
         });
     });
 
@@ -226,8 +226,8 @@ Route::get('/thank-you', [BookingController::class, 'thankyou'])->name('thankyou
 
 
 Route::get('rooms/available', [HomeController::class, 'availableRoom'])->name('rooms.available');
-Route::get('booking/room/{room}', [HomeController::class, 'bookingRoom'])->name('booking.room');
-Route::post('booking/save/{room}', [HomeController::class, 'bookingSave'])->name('booking.save');
+Route::get('booking/room/{available}', [HomeController::class, 'bookingRoom'])->name('booking.room');
+Route::post('booking/save/{available}', [HomeController::class, 'bookingSave'])->name('booking.save');
 
 
 Route::get('/bookingdetail', [HomeController::class, 'bookingdetail'])->name('bookingdetail');

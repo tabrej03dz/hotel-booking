@@ -33,7 +33,7 @@
                 'paymentMode': '{{  $mer_array['paymentMode'] }}',
                 'checkoutElement': '{{ ($mer_array['embedPaymentGatewayOnPage'] == 1) ? '#worldline_embeded_popup' : '' }}',
                 'merchantLogoUrl': '{{ $mer_array['logoURL'] }}', //provided merchant logo will be displayed
-                'merchantId': '{{$payval['marchantId']}}',//{{$mer_array['merchantCode']}}
+                'merchantId': '{{$payval['merchantId']}}',//{{$mer_array['merchantCode']}}
                 'currency': '{{$payval['currencycode']}}',
                 'consumerId': '{{$payval['consumerId']}}',
                 'consumerMobileNo': '{{$payval['mobileNumber']}}',

@@ -45,6 +45,13 @@
                                placeholder="Enter service price">
                     </div>
 
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">Description</label>
+                        <textarea name="description"
+                               class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-200"
+                                  placeholder="Enter service description">{{ old('description', isset($service) ? $service->description : '') }}</textarea>
+                    </div>
+
 {{--                    <div>--}}
 {{--                        <label class="block text-gray-700 font-medium mb-2">Room Images</label>--}}
 {{--                        <input type="file" name="images[]" multiple--}}

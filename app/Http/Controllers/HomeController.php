@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Mail\BookingConfirmationMail;
 use App\Mail\UserRegistrationMail;
+use App\Models\AdditionalService;
+use App\Models\AvailabilityRate;
 use App\Models\Booking;
 use App\Models\Carriar;
 use App\Models\Customer;
@@ -186,115 +188,35 @@ class HomeController extends Controller
         $checkIn = $request->check_in_date;
         $checkOut = $request->check_out_date;
 
+        $availableRooms = AvailabilityRate::where('date', $checkIn)->get();
+
         $days = Carbon::parse($request->check_in_date)->diffInDays(Carbon::parse($request->check_out_date));
-        $availableRooms = Room::
-        whereDoesntHave('bookings', function ($query) use ($checkIn, $checkOut) {
-            $query->where('status', '!=', 'cancelled') // Ignore cancelled bookings
-            ->where(function ($q) use ($checkIn, $checkOut) {
-                $q->where('check_in_date', '<', $checkOut)
-                    ->where('check_out_date', '>', $checkIn);
-            });
-        })
-            ->get();
 
         return view('frontend.roomdetail', compact('availableRooms', 'checkIn', 'checkOut', 'days'));
     }
 
-    public function bookingRoom(Request $request, Room $room){
+    public function bookingRoom(Request $request, AvailabilityRate $available){
         $checkInDate = $request->check_in_date;
         $checkOutDate = $request->check_out_date;
         $days = $request->days;
-        return view('frontend.bookingdetail', compact('room', 'checkInDate', 'checkOutDate', 'days'));
+        $additionalServices = AdditionalService::all();
+        return view('frontend.bookingdetail', compact('available', 'checkInDate', 'checkOutDate', 'days', 'additionalServices'));
     }
 
-    // public function bookingSave(Request $request, Room $room){
-    //     $request->validate([
-    //         'name' => 'required',
-    //         'email' => 'required',
-    //         'phone' => 'required',
-    //         'check_in_date' => 'required',
-    //         'check_out_date' => 'required',
-    //     ]);
-
-    //     // 1. Find or create customer
-    //     if(!auth()->check()){
-    //         $tempPassword = Str::random(8);
-    //         $user = User::firstOrCreate(
-    //             ['email' => $request->email],
-    //             [
-    //                 'name' => $request->name,
-    //                 'phone' => $request->phone,
-    //                 'address' => $request->address ?? null,
-    //                 'password' => Hash::make($tempPassword),
-    //             ]
-    //         );
-    //         if ($user->roles->isEmpty()) {
-    //             $user->assignRole('User');
-    //         }
-    //         Auth::login($user);
-    //         $user->tempPassword = $tempPassword;
-    //         Mail::to($request->email)->send(new UserRegistrationMail($user));
-    //     }
-    //     $user = Auth::user();
-
-    //     // 2. Find available room
-    //     $room = Room::where('id', $room->id)->first();
-
-    //     if (!$room) {
-    //         return back()->with('error', 'No available rooms of this type.');
-    //     }
-
-    //     $price = ($room->discounted_price ?? $room->price) ?? ($room->roomType->discounted_price ?? $room->roomType->price) * $request->days;
-    //     $tax = ($price * 18)/100;
-
-    //     // 3. Create booking
-    //     $booking = Booking::create([
-    //         'name' => $request->name,
-    //         'email' => $request->email,
-    //         'phone' => $request->phone,
-    //         'user_id' => $user->id,
-    //         'room_id' => $room->id,
-    //         'check_in_date' => $request->check_in_date,
-    //         'check_out_date' => $request->check_out_date,
-    //         'status' => 'pending',
-    //         'staying_days' => $request->days,
-    //         'amount' => $price,
-    //         'tax_and_fee' => $tax,
-    //         'total_amount' => $price + $tax, // basic cost
-    //     ]);
-
-    //     if ($booking){
-    //         Payment::create([
-    //             'booking_id' => $booking->id,
-    //             'payment_method' => 'online',
-    //             'amount' => $price,
-    //             'tax_and_fee' => $tax,
-    //             'total_amount' => $price + $tax,
-    //             'status' => 'pending',
-    //         ]);
-    //     }
-
-    //     Mail::to($request->email)->send(new BookingConfirmationMail($booking));
-
-    //     return redirect()->route('user.dashboard')->with('success', 'Your reservation at Hotel Krinoscco is confirmed. A confirmation email has been sent to '.$request->email.'.');
-
-    // }
-
-
-
-
-
-
-
-    public function bookingSave(Request $request, Room $room)
+    public function bookingSave(Request $request, AvailabilityRate $available)
     {
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'phone' => 'required',
-            'check_in_date' => 'required',
-            'check_out_date' => 'required',
-            'days' => 'required|integer|min:1'
+            'name'      => 'required|string|max:255',
+            'email'     => 'required|email',
+            'phone'     => 'required|string|max:15',
+            'address'   => 'nullable|string',
+            'check_in_date' => 'required|date',
+            'check_out_date' => 'required|date|after:check_in_date',
+            'adults'    => 'required|integer|min:1',
+            'children'  => 'required|integer|min:0',
+            'service_ids' => 'array',
+            'service_ids.*' => 'integer|exists:additional_services,id',
+            'quantities' => 'array',
         ]);
 
         // Handle guest login or register
@@ -320,51 +242,74 @@ class HomeController extends Controller
         }
 
         $user = Auth::user();
-        $room = Room::find($room->id);
-
-        if (!$room) {
+        if ($available->rooms < 1) {
             return back()->with('error', 'No available rooms of this type.');
         }
 
-        $price = (($room->discounted_price ?? $room->price) ?? ($room->roomType->discounted_price ?? $room->roomType->price)) * $request->days;
-        $tax = ($price * 18) / 100;
-        $total = $price + $tax;
+        $roomTotal = $available->price * $request->days;
+
+
+        $serviceCharge = 0;
+        if ($request->has('service_ids')) {
+            foreach ($request->service_ids as $serviceId) {
+                $qty = $request->quantities[$serviceId] ?? 1;
+                $service = AdditionalService::find($serviceId);
+                if ($service) {
+                    $serviceCharge += $service->price * $qty;
+                }
+            }
+        }
+
+        // Step 5: Tax and total
+        $subTotal = $roomTotal + $serviceCharge;
+        $tax = round($subTotal * 0.18, 2);
+        $totalAmount = round($subTotal + $tax, 2);
 
         $booking = Booking::create([
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
-            'user_id' => $user->id,
-            'room_id' => $room->id,
+            'user_id' => auth()->id(),
+            'availability_rate_id' => $available->id,
             'check_in_date' => $request->check_in_date,
             'check_out_date' => $request->check_out_date,
-            'status' => 'pending',
             'staying_days' => $request->days,
-            'amount' => $price,
+            'amount' => $roomTotal,
+            'additional_service_charge' => $serviceCharge,
             'tax_and_fee' => $tax,
-            'total_amount' => $total,
+            'total_amount' => $totalAmount,
+            'adults' => $request->adults,
+            'children' => $request->children,
+            'status' => 'pending',
         ]);
+
+        // Step 7: Save selected services
+        if ($request->has('service_ids')) {
+            foreach ($request->service_ids as $serviceId) {
+                $qty = $request->quantities[$serviceId] ?? 1;
+                $booking->services()->create([
+                    'additional_service_id' => $serviceId,
+                    'quantity' => $qty,
+                ]);
+            }
+        }
 
         $transactionId = 'TXN' . now()->format('YmdHis') . strtoupper(Str::random(6));
 
         $payment = Payment::create([
-            'transaction_id' => $transactionId,
             'booking_id' => $booking->id,
-            'payment_method' => 'online',
-            'amount' => $price,
-            'tax_and_fee' => $tax,
-            'total_amount' => $total,
+            'payment_method' => 'online', // or 'cash', etc.
+            'amount' => $totalAmount,
+            'transaction_id' => $transactionId,
             'status' => 'pending',
         ]);
-
-//        return redirect()->route('user.dashboard')->with('success', 'Booking record created successfully');
 
 
         $path = storage_path() . "/json/worldline_AdminData.json";
         $mer_array = json_decode(file_get_contents($path), true);
         $txnId = $transactionId;
-        $consumerId = 123;
-        $amount = $total;
+        $consumerId = $user->id;
+        $amount = $totalAmount;
         if($mer_array['typeOfPayment'] == "TEST")
         {
             $amount = 1;
@@ -379,7 +324,7 @@ class HomeController extends Controller
             $amt = $amount;
             $maxAmount = $amt *2;
         }
-        $mobile = $user->mobile_number ?? '9999999999';
+        $mobile = $user->mobile_number ?? $request->phone;
         $email = $user->email;
 
         $datastring = $mer_array['merchantCode'] . "|" . $txnId . "|" . $amount . "|" . "|" . $consumerId . "|" . $mobile . "|" . $email . "||||||||||" . $mer_array['salt'];
@@ -394,13 +339,13 @@ class HomeController extends Controller
 
         $hashVal = hash('sha512', $datastring);
         $paymentDetails = array(
-            'marchantId' => $mer_array['merchantCode'],
+            'merchantId' => $mer_array['merchantCode'],
             'txnId' => $txnId,
             'amount' => $amount,
             'currencycode' => 'INR',
             'schemecode' => $mer_array['merchantSchemeCode'],
             'consumerId' => $consumerId,
-            'mobileNumber' => $user->mobile_number ?? '9999999999',
+            'mobileNumber' => $user->mobile_number ?? $request->phone,
             'email' => $user->email,
             'customerName' => $user->name,
             'accNo' => '',
@@ -421,29 +366,143 @@ class HomeController extends Controller
         );
         return view('payment.paynimo-checkout', ['payval' => $paymentDetails],compact('mer_array'));
 
-
-
-//        return view('payment.paynimo-checkout', compact('token', 'transactionId', 'total', 'user'));
     }
 
 
-
-//$txnId = now()->timestamp;
-//$data = [
-//'booking' => $booking,
-//'payment' => $payment,
-//'merchantId' => 'L3348', // your merchant ID
-//'consumerId' => $user->id,
-//'txnId' => $txnId,
-//'token' => $this->generatePaynimoToken($booking, $payment, $txnId), // See next step
-//];
-
-
-
-
-
-
-
+//    public function bookingSave(Request $request, Room $room)
+//    {
+//        dd($request->all());
+//        $request->validate([
+//            'name' => 'required',
+//            'email' => 'required|email',
+//            'phone' => 'required',
+//            'check_in_date' => 'required',
+//            'check_out_date' => 'required',
+//            'days' => 'required|integer|min:1'
+//        ]);
+//
+//        // Handle guest login or register
+//        if (!auth()->check()) {
+//            $tempPassword = Str::random(8);
+//            $user = User::firstOrCreate(
+//                ['email' => $request->email],
+//                [
+//                    'name' => $request->name,
+//                    'phone' => $request->phone,
+//                    'address' => $request->address ?? null,
+//                    'password' => Hash::make($tempPassword),
+//                ]
+//            );
+//
+//            if ($user->roles->isEmpty()) {
+//                $user->assignRole('User');
+//            }
+//
+//            Auth::login($user);
+//            $user->tempPassword = $tempPassword;
+//            Mail::to($request->email)->send(new UserRegistrationMail($user));
+//        }
+//
+//        $user = Auth::user();
+//        $room = Room::find($room->id);
+//
+//        if (!$room) {
+//            return back()->with('error', 'No available rooms of this type.');
+//        }
+//
+//        $price = (($room->discounted_price ?? $room->price) ?? ($room->roomType->discounted_price ?? $room->roomType->price)) * $request->days;
+//        $tax = ($price * 18) / 100;
+//        $total = $price + $tax;
+//
+//        $booking = Booking::create([
+//            'name' => $request->name,
+//            'email' => $request->email,
+//            'phone' => $request->phone,
+//            'user_id' => $user->id,
+//            'room_id' => $room->id,
+//            'check_in_date' => $request->check_in_date,
+//            'check_out_date' => $request->check_out_date,
+//            'status' => 'pending',
+//            'staying_days' => $request->days,
+//            'amount' => $price,
+//            'tax_and_fee' => $tax,
+//            'total_amount' => $total,
+//        ]);
+//
+//        $transactionId = 'TXN' . now()->format('YmdHis') . strtoupper(Str::random(6));
+//
+//        $payment = Payment::create([
+//            'transaction_id' => $transactionId,
+//            'booking_id' => $booking->id,
+//            'payment_method' => 'online',
+//            'amount' => $price,
+//            'tax_and_fee' => $tax,
+//            'total_amount' => $total,
+//            'status' => 'pending',
+//        ]);
+//
+//        $path = storage_path() . "/json/worldline_AdminData.json";
+//        $mer_array = json_decode(file_get_contents($path), true);
+//        $txnId = $transactionId;
+//        $consumerId = $user->id;
+//        $amount = $total;
+//        if($mer_array['typeOfPayment'] == "TEST")
+//        {
+//            $amount = 1;
+//        }
+//
+//        if($mer_array['enableEmandate'] == 1 && $mer_array['enableSIDetailsAtMerchantEnd'] == 1){
+//            $request->debitStartDate = date('d-m-Y');
+//            $request->debitEndDate = date('d-m-Y', strtotime($request->debitStartDate ));
+//        }
+//        $maxAmount = $amount *2;
+//        if($mer_array['enableEmandate'] == 1){
+//            $amt = $amount;
+//            $maxAmount = $amt *2;
+//        }
+//        $mobile = $user->mobile_number ?? '9999999999';
+//        $email = $user->email;
+//
+//        $datastring = $mer_array['merchantCode'] . "|" . $txnId . "|" . $amount . "|" . "|" . $consumerId . "|" . $mobile . "|" . $email . "||||||||||" . $mer_array['salt'];
+//
+////        if($mer_array['enableEmandate'] == 1){
+////            $datastring = $mer_array['merchantCode'] . "|" . $txnId . "|" . $amount . "|" . "|" . $consumerId . "|" . $mobile . "|" . $email . "||||||||||" . $mer_array['salt'];
+////        }
+////        if($mer_array['enableEmandate'] == 1 && $mer_array['enableSIDetailsAtMerchantEnd'] == 1 )
+////        {
+////            $datastring = $mer_array['merchantCode']."|".$txnId."|".$amount."|".$request->accNo."|".$consumerId."|".$mobile . "|" . $email."|".$request->debitStartDate."|".$request->debitEndDate."|".$request->maxAmount."|".$amountType."|".$request->frequency."|".$request->cardNumber."|".$request->expMonth."|".$request->expYear."|".$request->cvvCode."|".$mer_array['salt'];
+////        }
+//
+//        $hashVal = hash('sha512', $datastring);
+//        $paymentDetails = array(
+//            'marchantId' => $mer_array['merchantCode'],
+//            'txnId' => $txnId,
+//            'amount' => $amount,
+//            'currencycode' => 'INR',
+//            'schemecode' => $mer_array['merchantSchemeCode'],
+//            'consumerId' => $consumerId,
+//            'mobileNumber' => $user->mobile_number ?? '9999999999',
+//            'email' => $user->email,
+//            'customerName' => $user->name,
+//            'accNo' => '',
+//            'accountName' => '',
+//            'aadharNumber' => '',
+//            'ifscCode' => '',
+//            'accountType' => '',
+//            'debitStartDate' => '',
+//            'debitEndDate' => '',
+//            'maxAmount' => $maxAmount,
+//            'amountType' => 'M',
+//            'frequency' => 'ADHO',
+//            'cardNumber' => '',
+//            'expMonth' => '',
+//            'expYear' => '',
+//            'cvvCode' => '',
+//            'hash' => $hashVal
+//        );
+//        return view('payment.paynimo-checkout', ['payval' => $paymentDetails],compact('mer_array'));
+//
+//    }
 
     public function bookingdetail(){
         return view('frontend.bookingdetail');
@@ -456,62 +515,5 @@ class HomeController extends Controller
     public function generateInvoice(Booking $booking){
         return view('frontend.profile.booking-invoice', compact('booking'));
     }
-
-
-
-
-
-    public function generatePaymentToken(Request $request)
-    {
-        $merchantId = env('WORLDLINE_MERCHANT_ID');
-        $secretKey = env('WORLDLINE_SECRET_KEY');
-        $returnUrl = env('WORLDLINE_RETURN_URL');
-
-        $transactionId = uniqid("TXN_");
-        $amount = "100.00"; // Or from request
-        $customerId = "CUST123"; // Should be dynamic
-
-        $requestData = [
-            "merchant" => [
-                "identifier" => $merchantId
-            ],
-            "transaction" => [
-                "deviceIdentifier" => "S",
-                "currency" => "INR",
-                "dateTime" => now()->format('d-m-Y H:i:s'),
-                "token" => "",
-                "requestType" => "Payment",
-                "merchantTransactionIdentifier" => $transactionId,
-                "amount" => $amount
-            ],
-            "customer" => [
-                "identifier" => $customerId,
-                "email" => "test@example.com",
-                "mobile" => "9999999999"
-            ],
-            "returnUrl" => $returnUrl
-        ];
-
-        $response = Http::withHeaders([
-            'Content-Type' => 'application/json',
-        ])->post(env('WORLDLINE_API_URL'), $requestData);
-
-        $data = $response->json();
-
-        if ($data['paymentMethod']['paymentTransaction']['statusCode'] == '0300') {
-            // Success
-            return response()->json([
-                'token' => $data['paymentMethod']['paymentTransaction']['token'],
-                'txnId' => $transactionId
-            ]);
-        } else {
-            // Error
-            return response()->json([
-                'error' => $data['paymentMethod']['paymentTransaction']['statusMessage'] ?? 'Token generation failed'
-            ], 400);
-        }
-    }
-
-
 
 }

@@ -26,4 +26,12 @@ class Booking extends Model
     {
         return $this->hasOne(Payment::class);
     }
+
+    public function availabilityRate(){
+        return $this->belongsTo(AvailabilityRate::class, 'availability_rate_id');
+    }
+
+    public function services(){
+        return $this->hasMany(BookingService::class, 'booking_id');
+    }
 }

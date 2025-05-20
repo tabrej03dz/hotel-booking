@@ -19,14 +19,17 @@ return new class extends Migration
             $table->string('email');
             $table->string('phone');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('room_id')->constrained('rooms')->onDelete('cascade');
+            $table->foreignId('availability_rate_id')->constrained('availability_rates')->onDelete('cascade');
             $table->date('check_in_date');
             $table->date('check_out_date');
-            $table->enum('status', ['pending', 'confirmed', 'cancelled', 'completed'])->default('pending');
+            $table->enum('status', ['pending', 'confirmed', 'cancelled', 'completed', 'failed'])->default('pending');
             $table->integer('staying_days')->default(0);
-            $table->decimal('amount', 10, 2);
-            $table->decimal('tax_and_fee', 10, 2);
-            $table->decimal('total_amount', 10, 2);
+            $table->decimal('amount', 10, 2)->nullable();
+            $table->decimal('additional_service_charge', 10, 2)->nullable();
+            $table->decimal('tax_and_fee', 10, 2)->nullable();
+            $table->decimal('total_amount', 10, 2)->nullable();
+            $table->integer('adults')->default(1);
+            $table->integer('children')->default(0);
             $table->timestamps();
         });
     }

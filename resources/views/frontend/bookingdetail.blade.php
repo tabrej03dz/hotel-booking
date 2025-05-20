@@ -8,10 +8,10 @@
                 <h1 class="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-2">Your Luxury Escape Awaits</h1>
                 <div class="w-24 h-1 bg-amber-500 mx-auto"></div>
                 <p class="text-gray-600 mt-4">Booking confirmation for your stay at</p>
-                <h2 class="text-2xl md:text-3xl font-serif font-bold text-amber-700">{{ $room->hotel->name }}</h2>
+                <h2 class="text-2xl md:text-3xl font-serif font-bold text-amber-700">Krinoscco</h2>
             </div>
 
-            <form action="{{ route('booking.save', $room->id) }}" method="post">
+            <form action="{{ route('booking.save', $available->id) }}" method="post">
                 @csrf
                 <input type="hidden" name="days" value="{{ $days }}">
                 <!-- Booking Summary Card -->
@@ -68,7 +68,7 @@
                         </div>
 
                         <div class="border-t border-gray-200 pt-6">
-                            <h3 class="text-lg font-semibold text-gray-900 mb-4">Royal Suite</h3>
+                            <h3 class="text-lg font-semibold text-gray-900 mb-4">{{$available->roomType->name}}</h3>
                             <div class="flex flex-wrap gap-4 mb-6">
                                 {{--              <div class="flex items-center text-sm text-gray-600"> --}}
                                 {{--                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"> --}}
@@ -89,20 +89,20 @@
                                 {{--                Ocean View --}}
                                 {{--              </div> --}}
 
-                                @foreach ($room->amenities as $amenity)
-                                    <div class="flex items-center text-sm text-gray-600">
-                                        <div>
-                                            @if ($amenity->icon)
-                                                <i class="{{ $amenity->icon }}"></i>
-                                            @else
-                                                <span>No Icon</span>
-                                            @endif
+{{--                                @foreach ($available->roomType->amenities as $amenity)--}}
+{{--                                    <div class="flex items-center text-sm text-gray-600">--}}
+{{--                                        <div>--}}
+{{--                                            @if ($amenity->icon)--}}
+{{--                                                <i class="{{ $amenity->icon }}"></i>--}}
+{{--                                            @else--}}
+{{--                                                <span>No Icon</span>--}}
+{{--                                            @endif--}}
 
-                                        </div>
+{{--                                        </div>--}}
 
-                                        {{ $amenity->name }}
-                                    </div>
-                                @endforeach
+{{--                                        {{ $amenity->name }}--}}
+{{--                                    </div>--}}
+{{--                                @endforeach--}}
                             </div>
                             <p class="text-gray-700 mb-6">Experience unparalleled luxury in our signature Royal Suite
                                 featuring a spacious living area, marble bathroom with deep soaking tub, and panoramic views
@@ -116,27 +116,43 @@
                     <!-- Left Column -->
                     <div class="lg:col-span-2 space-y-8">
                         <!-- Upgrade Options -->
-                        {{--          <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100"> --}}
-                        {{--            <h3 class="text-xl font-serif font-bold text-gray-900 mb-4">Enhance Your Stay</h3> --}}
-                        {{--            <div class="space-y-4"> --}}
-                        {{--              <div class="flex items-start"> --}}
-                        {{--                <input type="checkbox" id="upgrade1" class="mt-1 h-5 w-5 text-amber-600 border-gray-300 rounded focus:ring-amber-500"> --}}
-                        {{--                <label for="upgrade1" class="ml-3 flex-1"> --}}
-                        {{--                  <span class="block font-medium text-gray-900">Private Butler Service</span> --}}
-                        {{--                  <span class="block text-sm text-gray-500">Dedicated butler for your entire stay</span> --}}
-                        {{--                  <span class="block font-bold text-amber-700 mt-1">$422.70 per stay</span> --}}
-                        {{--                </label> --}}
-                        {{--              </div> --}}
-                        {{--              <div class="flex items-start"> --}}
-                        {{--                <input type="checkbox" id="upgrade2" class="mt-1 h-5 w-5 text-amber-600 border-gray-300 rounded focus:ring-amber-500"> --}}
-                        {{--                <label for="upgrade2" class="ml-3 flex-1"> --}}
-                        {{--                  <span class="block font-medium text-gray-900">Spa Retreat Package</span> --}}
-                        {{--                  <span class="block text-sm text-gray-500">Includes 2 massages and full spa access</span> --}}
-                        {{--                  <span class="block font-bold text-amber-700 mt-1">$1,000.00 per stay</span> --}}
-                        {{--                </label> --}}
-                        {{--              </div> --}}
-                        {{--            </div> --}}
-                        {{--          </div> --}}
+                                  <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100">
+                                    <h3 class="text-xl font-serif font-bold text-gray-900 mb-4">Enhance Your Stay</h3>
+                                    <div class="space-y-4">
+                                        @foreach($additionalServices as $service)
+                                            <div class="flex items-start justify-between border-b py-3">
+                                                <div class="flex items-start">
+                                                    <input
+                                                        type="checkbox"
+                                                        name="service_ids[]" value="{{$service->id}}"
+                                                        id="service{{ $service->id }}"
+                                                        class="mt-1 h-5 w-5 text-amber-600 border-gray-300 rounded focus:ring-amber-500 service-checkbox"
+                                                        data-id="{{ $service->id }}"
+                                                        data-price="{{ $service->price }}"
+                                                    >
+
+                                                    <label for="service{{ $service->id }}" class="ml-3">
+                                                        <span class="block font-medium text-gray-900">{{ $service->name }}</span>
+                                                        <span class="block text-sm text-gray-500">{{ $service->description }}</span>
+                                                        <span class="block font-bold text-amber-700 mt-1">&#8377; {{ $service->price }} per unit</span>
+                                                    </label>
+                                                </div>
+
+                                                <!-- Quantity controls -->
+                                                <div class="flex items-center space-x-2 ml-4">
+                                                    <button type="button" class="decrease-qty px-2 py-1 bg-gray-200 rounded" data-id="{{ $service->id }}">-</button>
+                                                    <input type="number" name="quantities[{{ $service->id }}]" value="1" min="1"
+                                                           class="service-qty w-12 text-center border border-gray-300 rounded"
+                                                           data-id="{{ $service->id }}" data-price="{{ $service->price }}" disabled>
+                                                    <button type="button" class="increase-qty px-2 py-1 bg-gray-200 rounded" data-id="{{ $service->id }}">+</button>
+                                                </div>
+                                            </div>
+                                        @endforeach
+
+
+
+                                    </div>
+                                  </div>
 
                         <!-- Guest Details -->
                         <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100">
@@ -169,6 +185,30 @@
                                         class="w-full border border-gray-300 p-2 rounded font-medium text-gray-900"></textarea>
                                 </div>
 
+                                <!-- Adults -->
+                                <div class="flex flex-col">
+                                    <label class="text-gray-700 font-medium">Adults</label>
+                                    <select id="adults" name="adults" required
+                                            class="border border-gray-300 rounded-md p-2 bg-white outline-none
+                           focus:border-[#8B4513] focus:ring-2 focus:ring-[#8B4513]">
+                                        <option value="1">1 Adult</option>
+                                        <option value="2">2 Adults</option>
+                                        <option value="3">3 Adults</option>
+                                    </select>
+                                </div>
+
+                                <!-- Children -->
+                                <div class="flex flex-col">
+                                    <label class="text-gray-700 font-medium">Children</label>
+                                    <select id="children" name="children" required
+                                            class="border border-gray-300 rounded-md p-2 bg-white outline-none
+                           focus:border-[#8B4513] focus:ring-2 focus:ring-[#8B4513]">
+                                        <option value="0">No Children</option>
+                                        <option value="1">1 Child</option>
+                                        <option value="2">2 Children</option>
+                                    </select>
+                                </div>
+
                                 {{-- <div class="md:col-span-2">
                 <label class="block text-sm font-medium text-gray-700 mb-1">Special Requests</label>
                 <p class="font-medium text-gray-900">Early check-in requested if possible</p>
@@ -181,33 +221,37 @@
                     <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100 h-fit sticky top-6">
                         <h3 class="text-xl font-serif font-bold text-gray-900 mb-6">Payment Summary</h3>
                         @php
-                            $price =
-                                $room->discounted_price ??
-                                $room->price ??
-                                ($room->roomType->discounted_price ?? $room->roomType->price) * $days;
+                            $price = $available->price * $days;
                             $tax = ($price * 18) / 100;
                         @endphp
                         <div class="space-y-4">
                             <div class="flex justify-between">
                                 <span class="text-gray-600">Room ({{ $days }} nights)</span>
-                                <span class="font-medium">₹{{ number_format($price, 2) }}</span>
+                                <span class="font-medium" id="room-price">₹{{ number_format($price, 2) }}</span>
                             </div>
+
+                            <!-- 👇 Service Charges -->
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Additional Services</span>
+                                <span class="font-medium" id="service-price">₹0.00</span>
+                            </div>
+
                             <div class="flex justify-between">
                                 <span class="text-gray-600">Taxes & Fees</span>
-                                <span class="font-medium">₹{{ number_format($tax, 2) }}</span>
+                                <span class="font-medium" id="tax-amount">₹{{ number_format($tax, 2) }}</span>
                             </div>
+
                             <div class="flex justify-between border-t border-gray-200 pt-4">
                                 <span class="text-gray-600">Subtotal</span>
-                                <span class="font-medium">₹{{ number_format($price + $tax, 2) }}</span>
+                                <span class="font-medium" id="subtotal">₹{{ number_format($price + $tax, 2) }}</span>
                             </div>
-                            {{-- <div class="flex justify-between">
-              <span class="text-gray-600">Discount</span>
-              <span class="text-amber-700 font-medium">-$1,000.00</span>
-            </div> --}}
+
                             <div class="flex justify-between border-t border-gray-200 pt-4">
                                 <span class="text-lg font-bold">Total</span>
-                                <span class="text-lg font-bold">₹{{ number_format($price + $tax, 2) }}</span>
+                                <span class="text-lg font-bold" id="total-price">₹{{ number_format($price + $tax, 2) }}</span>
                             </div>
+
+
                         </div>
 
                         {{-- <div class="mt-8">
@@ -293,4 +337,120 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const adultsDropdown = document.getElementById("adults");
+            const childrenDropdown = document.getElementById("children");
+
+            function updateChildrenOptions() {
+                let adults = parseInt(adultsDropdown.value, 10);
+
+                if (adults === 3) {
+                    // If 3 adults are selected, disable children dropdown and set it to 0
+                    childrenDropdown.value = "0";
+                    childrenDropdown.disabled = true;
+                } else if (adults === 2) {
+                    // If 2 adults are selected, allow 1 or 2 children
+                    childrenDropdown.innerHTML = `
+                    <option value="0">No Children</option>
+                    <option value="1">1 Child</option>
+                    <option value="2">2 Children</option>
+                `;
+                    childrenDropdown.disabled = false;
+                } else {
+                    // If 1 adult is selected, allow all options
+                    childrenDropdown.innerHTML = `
+                    <option value="0">No Children</option>
+                    <option value="1">1 Child</option>
+                    <option value="2">2 Children</option>
+                `;
+                    childrenDropdown.disabled = false;
+                }
+            }
+
+            // Add event listener to Adults dropdown
+            adultsDropdown.addEventListener("change", updateChildrenOptions);
+
+            // Initialize on page load
+            updateChildrenOptions();
+        });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const baseRoomPrice = {{ $price }};
+            const taxRate = 0.18;
+
+            const serviceCheckboxes = document.querySelectorAll(".service-checkbox");
+            const qtyInputs = document.querySelectorAll(".service-qty");
+
+            const servicePriceElem = document.getElementById("service-price");
+            const taxElem = document.getElementById("tax-amount");
+            const subtotalElem = document.getElementById("subtotal");
+            const totalElem = document.getElementById("total-price");
+
+            const formatINR = (val) => '₹' + val.toFixed(2);
+
+            function updatePaymentSummary() {
+                let totalServiceCost = 0;
+
+                serviceCheckboxes.forEach(cb => {
+                    const id = cb.dataset.id;
+                    const price = parseFloat(cb.dataset.price || 0);
+                    const qtyInput = document.querySelector(`.service-qty[data-id="${id}"]`);
+
+                    if (cb.checked && qtyInput) {
+                        const quantity = parseInt(qtyInput.value || 1);
+                        totalServiceCost += price * quantity;
+                        qtyInput.disabled = false;
+                    } else if (qtyInput) {
+                        qtyInput.disabled = true;
+                    }
+                });
+
+                const updatedSubtotal = baseRoomPrice + totalServiceCost;
+                const tax = updatedSubtotal * taxRate;
+                const grandTotal = updatedSubtotal + tax;
+
+                servicePriceElem.textContent = formatINR(totalServiceCost);
+                taxElem.textContent = formatINR(tax);
+                subtotalElem.textContent = formatINR(updatedSubtotal + tax);
+                totalElem.textContent = formatINR(grandTotal);
+            }
+
+            // Trigger updates
+            serviceCheckboxes.forEach(cb => {
+                cb.addEventListener("change", updatePaymentSummary);
+            });
+
+            qtyInputs.forEach(input => {
+                input.addEventListener("input", updatePaymentSummary);
+            });
+
+            // Quantity increase/decrease buttons
+            document.querySelectorAll(".increase-qty").forEach(btn => {
+                btn.addEventListener("click", function () {
+                    const id = this.dataset.id;
+                    const input = document.querySelector(`.service-qty[data-id="${id}"]`);
+                    input.value = parseInt(input.value) + 1;
+                    updatePaymentSummary();
+                });
+            });
+
+            document.querySelectorAll(".decrease-qty").forEach(btn => {
+                btn.addEventListener("click", function () {
+                    const id = this.dataset.id;
+                    const input = document.querySelector(`.service-qty[data-id="${id}"]`);
+                    input.value = Math.max(1, parseInt(input.value) - 1);
+                    updatePaymentSummary();
+                });
+            });
+
+            updatePaymentSummary(); // Initialize on load
+        });
+    </script>
+
+
+
 @endsection

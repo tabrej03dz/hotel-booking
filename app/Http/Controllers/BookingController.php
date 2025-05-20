@@ -116,11 +116,6 @@ class BookingController extends Controller
     public function destroy($id)
     {
         $booking = Booking::findOrFail($id);
-        $room = $booking->room;
-
-        // Free the room
-        $room->update(['status' => 'available']);
-
         $booking->delete();
 
         return redirect()->route('booking.index')->with('success', 'Booking cancelled.');

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->decimal('amount', 10, 2);
             $table->enum('status', ['pending', 'paid', 'failed'])->default('pending');
             $table->string('transaction_id');
-            $table->json('response_data')->nullable();
+            $table->text('response_data')->nullable();
             $table->timestamps();
         });
     }

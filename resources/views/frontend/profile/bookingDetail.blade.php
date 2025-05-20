@@ -31,8 +31,8 @@
             <!-- Room Details -->
             <div class="border rounded-xl p-5 smooth-transition hover:shadow-md">
                 <h3 class="font-bold text-lg mb-3 border-b pb-2 luxury-font">Room Details</h3>
-                <p class="mb-2"><span class="font-semibold">Type:</span> {{$booking->room->roomType->name}}</p>
-                <p class="mb-2"><span class="font-semibold">Guests:</span> {{$booking->adult}} Adults, {{$booking->child}} Child</p>
+                <p class="mb-2"><span class="font-semibold">Type:</span> {{$booking->availabilityRate->roomType->name}}</p>
+                <p class="mb-2"><span class="font-semibold">Guests:</span> {{$booking->adults}} Adults, {{$booking->childrens}} Child</p>
                 <p class="mb-2"><span class="font-semibold">Price:</span> ₹{{number_format($booking->total_amount)}} / night</p>
                 @if($booking->payment?->status === 'paid')
                     <div class="mt-4 p-3 bg-green-100 text-green-800 rounded-lg text-center smooth-transition">

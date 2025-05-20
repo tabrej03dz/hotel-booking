@@ -105,23 +105,24 @@
           <p class="text-gray-600 mt-2">Indulge in our most exclusive accommodations, designed for the discerning traveler.</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div class="grid grid-cols-1 gap-6 lg:gap-8">
           <!-- Suite Card 1 -->
-          @foreach($availableRooms as $room)
+          @foreach($availableRooms as $available)
           <div class="group relative bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl">
             <div class="relative h-64 overflow-hidden">
-              <img src="{{  asset($room->images?->first() ? 'storage/'.$room->images->first()->path: 'asset/deluxe/deluxe-4.jpg')}}" alt="Presidential Suite" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+              <img src="{{  asset($available->roomType->images?->first() ? 'storage/'.$available->roomType->images->first()->path: 'asset/deluxe/deluxe-4.jpg')}}" alt="Presidential Suite" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
               <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
               <div class="absolute bottom-4 left-4">
                 <span class="bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full">MOST POPULAR</span>
               </div>
             </div>
             <div class="p-6">
-              <h4 class="text-xl font-bold text-gray-900 mb-2 font-serif">{{$room->roomType->name}}</h4>
-              <p class="text-gray-600 text-sm mb-4">{{$room->roomType->description}}</p>
+              <h4 class="text-xl font-bold text-gray-900 mb-2 font-serif">{{$available->roomType->name}}</h4>
+              <p class="text-gray-600 text-sm mb-4">{{$available->roomType->description}}</p>
               <div class="flex items-center justify-between">
-                <p class="text-amber-700 font-bold text-lg">₹{{($room->discounted_price ?? $room->price) ?? ($room->roomType->discounted_price ?? $room->roomType->price) }} <span class="text-gray-500 text-sm font-normal">/night</span></p>
-                <form action="{{route('booking.room', ['room' => $room->id])}}" method="get">
+                <p class="text-amber-700 font-bold text-lg">₹{{ number_format($available->price) }} <span class="text-gray-500 text-sm font-normal">/night</span></p>
+                  <p class="text-green-700 font-bold text-md">{{$available->rooms}} <span class="text-gray-500 text-sm font-normal">rooms are available</span></p>
+                <form action="{{route('booking.room', ['available' => $available->id])}}" method="get">
                   @csrf
                   <input type="hidden" name="check_in_date" value="{{$checkIn}}">
                   <input type="hidden" name="check_out_date" value="{{$checkOut}}">
