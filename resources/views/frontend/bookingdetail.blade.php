@@ -11,7 +11,15 @@
                 <h2 class="text-2xl md:text-3xl font-serif font-bold text-amber-700">Krinoscco</h2>
             </div>
 
-            <form action="{{ route('booking.save', $available->id) }}" method="post">
+            @if($errors->any())
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            @endif
+
+            <form action="{{ route('booking.save', $roomType->id) }}" method="post">
                 @csrf
                 <input type="hidden" name="days" value="{{ $days }}">
                 <!-- Booking Summary Card -->
@@ -68,7 +76,7 @@
                         </div>
 
                         <div class="border-t border-gray-200 pt-6">
-                            <h3 class="text-lg font-semibold text-gray-900 mb-4">{{$available->roomType->name}}</h3>
+                            <h3 class="text-lg font-semibold text-gray-900 mb-4">{{$roomType->name}}</h3>
                             <div class="flex flex-wrap gap-4 mb-6">
                                 {{--              <div class="flex items-center text-sm text-gray-600"> --}}
                                 {{--                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"> --}}
@@ -104,9 +112,7 @@
 {{--                                    </div>--}}
 {{--                                @endforeach--}}
                             </div>
-                            <p class="text-gray-700 mb-6">Experience unparalleled luxury in our signature Royal Suite
-                                featuring a spacious living area, marble bathroom with deep soaking tub, and panoramic views
-                                of the coastline.</p>
+                            <p class="text-gray-700 mb-6">{{$roomType->description}}</p>
                         </div>
                     </div>
                 </div>
@@ -221,14 +227,23 @@
                     <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100 h-fit sticky top-6">
                         <h3 class="text-xl font-serif font-bold text-gray-900 mb-6">Payment Summary</h3>
                         @php
-                            $price = $available->price * $days;
-                            $tax = ($price * 18) / 100;
+                            $price = 0;
+
                         @endphp
                         <div class="space-y-4">
-                            <div class="flex justify-between">
-                                <span class="text-gray-600">Room ({{ $days }} nights)</span>
-                                <span class="font-medium" id="room-price">₹{{ number_format($price, 2) }}</span>
-                            </div>
+                            @foreach($roomType->selectedDateAvailabilities($checkInDate, $checkOutDate) as $availability)
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">{{$availability->date}}</span>
+                                    <span class="font-medium" id="room-price">₹{{ number_format($availability->price, 2) }}</span>
+                                </div>
+                                @php
+                                    $price += $availability->price;
+                                @endphp
+                            @endforeach
+                            @php
+                                $tax = $price * 18 /100;
+                            @endphp
+
 
                             <!-- 👇 Service Charges -->
                             <div class="flex justify-between">
@@ -250,8 +265,6 @@
                                 <span class="text-lg font-bold">Total</span>
                                 <span class="text-lg font-bold" id="total-price">₹{{ number_format($price + $tax, 2) }}</span>
                             </div>
-
-
                         </div>
 
                         {{-- <div class="mt-8">

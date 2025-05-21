@@ -107,22 +107,31 @@
 
         <div class="grid grid-cols-1 gap-6 lg:gap-8">
           <!-- Suite Card 1 -->
-          @foreach($availableRooms as $available)
+          @foreach($roomTypes as $roomType)
+                @if($roomType->selectedDateAvailabilities($checkIn, $checkOut)->count() != $days || $roomType->selectedDateAvailabilities($checkIn, $checkOut)->contains('rooms', 0))
+                    @continue
+                @endif
           <div class="group relative bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl">
             <div class="relative h-64 overflow-hidden">
-              <img src="{{  asset($available->roomType->images?->first() ? 'storage/'.$available->roomType->images->first()->path: 'asset/deluxe/deluxe-4.jpg')}}" alt="Presidential Suite" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+              <img src="{{  asset($roomType->images?->first() ? 'storage/'.$roomType->images->first()->path: 'asset/deluxe/deluxe-4.jpg')}}" alt="Presidential Suite" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
               <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
               <div class="absolute bottom-4 left-4">
                 <span class="bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full">MOST POPULAR</span>
               </div>
             </div>
             <div class="p-6">
-              <h4 class="text-xl font-bold text-gray-900 mb-2 font-serif">{{$available->roomType->name}}</h4>
-              <p class="text-gray-600 text-sm mb-4">{{$available->roomType->description}}</p>
+              <h4 class="text-xl font-bold text-gray-900 mb-2 font-serif">{{$roomType->name}}</h4>
+              <p class="text-gray-600 text-sm mb-4">{{$roomType->description}}</p>
               <div class="flex items-center justify-between">
-                <p class="text-amber-700 font-bold text-lg">₹{{ number_format($available->price) }} <span class="text-gray-500 text-sm font-normal">/night</span></p>
-                  <p class="text-green-700 font-bold text-md">{{$available->rooms}} <span class="text-gray-500 text-sm font-normal">rooms are available</span></p>
-                <form action="{{route('booking.room', ['available' => $available->id])}}" method="get">
+                  @foreach($roomType->selectedDateAvailabilities($checkIn, $checkOut) as $available)
+                    <div>
+                      <p class="text-blue-700 font-bold text-lg">{{ $available->date }} </p>
+                      <p class="text-amber-700 font-bold text-lg">₹{{ number_format($available->price) }} <span class="text-gray-500 text-sm font-normal">/night</span></p>
+                      <p class="text-green-700 font-bold text-md">{{$available->rooms}} <span class="text-gray-500 text-sm font-normal">rooms are available</span></p>
+                    </div>
+                  @endforeach
+
+                  <form action="{{route('booking.room', ['roomType' => $roomType->id])}}" method="get">
                   @csrf
                   <input type="hidden" name="check_in_date" value="{{$checkIn}}">
                   <input type="hidden" name="check_out_date" value="{{$checkOut}}">

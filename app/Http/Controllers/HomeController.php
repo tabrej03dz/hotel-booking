@@ -11,6 +11,7 @@ use App\Models\Carriar;
 use App\Models\Customer;
 use App\Models\Payment;
 use App\Models\Room;
+use App\Models\RoomType;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -188,22 +189,23 @@ class HomeController extends Controller
         $checkIn = $request->check_in_date;
         $checkOut = $request->check_out_date;
 
-        $availableRooms = AvailabilityRate::where('date', $checkIn)->get();
+//        $availableRooms = AvailabilityRate::where('date', $checkIn)->get();
 
+        $roomTypes = RoomType::all();
         $days = Carbon::parse($request->check_in_date)->diffInDays(Carbon::parse($request->check_out_date));
 
-        return view('frontend.roomdetail', compact('availableRooms', 'checkIn', 'checkOut', 'days'));
+        return view('frontend.roomdetail', compact('roomTypes', 'checkIn', 'checkOut', 'days'));
     }
 
-    public function bookingRoom(Request $request, AvailabilityRate $available){
+    public function bookingRoom(Request $request, RoomType $roomType){
         $checkInDate = $request->check_in_date;
         $checkOutDate = $request->check_out_date;
         $days = $request->days;
         $additionalServices = AdditionalService::all();
-        return view('frontend.bookingdetail', compact('available', 'checkInDate', 'checkOutDate', 'days', 'additionalServices'));
+        return view('frontend.bookingdetail', compact('roomType', 'checkInDate', 'checkOutDate', 'days', 'additionalServices'));
     }
 
-    public function bookingSave(Request $request, AvailabilityRate $available)
+    public function bookingSave(Request $request, RoomType $roomType)
     {
         $request->validate([
             'name'      => 'required|string|max:255',
@@ -218,6 +220,7 @@ class HomeController extends Controller
             'service_ids.*' => 'integer|exists:additional_services,id',
             'quantities' => 'array',
         ]);
+
 
         // Handle guest login or register
         if (!auth()->check()) {
@@ -242,12 +245,14 @@ class HomeController extends Controller
         }
 
         $user = Auth::user();
-        if ($available->rooms < 1) {
+
+        if ($roomType->selectedDateAvailabilities($request->check_in_date, $request->check_out_date)->count() != $request->days || $roomType->selectedDateAvailabilities($request->check_in_date, $request->check_out_date)->contains('rooms', 0)) {
             return back()->with('error', 'No available rooms of this type.');
         }
 
-        $roomTotal = $available->price * $request->days;
 
+//        $roomTotal = $available->price * $request->days;
+        $roomTotal = $roomType->selectedDateAvailabilities($request->check_in_date, $request->check_out_date)->sum('price');
 
         $serviceCharge = 0;
         if ($request->has('service_ids')) {
@@ -270,7 +275,7 @@ class HomeController extends Controller
             'email' => $request->email,
             'phone' => $request->phone,
             'user_id' => auth()->id(),
-            'availability_rate_id' => $available->id,
+            'room_type_id' => $roomType->id,
             'check_in_date' => $request->check_in_date,
             'check_out_date' => $request->check_out_date,
             'staying_days' => $request->days,
@@ -292,6 +297,13 @@ class HomeController extends Controller
                     'quantity' => $qty,
                 ]);
             }
+        }
+
+        foreach ($roomType->selectedDateAvailabilities($request->check_in_date, $request->check_out_date) as $availability){
+            $booking->availablities()->create([
+                'availability_rate_id' => $availability->id,
+                'price' => $availability->price,
+            ]);
         }
 
         $transactionId = 'TXN' . now()->format('YmdHis') . strtoupper(Str::random(6));

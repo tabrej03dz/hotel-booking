@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('phone');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('availability_rate_id')->constrained('availability_rates')->onDelete('cascade');
+            $table->foreignId('room_type_id')->constrained('room_types')->onDelete('cascade');
             $table->date('check_in_date');
             $table->date('check_out_date');
             $table->enum('status', ['pending', 'confirmed', 'cancelled', 'completed', 'failed'])->default('pending');

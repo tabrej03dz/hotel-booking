@@ -22,4 +22,8 @@ class RoomType extends Model
         return $this->belongsToMany(Amenity::class, 'room_amenity');
     }
 
+    public function selectedDateAvailabilities($checkIn, $checkOut){
+        return $this->hasMany(AvailabilityRate::class)->where('date', '>=', $checkIn)->where('date', '<', $checkOut)->get();
+    }
+
 }
