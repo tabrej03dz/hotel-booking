@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+// use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,13 +16,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        User::factory(10)->create();
         $this->call(RolesTableSeeder::class);
         $this->call(PermissionsTableSeeder::class);
           $this->call([
         HotelRoomSeeder::class,
     ]);
-
+        // Role::create(['name' => 'Super Admin']);
         User::create([
             'name' => 'Admin User',
             'email' => 'super@admin.com',
