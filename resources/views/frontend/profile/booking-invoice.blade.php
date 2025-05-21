@@ -28,25 +28,25 @@
     <div class="grid grid-cols-2 gap-4 mb-4">
         <div>
             <p class="font-semibold">PRIMARY GUEST DETAILS</p>
-            <p class="mt-1">Nikunj Goel</p>
+            <p class="mt-1">{{$booking->name}}</p>
         </div>
         <div>
-            <p><strong>CHECK-IN</strong>: 29 May '25 – 1:00 PM</p>
-            <p><strong>CHECK-OUT</strong>: 02 Jun '25 (4 Nights) – 11:00 AM</p>
-            <p class="mt-2"><strong>TOTAL NO. OF GUEST(S)</strong>: 2 Adults</p>
+            <p><strong>CHECK-IN</strong>: {{$booking->check_in_date->format('d M Y')}}</p>
+            <p><strong>CHECK-OUT</strong>: {{$booking->check_out_date->format('d M Y')}} ({{$booking->staying_days}} Nights)</p>
+            <p class="mt-2"><strong>TOTAL NO. OF GUEST(S)</strong>: {{$booking->adults}} Adults @if($booking->children) , {{$booking->children}} Children @endif</p>
         </div>
     </div>
 
     <div class="grid grid-cols-2 gap-4 mb-6">
         <div>
-            <p><strong>BOOKING ID</strong>: GH76186243356786</p>
-            <p><strong>BOOKED ON</strong>: 16 May '25 03:18 PM</p>
+            <p><strong>BOOKING ID</strong>: {{$booking->booking_id}}</p>
+            <p><strong>BOOKED ON</strong>: {{$booking->created_at->format('d M Y h:i A')}}</p>
         </div>
         <div>
-            <p><strong>BOOKING STATUS</strong>: Pending</p>
-            <p><strong>PAYMENT STATUS</strong>: Paid Online</p>
-            <p><strong>BOOKED VIA</strong>: GoIbibo</p>
-            <p><strong>PNR</strong>: 0147971289</p>
+            <p><strong>BOOKING STATUS</strong>: {{$booking->status}}</p>
+            <p><strong>PAYMENT STATUS</strong>: {{$booking->payment->status. ' '. $booking->payment->payment_method}} </p>
+            <p><strong>BOOKED VIA</strong>: https://krinoscco.com/</p>
+{{--            <p><strong>PNR</strong>: 0147971289</p>--}}
         </div>
     </div>
 
@@ -57,9 +57,16 @@
     <p><strong>PROPERTY GSTN</strong>: 09AADCD6632P1Z5</p>
 
     <div class="my-4">
-        <p><strong>INVOICE AMOUNT</strong>: ₹ 16,352.0</p>
-        <p>1 Room(s) | 1 x Standard | 2 Adults • Breakfast</p>
-        <p>Inclusions: Breakfast included.</p>
+        <p><strong>INVOICE AMOUNT</strong>: ₹ {{number_format($booking->payment->amount)}}</p>
+        <p>{{$booking->rooms}} Room(s) | {{$booking->roomType->name}} | {{$booking->adults}}
+            Adults @if($booking->children)
+                ,{{$booking->children}} Children
+            @endif @if($booking->services)
+                @foreach($booking->services as $service)
+                    • {{$service->name}}
+                @endforeach
+            @endif </p>
+{{--        <p>Inclusions: Breakfast included.</p>--}}
     </div>
 
     <div class="mb-6">
@@ -74,9 +81,9 @@
 
     <div class="mb-6">
         <p class="font-semibold">Payment</p>
-        <p>Property Gross Charges: ₹ 16,352.0</p>
-        <p>Payable to Property: ₹ 12,818.8</p>
-        <p class="text-sm">Go-MMT will release payment by 30th May, 2025. It takes 3–4 days post-release to get credited.</p>
+        <p>Property Gross Charges: ₹ {{number_format($booking->total_amount)}}</p>
+{{--        <p>Payable to Property: ₹ 12,818.8</p>--}}
+{{--        <p class="text-sm">Go-MMT will release payment by 30th May, 2025. It takes 3–4 days post-release to get credited.</p>--}}
     </div>
 
     <table class="table-auto w-full border border-gray-300 text-xs mb-4">
@@ -84,28 +91,19 @@
         <tr class="bg-gray-100">
             <th class="border p-1">Date</th>
             <th class="border p-1">Room Charges (R)</th>
-            <th class="border p-1">Extra Adult/Child (E)</th>
             <th class="border p-1">Taxes (T)</th>
-            <th class="border p-1">Gross (G=R+E+T)</th>
-            <th class="border p-1">Commission (C)</th>
-            <th class="border p-1">Net Rate (G-C)</th>
+            <th class="border p-1">Amount</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td class="border p-1">May 29, 2025</td><td class="border p-1">3,650.0</td><td class="border p-1">0.0</td><td class="border p-1">438.0</td><td class="border p-1">4,088.0</td><td class="border p-1">730.0</td><td class="border p-1">3,358.0</td>
-        </tr>
-        <tr>
-            <td class="border p-1">May 30, 2025</td><td class="border p-1">3,650.0</td><td class="border p-1">0.0</td><td class="border p-1">438.0</td><td class="border p-1">4,088.0</td><td class="border p-1">730.0</td><td class="border p-1">3,358.0</td>
-        </tr>
-        <tr>
-            <td class="border p-1">May 31, 2025</td><td class="border p-1">3,650.0</td><td class="border p-1">0.0</td><td class="border p-1">438.0</td><td class="border p-1">4,088.0</td><td class="border p-1">730.0</td><td class="border p-1">3,358.0</td>
-        </tr>
-        <tr>
-            <td class="border p-1">June 01, 2025</td><td class="border p-1">3,650.0</td><td class="border p-1">0.0</td><td class="border p-1">438.0</td><td class="border p-1">4,088.0</td><td class="border p-1">730.0</td><td class="border p-1">3,358.0</td>
-        </tr>
+        @foreach($booking->availabilities as $availability)
+            <tr>
+                <td class="border p-1">{{$availability->availabilityRate->date->format('d M Y')}}</td><td class="border p-1">{{$availability->price}}</td><td class="border p-1">{{number_format($availability->price * 18 /100)}}</td><td class="border p-1">{{$availability->price + $availability->price * 18 /100}}</td>
+            </tr>
+        @endforeach
+
         <tr class="font-semibold bg-gray-100">
-            <td class="border p-1">GRAND TOTAL</td><td class="border p-1">14,600.0</td><td class="border p-1">0.0</td><td class="border p-1">1,752.0</td><td class="border p-1">16,352.0</td><td class="border p-1">2,920.0</td><td class="border p-1">13,432.0</td>
+            <td class="border p-1">GRAND TOTAL</td><td class="border p-1">{{number_format($booking->availabilities()->sum('price'), 1)}}</td><td class="border p-1">{{number_format($booking->availabilities()->sum('price') * 18 / 100 , 2)}}</td><td class="border p-1">{{number_format($booking->availabilities()->sum('price') + $booking->availabilities()->sum('price') * 18 / 100 , 2)}}</td>
         </tr>
         </tbody>
     </table>

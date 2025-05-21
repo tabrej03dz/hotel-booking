@@ -30,6 +30,8 @@ return new class extends Migration
             $table->decimal('total_amount', 10, 2)->nullable();
             $table->integer('adults')->default(1);
             $table->integer('children')->default(0);
+            $table->integer('extra_person')->nullable();
+            $table->integer('rooms')->default(1);
             $table->timestamps();
         });
     }

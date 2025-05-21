@@ -21,7 +21,7 @@
 
             <form action="{{ route('booking.save', $roomType->id) }}" method="post">
                 @csrf
-                <input type="hidden" name="days" value="{{ $days }}">
+                <input type="hidden" name="days" id="stayin-days" value="{{ $days }}">
                 <!-- Booking Summary Card -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-10 border border-gray-100">
                     <!-- Hotel Image -->
@@ -122,43 +122,43 @@
                     <!-- Left Column -->
                     <div class="lg:col-span-2 space-y-8">
                         <!-- Upgrade Options -->
-                                  <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100">
-                                    <h3 class="text-xl font-serif font-bold text-gray-900 mb-4">Enhance Your Stay</h3>
-                                    <div class="space-y-4">
-                                        @foreach($additionalServices as $service)
-                                            <div class="flex items-start justify-between border-b py-3">
-                                                <div class="flex items-start">
-                                                    <input
-                                                        type="checkbox"
-                                                        name="service_ids[]" value="{{$service->id}}"
-                                                        id="service{{ $service->id }}"
-                                                        class="mt-1 h-5 w-5 text-amber-600 border-gray-300 rounded focus:ring-amber-500 service-checkbox"
-                                                        data-id="{{ $service->id }}"
-                                                        data-price="{{ $service->price }}"
-                                                    >
+                          <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100">
+                            <h3 class="text-xl font-serif font-bold text-gray-900 mb-4">Enhance Your Stay</h3>
+                            <div class="space-y-4">
+                                @foreach($additionalServices as $service)
+                                    <div class="flex items-start justify-between border-b py-3">
+                                        <div class="flex items-start">
+                                            <input
+                                                type="checkbox"
+                                                name="service_ids[]" value="{{$service->id}}"
+                                                id="service{{ $service->id }}"
+                                                class="mt-1 h-5 w-5 text-amber-600 border-gray-300 rounded focus:ring-amber-500 service-checkbox"
+                                                data-id="{{ $service->id }}"
+                                                data-price="{{ $service->price }}"
+                                            >
 
-                                                    <label for="service{{ $service->id }}" class="ml-3">
-                                                        <span class="block font-medium text-gray-900">{{ $service->name }}</span>
-                                                        <span class="block text-sm text-gray-500">{{ $service->description }}</span>
-                                                        <span class="block font-bold text-amber-700 mt-1">&#8377; {{ $service->price }} per unit</span>
-                                                    </label>
-                                                </div>
+                                            <label for="service{{ $service->id }}" class="ml-3">
+                                                <span class="block font-medium text-gray-900">{{ $service->name }}</span>
+                                                <span class="block text-sm text-gray-500">{{ $service->description }}</span>
+                                                <span class="block font-bold text-amber-700 mt-1">&#8377; {{ $service->price }} per unit</span>
+                                            </label>
+                                        </div>
 
-                                                <!-- Quantity controls -->
-                                                <div class="flex items-center space-x-2 ml-4">
-                                                    <button type="button" class="decrease-qty px-2 py-1 bg-gray-200 rounded" data-id="{{ $service->id }}">-</button>
-                                                    <input type="number" name="quantities[{{ $service->id }}]" value="1" min="1"
-                                                           class="service-qty w-12 text-center border border-gray-300 rounded"
-                                                           data-id="{{ $service->id }}" data-price="{{ $service->price }}" disabled>
-                                                    <button type="button" class="increase-qty px-2 py-1 bg-gray-200 rounded" data-id="{{ $service->id }}">+</button>
-                                                </div>
-                                            </div>
-                                        @endforeach
-
-
-
+                                        <!-- Quantity controls -->
+                                        <div class="flex items-center space-x-2 ml-4">
+                                            <button type="button" class="decrease-qty px-2 py-1 bg-gray-200 rounded" data-id="{{ $service->id }}">-</button>
+                                            <input type="number" name="quantities[{{ $service->id }}]" value="1" min="1"
+                                                   class="service-qty w-12 text-center border border-gray-300 rounded"
+                                                   data-id="{{ $service->id }}" data-price="{{ $service->price }}" disabled>
+                                            <button type="button" class="increase-qty px-2 py-1 bg-gray-200 rounded" data-id="{{ $service->id }}">+</button>
+                                        </div>
                                     </div>
-                                  </div>
+                                @endforeach
+
+
+
+                            </div>
+                          </div>
 
                         <!-- Guest Details -->
                         <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100">
@@ -215,25 +215,20 @@
                                     </select>
                                 </div>
 
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Extra Person</label>
-                                    <input type="text" name="person" placeholder="adult/child"
-                                           class="w-full border border-gray-300 p-2 rounded font-medium text-gray-900"
-                                           required />
-                                </div>
+{{--                                <div>--}}
+{{--                                    <label class="block text-sm font-medium text-gray-700 mb-1">Extra Person</label>--}}
+{{--                                    <input type="number" name="extra_person" placeholder="adult/child"--}}
+{{--                                           class="w-full border border-gray-300 p-2 rounded font-medium text-gray-900"--}}
+{{--                                           required />--}}
+{{--                                </div>--}}
 
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Rooms</label>
-                                    <input type="text" name="rooms" placeholder="1" value="1"
+                                    <input type="number" name="rooms" placeholder="1" value="1"
                                            class="w-full border border-gray-300 p-2 rounded font-medium text-gray-900"
                                            required />
                                 </div>
 
-
-                                {{-- <div class="md:col-span-2">
-                <label class="block text-sm font-medium text-gray-700 mb-1">Special Requests</label>
-                <p class="font-medium text-gray-900">Early check-in requested if possible</p>
-              </div> --}}
                             </div>
                         </div>
                     </div>
@@ -249,7 +244,7 @@
                             @foreach($roomType->selectedDateAvailabilities($checkInDate, $checkOutDate) as $availability)
                                 <div class="flex justify-between">
                                     <span class="text-gray-600">{{$availability->date}}</span>
-                                    <span class="font-medium" id="room-price">₹{{ number_format($availability->price, 2) }}</span>
+                                    <span class="font-medium" id="room-price">₹{{ number_format($availability->price, 2) }}/room</span>
                                 </div>
                                 @php
                                     $price += $availability->price;
@@ -264,6 +259,11 @@
                             <div class="flex justify-between">
                                 <span class="text-gray-600">Additional Services</span>
                                 <span class="font-medium" id="service-price">₹0.00</span>
+                            </div>
+
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Extra Person</span>
+                                <span class="font-medium" id="extra-person">₹0.00</span>
                             </div>
 
                             <div class="flex justify-between">
@@ -405,6 +405,252 @@
         });
     </script>
 
+{{--    <script>--}}
+{{--        document.addEventListener("DOMContentLoaded", function () {--}}
+{{--            const baseRoomPrice = {{ $price }};--}}
+{{--            const taxRate = 0.18;--}}
+
+{{--            const serviceCheckboxes = document.querySelectorAll(".service-checkbox");--}}
+{{--            const qtyInputs = document.querySelectorAll(".service-qty");--}}
+
+{{--            const servicePriceElem = document.getElementById("service-price");--}}
+{{--            const taxElem = document.getElementById("tax-amount");--}}
+{{--            const subtotalElem = document.getElementById("subtotal");--}}
+{{--            const totalElem = document.getElementById("total-price");--}}
+
+{{--            const formatINR = (val) => '₹' + val.toFixed(2);--}}
+
+{{--            function updatePaymentSummary() {--}}
+{{--                let totalServiceCost = 0;--}}
+
+{{--                serviceCheckboxes.forEach(cb => {--}}
+{{--                    const id = cb.dataset.id;--}}
+{{--                    const price = parseFloat(cb.dataset.price || 0);--}}
+{{--                    const qtyInput = document.querySelector(`.service-qty[data-id="${id}"]`);--}}
+
+{{--                    if (cb.checked && qtyInput) {--}}
+{{--                        const quantity = parseInt(qtyInput.value || 1);--}}
+{{--                        totalServiceCost += price * quantity;--}}
+{{--                        qtyInput.disabled = false;--}}
+{{--                    } else if (qtyInput) {--}}
+{{--                        qtyInput.disabled = true;--}}
+{{--                    }--}}
+{{--                });--}}
+
+{{--                const updatedSubtotal = baseRoomPrice + totalServiceCost;--}}
+{{--                const tax = updatedSubtotal * taxRate;--}}
+{{--                const grandTotal = updatedSubtotal + tax;--}}
+
+{{--                servicePriceElem.textContent = formatINR(totalServiceCost);--}}
+{{--                taxElem.textContent = formatINR(tax);--}}
+{{--                subtotalElem.textContent = formatINR(updatedSubtotal + tax);--}}
+{{--                totalElem.textContent = formatINR(grandTotal);--}}
+{{--            }--}}
+
+{{--            // Trigger updates--}}
+{{--            serviceCheckboxes.forEach(cb => {--}}
+{{--                cb.addEventListener("change", updatePaymentSummary);--}}
+{{--            });--}}
+
+{{--            qtyInputs.forEach(input => {--}}
+{{--                input.addEventListener("input", updatePaymentSummary);--}}
+{{--            });--}}
+
+{{--            // Quantity increase/decrease buttons--}}
+{{--            document.querySelectorAll(".increase-qty").forEach(btn => {--}}
+{{--                btn.addEventListener("click", function () {--}}
+{{--                    const id = this.dataset.id;--}}
+{{--                    const input = document.querySelector(`.service-qty[data-id="${id}"]`);--}}
+{{--                    input.value = parseInt(input.value) + 1;--}}
+{{--                    updatePaymentSummary();--}}
+{{--                });--}}
+{{--            });--}}
+
+{{--            document.querySelectorAll(".decrease-qty").forEach(btn => {--}}
+{{--                btn.addEventListener("click", function () {--}}
+{{--                    const id = this.dataset.id;--}}
+{{--                    const input = document.querySelector(`.service-qty[data-id="${id}"]`);--}}
+{{--                    input.value = Math.max(1, parseInt(input.value) - 1);--}}
+{{--                    updatePaymentSummary();--}}
+{{--                });--}}
+{{--            });--}}
+
+{{--            updatePaymentSummary(); // Initialize on load--}}
+{{--        });--}}
+{{--    </script>--}}
+
+
+{{--    <script>--}}
+{{--        document.addEventListener("DOMContentLoaded", function () {--}}
+{{--            const baseRoomPrice = {{ $price }};--}}
+{{--            const taxRate = 0.18;--}}
+{{--            const extraPersonCharge = 1000;--}}
+
+{{--            const serviceCheckboxes = document.querySelectorAll(".service-checkbox");--}}
+{{--            const qtyInputs = document.querySelectorAll(".service-qty");--}}
+
+{{--            const servicePriceElem = document.getElementById("service-price");--}}
+{{--            const taxElem = document.getElementById("tax-amount");--}}
+{{--            const subtotalElem = document.getElementById("subtotal");--}}
+{{--            const totalElem = document.getElementById("total-price");--}}
+{{--            const extraPersonElem = document.getElementById("extra-person");--}}
+
+{{--            const extraPersonInput = document.querySelector('input[name="extra_person"]');--}}
+{{--            const roomsInput = document.querySelector('input[name="rooms"]');--}}
+
+{{--            const formatINR = (val) => '₹' + val.toFixed(2);--}}
+
+{{--            function updatePaymentSummary() {--}}
+{{--                let totalServiceCost = 0;--}}
+{{--                let totalRoomPrice = baseRoomPrice;--}}
+
+{{--                // --- Extra Person Calculation -----}}
+{{--                const extraPersons = parseInt(extraPersonInput?.value || 0);--}}
+{{--                const extraCost = extraPersons * extraPersonCharge;--}}
+{{--                extraPersonElem.textContent = formatINR(extraCost);--}}
+
+{{--                // --- Room Multiplier Calculation -----}}
+{{--                const totalRooms = parseInt(roomsInput?.value || 1);--}}
+{{--                if (totalRooms > 1) {--}}
+{{--                    totalRoomPrice = baseRoomPrice * totalRooms;--}}
+{{--                }--}}
+
+{{--                // --- Services Calculation -----}}
+{{--                serviceCheckboxes.forEach(cb => {--}}
+{{--                    const id = cb.dataset.id;--}}
+{{--                    const price = parseFloat(cb.dataset.price || 0);--}}
+{{--                    const qtyInput = document.querySelector(`.service-qty[data-id="${id}"]`);--}}
+
+{{--                    if (cb.checked && qtyInput) {--}}
+{{--                        const quantity = parseInt(qtyInput.value || 1);--}}
+{{--                        totalServiceCost += price * quantity;--}}
+{{--                        qtyInput.disabled = false;--}}
+{{--                    } else if (qtyInput) {--}}
+{{--                        qtyInput.disabled = true;--}}
+{{--                    }--}}
+{{--                });--}}
+
+{{--                // --- Final Totals -----}}
+{{--                const updatedSubtotal = totalRoomPrice + totalServiceCost + extraCost;--}}
+{{--                const tax = updatedSubtotal * taxRate;--}}
+{{--                const grandTotal = updatedSubtotal + tax;--}}
+
+{{--                servicePriceElem.textContent = formatINR(totalServiceCost);--}}
+{{--                taxElem.textContent = formatINR(tax);--}}
+{{--                subtotalElem.textContent = formatINR(updatedSubtotal + tax);--}}
+{{--                totalElem.textContent = formatINR(grandTotal);--}}
+{{--            }--}}
+
+{{--            // Event listeners--}}
+{{--            serviceCheckboxes.forEach(cb => cb.addEventListener("change", updatePaymentSummary));--}}
+{{--            qtyInputs.forEach(input => input.addEventListener("input", updatePaymentSummary));--}}
+{{--            extraPersonInput?.addEventListener("input", updatePaymentSummary);--}}
+{{--            roomsInput?.addEventListener("input", updatePaymentSummary);--}}
+
+{{--            document.querySelectorAll(".increase-qty").forEach(btn => {--}}
+{{--                btn.addEventListener("click", function () {--}}
+{{--                    const id = this.dataset.id;--}}
+{{--                    const input = document.querySelector(`.service-qty[data-id="${id}"]`);--}}
+{{--                    input.value = parseInt(input.value) + 1;--}}
+{{--                    updatePaymentSummary();--}}
+{{--                });--}}
+{{--            });--}}
+
+{{--            document.querySelectorAll(".decrease-qty").forEach(btn => {--}}
+{{--                btn.addEventListener("click", function () {--}}
+{{--                    const id = this.dataset.id;--}}
+{{--                    const input = document.querySelector(`.service-qty[data-id="${id}"]`);--}}
+{{--                    input.value = Math.max(1, parseInt(input.value) - 1);--}}
+{{--                    updatePaymentSummary();--}}
+{{--                });--}}
+{{--            });--}}
+
+{{--            updatePaymentSummary(); // Initialize on load--}}
+{{--        });--}}
+{{--    </script>--}}
+
+
+{{--    <script>--}}
+{{--        document.addEventListener("DOMContentLoaded", function () {--}}
+{{--            const baseRoomPrice = {{ $price }};--}}
+{{--            const taxRate = 0.18;--}}
+
+{{--            const serviceCheckboxes = document.querySelectorAll(".service-checkbox");--}}
+{{--            const qtyInputs = document.querySelectorAll(".service-qty");--}}
+
+{{--            const servicePriceElem = document.getElementById("service-price");--}}
+{{--            const taxElem = document.getElementById("tax-amount");--}}
+{{--            const subtotalElem = document.getElementById("subtotal");--}}
+{{--            const totalElem = document.getElementById("total-price");--}}
+
+{{--            const roomsInput = document.querySelector('input[name="rooms"]');--}}
+
+{{--            const formatINR = (val) => '₹' + val.toFixed(2);--}}
+
+{{--            function updatePaymentSummary() {--}}
+{{--                let totalServiceCost = 0;--}}
+{{--                let totalRoomPrice = baseRoomPrice;--}}
+
+{{--                // --- Room Multiplier Calculation -----}}
+{{--                const totalRooms = parseInt(roomsInput?.value || 1);--}}
+{{--                if (totalRooms > 1) {--}}
+{{--                    totalRoomPrice = baseRoomPrice * totalRooms;--}}
+{{--                }--}}
+
+{{--                // --- Services Calculation -----}}
+{{--                serviceCheckboxes.forEach(cb => {--}}
+{{--                    const id = cb.dataset.id;--}}
+{{--                    const price = parseFloat(cb.dataset.price || 0);--}}
+{{--                    const qtyInput = document.querySelector(`.service-qty[data-id="${id}"]`);--}}
+
+{{--                    if (cb.checked && qtyInput) {--}}
+{{--                        const quantity = parseInt(qtyInput.value || 1);--}}
+{{--                        totalServiceCost += price * quantity;--}}
+{{--                        qtyInput.disabled = false;--}}
+{{--                    } else if (qtyInput) {--}}
+{{--                        qtyInput.disabled = true;--}}
+{{--                    }--}}
+{{--                });--}}
+
+{{--                // --- Final Totals -----}}
+{{--                const updatedSubtotal = totalRoomPrice + totalServiceCost;--}}
+{{--                const tax = updatedSubtotal * taxRate;--}}
+{{--                const grandTotal = updatedSubtotal + tax;--}}
+
+{{--                servicePriceElem.textContent = formatINR(totalServiceCost);--}}
+{{--                taxElem.textContent = formatINR(tax);--}}
+{{--                subtotalElem.textContent = formatINR(updatedSubtotal + tax);--}}
+{{--                totalElem.textContent = formatINR(grandTotal);--}}
+{{--            }--}}
+
+{{--            // Event listeners--}}
+{{--            serviceCheckboxes.forEach(cb => cb.addEventListener("change", updatePaymentSummary));--}}
+{{--            qtyInputs.forEach(input => input.addEventListener("input", updatePaymentSummary));--}}
+{{--            roomsInput?.addEventListener("input", updatePaymentSummary);--}}
+
+{{--            document.querySelectorAll(".increase-qty").forEach(btn => {--}}
+{{--                btn.addEventListener("click", function () {--}}
+{{--                    const id = this.dataset.id;--}}
+{{--                    const input = document.querySelector(`.service-qty[data-id="${id}"]`);--}}
+{{--                    input.value = parseInt(input.value) + 1;--}}
+{{--                    updatePaymentSummary();--}}
+{{--                });--}}
+{{--            });--}}
+
+{{--            document.querySelectorAll(".decrease-qty").forEach(btn => {--}}
+{{--                btn.addEventListener("click", function () {--}}
+{{--                    const id = this.dataset.id;--}}
+{{--                    const input = document.querySelector(`.service-qty[data-id="${id}"]`);--}}
+{{--                    input.value = Math.max(1, parseInt(input.value) - 1);--}}
+{{--                    updatePaymentSummary();--}}
+{{--                });--}}
+{{--            });--}}
+
+{{--            updatePaymentSummary(); // Initialize on load--}}
+{{--        });--}}
+{{--    </script>--}}
+
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const baseRoomPrice = {{ $price }};
@@ -418,11 +664,24 @@
             const subtotalElem = document.getElementById("subtotal");
             const totalElem = document.getElementById("total-price");
 
+            const roomsInput = document.querySelector('input[name="rooms"]');
+            const daysInput = document.getElementById("stayin-days");
+
             const formatINR = (val) => '₹' + val.toFixed(2);
 
             function updatePaymentSummary() {
                 let totalServiceCost = 0;
+                let totalRoomPrice = baseRoomPrice;
 
+                const stayingDays = parseInt(daysInput?.value || 1); // get stay duration
+
+                // --- Room Multiplier Calculation ---
+                const totalRooms = parseInt(roomsInput?.value || 1);
+                if (totalRooms > 1) {
+                    totalRoomPrice = baseRoomPrice * totalRooms;
+                }
+
+                // --- Services Calculation (multiplied by days) ---
                 serviceCheckboxes.forEach(cb => {
                     const id = cb.dataset.id;
                     const price = parseFloat(cb.dataset.price || 0);
@@ -430,14 +689,15 @@
 
                     if (cb.checked && qtyInput) {
                         const quantity = parseInt(qtyInput.value || 1);
-                        totalServiceCost += price * quantity;
+                        totalServiceCost += price * quantity * stayingDays;
                         qtyInput.disabled = false;
                     } else if (qtyInput) {
                         qtyInput.disabled = true;
                     }
                 });
 
-                const updatedSubtotal = baseRoomPrice + totalServiceCost;
+                // --- Final Totals ---
+                const updatedSubtotal = totalRoomPrice + totalServiceCost;
                 const tax = updatedSubtotal * taxRate;
                 const grandTotal = updatedSubtotal + tax;
 
@@ -447,16 +707,11 @@
                 totalElem.textContent = formatINR(grandTotal);
             }
 
-            // Trigger updates
-            serviceCheckboxes.forEach(cb => {
-                cb.addEventListener("change", updatePaymentSummary);
-            });
+            // Event listeners
+            serviceCheckboxes.forEach(cb => cb.addEventListener("change", updatePaymentSummary));
+            qtyInputs.forEach(input => input.addEventListener("input", updatePaymentSummary));
+            roomsInput?.addEventListener("input", updatePaymentSummary);
 
-            qtyInputs.forEach(input => {
-                input.addEventListener("input", updatePaymentSummary);
-            });
-
-            // Quantity increase/decrease buttons
             document.querySelectorAll(".increase-qty").forEach(btn => {
                 btn.addEventListener("click", function () {
                     const id = this.dataset.id;
@@ -478,7 +733,6 @@
             updatePaymentSummary(); // Initialize on load
         });
     </script>
-
 
 
 @endsection

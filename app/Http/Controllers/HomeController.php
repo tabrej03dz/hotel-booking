@@ -219,6 +219,8 @@ class HomeController extends Controller
             'service_ids' => 'array',
             'service_ids.*' => 'integer|exists:additional_services,id',
             'quantities' => 'array',
+            'rooms' => '',
+            'extra_person' => '',
         ]);
 
 
@@ -265,10 +267,20 @@ class HomeController extends Controller
             }
         }
 
+//        $extraPersonAmount = 0;
+//        if ($request->extra_person){
+//            $extraPersonAmount = $request->extra_person * 1000;
+//        }
+
+        $serviceCharge = $serviceCharge * $request->days;
+        $roomTotal = $roomTotal * ($request->rooms ?? 1) ;
+
         // Step 5: Tax and total
         $subTotal = $roomTotal + $serviceCharge;
         $tax = round($subTotal * 0.18, 2);
         $totalAmount = round($subTotal + $tax, 2);
+
+
 
         $booking = Booking::create([
             'name' => $request->name,
@@ -286,6 +298,8 @@ class HomeController extends Controller
             'adults' => $request->adults,
             'children' => $request->children,
             'status' => 'pending',
+            'rooms' => $request->rooms,
+//            'extra_person' => $request->extra_person,
         ]);
 
         // Step 7: Save selected services
@@ -300,7 +314,7 @@ class HomeController extends Controller
         }
 
         foreach ($roomType->selectedDateAvailabilities($request->check_in_date, $request->check_out_date) as $availability){
-            $booking->availablities()->create([
+            $booking->availabilities()->create([
                 'availability_rate_id' => $availability->id,
                 'price' => $availability->price,
             ]);
