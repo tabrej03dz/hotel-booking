@@ -215,6 +215,21 @@
                                     </select>
                                 </div>
 
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Extra Person</label>
+                                    <input type="text" name="person" placeholder="adult/child"
+                                           class="w-full border border-gray-300 p-2 rounded font-medium text-gray-900"
+                                           required />
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Rooms</label>
+                                    <input type="text" name="rooms" placeholder="1" value="1"
+                                           class="w-full border border-gray-300 p-2 rounded font-medium text-gray-900"
+                                           required />
+                                </div>
+
+
                                 {{-- <div class="md:col-span-2">
                 <label class="block text-sm font-medium text-gray-700 mb-1">Special Requests</label>
                 <p class="font-medium text-gray-900">Early check-in requested if possible</p>

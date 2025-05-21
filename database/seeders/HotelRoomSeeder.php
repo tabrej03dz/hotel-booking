@@ -67,8 +67,8 @@ class HotelRoomSeeder extends Seeder
         $service = Amenity::create(['name' => 'Room Service', 'icon' => 'fa fa-concierge-bell']);
 
         // Attach amenities to rooms
-        $room1->amenities()->attach([$wifi->id, $ac->id]);
-        $room2->amenities()->attach([$wifi->id, $tv->id, $service->id]);
-    
+        $deluxe->amenities()->attach([$wifi->id, $ac->id]);
+//        $room2->amenities()->attach([$wifi->id, $tv->id, $service->id]);
+
     }
 }
