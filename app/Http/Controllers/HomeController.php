@@ -251,7 +251,7 @@ class HomeController extends Controller
         $availabilities = $roomType->selectedDateAvailabilities($request->check_in_date, $request->check_out_date);
 
         if (
-            $availabilities->count() != $request->days || 
+            $availabilities->count() != $request->days ||
             $availabilities->contains(function ($availability) use ($request) {
                 return $availability->rooms < $request->rooms;
             })
@@ -339,7 +339,8 @@ class HomeController extends Controller
         ]);
 
 
-        $path = storage_path() . "/json/worldline_AdminData.json";
+//        $path = storage_path() . "/json/worldline_AdminData.json";
+        $path = asset('storage/json/worldline_AdminData.json');
         $mer_array = json_decode(file_get_contents($path), true);
         $txnId = $transactionId;
         $consumerId = $user->id;
