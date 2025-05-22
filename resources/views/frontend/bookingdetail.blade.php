@@ -97,20 +97,20 @@
                                 {{--                Ocean View --}}
                                 {{--              </div> --}}
 
-{{--                                @foreach ($available->roomType->amenities as $amenity)--}}
-{{--                                    <div class="flex items-center text-sm text-gray-600">--}}
-{{--                                        <div>--}}
-{{--                                            @if ($amenity->icon)--}}
-{{--                                                <i class="{{ $amenity->icon }}"></i>--}}
-{{--                                            @else--}}
-{{--                                                <span>No Icon</span>--}}
-{{--                                            @endif--}}
+                                @foreach ($available->roomType->amenities as $amenity)
+                                    <div class="flex items-center text-sm text-gray-600">
+                                        <div>
+                                            @if ($amenity->icon)
+                                                <i class="{{ $amenity->icon }}"></i>
+                                            @else
+                                                <span>No Icon</span>
+                                            @endif
 
-{{--                                        </div>--}}
+                                        </div>
 
-{{--                                        {{ $amenity->name }}--}}
-{{--                                    </div>--}}
-{{--                                @endforeach--}}
+                                        {{ $amenity->name }}
+                                    </div>
+                                @endforeach
                             </div>
                             <p class="text-gray-700 mb-6">{{$roomType->description}}</p>
                         </div>
