@@ -136,7 +136,7 @@
                                         @foreach ($roomType->selectedDateAvailabilities($checkIn, $checkOut) as $available)
                                             <div
                                                 class="mt-4 bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-200">
-                                                <p class="text-blue-600 font-bold text-lg mb-1">{{ $available->date }} </p>
+                                                <p class="text-blue-600 font-bold text-lg mb-1">{{ $available->date->format('d M Y') }} </p>
                                                 <p class="text-amber-700 font-bold text-lg">
                                                     ₹{{ number_format($available->price) }} <span
                                                         class="text-gray-500 text-sm font-normal">/night</span></p>
@@ -153,14 +153,15 @@
                                             <input type="hidden" name="check_out_date" value="{{ $checkOut }}">
                                             <input type="hidden" name="days" value="{{ $days }}">
 
+                                            <div>
+                                                <button type="submit"
+                                                    class="text-sm font-medium bg-gradient-to-r from-[#8B4513] to-[#D4A017] text-gray-50 hover:text-amber-50 transition-colors p-3 rounded-xl mt-2">Explore
+                                                    →</button>
+                                            </div>
                                         </form>
 
                                     </div>
-                                    <div>
-                                        <button type="submit"
-                                            class="text-sm font-medium bg-gradient-to-r from-[#8B4513] to-[#D4A017] text-gray-50 hover:text-amber-50 transition-colors p-3 rounded-xl mt-2">Explore
-                                            →</button>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         @endforeach

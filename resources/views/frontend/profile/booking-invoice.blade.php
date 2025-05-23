@@ -86,47 +86,168 @@
 {{--        <p class="text-sm">Go-MMT will release payment by 30th May, 2025. It takes 3–4 days post-release to get credited.</p>--}}
     </div>
 
-    <table class="table-auto w-full border border-gray-300 text-xs mb-4">
+    {{-- <table class="table-auto w-full border border-gray-300 text-xs mb-4">
         <thead>
         <tr class="bg-gray-100">
             <th class="border p-1">Date</th>
             <th class="border p-1">Room Charges (R)</th>
+            @foreach($booking->services as $service)
+                <th class="border p-1">{{$service->service->name}}</th>
+            @endforeach
             <th class="border p-1">Taxes (T)</th>
             <th class="border p-1">Amount</th>
         </tr>
         </thead>
         <tbody>
         @foreach($booking->availabilities as $availability)
+
+            @php
+                $singleRoomPrice = $availability->price * $booking->rooms;
+                //dd($singleRoomPrice);
+
+            @endphp
+
             <tr>
-                <td class="border p-1">{{$availability->availabilityRate->date->format('d M Y')}}</td><td class="border p-1">{{$availability->price}}</td><td class="border p-1">{{number_format($availability->price * 18 /100)}}</td><td class="border p-1">{{$availability->price + $availability->price * 18 /100}}</td>
+                <td class="border p-1">{{$availability->availabilityRate->date->format('d M Y')}}</td>
+                <td class="border p-1">{{number_format($singleRoomPrice, 1) }}/{{$booking->rooms > 1 ? "($booking->rooms)" : ""}} </td>
+                @php
+                    $servicePrices = 0;
+                @endphp
+                @foreach($booking->services as $service)
+                    @php
+                        $singleServicePrice = $service->service->price * $service->quantity;
+                        $servicePrices += $singleServicePrice;
+                    @endphp
+                    <td class="border p-1">{{number_format($singleServicePrice, 1)}}</td>
+                @endforeach
+                <td class="border p-1">{{number_format(($singleRoomPrice + $servicePrices) * 18 /100)}}</td>
+                <td class="border p-1">{{($singleRoomPrice + $servicePrices) + ($singleRoomPrice + $servicePrices) * 18 /100}}</td>
             </tr>
         @endforeach
-
+    
         <tr class="font-semibold bg-gray-100">
-            <td class="border p-1">GRAND TOTAL</td><td class="border p-1">{{number_format($booking->availabilities()->sum('price'), 1)}}</td><td class="border p-1">{{number_format($booking->availabilities()->sum('price') * 18 / 100 , 2)}}</td><td class="border p-1">{{number_format($booking->availabilities()->sum('price') + $booking->availabilities()->sum('price') * 18 / 100 , 2)}}</td>
+            <td class="border p-1">GRAND TOTAL</td>
+            <td class="border p-1">{{number_format($booking->availabilities()->sum('price') * $booking->rooms, 1)}}</td>
+            @php
+                $totalServicePrices = 0;
+            @endphp
+            @foreach ($booking->services as $service)
+                @php
+                
+                    $totalServicePrices += $booking->staying_days * ($service->service->price * $service->quantity);
+                @endphp
+                <td class="border p-1">{{number_format($booking->staying_days * $service->service->price * $service->quantity, 1)}}</td>
+            @endforeach
+            <td class="border p-1">{{number_format((($booking->availabilities()->sum('price') * $booking->rooms) + $totalServicePrices) * 18 / 100 , 2)}}</td>
+            <td class="border p-1">{{number_format((($booking->availabilities()->sum('price') * $booking->rooms) + $totalServicePrices) + (($booking->availabilities()->sum('price') * $booking->rooms) + $totalServicePrices) * 18 / 100 , 2)}}</td>
         </tr>
+        </tbody>
+    </table> --}}
+
+    @php
+        $roomTotal = $booking->availabilities->sum('price') * $booking->rooms;
+        $totalServicePrices = 0;
+    @endphp
+
+    <table class="table-auto w-full border border-gray-300 text-xs mb-4">
+        <thead>
+            <tr class="bg-gray-100">
+                <th class="border p-1">Date</th>
+                <th class="border p-1">Room Charges (R)</th>
+                @foreach($booking->services as $service)
+                    <th class="border p-1">{{ $service->service->name }}</th>
+                @endforeach
+                <th class="border p-1">Taxes (T)</th>
+                <th class="border p-1">Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($booking->availabilities as $availability)
+                @php
+                    $singleRoomPrice = $availability->price * $booking->rooms;
+                    $dailyServiceTotal = 0;
+                @endphp
+                <tr>
+                    <td class="border p-1">{{ $availability->availabilityRate->date->format('d M Y') }}</td>
+                    <td class="border p-1">{{ number_format($singleRoomPrice, 1) }}{{ $booking->rooms > 1 ? " ({$booking->rooms})" : '' }}</td>
+
+                    @foreach($booking->services as $service)
+                        @php
+                            $singleServicePrice = $service->service->price * $service->quantity;
+                            $dailyServiceTotal += $singleServicePrice;
+                        @endphp
+                        <td class="border p-1">{{ number_format($singleServicePrice, 1) }}</td>
+                    @endforeach
+
+                    @php
+                        $dailySubtotal = $singleRoomPrice + $dailyServiceTotal;
+                        $tax = $dailySubtotal * 0.18;
+                        $total = $dailySubtotal + $tax;
+                    @endphp
+
+                    <td class="border p-1">{{ number_format($tax, 2) }}</td>
+                    <td class="border p-1">{{ number_format($total, 2) }}</td>
+                </tr>
+            @endforeach
+
+            <tr class="font-semibold bg-gray-100">
+                <td class="border p-1">GRAND TOTAL</td>
+                <td class="border p-1">{{ number_format($roomTotal, 1) }}</td>
+
+                @foreach ($booking->services as $service)
+                    @php
+                        $serviceTotal = $booking->staying_days * ($service->service->price * $service->quantity);
+                        $totalServicePrices += $serviceTotal;
+                    @endphp
+                    <td class="border p-1">{{ number_format($serviceTotal, 1) }}</td>
+                @endforeach
+
+                @php
+                    $grandSubtotal = $roomTotal + $totalServicePrices;
+                    $grandTax = $grandSubtotal * 0.18;
+                    $grandTotal = $grandSubtotal + $grandTax;
+                @endphp
+
+                <td class="border p-1">{{ number_format($grandTax, 2) }}</td>
+                <td class="border p-1">{{ number_format($grandTotal, 2) }}</td>
+            </tr>
         </tbody>
     </table>
 
-    <div class="mb-6">
-        <p class="font-semibold">Final Calculation</p>
-        <ul class="list-disc list-inside text-sm">
-            <li>Room Charges: ₹ 14,600.0</li>
-            <li>Extra Adult/Child Charges: ₹ 0.0</li>
-            <li>Property Taxes: ₹ 1,752.0</li>
-            <li>Service Charges: ₹ 0.0</li>
-            <li>(A) Property Gross Charges: ₹ 16,352.0</li>
-            <li>Go-MMT Commission: ₹ 2,920.0</li>
-            <li>GST on Commission (18%): ₹ 525.6</li>
-            <li>(B) Go-MMT Commission (incl. GST): ₹ 3,445.6</li>
-            <li>TCS (0.5%): ₹ 73.0</li>
-            <li>TDS (0.1%): ₹ 14.6</li>
-            <li>(C) Tax Deduction (TCS + TDS): ₹ 87.6</li>
-            <li><strong>Payable to Property (A - B - C): ₹ 12,818.8</strong></li>
-        </ul>
-    </div>
 
-    <div class="text-xs text-gray-600">
+    @php
+    $payableGross = $grandTotal;
+    $commission = 2920.0; // Or calculate if dynamic
+    $commissionGst = $commission * 0.18;
+    $commissionTotal = $commission + $commissionGst;
+    $tcs = $payableGross * 0.005;
+    $tds = $roomTotal * 0.001; // usually TDS is calculated on room charges
+    $taxDeduction = $tcs + $tds;
+    $payableToProperty = $payableGross - $commissionTotal - $taxDeduction;
+@endphp
+
+<div class="mb-6">
+    <p class="font-semibold">Final Calculation</p>
+    <ul class="list-disc list-inside text-sm">
+        <li>Room Charges: ₹ {{ number_format($roomTotal, 1) }}</li>
+        <li>Service Charges: ₹ {{ number_format($totalServicePrices, 1) }}</li>
+        <li>Property Taxes (18%): ₹ {{ number_format($grandTax, 2) }}</li>
+        <li><strong>(A) Property Gross Charges: ₹ {{ number_format($payableGross, 2) }}</strong></li>
+
+        {{-- <li>Go-MMT Commission: ₹ {{ number_format($commission, 1) }}</li>
+        <li>GST on Commission (18%): ₹ {{ number_format($commissionGst, 1) }}</li>
+        <li><strong>(B) Go-MMT Commission (incl. GST): ₹ {{ number_format($commissionTotal, 1) }}</strong></li>
+
+        <li>TCS (0.5%): ₹ {{ number_format($tcs, 1) }}</li>
+        <li>TDS (0.1%): ₹ {{ number_format($tds, 1) }}</li>
+        <li><strong>(C) Tax Deduction (TCS + TDS): ₹ {{ number_format($taxDeduction, 1) }}</strong></li>
+
+        <li><strong>Payable to Property (A - B - C): ₹ {{ number_format($payableToProperty, 1) }}</strong></li> --}}
+    </ul>
+</div>
+
+
+    {{-- <div class="text-xs text-gray-600">
         <p class="mb-1">Note:</p>
         <ul class="list-disc ml-5">
             <li>TCS and TDS amounts subject to reconciliation</li>
@@ -139,7 +260,7 @@
         <p class="font-semibold">MakeMyTrip India Pvt. Ltd.</p>
         <p>19th Floor, Building No. 5, DLF Cyber City, Phase III, Gurgaon - 122002, Haryana</p>
         <p>Contact: 0124-4628747, 0124-5045105</p>
-    </div>
+    </div> --}}
 
     <div class="mt-6 text-center no-print">
         <button onclick="window.print()" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Print Voucher</button>

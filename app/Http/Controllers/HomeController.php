@@ -248,9 +248,17 @@ class HomeController extends Controller
 
         $user = Auth::user();
 
-        if ($roomType->selectedDateAvailabilities($request->check_in_date, $request->check_out_date)->count() != $request->days || $roomType->selectedDateAvailabilities($request->check_in_date, $request->check_out_date)->contains('rooms', 0)) {
+        $availabilities = $roomType->selectedDateAvailabilities($request->check_in_date, $request->check_out_date);
+
+        if (
+            $availabilities->count() != $request->days ||
+            $availabilities->contains(function ($availability) use ($request) {
+                return $availability->rooms < $request->rooms;
+            })
+        ) {
             return back()->with('error', 'No available rooms of this type.');
         }
+
 
 
 //        $roomTotal = $available->price * $request->days;
@@ -331,7 +339,10 @@ class HomeController extends Controller
         ]);
 
 
-        $path = storage_path() . "/json/worldline_AdminData.json";
+//        $path = asset('storage/json/worldline_AdminData.json');
+        // $path = storage_path() . "/json/worldline_AdminData.json";
+        // $mer_array = json_decode(file_get_contents($path), true);
+        $path = public_path('json/worldline_adminData.json');
         $mer_array = json_decode(file_get_contents($path), true);
         $txnId = $transactionId;
         $consumerId = $user->id;
