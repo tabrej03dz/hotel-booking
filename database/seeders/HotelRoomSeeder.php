@@ -63,7 +63,6 @@ class HotelRoomSeeder extends Seeder
 
         // Attach amenities to rooms
         $deluxe->amenities()->attach([$wifi->id, $ac->id]);
-//        $room2->amenities()->attach([$wifi->id, $tv->id, $service->id]);
 
     }
 }

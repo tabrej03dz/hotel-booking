@@ -234,39 +234,37 @@
                                     @enderror
                                 </div>
 
-                                <div x-data="{ showGST: '{{ old('gst_required') === 'on' ? 'true' : 'false' }}' === 'true' }">
-                                 <!-- ✅ GST Bill Checkbox -->
-                                <div>
-                                    <br>
-                                    <label class="inline-flex items-center">
-                                        <input type="checkbox" name="gst_required" value="on" x-model="showGST" class="form-checkbox">
-                                        <span class="ml-2 text-sm text-gray-700 font-medium">Request GST Bill</span>
-                                    </label>
-                                </div>
-                                </div>
+                                    <!-- GST Bill Checkbox -->
+                                    <div class="mt-4">
+                                        <label class="inline-flex items-center">
+                                            <input type="checkbox" name="gst_required" value="on" x-model="showGST" class="form-checkbox">
+                                            <span class="ml-2 text-sm text-gray-700 font-medium">Request GST Bill</span>
+                                        </label>
+                                    </div>
+
+                                    <!-- GST Number -->
+                                    <div x-show="showGST" x-cloak class="mt-4">
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">GST Number</label>
+                                        <input type="text" name="gst_number" value="{{ old('gst_number') }}"
+                                            class="w-full border border-gray-300 p-2 rounded font-medium text-gray-900"
+                                            placeholder="22ABCDE1234F1Z5">
+                                        @error('gst_number')
+                                            <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+
+                                    <!-- Company Name -->
+                                    <div x-show="showGST" x-cloak class="mt-4">
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Company Name</label>
+                                        <input type="text" name="company_name" value="{{ old('company_name') }}"
+                                            class="w-full border border-gray-300 p-2 rounded font-medium text-gray-900"
+                                            placeholder="Company Pvt. Ltd.">
+                                        @error('company_name')
+                                            <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+                                        @enderror
+                                    </div>
 
 
-                                {{-- GST Number --}}
-                                <div x-show="showGST" x-cloak>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">GST Number</label>
-                                    <input type="text" name="gst_number" value="{{ old('gst_number') }}"
-                                        class="w-full border border-gray-300 p-2 rounded font-medium text-gray-900"
-                                        placeholder="22ABCDE1234F1Z5">
-                                    @error('gst_number')
-                                        <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
-                                    @enderror
-                                </div>
-
-                                {{-- Company Name --}}
-                                <div x-show="showGST" x-cloak>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1 mt-4">Company Name</label>
-                                    <input type="text" name="company_name" value="{{ old('company_name') }}"
-                                        class="w-full border border-gray-300 p-2 rounded font-medium text-gray-900"
-                                        placeholder="Company Pvt. Ltd.">
-                                    @error('company_name')
-                                        <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
-                                    @enderror
-                                </div>
                             </div>
                         </div>
                     </div>
