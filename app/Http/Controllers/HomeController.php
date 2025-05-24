@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\BookingConfirmationMail;
+use App\Mail\BookingMail;
 use App\Mail\UserRegistrationMail;
 use App\Models\AdditionalService;
 use App\Models\AvailabilityRate;
@@ -208,19 +209,24 @@ class HomeController extends Controller
     public function bookingSave(Request $request, RoomType $roomType)
     {
         $request->validate([
+            'booking_id' => 'KRI' . now()->format('His') . rand(1000, 9999),
             'name'      => 'required|string|max:255',
             'email'     => 'required|email',
-            'phone'     => 'required|string|max:15',
+            'phone' => 'required|string',
             'address'   => 'nullable|string',
             'check_in_date' => 'required|date',
             'check_out_date' => 'required|date|after:check_in_date',
             'adults'    => 'required|integer|min:1',
-            'children'  => 'required|integer|min:0',
+            'children'  => 'integer|min:0',
             'service_ids' => 'array',
             'service_ids.*' => 'integer|exists:additional_services,id',
             'quantities' => 'array',
             'rooms' => '',
             'extra_person' => '',
+            'rooms' => 'required|integer|min:1',
+            'gst_required' => 'nullable|in:on',
+            'gst_number' => 'required_if:gst_required,on|string|max:15',
+            'company_name' => 'required_if:gst_required,on|string|max:255',
         ]);
 
 
@@ -256,13 +262,12 @@ class HomeController extends Controller
                 return $availability->rooms < $request->rooms;
             })
         ) {
-            return back()->with('error', 'No available rooms of this type.');
+            return back()->with('error', 'No available rooms of this typev on selected date.');
         }
-
-
 
 //        $roomTotal = $available->price * $request->days;
         $roomTotal = $roomType->selectedDateAvailabilities($request->check_in_date, $request->check_out_date)->sum('price');
+        $roomTotal = $roomTotal * ($request->rooms ?? 1);
 
         $serviceCharge = 0;
         if ($request->has('service_ids')) {
@@ -274,22 +279,18 @@ class HomeController extends Controller
                 }
             }
         }
-
-//        $extraPersonAmount = 0;
-//        if ($request->extra_person){
-//            $extraPersonAmount = $request->extra_person * 1000;
-//        }
-
         $serviceCharge = $serviceCharge * $request->days;
-        $roomTotal = $roomTotal * ($request->rooms ?? 1) ;
 
-        // Step 5: Tax and total
-        $subTotal = $roomTotal + $serviceCharge;
+        // 👉 Extra person calculation
+        $extraAdults = max(0, $request->adults - 2);
+        $extraPersonAmount = $extraAdults * 1500 * $request->days;
+
+        // 👉 Final calculation
+        $subTotal = $roomTotal + $serviceCharge + $extraPersonAmount;
         $tax = round($subTotal * 0.18, 2);
         $totalAmount = round($subTotal + $tax, 2);
 
-
-
+        // 👉 Save booking
         $booking = Booking::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -307,7 +308,7 @@ class HomeController extends Controller
             'children' => $request->children,
             'status' => 'pending',
             'rooms' => $request->rooms,
-//            'extra_person' => $request->extra_person,
+            'extra_person' => $extraPersonAmount,
         ]);
 
         // Step 7: Save selected services
@@ -337,6 +338,12 @@ class HomeController extends Controller
             'transaction_id' => $transactionId,
             'status' => 'pending',
         ]);
+
+        // Send mail to customer
+        Mail::to($payment->booking->email)->send(new BookingMail($payment->booking, 'user'));
+
+        // Send mail to admin
+        Mail::to('info@krinoscco.com')->send(new BookingMail($payment->booking, 'admin'));
 
 
 //        $path = asset('storage/json/worldline_AdminData.json');
@@ -382,7 +389,7 @@ class HomeController extends Controller
             'currencycode' => 'INR',
             'schemecode' => $mer_array['merchantSchemeCode'],
             'consumerId' => $consumerId,
-            'mobileNumber' => $user->mobile_number ?? $request->phone,
+            'mobileNumber' => $request->phone,
             'email' => $user->email,
             'customerName' => $user->name,
             'accNo' => '',

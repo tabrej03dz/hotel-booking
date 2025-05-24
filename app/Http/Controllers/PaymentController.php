@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\BookingConfirmationMail;
+use App\Mail\BookingMail;
 use App\Models\Booking;
 use App\Models\Payment;
 use Illuminate\Http\Request;
@@ -80,6 +81,13 @@ class PaymentController extends Controller
                 $payment->booking->update(['status' => 'failed']);
             }
             $payment->save();
+
+            // Send mail to customer
+            Mail::to($payment->booking->email)->send(new BookingMail($payment->booking, 'user'));
+
+            // Send mail to admin
+            Mail::to('info@krinoscco.com')->send(new BookingMail($payment->booking, 'admin'));
+
         }
 
         // Redirect with appropriate message
