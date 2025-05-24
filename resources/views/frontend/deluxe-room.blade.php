@@ -118,23 +118,23 @@
                             <span class="text-[#8B4513] font-semibold uppercase tracking-wider">Deluxe Room</span>
                         </div>
                         <h2 class="text-4xl lg:text-5xl font-bold text-[#1a1a2e] leading-tight">
-                            Where Every Moment
-                            <span class="relative">Resonates
+                            Discover the Art
+                            <span class="relative">of Deluxe Comfort
                                 <div class="absolute bottom-0 left-0 w-full h-[8px] bg-[#8B4513]/20"></div>
                             </span>
                         </h2>
+
                     </div>
 
                     <div class="space-y-6">
                         <p class="text-lg text-gray-700 leading-relaxed">
-                            The Suite has all the essential conveniences and is tastefully designed for your enjoyable stay.
-                            Hotel Krinoscco redefines suite with an unwavering commitment to international standards of
-                            service and style.
+                            The Deluxe Room offers an exquisite blend of comfort and sophistication, designed to elevate your stay with thoughtful amenities and refined details.
+                            At Hotel Krinoscco, we take pride in delivering an exceptional experience that meets the highest international standards of luxury and service.
                         </p>
                         <p class="text-lg text-gray-700 leading-relaxed">
-                            Setting a new benchmark for unparalleled accommodation and exceptional value, it embodies the
-                            epitome of contemporary elegance.
+                            Redefining upscale refinding, the Deluxe Room sets a new standard for elegance and comfort, creating a perfect retreat for discerning travelers.
                         </p>
+
 
                         <div class="grid grid-cols-2 gap-6 py-6">
                             <div class="flex items-center gap-4">

@@ -117,22 +117,20 @@
                             <span class="text-[#8B4513] font-semibold uppercase tracking-wider">Suite Room</span>
                         </div>
                         <h2 class="text-4xl lg:text-5xl font-bold text-[#1a1a2e] leading-tight">
-                            Where Every Moment
-                            <span class="relative">Resonates
+                            Designed to Make Each Moment
+                            <span class="relative">Sing
                                 <div class="absolute bottom-0 left-0 w-full h-[8px] bg-[#8B4513]/20"></div>
                             </span>
                         </h2>
+
                     </div>
 
                     <div class="space-y-6">
                         <p class="text-lg text-gray-700 leading-relaxed">
-                            The Suite has all the essential conveniences and is tastefully designed for your enjoyable stay.
-                            Hotel Krinoscco redefines suite with an unwavering commitment to international standards of
-                            service and style.
+                            Welcome to the Suite Room, designed to offer the perfect blend of sophistication, comfort, and personalized service. Whether you're traveling for business or leisure, our suite ensures a memorable stay with premium amenities and refined interiors.
                         </p>
                         <p class="text-lg text-gray-700 leading-relaxed">
-                            Setting a new benchmark for unparalleled accommodation and exceptional value, it embodies the
-                            epitome of contemporary elegance.
+                            Redefining modern rooms, it offers unmatched comfort and outstanding value, representing the pinnacle of contemporary sophistication.
                         </p>
 
                         <div class="grid grid-cols-2 gap-6 py-6">
