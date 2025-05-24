@@ -7,6 +7,7 @@ use App\Models\Customer;
 use App\Models\Room;
 use App\Models\RoomType;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -33,54 +34,65 @@ class BookingController extends Controller
             'name' => 'required|string|max:100',
             'email' => 'required|email',
             'phone' => 'required|string',
+            'room_type_id' => 'required|exists:room_types,id',
             'check_in_date' => 'required|date|after_or_equal:today',
             'check_out_date' => 'required|date|after:check_in_date',
-            'room_id' => 'required|exists:rooms,id',
+            'adults' => 'required|integer|min:1',
+            'children' => 'nullable|integer|min:0',
+            'extra_person' => 'nullable|integer|min:0',
+            'rooms' => 'required|integer|min:1',
+            'amount' => 'nullable|numeric',
+            'additional_service_charge' => 'nullable|numeric',
+            'tax_and_fee' => 'nullable|numeric',
+            'total_amount' => 'nullable|numeric',
+            'gst_number' => 'nullable|string|max:15',
+            'company_name' => 'nullable|string|max:255',
+            'status' => 'required|in:pending,confirmed,cancelled,completed,failed',
         ]);
 
-        // 1. Find or create customer
-        $customer = User::firstOrCreate(
+        // 1. Create or get user
+        $user = User::firstOrCreate(
             ['phone' => $request->phone],
             [
                 'name' => $request->name,
                 'email' => $request->email,
-                'address' => $request->address ?? null,
                 'password' => Hash::make('password'),
             ]
         );
 
-        // 2. Find available room
-        $room = Room::where('id', $request->room_id)
-            ->where('status', 'available')
-            ->first();
-
-        if (!$room) {
-            return back()->with('error', 'No available rooms of this type.');
-        }
+        // 2. Fetch room type info (for price logic, if needed)
+        $roomType = RoomType::findOrFail($request->room_type_id);
 
         // 3. Create booking
         $booking = Booking::create([
-            'user_id' => $customer->id,
-            'room_id' => $room->id,
+            'user_id' => $user->id,
+            'room_type_id' => $request->room_type_id,
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
             'check_in_date' => $request->check_in_date,
             'check_out_date' => $request->check_out_date,
-            'status' => 'pending',
-            'total_amount' => $room->discounted_price
-                ?? $room->price
-                ?? $room->roomType->discounted_price
-                ?? $room->roomType->price, // basic cost
+            'status' => $request->status,
+            'staying_days' => Carbon::parse($request->check_out_date)->diffInDays(Carbon::parse($request->check_in_date)),
+            'amount' => $request->amount,
+            'additional_service_charge' => $request->additional_service_charge ?? 0,
+            'tax_and_fee' => $request->tax_and_fee ?? 0,
+            'total_amount' => $request->total_amount ?? 0,
+            'adults' => $request->adults,
+            'children' => $request->children ?? 0,
+            'extra_person' => $request->extra_person ?? 0,
+            'rooms' => $request->rooms,
+            'gst_number' => $request->gst_number,
+            'company_name' => $request->company_name,
         ]);
-
-        // 4. Update room status
-        $room->update(['status' => 'booked']);
 
         return redirect()->route('booking.show', $booking->id)->with('success', 'Booking created successfully.');
     }
 
+
     // 🟢 Show a single booking
-    public function show($id)
+    public function show(Booking $booking)
     {
-        $booking = Booking::with(['customer', 'room.roomType'])->findOrFail($id);
         return view('booking.show', compact('booking'));
     }
 

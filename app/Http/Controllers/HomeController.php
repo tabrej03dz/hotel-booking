@@ -209,25 +209,25 @@ class HomeController extends Controller
     public function bookingSave(Request $request, RoomType $roomType)
     {
         $request->validate([
-            'booking_id' => 'KRI' . now()->format('His') . rand(1000, 9999),
-            'name'      => 'required|string|max:255',
-            'email'     => 'required|email',
-            'phone' => 'required|string',
-            'address'   => 'nullable|string',
-            'check_in_date' => 'required|date',
+            'name'           => 'required|string|max:255',
+            'email'          => 'required|email',
+            'phone'          => 'required|string',
+            'address'        => 'nullable|string',
+            'check_in_date'  => 'required|date',
             'check_out_date' => 'required|date|after:check_in_date',
-            'adults'    => 'required|integer|min:1',
-            'children'  => 'integer|min:0',
-            'service_ids' => 'array',
-            'service_ids.*' => 'integer|exists:additional_services,id',
-            'quantities' => 'array',
-            'rooms' => '',
-            'extra_person' => '',
-            'rooms' => 'required|integer|min:1',
-            'gst_required' => 'nullable|in:on',
-            'gst_number' => 'required_if:gst_required,on|string|max:15',
-            'company_name' => 'required_if:gst_required,on|string|max:255',
+            'adults'         => 'required|integer|min:1',
+            'children'       => 'nullable|integer|min:0',
+            'service_ids'    => 'array',
+            'service_ids.*'  => 'integer|exists:additional_services,id',
+            'quantities'     => 'array',
+            'rooms'          => 'required|integer|min:1',
+            'extra_person'   => 'nullable|integer',
+            
+            'gst_required'   => 'nullable|in:on', // optional checkbox
+            'gst_number'     => 'nullable|required_if:gst_required,on|string|max:15',
+            'company_name'   => 'nullable|required_if:gst_required,on|string|max:255',
         ]);
+
 
 
         // Handle guest login or register
@@ -265,7 +265,7 @@ class HomeController extends Controller
             return back()->with('error', 'No available rooms of this typev on selected date.');
         }
 
-//        $roomTotal = $available->price * $request->days;
+        //$roomTotal = $available->price * $request->days;
         $roomTotal = $roomType->selectedDateAvailabilities($request->check_in_date, $request->check_out_date)->sum('price');
         $roomTotal = $roomTotal * ($request->rooms ?? 1);
 
@@ -285,13 +285,19 @@ class HomeController extends Controller
         $extraAdults = max(0, $request->adults - 2);
         $extraPersonAmount = $extraAdults * 1500 * $request->days;
 
+        if($roomTotal >= 7500){
+            $gst = 18/100;
+        }else{
+            $gst = 12/100;
+        }
         // 👉 Final calculation
         $subTotal = $roomTotal + $serviceCharge + $extraPersonAmount;
-        $tax = round($subTotal * 0.18, 2);
+        $tax = round($subTotal * $gst, 2);
         $totalAmount = round($subTotal + $tax, 2);
 
         // 👉 Save booking
         $booking = Booking::create([
+            'booking_id' => 'KRI' . now()->format('His') . rand(1000, 9999),
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
@@ -309,6 +315,8 @@ class HomeController extends Controller
             'status' => 'pending',
             'rooms' => $request->rooms,
             'extra_person' => $extraPersonAmount,
+            'gst_number' => $request->gst_number,
+            'company_name' => $request->company_name,
         ]);
 
         // Step 7: Save selected services
@@ -339,14 +347,7 @@ class HomeController extends Controller
             'status' => 'pending',
         ]);
 
-        // Send mail to customer
-        Mail::to($payment->booking->email)->send(new BookingMail($payment->booking, 'user'));
-
-        // Send mail to admin
-        Mail::to('info@krinoscco.com')->send(new BookingMail($payment->booking, 'admin'));
-
-
-//        $path = asset('storage/json/worldline_AdminData.json');
+        //$path = asset('storage/json/worldline_AdminData.json');
         // $path = storage_path() . "/json/worldline_AdminData.json";
         // $mer_array = json_decode(file_get_contents($path), true);
         $path = public_path('json/worldline_adminData.json');
@@ -373,13 +374,13 @@ class HomeController extends Controller
 
         $datastring = $mer_array['merchantCode'] . "|" . $txnId . "|" . $amount . "|" . "|" . $consumerId . "|" . $mobile . "|" . $email . "||||||||||" . $mer_array['salt'];
 
-//        if($mer_array['enableEmandate'] == 1){
-//            $datastring = $mer_array['merchantCode'] . "|" . $txnId . "|" . $amount . "|" . "|" . $consumerId . "|" . $mobile . "|" . $email . "||||||||||" . $mer_array['salt'];
-//        }
-//        if($mer_array['enableEmandate'] == 1 && $mer_array['enableSIDetailsAtMerchantEnd'] == 1 )
-//        {
-//            $datastring = $mer_array['merchantCode']."|".$txnId."|".$amount."|".$request->accNo."|".$consumerId."|".$mobile . "|" . $email."|".$request->debitStartDate."|".$request->debitEndDate."|".$request->maxAmount."|".$amountType."|".$request->frequency."|".$request->cardNumber."|".$request->expMonth."|".$request->expYear."|".$request->cvvCode."|".$mer_array['salt'];
-//        }
+        //        if($mer_array['enableEmandate'] == 1){
+        //            $datastring = $mer_array['merchantCode'] . "|" . $txnId . "|" . $amount . "|" . "|" . $consumerId . "|" . $mobile . "|" . $email . "||||||||||" . $mer_array['salt'];
+        //        }
+        //        if($mer_array['enableEmandate'] == 1 && $mer_array['enableSIDetailsAtMerchantEnd'] == 1 )
+        //        {
+        //            $datastring = $mer_array['merchantCode']."|".$txnId."|".$amount."|".$request->accNo."|".$consumerId."|".$mobile . "|" . $email."|".$request->debitStartDate."|".$request->debitEndDate."|".$request->maxAmount."|".$amountType."|".$request->frequency."|".$request->cardNumber."|".$request->expMonth."|".$request->expYear."|".$request->cvvCode."|".$mer_array['salt'];
+        //        }
 
         $hashVal = hash('sha512', $datastring);
         $paymentDetails = array(

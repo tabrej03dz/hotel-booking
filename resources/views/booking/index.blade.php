@@ -48,8 +48,8 @@
                         <thead class="bg-gradient-to-r from-indigo-50 to-indigo-100 text-gray-700 uppercase font-semibold text-xs">
                         <tr>
                             <th class="px-6 py-4">#</th>
+                            <th class="px-6 py-4">Booking Id</th>
                             <th class="px-6 py-4">Customer</th>
-                            <th class="px-6 py-4">Room</th>
                             <th class="px-6 py-4">Check-in</th>
                             <th class="px-6 py-4">Check-out</th>
                             <th class="px-6 py-4">Status</th>
@@ -63,8 +63,8 @@
                         @forelse ($bookings as $booking)
                             <tr class="hover:bg-gray-50 transition">
                                 <td class="px-6 py-4 font-medium text-gray-800">{{ $loop->iteration }}</td>
+                                <td class="px-6 py-4 text-gray-700">{{ $booking->booking_id ?? '-' }}</td>
                                 <td class="px-6 py-4 text-gray-700">{{ $booking->user->name ?? '-' }}</td>
-                                <td class="px-6 py-4 text-gray-700">{{ $booking->room->room_number ?? '-' }}</td>
                                 <td class="px-6 py-4 text-gray-700">{{ $booking->check_in_date }}</td>
                                 <td class="px-6 py-4 text-gray-700">{{ $booking->check_out_date }}</td>
                                 <td class="px-6 py-4 text-gray-700 capitalize">
@@ -78,7 +78,7 @@
                                     </form>
                                 </td>
                                 <td class="px-6 py-4 text-gray-700">₹{{ number_format($booking->total_amount, 2) }}</td>
-                                <td class="px-6 py-4 text-gray-700">{{ $booking->payment ? 'YES' : 'N/A' }}</td>
+                                <td class="px-6 py-4 text-gray-700">{{ $booking->payment?->status == 'paid' ? 'YES' : 'N/A' }}</td>
                                 <td class="px-6 py-4 text-center">
                                     <div class="flex justify-center gap-3">
                                         <a href="{{ route('booking.show', $booking->id) }}"
