@@ -259,7 +259,7 @@
                         Contact Us
                     </a>
 
-                    <a href="{{ route('user.dashboard') }}" class="nav-item text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">
+                    <a href="{{ route('dashboard') }}" class="nav-item text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">
                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
                             fill="#e3e3e3">
                             <path

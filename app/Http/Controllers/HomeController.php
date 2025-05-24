@@ -292,6 +292,7 @@ class HomeController extends Controller
 
         // 👉 Save booking
         $booking = Booking::create([
+            'booking_id' => 'KRI' . now()->format('His') . rand(1000, 9999),
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
@@ -309,6 +310,8 @@ class HomeController extends Controller
             'status' => 'pending',
             'rooms' => $request->rooms,
             'extra_person' => $extraPersonAmount,
+            'gst_number' => $request->gst_number,
+            'company_name' => $request->company_name,
         ]);
 
         // Step 7: Save selected services
@@ -339,11 +342,6 @@ class HomeController extends Controller
             'status' => 'pending',
         ]);
 
-        // Send mail to customer
-        Mail::to($payment->booking->email)->send(new BookingMail($payment->booking, 'user'));
-
-        // Send mail to admin
-        Mail::to('info@krinoscco.com')->send(new BookingMail($payment->booking, 'admin'));
 
 
 //        $path = asset('storage/json/worldline_AdminData.json');
