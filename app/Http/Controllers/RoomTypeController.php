@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Amenity;
 use App\Models\RoomType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -15,29 +16,30 @@ class RoomTypeController extends Controller
     }
 
     public function create(){
-        return view('room_type.create');
+        $amenities = Amenity::all();
+        return view('room_type.create', compact('amenities'));
     }
     public function store(Request $request)
     {
         $request->validate([
             'name' => 'required',
             'description' => 'nullable',
-            'price' => 'required|numeric',
-            'discounted_price' => 'nullable|numeric',
             'images' => 'nullable|array',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $roomType = RoomType::create($request->all());
-
+        
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $imageFile) {
                 $imagePath = $imageFile->store('hotels', 'public'); // stores in storage/app/public/hotels
-    
                 $roomType->images()->create([
                     'path' => $imagePath,
                 ]);
             }
+        }
+        if ($request->has('amenities')) {
+            $roomType->amenities()->sync($request->input('amenities'));
         }
 
         return redirect()->route('room-type.index')->with('success', 'Room type created successfully.');
@@ -46,7 +48,8 @@ class RoomTypeController extends Controller
 
     public function edit(RoomType $roomType)
     {
-        return view('room_type.create', compact('roomType'));
+        $amenities = Amenity::all();
+        return view('room_type.create', compact('roomType', 'amenities'));
     }
 
     public function update(Request $request, RoomType $roomType)
@@ -54,8 +57,6 @@ class RoomTypeController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'nullable',
-            'price' => 'required|numeric',
-            'discounted_price' => 'nullable|numeric',
             'images' => 'nullable|array',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
@@ -69,6 +70,10 @@ class RoomTypeController extends Controller
                     'path' => $imagePath,
                 ]);
             }
+        }
+
+        if ($request->has('amenities')) {
+            $roomType->amenities()->sync($request->input('amenities'));
         }
 
         return redirect()->route('room-type.index')->with('success', 'Room type updated successfully.');
