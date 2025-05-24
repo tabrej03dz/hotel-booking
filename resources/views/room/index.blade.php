@@ -51,8 +51,6 @@
                             <th class="px-6 py-4">Room Number</th>
                             <th class="px-6 py-4">Hotel</th>
                             <th class="px-6 py-4">Room Type</th>
-                            <th class="px-6 py-4">Price</th>
-                            <th class="px-6 py-4">Discounted Price</th>
                             <th class="px-6 py-4">Status</th>
                             <th class="px-6 py-4 text-center">Actions</th>
                         </tr>
@@ -64,8 +62,6 @@
                                 <td class="px-6 py-4 text-gray-700">{{ $room->room_number }}</td>
                                 <td class="px-6 py-4 text-gray-700">{{ $room->hotel->name ?? '-' }}</td>
                                 <td class="px-6 py-4 text-gray-700">{{ $room->roomType->name ?? '-' }}</td>
-                                <td class="px-6 py-4 text-gray-700">{{ $room->price ?? '-' }}</td>
-                                <td class="px-6 py-4 text-gray-700">{{ $room->discounted_price ?? '-' }}</td>
                                 <td class="px-6 py-4 text-gray-700 capitalize">{{ $room->status }}</td>
                                 <td class="px-6 py-4 text-center">
                                     <div class="flex justify-center gap-3">
