@@ -115,22 +115,21 @@
                             <span class="text-[#8B4513] font-semibold uppercase tracking-wider">Standard Room</span>
                         </div>
                         <h2 class="text-4xl lg:text-5xl font-bold text-[#1a1a2e] leading-tight">
-                            Where Every Moment
-                            <span class="relative">Resonates
+                            Every Stay,
+                            <span class="relative">A Serene Experience
                                 <div class="absolute bottom-0 left-0 w-full h-[8px] bg-[#8B4513]/20"></div>
                             </span>
                         </h2>
+
                     </div>
 
                     <div class="space-y-6">
                         <p class="text-lg text-gray-700 leading-relaxed">
-                            The Suite has all the essential conveniences and is tastefully designed for your enjoyable stay.
-                            Hotel Krinoscco redefines suite with an unwavering commitment to international standards of
-                            service and style.
+                            The Standard Room offers essential comforts with a cozy, inviting design crafted to make your stay pleasant and restful.
+                            At Hotel Krinoscco, we prioritize your comfort while maintaining our commitment to quality and attentive service.
                         </p>
                         <p class="text-lg text-gray-700 leading-relaxed">
-                            Setting a new benchmark for unparalleled accommodation and exceptional value, it embodies the
-                            epitome of contemporary elegance.
+                            Combining practical amenities with a warm ambiance, the Standard Room sets the perfect foundation for a relaxing and affordable stay.
                         </p>
 
                         <div class="grid grid-cols-2 gap-6 py-6">
@@ -139,8 +138,8 @@
                                     <i class="fas fa-map-marker-alt text-[#8B4513] text-xl"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-semibold text-[#1a1a2e]">Prime Location</h4>
-                                    <p class="text-sm text-gray-600">Heart of Ayodhya</p>
+                                    <h4 class="font-semibold text-[#1a1a2e]">Convenient Location</h4>
+                                    <p class="text-sm text-gray-600">Close to City Center</p>
                                 </div>
                             </div>
                             <div class="flex items-center gap-4">
@@ -148,8 +147,8 @@
                                     <i class="fas fa-clock text-[#8B4513] text-xl"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-semibold text-[#1a1a2e]">Quick Access</h4>
-                                    <p class="text-sm text-gray-600">15min from stations</p>
+                                    <h4 class="font-semibold text-[#1a1a2e]">Easy Access</h4>
+                                    <p class="text-sm text-gray-600">Minutes from transport hubs</p>
                                 </div>
                             </div>
                         </div>
@@ -160,7 +159,7 @@
                                 <div
                                     class="absolute inset-0 bg-[#6B3410] transform translate-y-full transition-transform duration-300 group-hover:translate-y-0">
                                 </div>
-                                <span class="relative z-10 font-semibold">Discover More</span>
+                                <span class="relative z-10 font-semibold">Explore Our Rooms</span>
                             </a>
                             <a href="{{ route('gallery') }}"
                                 class="group flex items-center gap-3 text-[#1a1a2e] font-semibold hover:text-[#8B4513] transition-colors duration-300">
@@ -170,6 +169,7 @@
                             </a>
                         </div>
                     </div>
+
                 </div>
 
             </div>
