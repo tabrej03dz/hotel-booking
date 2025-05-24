@@ -234,14 +234,17 @@
                                     @enderror
                                 </div>
 
+                                <div x-data="{ showGST: '{{ old('gst_required') === 'on' ? 'true' : 'false' }}' === 'true' }">
                                  <!-- ✅ GST Bill Checkbox -->
                                 <div>
                                     <br>
                                     <label class="inline-flex items-center">
-                                        <input type="checkbox" name="gst_required" x-model="showGST" class="form-checkbox h-5 w-5 text-amber-600">
+                                        <input type="checkbox" name="gst_required" value="on" x-model="showGST" class="form-checkbox">
                                         <span class="ml-2 text-sm text-gray-700 font-medium">Request GST Bill</span>
                                     </label>
                                 </div>
+                                </div>
+
 
                                 {{-- GST Number --}}
                                 <div x-show="showGST" x-cloak>
