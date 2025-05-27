@@ -156,34 +156,6 @@
                                             ->where('date', $date)
                                             ->first();
                                     @endphp
-{{--                                    <td class="p-2 border text-center">--}}
-{{--                                        @if ($record)--}}
-{{--                                            <form action="{{ route('availability-rate.update', $record->id) }}"--}}
-{{--                                                method="post">--}}
-{{--                                                @csrf--}}
-{{--                                                <input type="number" name="rooms" placeholder="Rooms"--}}
-{{--                                                    value="{{ $record->rooms }}"--}}
-{{--                                                    class="w-20 border border-gray-300 rounded text-center mb-1"--}}
-{{--                                                    required />--}}
-{{--                                                <input type="number" name="price" placeholder="Price"--}}
-{{--                                                    value="{{ $record->price }}"--}}
-{{--                                                    class="w-20 border border-gray-300 rounded text-center" />--}}
-{{--                                                <button type="submit" class="hidden"></button>--}}
-{{--                                            </form>--}}
-{{--                                        @else--}}
-{{--                                            <form action="{{ route('availability-rate.store') }}" method="post">--}}
-{{--                                                @csrf--}}
-{{--                                                <input type="hidden" name="date" value="{{ $date }}">--}}
-{{--                                                <input type="hidden" name="room_type_id" value="{{ $roomType->id }}">--}}
-{{--                                                <input type="number" name="rooms" placeholder="Rooms"--}}
-{{--                                                    class="w-20 border border-gray-300 rounded px-2 py-1 mb-1" required>--}}
-{{--                                                <input type="number" name="price" placeholder="Price"--}}
-{{--                                                    class="w-20 border border-gray-300 rounded px-2 py-1" required>--}}
-{{--                                                <button type="submit" class="hidden"></button>--}}
-{{--                                            </form>--}}
-{{--                                        @endif--}}
-{{--                                    </td>--}}
-
                                         <td class="p-2 border text-center">
                                             <form class="availability-form" data-action="{{ $record ? 'update' : 'store' }}"
                                                   data-id="{{ $record->id ?? '' }}"
