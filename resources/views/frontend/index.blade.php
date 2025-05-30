@@ -146,7 +146,8 @@
     <section class="relative h-screen overflow-hidden">
         <!-- Video Background with improved loading -->
         <video autoplay muted loop playsinline class="absolute w-full h-full object-cover filter brightness-75">
-            <source src="{{ asset('asset/images/Full Hotel C3.m4v.mp4') }}" type="video/mp4">
+{{--            <source src="{{ asset('asset/images/Full Hotel C3.m4v.mp4') }}" type="video/mp4">--}}
+            <source src="{{ asset('asset/video/61 MB.m4v.mp4') }}" type="video/mp4">
         </video>
 
         <!-- Enhanced glass effect overlay -->
