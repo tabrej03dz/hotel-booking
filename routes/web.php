@@ -141,7 +141,7 @@ Route::middleware('auth')->group(function () {
         Route::prefix('availability-rate')->name('availability-rate.')->controller(\App\Http\Controllers\AvailabilityRateController::class)->group(function(){
            Route::get('/', 'index')->name('index');
            Route::post('store', 'store')->name('store');
-           Route::post('update/{record}', 'update')->name('update');
+           Route::post('update/{id}', 'update')->name('update');
         });
 
         Route::prefix('additional-service')->name('additional-service.')->controller(\App\Http\Controllers\AdditionalServiceController::class)->group(function(){

@@ -135,9 +135,6 @@ class BookingController extends Controller
 
     public function status(Request $request, Booking $booking){
         $booking->update(['status' => $request->status]);
-        if($booking->status == 'cancelled' || $booking->status == 'completed'){
-            $booking->room->update(['status' => 'available']);
-        }
         return back()->with('success', 'Status changed successfully');
     }
 

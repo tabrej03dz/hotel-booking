@@ -55,7 +55,6 @@
                             <th class="px-6 py-4">Status</th>
                             <th class="px-6 py-4">Amount</th>
                             <th class="px-6 py-4">Paid</th>
-
                             <th class="px-6 py-4 text-center">Actions</th>
                         </tr>
                         </thead>

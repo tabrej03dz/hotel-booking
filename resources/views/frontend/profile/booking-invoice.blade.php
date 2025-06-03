@@ -29,6 +29,9 @@
         <div>
             <p class="font-semibold">PRIMARY GUEST DETAILS</p>
             <p class="mt-1">{{$booking->name}}</p>
+            <p class="mt-1">{{$booking->email}}</p>
+            <p class="mt-1">{{$booking->phone}}</p>
+            <p class="mt-1">{{$booking->address}}</p>
         </div>
         <div>
             <p><strong>CHECK-IN</strong>: {{$booking->check_in_date->format('d M Y')}}</p>
@@ -69,23 +72,22 @@
 {{--        <p>Inclusions: Breakfast included.</p>--}}
     </div>
 
-    <div class="mb-6">
-        <p class="font-semibold">Cancellation Policy</p>
-        <p>This tariff cannot be cancelled with zero fee. Any cancellations will be subject to a hotel fee as follows:</p>
-        <ul class="list-disc ml-5">
-            <li>From 2025-05-16 15:14:13 till 2025-05-29 12:59:59 – 100% of booking amount</li>
-            <li>After 2025-05-29 13:00:00 – 100% of booking amount</li>
-        </ul>
-        <p>Cancellations are only allowed before Check-In.</p>
-    </div>
+{{--    <div class="mb-6">--}}
+{{--        <p class="font-semibold">Cancellation Policy</p>--}}
+{{--        <p>This tariff cannot be cancelled with zero fee. Any cancellations will be subject to a hotel fee as follows:</p>--}}
+{{--        <ul class="list-disc ml-5">--}}
+{{--            <li>From 2025-05-16 15:14:13 till 2025-05-29 12:59:59 – 100% of booking amount</li>--}}
+{{--            <li>After 2025-05-29 13:00:00 – 100% of booking amount</li>--}}
+{{--        </ul>--}}
+{{--        <p>Cancellations are only allowed before Check-In.</p>--}}
+{{--    </div>--}}
 
     <div class="mb-6">
         <p class="font-semibold">Payment</p>
         <p>Property Gross Charges: ₹ {{number_format($booking->total_amount)}}</p>
-{{--        <p>Payable to Property: ₹ 12,818.8</p>--}}
-{{--        <p class="text-sm">Go-MMT will release payment by 30th May, 2025. It takes 3–4 days post-release to get credited.</p>--}}
     </div>
 
+<<<<<<< HEAD
     {{-- <table class="table-auto w-full border border-gray-300 text-xs mb-4">
         <thead>
         <tr class="bg-gray-100">
@@ -144,6 +146,8 @@
         </tbody>
     </table> --}}
 
+=======
+>>>>>>> 291f953d904fe7e865f9871b37d3fa953627a360
     @php
         $roomTotal = $booking->availabilities->sum('price') * $booking->rooms;
         $totalServicePrices = 0;
@@ -157,6 +161,7 @@
                 @foreach($booking->services as $service)
                     <th class="border p-1">{{ $service->service->name }}</th>
                 @endforeach
+                <th>Extra Person</th>
                 <th class="border p-1">Taxes (T)</th>
                 <th class="border p-1">Amount</th>
             </tr>
@@ -180,11 +185,12 @@
                     @endforeach
 
                     @php
-                        $dailySubtotal = $singleRoomPrice + $dailyServiceTotal;
-                        $tax = $dailySubtotal * 0.18;
+                        $dailySubtotal = $singleRoomPrice + $dailyServiceTotal + ($booking->extra_person/$booking->staying_days);
+                        $tax = $dailySubtotal * ($booking->amount < 7500 ? 0.12 : 0.18);
                         $total = $dailySubtotal + $tax;
                     @endphp
 
+                    <td class="border p-1">{{($booking->extra_person/$booking->staying_days)}}</td>
                     <td class="border p-1">{{ number_format($tax, 2) }}</td>
                     <td class="border p-1">{{ number_format($total, 2) }}</td>
                 </tr>
@@ -203,11 +209,12 @@
                 @endforeach
 
                 @php
-                    $grandSubtotal = $roomTotal + $totalServicePrices;
-                    $grandTax = $grandSubtotal * 0.18;
+                    $grandSubtotal = $roomTotal + $totalServicePrices + ($booking->extra_person * $booking->staying_days);
+                    $grandTax = $grandSubtotal * ($booking->amount < 7500 ? 0.12 : 0.18);
                     $grandTotal = $grandSubtotal + $grandTax;
                 @endphp
 
+                <td class="border p-1">{{ number_format($booking->extra_person, 2) }}</td>
                 <td class="border p-1">{{ number_format($grandTax, 2) }}</td>
                 <td class="border p-1">{{ number_format($grandTotal, 2) }}</td>
             </tr>
@@ -229,10 +236,11 @@
 <div class="mb-6">
     <p class="font-semibold">Final Calculation</p>
     <ul class="list-disc list-inside text-sm">
-        <li>Room Charges: ₹ {{ number_format($roomTotal, 1) }}</li>
-        <li>Service Charges: ₹ {{ number_format($totalServicePrices, 1) }}</li>
-        <li>Property Taxes (18%): ₹ {{ number_format($grandTax, 2) }}</li>
-        <li><strong>(A) Property Gross Charges: ₹ {{ number_format($payableGross, 2) }}</strong></li>
+        <li>Room Charges: ₹ {{ number_format($booking->amount, 1) }}</li>
+        <li>Service Charges: ₹ {{ number_format($booking->additional_service_charge, 1) }}</li>
+        <li>Extra Person Charges: ₹ {{ number_format(($booking->extra_person * $booking->staying_days), 1) }}</li>
+        <li>Property Taxes (18%): ₹ {{ number_format($booking->tax_and_fee, 2) }}</li>
+        <li><strong>(A) Property Gross Charges: ₹ {{ number_format($booking->total_amount, 2) }}</strong></li>
 
         {{-- <li>Go-MMT Commission: ₹ {{ number_format($commission, 1) }}</li>
         <li>GST on Commission (18%): ₹ {{ number_format($commissionGst, 1) }}</li>
@@ -246,21 +254,6 @@
     </ul>
 </div>
 
-
-    {{-- <div class="text-xs text-gray-600">
-        <p class="mb-1">Note:</p>
-        <ul class="list-disc ml-5">
-            <li>TCS and TDS amounts subject to reconciliation</li>
-            <li>As per section 194-O of Income-tax Act, 1961 and CBDT Circular 20/2023, MMT deducts TDS</li>
-            <li>PAN card is not a valid ID. Carry Aadhar/Driving License/Voter ID</li>
-        </ul>
-    </div>
-
-    <div class="mt-6 text-xs">
-        <p class="font-semibold">MakeMyTrip India Pvt. Ltd.</p>
-        <p>19th Floor, Building No. 5, DLF Cyber City, Phase III, Gurgaon - 122002, Haryana</p>
-        <p>Contact: 0124-4628747, 0124-5045105</p>
-    </div> --}}
 
     <div class="mt-6 text-center no-print">
         <button onclick="window.print()" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Print Voucher</button>

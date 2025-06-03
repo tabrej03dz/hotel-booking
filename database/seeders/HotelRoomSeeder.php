@@ -30,15 +30,12 @@ class HotelRoomSeeder extends Seeder
         $deluxe = RoomType::create([
             'name' => 'Deluxe',
             'description' => 'Spacious deluxe room',
-            'price' => 4000,
-            'discounted_price' => 3500,
         ]);
 
         $suite = RoomType::create([
             'name' => 'Suite',
             'description' => 'Luxury suite with extra amenities',
-            'price' => 7000,
-            'discounted_price' => 6500,
+
         ]);
 
         // Create Rooms
@@ -47,8 +44,7 @@ class HotelRoomSeeder extends Seeder
             'room_type_id' => $deluxe->id,
             'room_number' => '101',
             'status' => 'available',
-            'price' => 4000,
-            'discounted_price' => 3500,
+
         ]);
 
         $room2 = Room::create([
@@ -56,8 +52,7 @@ class HotelRoomSeeder extends Seeder
             'room_type_id' => $suite->id,
             'room_number' => '201',
             'status' => 'booked',
-            'price' => 7000,
-            'discounted_price' => 6500,
+
         ]);
 
         // Create Amenities
@@ -68,7 +63,6 @@ class HotelRoomSeeder extends Seeder
 
         // Attach amenities to rooms
         $deluxe->amenities()->attach([$wifi->id, $ac->id]);
-//        $room2->amenities()->attach([$wifi->id, $tv->id, $service->id]);
 
     }
 }

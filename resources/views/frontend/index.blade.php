@@ -146,7 +146,8 @@
     <section class="relative h-screen overflow-hidden">
         <!-- Video Background with improved loading -->
         <video autoplay muted loop playsinline class="absolute w-full h-full object-cover filter brightness-75">
-            <source src="{{ asset('asset/images/Full Hotel C3.m4v.mp4') }}" type="video/mp4">
+{{--            <source src="{{ asset('asset/images/Full Hotel C3.m4v.mp4') }}" type="video/mp4">--}}
+            <source src="{{ asset('asset/video/61 MB.m4v.mp4') }}" type="video/mp4">
         </video>
 
         <!-- Enhanced glass effect overlay -->
@@ -903,36 +904,64 @@
             <div class="w-full max-w-7xl mx-auto bg-white rounded-lg shadow-lg p-6">
 
                 <form action="{{ route('rooms.available') }}" method="GET"
-                    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                     @csrf
 
                     <!-- Check-in Date Picker -->
                     <div class="flex flex-col">
                         <label class="text-gray-700 font-medium">Check-in</label>
                         <input type="date" id="checkin" name="check_in_date" placeholder="Select Check-in" required
-                            class="border border-gray-300 rounded-md p-2 bg-white outline-none
-                                       focus:border-[#8B4513] focus:ring-2 focus:ring-[#8B4513]">
+                               class="border border-gray-300 rounded-md p-2 bg-white outline-none
+                   focus:border-[#8B4513] focus:ring-2 focus:ring-[#8B4513]">
                     </div>
 
                     <!-- Check-out Date Picker -->
                     <div class="flex flex-col">
                         <label class="text-gray-700 font-medium">Check-out</label>
-                        <input type="date" id="checkout" name="check_out_date" placeholder="Select Check-out"
-                            required
-                            class="border border-gray-300 rounded-md p-2 bg-white outline-none
-                                       focus:border-[#8B4513] focus:ring-2 focus:ring-[#8B4513]">
+                        <input type="date" id="checkout" name="check_out_date" placeholder="Select Check-out" required
+                               class="border border-gray-300 rounded-md p-2 bg-white outline-none
+                   focus:border-[#8B4513] focus:ring-2 focus:ring-[#8B4513]">
                     </div>
 
                     <div class="flex flex-col">
                         <br>
                         <button type="submit"
-                            class="px-6 py-2 bg-gradient-to-r from-[#8B4513] to-[#D4A017] text-white rounded-md transition
-                                    hover:from-[#D4A017] hover:to-[#8B4513]">
+                                class="px-6 py-2 bg-gradient-to-r from-[#8B4513] to-[#D4A017] text-white rounded-md transition
+                    hover:from-[#D4A017] hover:to-[#8B4513]">
                             Search
                         </button>
                     </div>
-
                 </form>
+
+                <!-- ✅ Script to Set Min Dates and Enforce Logic -->
+                <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const today = new Date().toISOString().split('T')[0];
+                        const checkin = document.getElementById("checkin");
+                        const checkout = document.getElementById("checkout");
+
+                        checkin.min = today;
+                        checkout.min = today;
+
+                        checkin.addEventListener("change", function () {
+                            // Set checkout.min to one day after checkin
+                            const selectedCheckin = new Date(checkin.value);
+                            if (checkin.value) {
+                                const nextDay = new Date(selectedCheckin);
+                                nextDay.setDate(nextDay.getDate() + 1);
+                                const nextDayFormatted = nextDay.toISOString().split('T')[0];
+                                checkout.min = nextDayFormatted;
+
+                                // Reset checkout if it's before the new min
+                                if (checkout.value < nextDayFormatted) {
+                                    checkout.value = '';
+                                }
+                            }
+                        });
+                    });
+                </script>
+
+
 
             </div>
         </div>

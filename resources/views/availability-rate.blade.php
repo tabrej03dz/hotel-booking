@@ -156,34 +156,24 @@
                                             ->where('date', $date)
                                             ->first();
                                     @endphp
-                                    <td class="p-2 border text-center">
-                                        @if ($record)
-                                            <form action="{{ route('availability-rate.update', $record->id) }}"
-                                                method="post">
+                                        <td class="p-2 border text-center">
+                                            <form class="availability-form" data-action="{{ $record ? 'update' : 'store' }}"
+                                                  data-id="{{ $record->id ?? '' }}"
+                                                  data-date="{{ $date }}"
+                                                  data-room-type="{{ $roomType->id }}">
                                                 @csrf
                                                 <input type="number" name="rooms" placeholder="Rooms"
-                                                    value="{{ $record->rooms }}"
-                                                    class="w-20 border border-gray-300 rounded text-center mb-1"
-                                                    required />
+                                                       value="{{ $record->rooms ?? '' }}"
+                                                       class="w-20 border border-gray-300 rounded text-center mb-1 room-input"
+                                                       required />
                                                 <input type="number" name="price" placeholder="Price"
-                                                    value="{{ $record->price }}"
-                                                    class="w-20 border border-gray-300 rounded text-center" />
-                                                <button type="submit" class="hidden"></button>
+                                                       value="{{ $record->price ?? '' }}"
+                                                       class="w-20 border border-gray-300 rounded text-center price-input"
+                                                       required />
                                             </form>
-                                        @else
-                                            <form action="{{ route('availability-rate.store') }}" method="post">
-                                                @csrf
-                                                <input type="hidden" name="date" value="{{ $date }}">
-                                                <input type="hidden" name="room_type_id" value="{{ $roomType->id }}">
-                                                <input type="number" name="rooms" placeholder="Rooms"
-                                                    class="w-20 border border-gray-300 rounded px-2 py-1 mb-1" required>
-                                                <input type="number" name="price" placeholder="Price"
-                                                    class="w-20 border border-gray-300 rounded px-2 py-1" required>
-                                                <button type="submit" class="hidden"></button>
-                                            </form>
-                                        @endif
-                                    </td>
-                                @endforeach
+                                        </td>
+
+                                    @endforeach
                             </tr>
                                 @endforeach
                             </tbody>
@@ -193,8 +183,56 @@
             </div>
         </div>
     </div>
-    </div>
 
-    </div>
-    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+            document.querySelectorAll('.availability-form').forEach(form => {
+                form.querySelectorAll('input').forEach(input => {
+                    input.addEventListener('change', () => {
+                        const action = form.dataset.action;
+                        const roomTypeId = form.dataset.roomType;
+                        const date = form.dataset.date;
+                        const id = form.dataset.id;
+
+                        const rooms = form.querySelector('.room-input').value;
+                        const price = form.querySelector('.price-input').value;
+
+                        const url = action === 'update'
+                            ? `/availability-rate/update/${id}`
+                            : `/availability-rate/store`;
+
+                        // const method = action === 'update' ? 'PUT' : 'POST';
+
+                        fetch(url, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': csrfToken
+                            },
+                            body: JSON.stringify({
+                                room_type_id: roomTypeId,
+                                date: date,
+                                rooms: rooms,
+                                price: price
+                            })
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                console.log('Saved:', data);
+                                if (action === 'store') {
+                                    form.dataset.action = 'update';
+                                    form.dataset.id = data.id; // returned by store method
+                                }
+                            })
+                            .catch(error => console.error('Error:', error));
+                    });
+                });
+            });
+        });
+    </script>
+
+
+
 </x-app-layout>
