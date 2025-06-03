@@ -57,7 +57,7 @@
                            <a href="https://www.google.com/maps?ll=26.783073,82.165321&z=16&t=m&hl=en&gl=IN&mapclient=embed&cid=18420098021593240393"><p class="text-gray-600">
                                Hotel Krinossco,Rampath, Amaniganj, Ayodhya (U.P.), 224001.
 
-                            </p></a> 
+                            </p></a>
                         </div>
                     </div>
 
@@ -92,7 +92,7 @@
                         <label for="name" class="block text-sm font-medium text-gray-700">Your Name</label>
                         <input type="text" name="name" id="name" required value="{{old('name')}}"
                             class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-[#D4A017] focus:border-[#D4A017]">
-                    
+
                             @error('name')
                                 <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
                             @enderror
@@ -116,7 +116,7 @@
                     </div>
                     <div>
                         <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
-                        <textarea name="message" id="message" rows="4" required 
+                        <textarea name="message" id="message" rows="4" required
                             class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-[#D4A017] focus:border-[#D4A017]">{{old('name')}}</textarea>
                             @error('message')
                                 <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
@@ -140,7 +140,7 @@
                         width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
                     </iframe>
                 </div>
-            </div></a> 
+            </div></a>
         </div>
     </section>
 @endsection
