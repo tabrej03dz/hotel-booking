@@ -87,6 +87,67 @@
         <p>Property Gross Charges: ₹ {{number_format($booking->total_amount)}}</p>
     </div>
 
+<<<<<<< HEAD
+    {{-- <table class="table-auto w-full border border-gray-300 text-xs mb-4">
+        <thead>
+        <tr class="bg-gray-100">
+            <th class="border p-1">Date</th>
+            <th class="border p-1">Room Charges (R)</th>
+            @foreach($booking->services as $service)
+                <th class="border p-1">{{$service->service->name}}</th>
+            @endforeach
+            <th class="border p-1">Taxes (T)</th>
+            <th class="border p-1">Amount</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach($booking->availabilities as $availability)
+
+            @php
+                $singleRoomPrice = $availability->price * $booking->rooms;
+                //dd($singleRoomPrice);
+
+            @endphp
+
+            <tr>
+                <td class="border p-1">{{$availability->availabilityRate->date->format('d M Y')}}</td>
+                <td class="border p-1">{{number_format($singleRoomPrice, 1) }}/{{$booking->rooms > 1 ? "($booking->rooms)" : ""}} </td>
+                @php
+                    $servicePrices = 0;
+                @endphp
+                @foreach($booking->services as $service)
+                    @php
+                        $singleServicePrice = $service->service->price * $service->quantity;
+                        $servicePrices += $singleServicePrice;
+                    @endphp
+                    <td class="border p-1">{{number_format($singleServicePrice, 1)}}</td>
+                @endforeach
+                <td class="border p-1">{{number_format(($singleRoomPrice + $servicePrices) * 18 /100)}}</td>
+                <td class="border p-1">{{($singleRoomPrice + $servicePrices) + ($singleRoomPrice + $servicePrices) * 18 /100}}</td>
+            </tr>
+        @endforeach
+
+        <tr class="font-semibold bg-gray-100">
+            <td class="border p-1">GRAND TOTAL</td>
+            <td class="border p-1">{{number_format($booking->availabilities()->sum('price') * $booking->rooms, 1)}}</td>
+            @php
+                $totalServicePrices = 0;
+            @endphp
+            @foreach ($booking->services as $service)
+                @php
+
+                    $totalServicePrices += $booking->staying_days * ($service->service->price * $service->quantity);
+                @endphp
+                <td class="border p-1">{{number_format($booking->staying_days * $service->service->price * $service->quantity, 1)}}</td>
+            @endforeach
+            <td class="border p-1">{{number_format((($booking->availabilities()->sum('price') * $booking->rooms) + $totalServicePrices) * 18 / 100 , 2)}}</td>
+            <td class="border p-1">{{number_format((($booking->availabilities()->sum('price') * $booking->rooms) + $totalServicePrices) + (($booking->availabilities()->sum('price') * $booking->rooms) + $totalServicePrices) * 18 / 100 , 2)}}</td>
+        </tr>
+        </tbody>
+    </table> --}}
+
+=======
+>>>>>>> 291f953d904fe7e865f9871b37d3fa953627a360
     @php
         $roomTotal = $booking->availabilities->sum('price') * $booking->rooms;
         $totalServicePrices = 0;
@@ -136,7 +197,7 @@
             @endforeach
 
             <tr class="font-semibold bg-gray-100">
-                <td class="border p-1">GRAND TOTAL</td>
+                <td class="border p-1"> TOTAL</td>
                 <td class="border p-1">{{ number_format($roomTotal, 1) }}</td>
 
                 @foreach ($booking->services as $service)
