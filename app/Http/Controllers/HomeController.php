@@ -222,11 +222,14 @@ class HomeController extends Controller
             'quantities'     => 'array',
             'rooms'          => 'required|integer|min:1',
             'extra_person'   => 'nullable|integer',
-            
+
             'gst_required'   => 'nullable|in:on', // optional checkbox
             'gst_number'     => 'nullable|required_if:gst_required,on|string|max:15',
             'company_name'   => 'nullable|required_if:gst_required,on|string|max:255',
+            'child_ages'     => 'nullable|array',
+            'child_ages.*'   => 'required_if:children,1,2,3|integer|min:0|max:17',
         ]);
+
 
 
 
@@ -317,6 +320,7 @@ class HomeController extends Controller
             'extra_person' => $extraPersonAmount,
             'gst_number' => $request->gst_number,
             'company_name' => $request->company_name,
+            'child_ages' => $request->child_ages,
         ]);
 
         // Step 7: Save selected services

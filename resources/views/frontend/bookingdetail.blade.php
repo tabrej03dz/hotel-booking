@@ -149,7 +149,18 @@
                           </div>
 
                         <!-- Guest Details -->
-                        <div x-data="{ showGST: {{ old('gst_required') || $errors->has('gst_number') || $errors->has('company_name') ? 'true' : 'false' }} }" class="bg-white rounded-xl shadow-md p-6 border border-gray-100">
+                        <div x-data="{
+                                    showGST: {{ old('gst_required') || $errors->has('gst_number') || $errors->has('company_name') ? 'true' : 'false' }},
+                                    children: '{{ old('children', 0) }}',
+                                    childAges: [
+                                        @if(old('children'))
+                                            @for ($i = 0; $i < old('children'); $i++)
+                                                '{{ old("child_ages.$i") }}'{{ $i < old('children') - 1 ? ',' : '' }}
+                                            @endfor
+                                        @endif
+                                    ]                                }"
+                             class="bg-white rounded-xl shadow-md p-6 border border-gray-100">
+
                             <h3 class="text-xl font-serif font-bold text-gray-900 mb-6">Guest Information</h3>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <!-- Name -->
@@ -209,19 +220,41 @@
                                     @enderror
                                 </div>
 
-                                <!-- Children -->
-                                <div class="flex flex-col">
-                                    <label class="text-gray-700 font-medium">Children</label>
-                                    <select id="children" name="children" required
+                                <select id="children" name="children" required x-model="children"
+                                        @change="childAges = Array.from({ length: parseInt(children) }, (_, i) => '')"
                                         class="border border-gray-300 rounded-md p-2 bg-white outline-none focus:border-[#8B4513] focus:ring-2 focus:ring-[#8B4513]">
-                                        <option value="0" {{ old('children') == '0' ? 'selected' : '' }}>No Children</option>
-                                        <option value="1" {{ old('children') == '1' ? 'selected' : '' }}>1 Child</option>
-                                        <option value="2" {{ old('children') == '2' ? 'selected' : '' }}>2 Children</option>
-                                    </select>
-                                    @error('children')
-                                        <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
-                                    @enderror
+                                    <option value="0">No Children</option>
+                                    <option value="1">1 Child</option>
+                                    <option value="2">2 Children</option>
+                                </select>
+
+                                <div class="mt-4" x-show="children > 0">
+                                    <template x-for="(age, index) in childAges" :key="index">
+                                        <div class="mb-2">
+                                            <label class="block text-sm font-medium text-gray-700 mb-1">
+                                                Child Age <span x-text="index + 1"></span>
+                                            </label>
+                                            <input type="number"
+                                                   :name="'child_ages[' + index + ']'"
+                                                   min="0" max="17"
+                                                   class="w-full border border-gray-300 p-2 rounded font-medium text-gray-900"
+                                                   x-model="childAges[index]"
+                                                   placeholder="Enter age">
+
+                                            {{-- Blade error handling (only works for existing indexes) --}}
+                                            @for ($i = 0; $i < 5; $i++)  {{-- Adjust max index if needed --}}
+                                            @error("child_ages.$i")
+                                            <template x-if="index === {{ $i }}">
+                                                <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+                                            </template>
+                                            @enderror
+                                            @endfor
+                                        </div>
+                                    </template>
                                 </div>
+
+
+
 
                                 <!-- Rooms -->
                                 <div>
@@ -263,7 +296,12 @@
                                             <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
                                         @enderror
                                     </div>
+
+
+
                             </div>
+
+
                         </div>
                     </div>
 
@@ -327,7 +365,7 @@
                                     href="#" class="text-amber-600 hover:underline">Privacy Policy</a>.</p>
                         </div>
                     </div> --}}
-                
+
 
                     <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100 h-fit sticky top-6">
                         <h3 class="text-xl font-serif font-bold text-gray-900 mb-6">Payment Summary</h3>

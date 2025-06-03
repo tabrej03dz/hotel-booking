@@ -127,7 +127,7 @@
                                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 rounded-lg">
                                         <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                                         <div class="absolute bottom-4 left-4">
-                                            <span class="bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">MOST POPULAR</span>
+{{--                                            <span class="bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">MOST POPULAR</span>--}}
                                         </div>
                                     </div>
 
@@ -150,7 +150,7 @@
                                         <div class="mt-4 bg-amber-50 border border-amber-200 rounded-lg p-4 shadow">
                                             <p class="text-amber-700 font-bold text-lg">
                                                 ₹{{ number_format($totalPrice) }} for {{ $availabilities->count() }} night{{ $availabilities->count() > 1 ? 's' : '' }}:
-                                                
+
                                             </p>
                                         </div>
 
