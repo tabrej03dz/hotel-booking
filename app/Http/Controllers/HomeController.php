@@ -232,7 +232,6 @@ class HomeController extends Controller
 
 
 
-
         // Handle guest login or register
         if (!auth()->check()) {
             $tempPassword = Str::random(8);
@@ -284,6 +283,15 @@ class HomeController extends Controller
         }
         $serviceCharge = $serviceCharge * $request->days;
 
+        $extraChildCharge = 0;
+        if ($request->child_ages){
+            foreach ($request->child_ages as $age){
+                if ($age > 6){
+                    $extraChildCharge += 500 * $request->days;
+                }
+            }
+        }
+
         // 👉 Extra person calculation
         $extraAdults = max(0, $request->adults - 2);
         $extraPersonAmount = $extraAdults * 1500 * $request->days;
@@ -294,7 +302,7 @@ class HomeController extends Controller
             $gst = 12/100;
         }
         // 👉 Final calculation
-        $subTotal = $roomTotal + $serviceCharge + $extraPersonAmount;
+        $subTotal = $roomTotal + $serviceCharge + $extraPersonAmount + $extraChildCharge;
         $tax = round($subTotal * $gst, 2);
         $totalAmount = round($subTotal + $tax, 2);
 
@@ -321,6 +329,7 @@ class HomeController extends Controller
             'gst_number' => $request->gst_number,
             'company_name' => $request->company_name,
             'child_ages' => $request->child_ages,
+            'extra_child_charge' => $extraChildCharge,
         ]);
 
         // Step 7: Save selected services

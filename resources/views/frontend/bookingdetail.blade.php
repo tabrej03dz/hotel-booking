@@ -158,8 +158,7 @@
                                                 '{{ old("child_ages.$i") }}'{{ $i < old('children') - 1 ? ',' : '' }}
                                             @endfor
                                         @endif
-                                    ]                                }"
-                             class="bg-white rounded-xl shadow-md p-6 border border-gray-100">
+                                    ]}" class="bg-white rounded-xl shadow-md p-6 border border-gray-100">
 
                             <h3 class="text-xl font-serif font-bold text-gray-900 mb-6">Guest Information</h3>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -237,7 +236,7 @@
                                             <input type="number"
                                                    :name="'child_ages[' + index + ']'"
                                                    min="0" max="17"
-                                                   class="w-full border border-gray-300 p-2 rounded font-medium text-gray-900"
+                                                   class="child-age-input w-full border border-gray-300 p-2 rounded font-medium text-gray-900"
                                                    x-model="childAges[index]"
                                                    placeholder="Enter age">
 
@@ -252,10 +251,6 @@
                                         </div>
                                     </template>
                                 </div>
-
-
-
-
                                 <!-- Rooms -->
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Rooms</label>
@@ -266,28 +261,25 @@
                                         <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
                                     @enderror
                                 </div>
-
-                                    <!-- GST Bill Checkbox -->
-                                    <div class="mt-4">
-                                        <label class="inline-flex items-center">
-                                            <input type="checkbox" name="gst_required" value="on" x-model="showGST" class="form-checkbox">
-                                            <span class="ml-2 text-sm text-gray-700 font-medium">Request GST Bill</span>
-                                        </label>
-                                    </div>
-
-                                    <!-- GST Number -->
-                                    <div x-show="showGST" x-cloak class="mt-4">
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">GST Number</label>
-                                        <input type="text" name="gst_number" value="{{ old('gst_number') }}"
-                                            class="w-full border border-gray-300 p-2 rounded font-medium text-gray-900"
-                                            placeholder="22ABCDE1234F1Z5">
-                                        @error('gst_number')
-                                            <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
-                                        @enderror
-                                    </div>
-
-                                    <!-- Company Name -->
-                                    <div x-show="showGST" x-cloak class="mt-4">
+                                <!-- GST Bill Checkbox -->
+                                <div class="mt-4">
+                                    <label class="inline-flex items-center">
+                                        <input type="checkbox" name="gst_required" value="on" x-model="showGST" class="form-checkbox">
+                                        <span class="ml-2 text-sm text-gray-700 font-medium">Request GST Bill</span>
+                                    </label>
+                                </div>
+                                <!-- GST Number -->
+                                <div x-show="showGST" x-cloak class="mt-4">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">GST Number</label>
+                                    <input type="text" name="gst_number" value="{{ old('gst_number') }}"
+                                        class="w-full border border-gray-300 p-2 rounded font-medium text-gray-900"
+                                        placeholder="22ABCDE1234F1Z5">
+                                    @error('gst_number')
+                                        <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <!-- Company Name -->
+                                <div x-show="showGST" x-cloak class="mt-4">
                                         <label class="block text-sm font-medium text-gray-700 mb-1">Company Name</label>
                                         <input type="text" name="company_name" value="{{ old('company_name') }}"
                                             class="w-full border border-gray-300 p-2 rounded font-medium text-gray-900"
@@ -296,77 +288,11 @@
                                             <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
                                         @enderror
                                     </div>
-
-
-
                             </div>
-
-
                         </div>
                     </div>
 
-                    <!-- Right Column - Payment Summary -->
-                    {{-- <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100 h-fit sticky top-6">
-                        <h3 class="text-xl font-serif font-bold text-gray-900 mb-6">Payment Summary</h3>
-                        @php
-                            $price = 0;
-
-                        @endphp
-                        <div class="space-y-4">
-                            @foreach($roomType->selectedDateAvailabilities($checkInDate, $checkOutDate) as $availability)
-                                <div class="flex justify-between">
-                                    <span class="text-gray-600">{{$availability->date}}</span>
-                                    <span class="font-medium" id="room-price">₹{{ number_format($availability->price, 2) }}/room</span>
-                                </div>
-                                @php
-                                    $price += $availability->price;
-                                @endphp
-                            @endforeach
-                            @php
-                                $tax = $price * 18 /100;
-                            @endphp
-
-
-                            <!-- 👇 Service Charges -->
-                            <div class="flex justify-between">
-                                <span class="text-gray-600">Additional Services</span>
-                                <span class="font-medium" id="service-price">₹0.00</span>
-                            </div>
-
-                            <div class="flex justify-between">
-                                <span class="text-gray-600">Extra Person</span>
-                                <span class="font-medium" id="extra-person">₹0.00</span>
-                            </div>
-
-                            <div class="flex justify-between">
-                                <span class="text-gray-600">Taxes & Fees</span>
-                                <span class="font-medium" id="tax-amount">₹{{ number_format($tax, 2) }}</span>
-                            </div>
-
-                            <div class="flex justify-between border-t border-gray-200 pt-4">
-                                <span class="text-gray-600">Subtotal</span>
-                                <span class="font-medium" id="subtotal">₹{{ number_format($price + $tax, 2) }}</span>
-                            </div>
-
-                            <div class="flex justify-between border-t border-gray-200 pt-4">
-                                <span class="text-lg font-bold">Total</span>
-                                <span class="text-lg font-bold" id="total-price">₹{{ number_format($price + $tax, 2) }}</span>
-                            </div>
-                        </div>
-
-                        <button type="submit"
-                            class="mt-8 w-full bg-gradient-to-r from-amber-600 to-amber-700 text-white font-bold py-3 px-6 rounded-lg hover:from-amber-700 hover:to-amber-800 transition-all duration-300 shadow-md">
-                            Confirm Booking
-                        </button>
-
-                        <div class="mt-6 text-center">
-                            <p class="text-xs text-gray-500">By completing this booking, you agree to our <a
-                                    href="#" class="text-amber-600 hover:underline">Terms of Service</a> and <a
-                                    href="#" class="text-amber-600 hover:underline">Privacy Policy</a>.</p>
-                        </div>
-                    </div> --}}
-
-
+                    {{--payment summary--}}
                     <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100 h-fit sticky top-6">
                         <h3 class="text-xl font-serif font-bold text-gray-900 mb-6">Payment Summary</h3>
                         @php
@@ -403,6 +329,11 @@
                             </div>
 
                             <div class="flex justify-between">
+                                <span class="text-gray-600">Child</span>
+                                <span class="font-medium" id="extra-child">₹0.00</span>
+                            </div>
+
+                            <div class="flex justify-between">
                                 <span class="text-gray-600">Taxes & Fees</span>
                                 <span class="font-medium" id="tax-amount">₹{{ number_format($tax, 2) }}</span>
                             </div>
@@ -432,9 +363,6 @@
                             </p>
                         </div>
                     </div>
-
-
-
 
                 </div>
             </form>
@@ -538,95 +466,6 @@
     </script>
 
 
-    {{-- <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const baseRoomPrice = {{ $price }};
-            const taxRate = 0.18;
-
-            const serviceCheckboxes = document.querySelectorAll(".service-checkbox");
-            const qtyInputs = document.querySelectorAll(".service-qty");
-
-            const servicePriceElem = document.getElementById("service-price");
-            const taxElem = document.getElementById("tax-amount");
-            const subtotalElem = document.getElementById("subtotal");
-            const totalElem = document.getElementById("total-price");
-            const extraPersonElem = document.getElementById("extra-person");
-
-            const roomsInput = document.querySelector('input[name="rooms"]');
-            const daysInput = document.getElementById("stayin-days");
-            const adultsInput = document.getElementById("adults");
-
-            const formatINR = (val) => '₹' + val.toFixed(2);
-
-            function updatePaymentSummary() {
-                let totalServiceCost = 0;
-                let totalRoomPrice = baseRoomPrice;
-
-                const stayingDays = parseInt(daysInput?.value || 1);
-                const totalRooms = parseInt(roomsInput?.value || 1);
-                if (totalRooms > 1) {
-                    totalRoomPrice = baseRoomPrice * totalRooms;
-                }
-
-                // --- Services Calculation ---
-                serviceCheckboxes.forEach(cb => {
-                    const id = cb.dataset.id;
-                    const price = parseFloat(cb.dataset.price || 0);
-                    const qtyInput = document.querySelector(`.service-qty[data-id="${id}"]`);
-
-                    if (cb.checked && qtyInput) {
-                        const quantity = parseInt(qtyInput.value || 1);
-                        totalServiceCost += price * quantity * stayingDays;
-                        qtyInput.disabled = false;
-                    } else if (qtyInput) {
-                        qtyInput.disabled = true;
-                    }
-                });
-                // --- Extra Person Charge (₹1500 per extra adult per day) ---
-                const adults = parseInt(adultsInput?.value || 1);
-                const extraAdults = adults > 2 ? (adults - 2) : 0;
-                const extraPersonCharge = extraAdults * 1500 * stayingDays;
-                extraPersonElem.textContent = formatINR(extraPersonCharge);
-
-                // --- Final Totals ---
-                const updatedSubtotal = totalRoomPrice + totalServiceCost + extraPersonCharge;
-                const tax = updatedSubtotal * taxRate;
-                const grandTotal = updatedSubtotal + tax;
-
-                servicePriceElem.textContent = formatINR(totalServiceCost);
-                taxElem.textContent = formatINR(tax);
-                subtotalElem.textContent = formatINR(updatedSubtotal);
-                totalElem.textContent = formatINR(grandTotal);
-            }
-
-            // Event Listeners
-            serviceCheckboxes.forEach(cb => cb.addEventListener("change", updatePaymentSummary));
-            qtyInputs.forEach(input => input.addEventListener("input", updatePaymentSummary));
-            roomsInput?.addEventListener("input", updatePaymentSummary);
-            adultsInput?.addEventListener("change", updatePaymentSummary);
-
-            document.querySelectorAll(".increase-qty").forEach(btn => {
-                btn.addEventListener("click", function () {
-                    const id = this.dataset.id;
-                    const input = document.querySelector(`.service-qty[data-id="${id}"]`);
-                    input.value = parseInt(input.value) + 1;
-                    updatePaymentSummary();
-                });
-            });
-
-            document.querySelectorAll(".decrease-qty").forEach(btn => {
-                btn.addEventListener("click", function () {
-                    const id = this.dataset.id;
-                    const input = document.querySelector(`.service-qty[data-id="${id}"]`);
-                    input.value = Math.max(1, parseInt(input.value) - 1);
-                    updatePaymentSummary();
-                });
-            });
-
-            updatePaymentSummary(); // Initialize
-        });
-    </script> --}}
-
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const baseRoomPrice = {{ $totalRoomPrice }};
@@ -675,8 +514,21 @@
             const extraPersonCharge = extraAdults * 1500 * stayingDays;
             extraPersonElem.textContent = formatINR(extraPersonCharge);
 
+            // Extra Child Charges
+            let extraChildCharge = 0;
+            document.querySelectorAll('.child-age-input').forEach(input => {
+                const age = parseInt(input.value);
+                if (!isNaN(age) && age > 6) {
+                    extraChildCharge += 500 * stayingDays;
+                }
+            });
+            document.getElementById("extra-child").textContent = formatINR(extraChildCharge);
+
+
             // Tax logic
-            const updatedSubtotal = totalRoomPrice + totalServiceCost + extraPersonCharge;
+            // const updatedSubtotal = totalRoomPrice + totalServiceCost + extraPersonCharge;
+            const updatedSubtotal = totalRoomPrice + totalServiceCost + extraPersonCharge + extraChildCharge;
+
             const appliedTaxRate = totalRoomPrice < 7500 ? 0.12 : 0.18;
             const tax = updatedSubtotal * appliedTaxRate;
             const grandTotal = updatedSubtotal + tax;
@@ -696,6 +548,11 @@
         qtyInputs.forEach(input => input.addEventListener("input", updatePaymentSummary));
         roomsInput?.addEventListener("input", updatePaymentSummary);
         adultsInput?.addEventListener("change", updatePaymentSummary);
+        document.addEventListener("input", function (e) {
+            if (e.target.classList.contains("child-age-input")) {
+                updatePaymentSummary();
+            }
+        });
 
         document.querySelectorAll(".increase-qty").forEach(btn => {
             btn.addEventListener("click", function () {

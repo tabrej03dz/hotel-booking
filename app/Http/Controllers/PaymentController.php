@@ -86,7 +86,8 @@ class PaymentController extends Controller
             Mail::to($payment->booking->email)->send(new BookingMail($payment->booking, 'user'));
 
             // Send mail to admin
-            Mail::to('info@krinoscco.com', 'accounts@krinoscco.com')->send(new BookingMail($payment->booking, 'admin'));
+            Mail::to('info@krinoscco.com')->send(new BookingMail($payment->booking, 'admin'));
+            Mail::to('accounts@krinoscco.com')->send(new BookingMail($payment->booking, 'admin'));
 
         }
 

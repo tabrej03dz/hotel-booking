@@ -162,7 +162,7 @@
         $extraPersonCharges = $booking->extra_person;
 
         // Subtotal before tax
-        $grandSubtotal = $roomTotal + $totalServicePrices + $extraPersonCharges;
+        $grandSubtotal = $booking->extra_child_charge + $roomTotal + $totalServicePrices + $extraPersonCharges;
 
         // Tax rate based on total amount
         $taxRate = ($booking->amount < 7500 ? 0.12 : 0.18);
@@ -198,7 +198,8 @@
                 }
 
                 $extraPerDay = $booking->extra_person / $booking->staying_days;
-                $dailySubtotal = $singleRoomPrice + $dailyServiceTotal + $extraPerDay;
+                $extraChildCharge = $booking->extra_child_charge/$booking->staying_days;
+                $dailySubtotal = $extraChildCharge + $singleRoomPrice + $dailyServiceTotal + $extraPerDay;
                 $taxRate = $booking->amount < 7500 ? 0.12 : 0.18;
                 $dailyTax = $dailySubtotal * $taxRate;
                 $dailyTotal = $dailySubtotal + $dailyTax;
@@ -213,6 +214,9 @@
                 @endforeach
 
                 <td>{{ number_format($extraPerDay, 2) }}</td>
+                @if($booking->children)
+                <td>{{ number_format($extraChildCharge, 2) }}</td>
+                @endif
                 <td>{{ number_format($dailyTax, 2) }}</td>
                 <td>{{ number_format($dailyTotal, 2) }}</td>
             </tr>
@@ -225,6 +229,9 @@
                 <td>{{ number_format($booking->staying_days * ($service->service->price * $service->quantity), 1) }}</td>
             @endforeach
             <td>{{ number_format($booking->extra_person, 2) }}</td>
+            @if($booking->children)
+            <td>{{ number_format($booking->extra_child_charge, 2) }}</td>
+            @endif
             <td>{{ number_format($grandTax, 2) }}</td>
             <td>{{ number_format($grandTotal, 2) }}</td>
         </tr>
@@ -237,6 +244,7 @@
             <li>Room Charges: ₹ {{ number_format($booking->amount, 1) }}</li>
             <li>Service Charges: ₹ {{ number_format($booking->additional_service_charge, 1) }}</li>
             <li>Extra Person Charges: ₹ {{ number_format(($booking->extra_person * $booking->staying_days), 1) }}</li>
+            <li>Extra Child Charges: ₹ {{ number_format($booking->extra_child_charge, 1) }}</li>
             <li>Property Taxes (18%): ₹ {{ number_format($booking->tax_and_fee, 2) }}</li>
             <li><strong>(A) Property Gross Charges: ₹ {{ number_format($booking->total_amount, 2) }}</strong></li>
         </ul>

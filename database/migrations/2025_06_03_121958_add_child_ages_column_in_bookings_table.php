@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::table('bookings', function (Blueprint $table) {
             $table->json('child_ages')->nullable();
+            $table->decimal('extra_child_charge', 10, 2)->nullable();
         });
     }
 
