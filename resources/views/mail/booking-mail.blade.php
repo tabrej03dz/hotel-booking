@@ -95,8 +95,8 @@
 
     <div class="mb-6">
         <p><strong>Hotel Krinoscco, Ayodhya</strong></p>
-        <p>HOTEL KRINOSCCO, Amaniganj, Faizabad - Ayodhya Road, Ayodhya,</p>
-        <p>Uttar Pradesh-224001, Ayodhya, IN</p>
+        <p>HOTEL KRINOSCCO,ayodhya 224001 ,</p>
+        {{-- <p>Uttar Pradesh-224001, Ayodhya, IN</p> --}}
     </div>
 
     <div class="grid-2 mb-4">

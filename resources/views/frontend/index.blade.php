@@ -715,12 +715,12 @@
         <div class="container mx-auto px-4 relative z-10">
             <!-- Section Heading -->
             <h2 class="text-5xl font-extrabold text-[#1a1a2e] mb-16 text-center tracking-tight">
-                Crescent Facilities
+                Dinegne
                 <div class="w-24 h-1 bg-gradient-to-r from-[#8B4513] to-[#D4A017] mx-auto mt-4 rounded-full"></div>
             </h2>
 
             <!-- Facility Cards Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 md:gap-12 px-8">
                 <!-- Crescent Restaurant -->
                 <div
                     class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-transform duration-700 ease-in-out hover:scale-105">
@@ -728,7 +728,7 @@
                         class="w-full h-[300px] object-cover hover:scale-110 transition-transform duration-1000">
                     <div
                         class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex items-end p-4">
-                        <h3 class="text-white text-lg md:text-xl font-semibold uppercase tracking-wide">Crescent Restaurant
+                        <h3 class="text-white text-lg md:text-xl font-semibold uppercase tracking-wide">Dinegne Restaurant
                         </h3>
                     </div>
                 </div>
@@ -744,7 +744,7 @@
                     </div>
                 </div>
 
-                <!-- Gym -->
+                {{-- <!-- Gym -->
                 <div
                     class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-transform duration-700 ease-in-out hover:scale-105">
                     <img src="{{ asset('asset/gym/gym (1).jpg') }}" alt="Gym"
@@ -765,7 +765,7 @@
                         <h3 class="text-white text-lg md:text-xl font-semibold uppercase tracking-wide">Conference Room
                             Elite 1 & 2</h3>
                     </div>
-                </div>
+                </div> --}}
             </div>
 
             <!-- Optional CTA Section -->

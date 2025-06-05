@@ -22,7 +22,7 @@
     </div>
 
     <!-- Career Page Section -->
- 
+
 
     <!-- Why Join Us Section -->
     <section class="py-20 bg-white">
@@ -65,72 +65,96 @@
 
 
 
-<!-- Career Openings Section -->
-<!-- Career Openings Section -->
-<section class="py-20 bg-gray-50">
-    <div class="container mx-auto px-4">
-        <h2 class="text-4xl font-bold text-center text-[#1a1a2e] mb-12">
-            Current Openings
-            <div class="w-24 h-1 bg-gradient-to-r from-[#8B4513] to-[#D4A017] mx-auto mt-4 rounded-full"></div>
-        </h2>
+    <!-- Career Openings Section -->
+    <!-- Career Openings Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center text-[#1a1a2e] mb-12">
+                Current Openings
+                <div class="w-24 h-1 bg-gradient-to-r from-[#8B4513] to-[#D4A017] mx-auto mt-4 rounded-full"></div>
+            </h2>
 
-        @if($careers->count())
-            <div class="space-y-10">
-                @foreach($careers as $job)
-                    <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
-                        <div class="md:flex">
-                            <!-- Image Section -->
-                            <div class="md:w-1/3 w-full h-64 md:h-auto">
-                                @if($job->image)
-                                    <img src="{{ asset('storage/' . $job->image) }}" alt="{{ $job->title }}"
-                                         class="object-cover w-full h-full">
-                                @else
-                                    <div class="w-full h-full bg-gradient-to-r from-[#8B4513] to-[#D4A017] flex items-center justify-center text-white text-2xl font-semibold">
-                                        No Image
+            @if ($careers->count())
+                <div class="space-y-10">
+                    @foreach ($careers as $job)
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
+                            <div class="md:flex">
+                                <!-- Image Section -->
+                                <div class="md:w-1/3 w-full h-64 md:h-auto">
+                                    @if ($job->image)
+                                        <img src="{{ asset('storage/' . $job->image) }}" alt="{{ $job->title }}"
+                                            class="object-cover w-full h-full">
+                                    @else
+                                        <div
+                                            class="w-full h-full bg-gradient-to-r from-[#8B4513] to-[#D4A017] flex items-center justify-center text-white text-2xl font-semibold">
+                                            No Image
+                                        </div>
+                                    @endif
+                                </div>
+
+                                <!-- Details Section -->
+                                <div class="md:w-2/3 w-full p-6">
+                                    <h3 class="text-2xl font-bold text-[#1a1a2e] mb-3">{{ $job->title }}</h3>
+
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-700 mb-4">
+                                        <p><strong>Company:</strong> {{ $job->company_name }}</p>
+                                        <p><strong>Location:</strong> {{ $job->location }}</p>
+                                        <p><strong>Type:</strong> {{ $job->type }}</p>
+                                        <p><strong>Experience:</strong> {{ $job->experience ?? 'Not Specified' }}</p>
+                                        <p><strong>Qualification:</strong> {{ $job->qualification ?? 'Not Specified' }}</p>
+                                        <p><strong>Salary:</strong> ₹{{ $job->salary ?? 'Negotiable' }}</p>
+                                        <p><strong>Last Date to Apply:</strong>
+                                            {{ $job->last_date_to_apply ? \Carbon\Carbon::parse($job->last_date_to_apply)->format('d M Y') : 'Open Until Filled' }}
+                                        </p>
+                                        <p><strong>Status:</strong>
+                                            <span
+                                                class="inline-block px-2 py-1 text-xs rounded-full {{ $job->is_active ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700' }}">
+                                                {{ $job->is_active ? 'Active' : 'Inactive' }}
+                                            </span>
+                                        </p>
                                     </div>
-                                @endif
-                            </div>
 
-                            <!-- Details Section -->
-                            <div class="md:w-2/3 w-full p-6">
-                                <h3 class="text-2xl font-bold text-[#1a1a2e] mb-3">{{ $job->title }}</h3>
+                                    <div class="text-gray-800 mb-4 text-sm">
+                                        {!! nl2br(e($job->description)) !!}
+                                    </div>
 
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-700 mb-4">
-                                    <p><strong>Company:</strong> {{ $job->company_name }}</p>
-                                    <p><strong>Location:</strong> {{ $job->location }}</p>
-                                    <p><strong>Type:</strong> {{ $job->type }}</p>
-                                    <p><strong>Experience:</strong> {{ $job->experience ?? 'Not Specified' }}</p>
-                                    <p><strong>Qualification:</strong> {{ $job->qualification ?? 'Not Specified' }}</p>
-                                    <p><strong>Salary:</strong> ₹{{ $job->salary ?? 'Negotiable' }}</p>
-                                    <p><strong>Last Date to Apply:</strong>
-                                        {{ $job->last_date_to_apply ? \Carbon\Carbon::parse($job->last_date_to_apply)->format('d M Y') : 'Open Until Filled' }}
-                                    </p>
-                                    <p><strong>Status:</strong>
-                                        <span class="inline-block px-2 py-1 text-xs rounded-full {{ $job->is_active ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700' }}">
-                                            {{ $job->is_active ? 'Active' : 'Inactive' }}
-                                        </span>
-                                    </p>
+
+                                    <div class="w-full flex flex-col sm:flex-row sm:flex-wrap sm:justify-start gap-4 mt-4">
+                                        <!-- Call Button -->
+                                        <a href="tel:+917275112525"
+                                            class="flex items-center justify-center gap-2 px-6 py-2 bg-[#8B4513] hover:bg-[#A0522D] text-white font-semibold rounded-md transition w-full sm:w-auto">
+                                            <span class="material-icons">call</span>
+                                            Call Now
+                                        </a>
+
+                                        <!-- WhatsApp Button -->
+                                        <a href="https://wa.me/917275112525" target="_blank"
+                                            class="flex items-center justify-center gap-2 px-6 py-2 bg-[#8B4513] hover:bg-[#A0522D] text-white font-semibold rounded-md transition w-full sm:w-auto">
+                                            <span class="material-icons">chat</span>
+                                            WhatsApp
+                                        </a>
+
+                                        <!-- Email Button -->
+                                        <a href="mailto:hr@krinoscco.com"
+                                            class="flex items-center justify-center gap-2 px-6 py-2 bg-[#8B4513] hover:bg-[#A0522D] text-white font-semibold rounded-md transition w-full sm:w-auto">
+                                            <span class="material-icons">email</span>
+                                            Email
+                                        </a>
+                                    </div>
+
+
+
                                 </div>
-
-                                <div class="text-gray-800 mb-4 text-sm">
-                                    {!! nl2br(e($job->description)) !!}
-                                </div>
-
-                                <a href="tel:+919876543210"
-                                   class="inline-block mt-2 px-6 py-2 bg-[#8B4513] hover:bg-[#A0522D] text-white font-semibold rounded-md transition">
-                                    Call Now
-                                </a>
-                               
                             </div>
                         </div>
-                    </div>
-                @endforeach
-            </div>
-        @else
-            <p class="text-center text-gray-500 text-lg">No job openings available at the moment. Please check back later.</p>
-        @endif
-    </div>
-</section>
+                    @endforeach
+                </div>
+            @else
+                <p class="text-center text-gray-500 text-lg">No job openings available at the moment. Please check back
+                    later.</p>
+            @endif
+        </div>
+    </section>
 
 
     <!-- Application Process Section -->
@@ -155,8 +179,7 @@
                     <div>
                         <h3 class="text-lg font-medium text-gray-800">Submit Your Application</h3>
                         <p class="text-gray-700">Use our application form or email us at <a
-                                href="mailto:careers@krinoscco.com"
-                                class="text-[#8B4513] hover:underline">hr@krinoscco.com
+                                href="mailto:careers@krinoscco.com" class="text-[#8B4513] hover:underline">hr@krinoscco.com
                             </a> to apply.</p>
                     </div>
                 </div>

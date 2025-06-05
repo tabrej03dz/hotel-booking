@@ -207,6 +207,9 @@
                                         class="block px-4 py-2 text-sm text-gray-300 hover:bg-purple-600/20 hover:text-white">Banquet
                                         Hall</a>
 
+                                        <a href="{{route('banquets.ontherock')}}"
+                                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-purple-600/20 hover:text-white">On The Rock</a>
+
                                     <!-- Submenu: Conference Room -->
                                     <div class="flex items-center justify-center h-auto">
                                         <div x-data="{ open: false }" class="relative inline-block text-left">
@@ -359,6 +362,10 @@
                             class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5">
                             Ballroom Package
                         </a>
+                        <a href="{{route('banquets.ontherock')}}"
+                        class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5">
+                            On The Rock
+                    </a>
                     </div>
 
                     <!-- Conference Room -->
