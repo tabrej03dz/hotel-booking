@@ -119,28 +119,29 @@
                                     </div>
 
 
-                                    <div class=" w-full flex flex-wrap gap-12 mt-4">
+                                    <div class="w-full flex flex-col sm:flex-row sm:flex-wrap sm:justify-start gap-4 mt-4">
                                         <!-- Call Button -->
                                         <a href="tel:+917275112525"
-                                            class="flex items-center gap-2 px-6 py-2 bg-[#8B4513] hover:bg-[#A0522D] text-white font-semibold rounded-md transition">
+                                            class="flex items-center justify-center gap-2 px-6 py-2 bg-[#8B4513] hover:bg-[#A0522D] text-white font-semibold rounded-md transition w-full sm:w-auto">
                                             <span class="material-icons">call</span>
                                             Call Now
                                         </a>
 
                                         <!-- WhatsApp Button -->
                                         <a href="https://wa.me/917275112525" target="_blank"
-                                            class="flex items-center gap-2 px-6 py-2 bg-[#8B4513] hover:bg-[#A0522D] text-white font-semibold rounded-md transition">
+                                            class="flex items-center justify-center gap-2 px-6 py-2 bg-[#8B4513] hover:bg-[#A0522D] text-white font-semibold rounded-md transition w-full sm:w-auto">
                                             <span class="material-icons">chat</span>
                                             WhatsApp
                                         </a>
 
                                         <!-- Email Button -->
-                                        <a href="mailto:info@krinoscco.com"
-                                            class="flex items-center gap-2 px-6 py-2 bg-[#8B4513] hover:bg-[#A0522D] text-white font-semibold rounded-md transition">
+                                        <a href="mailto:hr@krinoscco.com"
+                                            class="flex items-center justify-center gap-2 px-6 py-2 bg-[#8B4513] hover:bg-[#A0522D] text-white font-semibold rounded-md transition w-full sm:w-auto">
                                             <span class="material-icons">email</span>
                                             Email
                                         </a>
                                     </div>
+
 
 
                                 </div>

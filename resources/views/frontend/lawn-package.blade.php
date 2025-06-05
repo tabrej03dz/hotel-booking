@@ -62,9 +62,9 @@
             </div>
 
             <div class="p-6 text-center">
-                <h3 class="text-2xl font-semibold text-gray-800 mb-3">Exclusive Lawn Package</h3>
+                {{-- <h3 class="text-2xl font-semibold text-gray-800 mb-3">Exclusive Lawn Package</h3>
                 <p class="text-gray-600">Enjoy a premium Lawn experience with elegant decor, lighting, and catering.</p>
-                <!-- Optional CTA Section -->
+                <!-- Optional CTA Section --> --}}
                 <div class="my-10 text-center">
                     <a href="{{ route('crescent') }}"
                         class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#8B4513] to-[#D4A017] text-white rounded-lg transition-all duration-500 ease-in-out transform hover:from-[#D4A017] hover:to-[#8B4513] hover:scale-105 shadow-2xl hover:shadow-2xl">

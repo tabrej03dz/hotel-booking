@@ -103,6 +103,10 @@ class HomeController extends Controller
     {
         return view('frontend.ballroom-package');
     }
+    public function ontherock()
+    {
+        return view('frontend.ontherock');
+    }
 
 
     public function elite1()
