@@ -152,6 +152,12 @@ Route::middleware('auth')->group(function () {
            Route::post('update/{service}', 'update')->name('update');
            Route::post('destroy/{service}', 'delete')->name('destroy');
         });
+
+        Route::prefix('package-booking')->name('package-booking.')->controller(\App\Http\Controllers\PackageBookingController::class)->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::post('destroy/{booking}', 'destroy')->name('destroy');
+            Route::get('show/{booking}', 'show')->name('show');
+        });
     });
 
 });
@@ -233,6 +239,9 @@ Route::post('booking/save/{roomType}', [HomeController::class, 'bookingSave'])->
 
 Route::get('/bookingdetail', [HomeController::class, 'bookingdetail'])->name('bookingdetail');
 Route::get('/roomdetail', [HomeController::class, 'roomdetail'])->name('frontend.roomdetail');
+
+Route::post('package-booking/store', [\App\Http\Controllers\PackageBookingController::class, 'store'])->name('package-booking.store');
+
 
 // profile page::::
 Route::prefix('user')->name('user.')->middleware('auth')->group(function(){

@@ -107,6 +107,10 @@
                             Additional Services
                         </x-nav-link>
                     @endcan
+
+                        <x-nav-link :href="route('package-booking.index')" :active="request()->routeIs('package-booking*')">
+                            Package Booking
+                        </x-nav-link>
                 </div>
             </div>
 
