@@ -86,7 +86,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
         </svg>
-        <span>Hotel Krinoscco, Amaniganj Rampath ayodhya 224001 .
+        <span>Hotel Krinoscco Rampath Amaniganj Ayodhya U.P 224001
 </span>
     </a>
 </div>
