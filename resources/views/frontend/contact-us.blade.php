@@ -55,8 +55,7 @@
                         <div>
                             <h4 class="font-semibold text-gray-800 text-lg">Functional Office</h4>
                            <a href="https://www.google.com/maps?ll=26.783073,82.165321&z=16&t=m&hl=en&gl=IN&mapclient=embed&cid=18420098021593240393"><p class="text-gray-600">
-                               Hotel Krinossco, Amaniganj Rampath ayodhya 224001  .
-
+                            Hotel Krinoscco Rampath Amaniganj Ayodhya U.P 224001
                             </p></a>
                         </div>
                     </div>

@@ -715,7 +715,7 @@
         <div class="container mx-auto px-4 relative z-10">
             <!-- Section Heading -->
             <h2 class="text-5xl font-extrabold text-[#1a1a2e] mb-16 text-center tracking-tight">
-                Dinegne
+                Dining
                 <div class="w-24 h-1 bg-gradient-to-r from-[#8B4513] to-[#D4A017] mx-auto mt-4 rounded-full"></div>
             </h2>
 
@@ -728,7 +728,7 @@
                         class="w-full h-[300px] object-cover hover:scale-110 transition-transform duration-1000">
                     <div
                         class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex items-end p-4">
-                        <h3 class="text-white text-lg md:text-xl font-semibold uppercase tracking-wide">Dinegne Restaurant
+                        <h3 class="text-white text-lg md:text-xl font-semibold uppercase tracking-wide">Dining Restaurant
                         </h3>
                     </div>
                 </div>
@@ -1268,7 +1268,7 @@
                             <a
                                 href="https://www.google.com/maps/place/Hotel+Krinoscco/@26.783073,82.165321,16z/data=!4m9!3m8!1s0x399a0796e56fb899:0xffa1558e88f0d349!5m2!4m1!1i2!8m2!3d26.7830727!4d82.1653206!16s%2Fg%2F11ry4tcm_l?hl=en&entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D">
                                 <h4 class="font-semibold text-gray-800 text-lg">Our Location</h4>
-                                <p class="text-gray-600">Hotel Krinossco, Amaniganj Rampath ayodhya 224001 .
+                                <p class="text-gray-600">Hotel Krinoscco Rampath Amaniganj Ayodhya U.P 224001
                                 </p>
                             </a>
                         </div>
