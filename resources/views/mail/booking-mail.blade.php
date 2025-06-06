@@ -127,10 +127,10 @@
     </div>
 
     <p class="font-semibold mb-2">Customer GST Details</p>
-    <p><strong>COMPANY NAME</strong>: NG TEX PRINT PVT. LTD</p>
-    <p><strong>COMPANY ADDRESS</strong>: E-13/2, SECTOR-17, KAVI NAGAR INDUSTRIAL AREA, GHAZIABAD-201001</p>
-    <p><strong>COMPANY GSTN</strong>: 09AADCN3310N1ZE</p>
-    <p><strong>PROPERTY GSTN</strong>: 09AADCD6632P1Z5</p>
+    <p><strong>COMPANY NAME</strong>:{{$booking->company_name}}</p>
+{{--    <p><strong>COMPANY ADDRESS</strong>: E-13/2, SECTOR-17, KAVI NAGAR INDUSTRIAL AREA, GHAZIABAD-201001</p>--}}
+    <p><strong>COMPANY GSTN</strong>: {{$booking->gst_number}}</p>
+{{--    <p><strong>PROPERTY GSTN</strong>: 09AADCD6632P1Z5</p>--}}
 
     <div class="my-4">
         <p><strong>INVOICE AMOUNT</strong>: ₹ {{number_format($booking->payment->amount)}}</p>
