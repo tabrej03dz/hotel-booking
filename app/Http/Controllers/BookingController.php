@@ -30,6 +30,7 @@ class BookingController extends Controller
     // 🟢 Store a new booking
     public function store(Request $request)
     {
+        dd($request);
         $request->validate([
             'name' => 'required|string|max:100',
             'email' => 'required|email',
