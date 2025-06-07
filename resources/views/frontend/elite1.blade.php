@@ -52,21 +52,7 @@
                     <img src="{{ asset('asset/confrence-hall/hall (4).jpg') }}" alt="Conference Room Image 4"
                         class="w-full h-[250px] object-cover hover:scale-110 transition-transform duration-1000">
                 </div>
-                <div
-                    class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-transform duration-700 ease-in-out hover:scale-105">
-                    <img src="{{ asset('asset/confrence-hall/hall (5).jpg') }}" alt="Conference Room Image 5"
-                        class="w-full h-[250px] object-cover hover:scale-110 transition-transform duration-1000">
-                </div>
-                <div
-                    class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-transform duration-700 ease-in-out hover:scale-105">
-                    <img src="{{ asset('asset/confrence-hall/hall (6).jpg') }}" alt="Conference Room Image 6"
-                        class="w-full h-[250px] object-cover hover:scale-110 transition-transform duration-1000">
-                </div>
-                <div
-                    class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-transform duration-700 ease-in-out hover:scale-105">
-                    <img src="{{ asset('asset/confrence-hall/hall (7).jpg') }}" alt="Conference Room Image 7"
-                        class="w-full h-[250px] object-cover hover:scale-110 transition-transform duration-1000">
-                </div>
+              
             </div>
         </div>
 
