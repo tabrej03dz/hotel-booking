@@ -162,29 +162,20 @@
                                                        max="{{ $roomType->name === 'Standard' ? 97 : ($roomType->name === 'Deluxe' ? 1 : 2) }}" min="1"
                                                        class="w-20 border border-gray-300 rounded text-center mb-1 room-input"
                                                        required />
-<<<<<<< HEAD
+
 
                                                 <input type="number" name="price" placeholder="Price"
                                                        value="{{ $record->price ?? '' }}"
                                                        class="w-20 border border-gray-300 rounded text-center price-input"
                                                        required />
                                             </form>
+                                                @endforeach
                                         </td>
 
                                     @endforeach
                             </tr>
-=======
-                                                    
-                                                    <input type="number" name="price" placeholder="Price"
-                                                        value="{{ $record->price ?? '' }}"
-                                                        class="w-20 border border-gray-300 rounded text-center price-input"
-                                                        required />
-                                                </form>
-                                            </td>
-                                        @endforeach
-                                    </tr>
->>>>>>> 08d9ba3f58f4b6d6091f80e563adcf960412574f
-                                @endforeach
+
+
                             </tbody>
                         </table>
                     </div>
@@ -194,7 +185,7 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    {{-- <script>
+    <script>
         document.addEventListener('DOMContentLoaded', function () {
             document.querySelectorAll('.room-input').forEach(function (input) {
                 input.addEventListener('input', function () {
@@ -258,7 +249,7 @@
         });
     </script> --}}
 
-   
+
 
 
     <script>
@@ -330,5 +321,5 @@
         });
     </script>
 
-    
+
 </x-app-layout>
