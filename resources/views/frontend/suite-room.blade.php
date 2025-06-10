@@ -199,8 +199,7 @@
                     </div>
                     <div class="flex items-start gap-4">
                         <div class="w-5 h-5 bg-[#8B4513] rounded-full"></div>
-                        <p class="text-lg text-gray-700">Telephone with intercoms, speakerphone, voicemail & wake-up call
-                            facilities</p>
+                        <p class="text-lg text-gray-700">Telephone with intercoms, speakerphone</p>
                     </div>
                     <div class="flex items-start gap-4">
                         <div class="w-5 h-5 bg-[#8B4513] rounded-full"></div>
@@ -237,6 +236,11 @@
                     <div class="flex items-start gap-4">
                         <div class="w-5 h-5 bg-[#8B4513] rounded-full"></div>
                         <p class="text-lg text-gray-700">English, Hindi and other regional language channels</p>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div class="w-5 h-5 bg-[#8B4513] rounded-full"></div>
+                        <p class="text-lg text-gray-700">Jacuzzi</p>
                     </div>
                 </div>
             </div>

@@ -32,26 +32,7 @@
             </div>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-            <div
-                class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-transform duration-700 ease-in-out hover:scale-105">
-                <img src="{{ asset('asset/confrence-hall/hall (1).jpg') }}" alt="Conference Room Image 1"
-                    class="w-full h-[250px] object-cover hover:scale-110 transition-transform duration-1000">
-            </div>
-            <div
-                class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-transform duration-700 ease-in-out hover:scale-105">
-                <img src="{{ asset('asset/confrence-hall/hall (2).jpg') }}" alt="Conference Room Image 2"
-                    class="w-full h-[250px] object-cover hover:scale-110 transition-transform duration-1000">
-            </div>
-            <div
-                class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-transform duration-700 ease-in-out hover:scale-105">
-                <img src="{{ asset('asset/confrence-hall/hall (3).jpg') }}" alt="Conference Room Image 3"
-                    class="w-full h-[250px] object-cover hover:scale-110 transition-transform duration-1000">
-            </div>
-            <div
-                class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-transform duration-700 ease-in-out hover:scale-105">
-                <img src="{{ asset('asset/confrence-hall/hall (4).jpg') }}" alt="Conference Room Image 4"
-                    class="w-full h-[250px] object-cover hover:scale-110 transition-transform duration-1000">
-            </div>
+           
             <div
                 class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-transform duration-700 ease-in-out hover:scale-105">
                 <img src="{{ asset('asset/confrence-hall/hall (5).jpg') }}" alt="Conference Room Image 5"

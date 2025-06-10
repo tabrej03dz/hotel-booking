@@ -97,25 +97,17 @@
             @endif
 
             <div class="bg-white shadow-xl rounded-2xl p-6 border border-gray-100">
-  <div class="flex justify-between ">
-    <h2 class="text-2xl font-bold text-gray-800 mb-6">💰 Availabilities & Rates</h2>
-  <!-- Month selector  -->
-  <div class="mb-4">
-    <form action="{{ route('availability-rate.index') }}" method="get">
-        <input type="month" name="month" value="{{ $month }}" onchange="this.form.submit()"
-            class="border border-gray-300 rounded px-3 py-2">
-    </form>
-</div>
-  </div>
-                {{-- <!-- Month selector  -->
-                <div class="mb-4">
-                    <form action="{{ route('availability-rate.index') }}" method="get">
-                        <input type="month" name="month" value="{{ $month }}" onchange="this.form.submit()"
-                            class="border border-gray-300 rounded px-3 py-2">
-                    </form>
-                </div> --}}
+                <div class="flex justify-between ">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">💰 Availabilities & Rates</h2>
+                    <!-- Month selector  -->
+                    <div class="mb-4">
+                        <form action="{{ route('availability-rate.index') }}" method="get">
+                            <input type="month" name="month" value="{{ $month }}"
+                                onchange="this.form.submit()" class="border border-gray-300 rounded px-3 py-2">
+                        </form>
+                    </div>
+                </div>
 
-                {{-- scroller area --}}
                 <div class="overflow-x-auto relative">
                     <div class="sticky left-0 z-10 bg-white" style="width: fit-content;">
                         <table class="text-sm text-left border border-gray-200">
@@ -149,24 +141,28 @@
                             </thead>
                             <tbody>
                                 @foreach ($roomTypes as $roomType)
-                                <tr>
-                                @foreach ($dates as $date)
-                                    @php
-                                        $record = \App\Models\AvailabilityRate::where('room_type_id', $roomType->id)
-                                            ->where('date', $date)
-                                            ->first();
-                                    @endphp
-                                        <td class="p-2 border text-center">
-                                            <form class="availability-form" data-action="{{ $record ? 'update' : 'store' }}"
-                                                  data-id="{{ $record->id ?? '' }}"
-                                                  data-date="{{ $date }}"
-                                                  data-room-type="{{ $roomType->id }}">
-                                                @csrf
-                                                <input type="number" name="rooms" placeholder="Rooms"
+                                    <tr>
+                                        @foreach ($dates as $date)
+                                            @php
+                                                $record = \App\Models\AvailabilityRate::where(
+                                                    'room_type_id',
+                                                    $roomType->id,
+                                                )
+                                                    ->where('date', $date)
+                                                    ->first();
+                                            @endphp
+                                            <td class="p-2 border text-center">
+                                                <form class="availability-form"
+                                                    data-action="{{ $record ? 'update' : 'store' }}"
+                                                    data-id="{{ $record->id ?? '' }}" data-date="{{ $date }}"
+                                                    data-room-type="{{ $roomType->id }}">
+                                                    @csrf
+                                                    <input type="number" name="rooms" placeholder="Rooms"
                                                        value="{{ $record->rooms ?? '' }}"
                                                        max="{{ $roomType->name === 'Standard' ? 97 : ($roomType->name === 'Deluxe' ? 1 : 2) }}" min="1"
                                                        class="w-20 border border-gray-300 rounded text-center mb-1 room-input"
                                                        required />
+<<<<<<< HEAD
 
                                                 <input type="number" name="price" placeholder="Price"
                                                        value="{{ $record->price ?? '' }}"
@@ -177,6 +173,17 @@
 
                                     @endforeach
                             </tr>
+=======
+                                                    
+                                                    <input type="number" name="price" placeholder="Price"
+                                                        value="{{ $record->price ?? '' }}"
+                                                        class="w-20 border border-gray-300 rounded text-center price-input"
+                                                        required />
+                                                </form>
+                                            </td>
+                                        @endforeach
+                                    </tr>
+>>>>>>> 08d9ba3f58f4b6d6091f80e563adcf960412574f
                                 @endforeach
                             </tbody>
                         </table>
@@ -185,8 +192,9 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <script>
+    {{-- <script>
         document.addEventListener('DOMContentLoaded', function () {
             document.querySelectorAll('.room-input').forEach(function (input) {
                 input.addEventListener('input', function () {
@@ -248,8 +256,79 @@
                 });
             });
         });
+    </script> --}}
+
+   
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+            document.querySelectorAll('.availability-form').forEach(form => {
+                form.querySelectorAll('input').forEach(input => {
+                    input.addEventListener('change', () => {
+                        const action = form.dataset.action;
+                        const roomTypeId = form.dataset.roomType;
+                        const date = form.dataset.date;
+                        const id = form.dataset.id;
+
+                        const rooms = form.querySelector('.room-input').value;
+                        const price = form.querySelector('.price-input').value;
+
+                        const url = action === 'update' ?
+                            `/availability-rate/update/${id}` :
+                            `/availability-rate/store`;
+
+                        fetch(url, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': csrfToken
+                                },
+                                body: JSON.stringify({
+                                    room_type_id: roomTypeId,
+                                    date: date,
+                                    rooms: rooms,
+                                    price: price
+                                })
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Updated!',
+                                    text: 'Room and price saved successfully.',
+                                    toast: true,
+                                    position: 'top-end',
+                                    showConfirmButton: false,
+                                    timer: 2000,
+                                    timerProgressBar: true
+                                });
+
+                                if (action === 'store') {
+                                    form.dataset.action = 'update';
+                                    form.dataset.id = data
+                                    .id; // returned by store method
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error',
+                                    text: 'Something went wrong!',
+                                    toast: true,
+                                    position: 'top-end',
+                                    showConfirmButton: false,
+                                    timer: 2000
+                                });
+                            });
+                    });
+                });
+            });
+        });
     </script>
 
-
-
+    
 </x-app-layout>
