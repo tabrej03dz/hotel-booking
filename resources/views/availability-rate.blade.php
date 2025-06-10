@@ -159,7 +159,7 @@
                                                     @csrf
                                                     <input type="number" name="rooms" placeholder="Rooms"
                                                        value="{{ $record->rooms ?? '' }}"
-                                                       max="{{ $roomType->name === 'Standard' ? 97 : ($roomType->name === 'Deluxe' ? 1 : 2) }}" min="1"
+                                                       max="{{ $roomType->name === 'Standard' ? 57 : ($roomType->name === 'Deluxe' ? 1 : 2) }}" min="1"
                                                        class="w-20 border border-gray-300 rounded text-center mb-1 room-input"
                                                        required />
 
