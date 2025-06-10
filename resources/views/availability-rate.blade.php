@@ -164,8 +164,10 @@
                                                 @csrf
                                                 <input type="number" name="rooms" placeholder="Rooms"
                                                        value="{{ $record->rooms ?? '' }}"
+                                                       max="{{ $roomType->name === 'Standard' ? 97 : ($roomType->name === 'Deluxe' ? 1 : 2) }}" min="1"
                                                        class="w-20 border border-gray-300 rounded text-center mb-1 room-input"
                                                        required />
+
                                                 <input type="number" name="price" placeholder="Price"
                                                        value="{{ $record->price ?? '' }}"
                                                        class="w-20 border border-gray-300 rounded text-center price-input"
@@ -183,6 +185,21 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.room-input').forEach(function (input) {
+                input.addEventListener('input', function () {
+                    const max = parseInt(input.getAttribute('max'), 10);
+                    const value = parseInt(input.value, 10);
+
+                    if (value > max) {
+                        input.value = max;
+                    }
+                });
+            });
+        });
+    </script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
