@@ -62,6 +62,10 @@
 
     </div>
 
+
+    @include('component.package-booking-form')
+
+
     <!-- Image Modal -->
     <div id="imageModal" class="fixed inset-0 flex items-center justify-center hidden bg-black bg-opacity-75 z-50">
         <div class="relative">
