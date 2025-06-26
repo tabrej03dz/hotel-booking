@@ -39,7 +39,12 @@ class AvailabilityRateController extends Controller
 
     public function store(Request $request)
     {
-        $record = AvailabilityRate::create($request->only('room_type_id', 'date', 'rooms', 'price'));
+        $record = AvailabilityRate::where(['date' => $request->date, 'room_type_id' => $request->room_type_id])->first();
+        if ($record){
+            $record->update($request->only('room_type_id', 'date', 'rooms', 'price'));
+        }else{
+            $record = AvailabilityRate::create($request->only('room_type_id', 'date', 'rooms', 'price'));
+        }
         return response()->json(['message' => 'Created', 'id' => $record->id]);
     }
 

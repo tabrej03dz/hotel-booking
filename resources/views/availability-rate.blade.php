@@ -164,10 +164,10 @@
                                                        required />
 
 
-                                                <input type="number" name="price" placeholder="Price"
-                                                       value="{{ $record->price ?? '' }}"
-                                                       class="w-20 border border-gray-300 rounded text-center price-input"
-                                                       required />
+                                                    <input type="number" name="price" placeholder="Price"
+                                                           value="{{ $record->price ?? '' }}"
+                                                           class="w-20 border border-gray-300 rounded text-center price-input"
+                                                           required />
                                             </form>
                                                 @endforeach
                                         </td>
@@ -200,54 +200,54 @@
         });
     </script>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+{{--    <script>--}}
+{{--        document.addEventListener('DOMContentLoaded', function () {--}}
+{{--            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');--}}
 
-            document.querySelectorAll('.availability-form').forEach(form => {
-                form.querySelectorAll('input').forEach(input => {
-                    input.addEventListener('change', () => {
-                        const action = form.dataset.action;
-                        const roomTypeId = form.dataset.roomType;
-                        const date = form.dataset.date;
-                        const id = form.dataset.id;
+{{--            document.querySelectorAll('.availability-form').forEach(form => {--}}
+{{--                form.querySelectorAll('input').forEach(input => {--}}
+{{--                    input.addEventListener('change', () => {--}}
+{{--                        const action = form.dataset.action;--}}
+{{--                        const roomTypeId = form.dataset.roomType;--}}
+{{--                        const date = form.dataset.date;--}}
+{{--                        const id = form.dataset.id;--}}
 
-                        const rooms = form.querySelector('.room-input').value;
-                        const price = form.querySelector('.price-input').value;
+{{--                        const rooms = form.querySelector('.room-input').value;--}}
+{{--                        const price = form.querySelector('.price-input').value;--}}
 
-                        const url = action === 'update'
-                            ? `/availability-rate/update/${id}`
-                            : `/availability-rate/store`;
+{{--                        const url = action === 'update'--}}
+{{--                            ? `/availability-rate/update/${id}`--}}
+{{--                            : `/availability-rate/store`;--}}
 
-                        // const method = action === 'update' ? 'PUT' : 'POST';
+{{--                        // const method = action === 'update' ? 'PUT' : 'POST';--}}
 
-                        fetch(url, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'X-CSRF-TOKEN': csrfToken
-                            },
-                            body: JSON.stringify({
-                                room_type_id: roomTypeId,
-                                date: date,
-                                rooms: rooms,
-                                price: price
-                            })
-                        })
-                            .then(response => response.json())
-                            .then(data => {
-                                console.log('Saved:', data);
-                                if (action === 'store') {
-                                    form.dataset.action = 'update';
-                                    form.dataset.id = data.id; // returned by store method
-                                }
-                            })
-                            .catch(error => console.error('Error:', error));
-                    });
-                });
-            });
-        });
-    </script> --}}
+{{--                        fetch(url, {--}}
+{{--                            method: 'POST',--}}
+{{--                            headers: {--}}
+{{--                                'Content-Type': 'application/json',--}}
+{{--                                'X-CSRF-TOKEN': csrfToken--}}
+{{--                            },--}}
+{{--                            body: JSON.stringify({--}}
+{{--                                room_type_id: roomTypeId,--}}
+{{--                                date: date,--}}
+{{--                                rooms: rooms,--}}
+{{--                                price: price--}}
+{{--                            })--}}
+{{--                        })--}}
+{{--                            .then(response => response.json())--}}
+{{--                            .then(data => {--}}
+{{--                                console.log('Saved:', data);--}}
+{{--                                if (action === 'store') {--}}
+{{--                                    form.dataset.action = 'update';--}}
+{{--                                    form.dataset.id = data.id; // returned by store method--}}
+{{--                                }--}}
+{{--                            })--}}
+{{--                            .catch(error => console.error('Error:', error));--}}
+{{--                    });--}}
+{{--                });--}}
+{{--            });--}}
+{{--        });--}}
+{{--    </script> --}}
 
 
 

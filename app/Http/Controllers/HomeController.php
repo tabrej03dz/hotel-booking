@@ -194,6 +194,7 @@ class HomeController extends Controller
         $checkIn = $request->check_in_date;
         $checkOut = $request->check_out_date;
 
+
 //        $availableRooms = AvailabilityRate::where('date', $checkIn)->get();
 
         $roomTypes = RoomType::all();

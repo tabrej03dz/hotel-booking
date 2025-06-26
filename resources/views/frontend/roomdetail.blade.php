@@ -168,7 +168,7 @@
                                     </div>
                                 </div>
                             @else
-                                {{-- ❌ Room Not Available --}}
+                                 ❌ Room Not Available
                                 <div class="bg-red-50 border border-red-200 text-red-800 font-semibold py-5 px-6 rounded-lg shadow-md">
                                     😔 <strong>{{ $roomType->name }}</strong> is not available for the selected dates. Please try different dates or room types.
                                 </div>
