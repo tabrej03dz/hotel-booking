@@ -383,46 +383,46 @@
                     </div>
                     <div>
                         <h4 class="font-medium text-gray-900 mb-2">Contact Information</h4>
-                        <p class="text-gray-700">For any inquiries, please contact our concierge at <a
-                                href="tel:+18005551234" class="text-amber-600 hover:underline">+1 (800) 555-1234</a> or <a
-                                href="mailto:concierge@grandpalisades.com"
-                                class="text-amber-600 hover:underline">concierge@grandpalisades.com</a>.</p>
+                        <p class="text-gray-700">For any inquiries, please contact our concierge at <a href="tel:+917275002525" class="text-amber-600 hover:underline">7275002525</a>
+                            or <a
+                                href="mailto:Info@krinoscco.com"
+                                class="text-amber-600 hover:underline">Info@krinoscco.com</a>.</p>
                     </div>
                 </div>
             </div>
 
             <!-- Download Options -->
-            <div class="text-center">
-                <h3 class="text-xl font-serif font-bold text-gray-900 mb-6">Download Your Booking Details</h3>
-                <div class="flex flex-wrap justify-center gap-4">
-                    <button
-                        class="flex items-center bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium py-2 px-4 rounded-lg transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                        </svg>
-                        PDF Version
-                    </button>
-                    <button
-                        class="flex items-center bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium py-2 px-4 rounded-lg transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                        </svg>
-                        Add to Calendar
-                    </button>
-                    <button
-                        class="flex items-center bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium py-2 px-4 rounded-lg transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
-                        </svg>
-                        Share Booking
-                    </button>
-                </div>
-            </div>
+{{--            <div class="text-center">--}}
+{{--                <h3 class="text-xl font-serif font-bold text-gray-900 mb-6">Download Your Booking Details</h3>--}}
+{{--                <div class="flex flex-wrap justify-center gap-4">--}}
+{{--                    <button--}}
+{{--                        class="flex items-center bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium py-2 px-4 rounded-lg transition-colors">--}}
+{{--                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"--}}
+{{--                            stroke="currentColor">--}}
+{{--                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"--}}
+{{--                                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />--}}
+{{--                        </svg>--}}
+{{--                        PDF Version--}}
+{{--                    </button>--}}
+{{--                    <button--}}
+{{--                        class="flex items-center bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium py-2 px-4 rounded-lg transition-colors">--}}
+{{--                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"--}}
+{{--                            stroke="currentColor">--}}
+{{--                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />--}}
+{{--                        </svg>--}}
+{{--                        Add to Calendar--}}
+{{--                    </button>--}}
+{{--                    <button--}}
+{{--                        class="flex items-center bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium py-2 px-4 rounded-lg transition-colors">--}}
+{{--                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"--}}
+{{--                            stroke="currentColor">--}}
+{{--                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"--}}
+{{--                                d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />--}}
+{{--                        </svg>--}}
+{{--                        Share Booking--}}
+{{--                    </button>--}}
+{{--                </div>--}}
+{{--            </div>--}}
         </div>
     </div>
 
