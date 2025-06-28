@@ -139,7 +139,7 @@
                                         <!-- Quantity controls -->
                                         <div class="flex items-center space-x-2 ml-4">
                                             <button type="button" class="decrease-qty px-2 py-1 bg-gray-200 rounded" data-id="{{ $service->id }}">-</button>
-                                            <input type="number" name="quantities[{{ $service->id }}]" value="1" min="1"
+                                            <input type="number" name="quantities[{{ $service->id }}]" value="0" min="0"
                                                    class="service-qty w-12 text-center border border-gray-300 rounded"
                                                    data-id="{{ $service->id }}" data-price="{{ $service->price }}" disabled>
                                             <button type="button" class="increase-qty px-2 py-1 bg-gray-200 rounded" data-id="{{ $service->id }}">+</button>
@@ -568,7 +568,7 @@
             btn.addEventListener("click", function () {
                 const id = this.dataset.id;
                 const input = document.querySelector(`.service-qty[data-id="${id}"]`);
-                input.value = Math.max(1, parseInt(input.value) - 1);
+                input.value = Math.max(0, parseInt(input.value) - 1);
                 updatePaymentSummary();
             });
         });
