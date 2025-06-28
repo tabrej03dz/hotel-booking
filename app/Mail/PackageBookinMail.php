@@ -30,7 +30,7 @@ class PackageBookinMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Package Bookin Mail',
+            subject: 'Package Booking Mail',
         );
     }
 

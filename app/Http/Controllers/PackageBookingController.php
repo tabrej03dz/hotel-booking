@@ -32,8 +32,9 @@ class PackageBookingController extends Controller
 
         $booking = PackageBooking::create($request->all());
         Mail::to($request->email)->send(new PackageBookinMail($booking, 'user'));
-        Mail::to('info@krinoscco.com')->send(new PackageBookinMail($booking, 'admin'));
-        Mail::to('accounts@krinoscco.com')->send(new PackageBookinMail($booking, 'admin'));
+//        Mail::to('info@krinoscco.com')->send(new PackageBookinMail($booking, 'admin'));
+//        Mail::to('accounts@krinoscco.com')->send(new PackageBookinMail($booking, 'admin'));
+        Mail::to('fnb@krinoscco.com')->send(new PackageBookinMail($booking, 'admin'));
 
         return back()->with('success', 'Package booking created successfully.');
     }
