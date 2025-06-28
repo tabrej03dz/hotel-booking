@@ -17,7 +17,8 @@
                 <!-- Booking Summary Card -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-10 border border-gray-100">
                     <!-- Hotel Image -->
-                    <div class="relative h-48 md:h-64 w-full overflow-hidden">
+{{--                    <div class="relative h-48 md:h-64 w-full overflow-hidden">--}}
+                    <div class="relative ">
                         <img src="{{asset($roomType->images?->first() ? 'storage/' . $roomType->images->first()->path : 'asset/deluxe/deluxe-4.jpg')}}"
                             alt="The Grand Palisades" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
