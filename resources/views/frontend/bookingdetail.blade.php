@@ -18,7 +18,7 @@
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-10 border border-gray-100">
                     <!-- Hotel Image -->
                     <div class="relative h-48 md:h-64 w-full overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                        <img src="{{asset($roomType->images?->first() ? 'storage/' . $roomType->images->first()->path : 'asset/deluxe/deluxe-4.jpg')}}"
                             alt="The Grand Palisades" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
                         <div class="absolute bottom-4 left-4">
