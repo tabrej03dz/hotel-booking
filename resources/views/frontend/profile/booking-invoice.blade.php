@@ -193,7 +193,7 @@
         <li>Service Charges: ₹ {{ number_format($booking->additional_service_charge, 1) }}</li>
         <li>Extra Person Charges: ₹ {{ number_format(($booking->extra_person * $booking->staying_days), 1) }}</li>
         <li>Extra Child Charges: ₹ {{ $booking->extra_child_charge ?? 0 }}</li>
-        <li>Property Taxes ({{$tax}}%): ₹ {{ number_format($booking->tax_and_fee, 2) }}</li>
+        <li>Property Taxes ({{($booking->amount < 7500 ? 0.12 : 0.18) * 100}}%): ₹ {{ number_format($booking->tax_and_fee, 2) }}</li>
         <li><strong>(A) Property Gross Charges: ₹ {{ number_format($booking->total_amount, 2) }}</strong></li>
 
         {{-- <li>Go-MMT Commission: ₹ {{ number_format($commission, 1) }}</li>

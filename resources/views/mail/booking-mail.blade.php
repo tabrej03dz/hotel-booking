@@ -245,7 +245,7 @@
             <li>Service Charges: ₹ {{ number_format($booking->additional_service_charge, 1) }}</li>
             <li>Extra Person Charges: ₹ {{ number_format(($booking->extra_person * $booking->staying_days), 1) }}</li>
             <li>Extra Child Charges: ₹ {{ number_format($booking->extra_child_charge, 1) }}</li>
-            <li>Property Taxes (18%): ₹ {{ number_format($booking->tax_and_fee, 2) }}</li>
+            <li>Property Taxes ({{$taxRate * 100}}%): ₹ {{ number_format($booking->tax_and_fee, 2) }}</li>
             <li><strong>(A) Property Gross Charges: ₹ {{ number_format($booking->total_amount, 2) }}</strong></li>
         </ul>
     </div>
