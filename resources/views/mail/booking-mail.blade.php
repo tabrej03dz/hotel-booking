@@ -183,6 +183,7 @@
                 <th>{{ $service->service->name }}</th>
             @endforeach
             <th>Extra Person</th>
+            <th>Children</th>
             <th>Taxes (T)</th>
             <th>Amount</th>
         </tr>
