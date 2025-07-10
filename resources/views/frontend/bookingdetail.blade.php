@@ -118,7 +118,7 @@
                             <h3 class="text-xl font-serif font-bold text-gray-900 mb-4">Enhance Your Stay</h3>
                             <div class="space-y-4">
                                 @foreach($additionalServices as $service)
-                                    <div class="flex items-start justify-between border-b py-3">
+                                    <div class="flex items-start justify-between border-b py-3 additional-service"  data-service-id="{{ $service->id }}">
                                         <div class="flex items-start">
                                             <input
                                                 type="checkbox"
@@ -427,34 +427,84 @@
         </div>
     </div>
 
+{{--    <script>--}}
+{{--        document.addEventListener("DOMContentLoaded", function() {--}}
+{{--            const adultsDropdown = document.getElementById("adults");--}}
+{{--            const childrenDropdown = document.getElementById("children");--}}
+
+{{--            function updateChildrenOptions() {--}}
+{{--                let adults = parseInt(adultsDropdown.value, 10);--}}
+
+{{--                if (adults === 3) {--}}
+{{--                    // If 3 adults are selected, disable children dropdown and set it to 0--}}
+{{--                    childrenDropdown.value = "0";--}}
+{{--                    childrenDropdown.disabled = true;--}}
+{{--                } else if (adults === 2) {--}}
+{{--                    // If 2 adults are selected, allow 1 or 2 children--}}
+{{--                    childrenDropdown.innerHTML = `--}}
+{{--                    <option value="0">No Children</option>--}}
+{{--                    <option value="1">1 Child</option>--}}
+{{--                    <option value="2">2 Children</option>--}}
+{{--                `;--}}
+{{--                    childrenDropdown.disabled = false;--}}
+{{--                } else {--}}
+{{--                    // If 1 adult is selected, allow all options--}}
+{{--                    childrenDropdown.innerHTML = `--}}
+{{--                    <option value="0">No Children</option>--}}
+{{--                    <option value="1">1 Child</option>--}}
+{{--                    <option value="2">2 Children</option>--}}
+{{--                `;--}}
+{{--                    childrenDropdown.disabled = false;--}}
+{{--                }--}}
+{{--            }--}}
+
+{{--            // Add event listener to Adults dropdown--}}
+{{--            adultsDropdown.addEventListener("change", updateChildrenOptions);--}}
+
+{{--            // Initialize on page load--}}
+{{--            updateChildrenOptions();--}}
+{{--        });--}}
+{{--    </script>--}}
+
+
+
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             const adultsDropdown = document.getElementById("adults");
             const childrenDropdown = document.getElementById("children");
+
+            const serviceElements = document.querySelectorAll(".additional-service");
 
             function updateChildrenOptions() {
                 let adults = parseInt(adultsDropdown.value, 10);
 
                 if (adults === 3) {
-                    // If 3 adults are selected, disable children dropdown and set it to 0
                     childrenDropdown.value = "0";
                     childrenDropdown.disabled = true;
-                } else if (adults === 2) {
-                    // If 2 adults are selected, allow 1 or 2 children
-                    childrenDropdown.innerHTML = `
-                    <option value="0">No Children</option>
-                    <option value="1">1 Child</option>
-                    <option value="2">2 Children</option>
-                `;
-                    childrenDropdown.disabled = false;
+
+                    // 👇 Hide last two additional services
+                    const total = serviceElements.length;
+                    serviceElements.forEach((service, index) => {
+                        if (index >= total - 2) {
+                            service.style.display = "none";
+                        } else {
+                            service.style.display = "";
+                        }
+                    });
+
                 } else {
-                    // If 1 adult is selected, allow all options
+                    // Enable and reset children dropdown
+                    childrenDropdown.disabled = false;
                     childrenDropdown.innerHTML = `
                     <option value="0">No Children</option>
                     <option value="1">1 Child</option>
                     <option value="2">2 Children</option>
                 `;
-                    childrenDropdown.disabled = false;
+
+                    // 👇 Show all additional services
+                    serviceElements.forEach(service => {
+                        service.style.display = "";
+                    });
                 }
             }
 
@@ -467,7 +517,8 @@
     </script>
 
 
-<script>
+
+    <script>
     document.addEventListener("DOMContentLoaded", function () {
         const baseRoomPrice = {{ $totalRoomPrice }};
         const serviceCheckboxes = document.querySelectorAll(".service-checkbox");
