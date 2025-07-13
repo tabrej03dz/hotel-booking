@@ -39,7 +39,8 @@
             <ul class="list-disc pl-6 space-y-1">
                 <li>Number of floors: 6</li>
                 <li>Suite Rooms (with Jacuzzi): 2</li>
-                <li>Standard Rooms: 58</li>
+                <li>Standard Rooms: 57</li>
+                <li>Deluxe Room: 1</li>
                 <li>Banquet Halls: 4 (including 4000 sq.ft. hall)</li>
                 <li>Lawns: 1 (25000 sq.ft.)</li>
                 <li>Elevators: 2</li>

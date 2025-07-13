@@ -55,7 +55,6 @@
                         <tr>
                             <th class="px-6 py-4">#</th>
                             <th class="px-6 py-4">Name</th>
-                            <th class="px-6 py-4">Price</th>
                             <th class="px-6 py-4">Description</th>
                             <th class="px-6 py-4 text-center">Actions</th>
                         </tr>
@@ -65,7 +64,6 @@
                             <tr class="hover:bg-gray-50 transition">
                                 <td class="px-6 py-4 font-medium text-gray-800">{{ $loop->iteration }}</td>
                                 <td class="px-6 py-4 text-gray-700">{{ $roomType->name }}</td>
-                                <td class="px-6 py-4 text-gray-700">{{ $roomType->price }}</td>
                                 <td class="px-6 py-4 text-gray-700">{{ $roomType->description }}</td>
                                 <td class="px-6 py-4 text-center">
                                     <div class="flex justify-center gap-3">

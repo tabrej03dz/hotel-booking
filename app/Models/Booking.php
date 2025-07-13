@@ -11,6 +11,7 @@ class Booking extends Model
     protected $casts = [
         'check_in_date' => 'date',
         'check_out_date' => 'date',
+        'child_ages' => 'array',
     ];
     public function user()
     {
@@ -37,5 +38,9 @@ class Booking extends Model
 
     public function availabilities(){
         return $this->hasMany(BookingAvailability::class, 'booking_id');
+    }
+
+    public function roomType(){
+        return $this->belongsTo(RoomType::class, 'room_type_id');
     }
 }

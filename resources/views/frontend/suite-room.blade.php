@@ -117,22 +117,20 @@
                             <span class="text-[#8B4513] font-semibold uppercase tracking-wider">Suite Room</span>
                         </div>
                         <h2 class="text-4xl lg:text-5xl font-bold text-[#1a1a2e] leading-tight">
-                            Where Every Moment
-                            <span class="relative">Resonates
+                            Designed to Make Each Moment
+                            <span class="relative">Sing
                                 <div class="absolute bottom-0 left-0 w-full h-[8px] bg-[#8B4513]/20"></div>
                             </span>
                         </h2>
+
                     </div>
 
                     <div class="space-y-6">
                         <p class="text-lg text-gray-700 leading-relaxed">
-                            The Suite has all the essential conveniences and is tastefully designed for your enjoyable stay.
-                            Hotel Krinoscco redefines suite with an unwavering commitment to international standards of
-                            service and style.
+                            Welcome to the Suite Room, designed to offer the perfect blend of sophistication, comfort, and personalized service. Whether you're traveling for business or leisure, our suite ensures a memorable stay with premium amenities and refined interiors.
                         </p>
                         <p class="text-lg text-gray-700 leading-relaxed">
-                            Setting a new benchmark for unparalleled accommodation and exceptional value, it embodies the
-                            epitome of contemporary elegance.
+                            Redefining modern rooms, it offers unmatched comfort and outstanding value, representing the pinnacle of contemporary sophistication.
                         </p>
 
                         <div class="grid grid-cols-2 gap-6 py-6">
@@ -201,8 +199,7 @@
                     </div>
                     <div class="flex items-start gap-4">
                         <div class="w-5 h-5 bg-[#8B4513] rounded-full"></div>
-                        <p class="text-lg text-gray-700">Telephone with intercoms, speakerphone, voicemail & wake-up call
-                            facilities</p>
+                        <p class="text-lg text-gray-700">Telephone with intercoms, speakerphone</p>
                     </div>
                     <div class="flex items-start gap-4">
                         <div class="w-5 h-5 bg-[#8B4513] rounded-full"></div>
@@ -240,6 +237,11 @@
                         <div class="w-5 h-5 bg-[#8B4513] rounded-full"></div>
                         <p class="text-lg text-gray-700">English, Hindi and other regional language channels</p>
                     </div>
+
+                    <div class="flex items-start gap-4">
+                        <div class="w-5 h-5 bg-[#8B4513] rounded-full"></div>
+                        <p class="text-lg text-gray-700">Jacuzzi</p>
+                    </div>
                 </div>
             </div>
 
@@ -247,6 +249,53 @@
     </section>
 
     <!-- Real-time Availability Section -->
+ {{-- booking section --}}
+{{-- <section id="booking" class="py-12 animated-gradient bg-[#151127]">--}}
+{{--    <div class="container mx-auto px-4">--}}
+{{--        <!-- Title Section -->--}}
+{{--        <h2 class="text-3xl font-bold text-white mb-8 text-center">--}}
+{{--            Book Your Stay--}}
+{{--            <div class="w-16 h-1 bg-gradient-to-r from-[#8B4513] to-[#D4A017] mx-auto mt-2 rounded-full"></div>--}}
+{{--        </h2>--}}
+{{--        <div class="w-full max-w-7xl mx-auto bg-white rounded-lg shadow-lg p-6">--}}
+
+{{--            <form action="{{ route('rooms.available') }}" method="GET"--}}
+{{--                class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">--}}
+{{--                @csrf--}}
+
+{{--                <!-- Check-in Date Picker -->--}}
+{{--                <div class="flex flex-col">--}}
+{{--                    <label class="text-gray-700 font-medium">Check-in</label>--}}
+{{--                    <input type="date" id="checkin" name="check_in_date" placeholder="Select Check-in" required--}}
+{{--                        class="border border-gray-300 rounded-md p-2 bg-white outline-none--}}
+{{--                                   focus:border-[#8B4513] focus:ring-2 focus:ring-[#8B4513]">--}}
+{{--                </div>--}}
+
+{{--                <!-- Check-out Date Picker -->--}}
+{{--                <div class="flex flex-col">--}}
+{{--                    <label class="text-gray-700 font-medium">Check-out</label>--}}
+{{--                    <input type="date" id="checkout" name="check_out_date" placeholder="Select Check-out"--}}
+{{--                        required--}}
+{{--                        class="border border-gray-300 rounded-md p-2 bg-white outline-none--}}
+{{--                                   focus:border-[#8B4513] focus:ring-2 focus:ring-[#8B4513]">--}}
+{{--                </div>--}}
+
+{{--                <div class="flex flex-col">--}}
+{{--                    <br>--}}
+{{--                    <button type="submit"--}}
+{{--                        class="px-6 py-2 bg-gradient-to-r from-[#8B4513] to-[#D4A017] text-white rounded-md transition--}}
+{{--                                hover:from-[#D4A017] hover:to-[#8B4513]">--}}
+{{--                        Search--}}
+{{--                    </button>--}}
+{{--                </div>--}}
+
+{{--            </form>--}}
+
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</section>--}}
+
+
     @include('component.booking')
 
     <!-- Add SwiperJS -->

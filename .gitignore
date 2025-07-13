@@ -22,3 +22,4 @@ yarn-error.log
 /.vscode
 /.zed
 /storage/json/worldline_adminData.json
+/public/json/worldline_adminData.json

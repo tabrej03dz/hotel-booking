@@ -21,7 +21,7 @@ class RoleMiddleware
             return $next($request);
 
         }
-        return redirect('/');
+        return redirect('user/dashboard');
 
         // Otherwise, allow the request to continue
     }

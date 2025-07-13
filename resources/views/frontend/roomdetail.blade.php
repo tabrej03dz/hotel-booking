@@ -110,95 +110,70 @@
                     </div>
 
                     <div class="grid grid-cols-1 gap-6 lg:gap-8">
-                        <!-- Suite Card 1 -->
                         @foreach ($roomTypes as $roomType)
-                            @if (
-                                $roomType->selectedDateAvailabilities($checkIn, $checkOut)->count() != $days ||
-                                    $roomType->selectedDateAvailabilities($checkIn, $checkOut)->contains('rooms', 0))
-                                @continue
-                            @endif
-                            <div
-                                class="group relative grid grid-cols-1 md:grid-cols-2 justify-center bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl py-12">
-                                <div class="relative h-96 overflow-hidden">
-                                    <img src="{{ asset($roomType->images?->first() ? 'storage/' . $roomType->images->first()->path : 'asset/deluxe/deluxe-4.jpg') }}"
-                                        alt="Presidential Suite"
-                                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 rounded-lg">
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                                    <div class="absolute bottom-4 left-4">
-                                        <span class="bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full">MOST
-                                            POPULAR</span>
-                                    </div>
-                                </div>
-                                <div class="p-6 md:-mt-12 gap-4">
-                                    <h4 class="text-xl font-bold text-gray-900 mb-2 font-serif">{{ $roomType->name }}</h4>
-                                    <p class="text-gray-600 text-sm mb-4">{{ $roomType->description }}</p>
-                                    <div class="grid grid-cols-1 md:grid-cols-3 items-center justify-between gap-4">
-                                        @foreach ($roomType->selectedDateAvailabilities($checkIn, $checkOut) as $available)
-                                            <div
-                                                class="mt-4 bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-200">
-                                                <p class="text-blue-600 font-bold text-lg mb-1">{{ $available->date }} </p>
-                                                <p class="text-amber-700 font-bold text-lg">
-                                                    ₹{{ number_format($available->price) }} <span
-                                                        class="text-gray-500 text-sm font-normal">/night</span></p>
-                                                <p class="text-green-700 font-bold text-md">{{ $available->rooms }} <span
-                                                        class="text-green-800 text-sm font-normal">rooms are
-                                                        available</span></p>
-                                            </div>
-                                        @endforeach
+                            @php
+                                $availabilities = $roomType->selectedDateAvailabilities($checkIn, $checkOut);
+                                $isAvailable = $availabilities->count() == $days && !$availabilities->contains('rooms', 0);
+                                $totalPrice = $availabilities->sum('price');
+                            @endphp
 
-                                        <form action="{{ route('booking.room', ['roomType' => $roomType->id]) }}"
-                                            method="get">
+                            @if ($isAvailable)
+                                {{-- ✅ Room Available --}}
+                                <div class="group grid md:grid-cols-2 gap-6 bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl p-6">
+                                    {{-- Room Image --}}
+                                    <div class="relative h-96 md:h-auto">
+                                        <img src="{{ asset($roomType->images?->first() ? 'storage/' . $roomType->images->first()->path : 'asset/deluxe/deluxe-4.jpg') }}"
+                                            alt="{{ $roomType->name }}"
+                                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 rounded-lg">
+                                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                                        <div class="absolute bottom-4 left-4">
+{{--                                            <span class="bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">MOST POPULAR</span>--}}
+                                        </div>
+                                    </div>
+
+                                    {{-- Room Info --}}
+                                    <div class="flex flex-col justify-between space-y-4">
+                                        <div>
+                                            <h4 class="text-2xl font-bold text-gray-900 font-serif mb-1">{{ $roomType->name }}</h4>
+                                            <p class="text-gray-600 text-sm leading-relaxed">{{ $roomType->description }}</p>
+                                        </div>
+
+                                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+                                            @foreach ($availabilities as $available)
+                                                <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 text-sm shadow-sm">
+                                                    <p class="text-blue-600 font-semibold mb-1">{{ \Carbon\Carbon::parse($available->date)->format('d M Y') }}</p>
+                                                    <p class="text-green-700 font-semibold">{{ $available->rooms }} <span class="font-normal text-green-800">rooms available</span></p>
+                                                </div>
+                                            @endforeach
+                                        </div>
+
+                                        <div class="mt-4 bg-amber-50 border border-amber-200 rounded-lg p-4 shadow">
+                                            <p class="text-amber-700 font-bold text-lg">
+                                                ₹{{ number_format($totalPrice) }} for {{ $availabilities->count() }} night{{ $availabilities->count() > 1 ? 's' : '' }}:
+
+                                            </p>
+                                        </div>
+
+                                        <form action="{{ route('booking.room', ['roomType' => $roomType->id]) }}" method="get" class="mt-4">
                                             @csrf
                                             <input type="hidden" name="check_in_date" value="{{ $checkIn }}">
                                             <input type="hidden" name="check_out_date" value="{{ $checkOut }}">
                                             <input type="hidden" name="days" value="{{ $days }}">
 
+                                            <button type="submit"
+                                                    class="bg-gradient-to-r from-[#8B4513] to-[#D4A017] text-white font-semibold py-2 px-6 rounded-lg hover:from-[#A0522D] hover:to-[#FFBF00] transition-all duration-300 shadow-md">
+                                                Book →
+                                            </button>
                                         </form>
-
-                                    </div>
-                                    <div>
-                                        <button type="submit"
-                                            class="text-sm font-medium bg-gradient-to-r from-[#8B4513] to-[#D4A017] text-gray-50 hover:text-amber-50 transition-colors p-3 rounded-xl mt-2">Explore
-                                            →</button>
                                     </div>
                                 </div>
-                            </div>
+                            @else
+                                 ❌ Room Not Available
+                                <div class="bg-red-50 border border-red-200 text-red-800 font-semibold py-5 px-6 rounded-lg shadow-md">
+                                    😔 <strong>{{ $roomType->name }}</strong> is not available for the selected dates. Please try different dates or room types.
+                                </div>
+                            @endif
                         @endforeach
-
-                        <!-- Suite Card 2 -->
-                        {{-- <div class="group relative bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl">
-            <div class="relative h-64 overflow-hidden">
-              <img src="{{asset('asset/ballroom/ballroom-2.JPG')}}" alt="Oceanfront Villa" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-            </div>
-            <div class="p-6">
-              <h4 class="text-xl font-bold text-gray-900 mb-2 font-serif">Oceanfront Villa</h4>
-              <p class="text-gray-600 text-sm mb-4">Private beach access • Infinity pool • Outdoor shower • Daily spa credit</p>
-              <div class="flex items-center justify-between">
-                <p class="text-amber-700 font-bold text-lg">₹32,999 <span class="text-gray-500 text-sm font-normal">/night</span></p>
-                <a href="{{route('bookingdetail')}}"><button class="text-sm font-medium text-amber-600 hover:text-amber-700 transition-colors">Explore →</button></a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Suite Card 3 -->
-          <div class="group relative bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl">
-            <div class="relative h-64 overflow-hidden">
-              <img src="{{asset('asset/cafe/cafe (2).jpg')}}" alt="Skyline Penthouse" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-              <div class="absolute bottom-4 left-4">
-                <span class="bg-black text-white text-xs font-bold px-3 py-1 rounded-full">EXCLUSIVE</span>
-              </div>
-            </div>
-            <div class="p-6">
-              <h4 class="text-xl font-bold text-gray-900 mb-2 font-serif">Skyline Penthouse</h4>
-              <p class="text-gray-600 text-sm mb-4">Panoramic views • Private elevator • Chef's kitchen • 24/7 concierge</p>
-              <div class="flex items-center justify-between">
-                <p class="text-amber-700 font-bold text-lg">₹45,999 <span class="text-gray-500 text-sm font-normal">/night</span></p>
-                <a href="{{route('bookingdetail')}}"><button class="text-sm font-medium text-amber-600 hover:text-amber-700 transition-colors">Explore →</button></a>
-              </div>
-            </div>
-          </div> --}}
                     </div>
 
                     <div class="mt-12 text-center">

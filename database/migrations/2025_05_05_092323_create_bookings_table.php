@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
+            $table->string('booking_id');
             $table->string('name');
             $table->string('email');
             $table->string('phone');
@@ -29,7 +30,11 @@ return new class extends Migration
             $table->decimal('tax_and_fee', 10, 2)->nullable();
             $table->decimal('total_amount', 10, 2)->nullable();
             $table->integer('adults')->default(1);
-            $table->integer('children')->default(0);
+            $table->integer('children')->nullable();
+            $table->integer('extra_person')->nullable();
+            $table->integer('rooms')->default(1);
+            $table->string('gst_number', 15)->nullable(); // adjust position if needed
+            $table->string('company_name')->nullable();
             $table->timestamps();
         });
     }

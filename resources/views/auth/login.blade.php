@@ -4,6 +4,10 @@
 
     <form method="POST" action="{{ route('login') }}">
         @csrf
+        <div class="flex items-center justify-center space-x-4 py-4 bg-black mb-4 rounded-xl">
+            <img src="{{ asset('asset/images/logo.png') }}" alt="Krinoscco Hotel Logo" class="w-16 h-16 object-contain rounded-full shadow-md">
+            <span class="text-xl font-semibold text-gray-50">Krinoscco Hotel</span>
+        </div>
 
         <!-- Email Address -->
         <div>

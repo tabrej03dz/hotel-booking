@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\BookingConfirmationMail;
+use App\Mail\BookingMail;
 use App\Mail\UserRegistrationMail;
 use App\Models\AdditionalService;
 use App\Models\AvailabilityRate;
@@ -102,6 +103,10 @@ class HomeController extends Controller
     {
         return view('frontend.ballroom-package');
     }
+    public function ontherock()
+    {
+        return view('frontend.ontherock');
+    }
 
 
     public function elite1()
@@ -189,6 +194,7 @@ class HomeController extends Controller
         $checkIn = $request->check_in_date;
         $checkOut = $request->check_out_date;
 
+
 //        $availableRooms = AvailabilityRate::where('date', $checkIn)->get();
 
         $roomTypes = RoomType::all();
@@ -208,18 +214,27 @@ class HomeController extends Controller
     public function bookingSave(Request $request, RoomType $roomType)
     {
         $request->validate([
-            'name'      => 'required|string|max:255',
-            'email'     => 'required|email',
-            'phone'     => 'required|string|max:15',
-            'address'   => 'nullable|string',
-            'check_in_date' => 'required|date',
+            'name'           => 'required|string|max:255',
+            'email'          => 'required|email',
+            'phone'          => 'required|string',
+            'address'        => 'nullable|string',
+            'check_in_date'  => 'required|date',
             'check_out_date' => 'required|date|after:check_in_date',
-            'adults'    => 'required|integer|min:1',
-            'children'  => 'required|integer|min:0',
-            'service_ids' => 'array',
-            'service_ids.*' => 'integer|exists:additional_services,id',
-            'quantities' => 'array',
+            'adults'         => 'required|integer|min:1',
+            'children'       => 'nullable|integer|min:0',
+            'service_ids'    => 'array',
+            'service_ids.*'  => 'integer|exists:additional_services,id',
+            'quantities'     => 'array',
+            'rooms'          => 'required|integer|min:1',
+            'extra_person'   => 'nullable|integer',
+
+            'gst_required'   => 'nullable|in:on', // optional checkbox
+            'gst_number'     => 'nullable|required_if:gst_required,on|string|max:15',
+            'company_name'   => 'nullable|required_if:gst_required,on|string|max:255',
+            'child_ages'     => 'nullable|array',
+            'child_ages.*'   => 'required_if:children,1,2,3|integer|min:0|max:17',
         ]);
+
 
 
         // Handle guest login or register
@@ -246,13 +261,20 @@ class HomeController extends Controller
 
         $user = Auth::user();
 
-        if ($roomType->selectedDateAvailabilities($request->check_in_date, $request->check_out_date)->count() != $request->days || $roomType->selectedDateAvailabilities($request->check_in_date, $request->check_out_date)->contains('rooms', 0)) {
-            return back()->with('error', 'No available rooms of this type.');
+        $availabilities = $roomType->selectedDateAvailabilities($request->check_in_date, $request->check_out_date);
+
+        if (
+            $availabilities->count() != $request->days ||
+            $availabilities->contains(function ($availability) use ($request) {
+                return $availability->rooms < $request->rooms;
+            })
+        ) {
+            return back()->with('error', 'No available rooms of this typev on selected date.');
         }
 
-
-//        $roomTotal = $available->price * $request->days;
+        //$roomTotal = $available->price * $request->days;
         $roomTotal = $roomType->selectedDateAvailabilities($request->check_in_date, $request->check_out_date)->sum('price');
+        $roomTotal = $roomTotal * ($request->rooms ?? 1);
 
         $serviceCharge = 0;
         if ($request->has('service_ids')) {
@@ -264,13 +286,34 @@ class HomeController extends Controller
                 }
             }
         }
+        $serviceCharge = $serviceCharge * $request->days;
 
-        // Step 5: Tax and total
-        $subTotal = $roomTotal + $serviceCharge;
-        $tax = round($subTotal * 0.18, 2);
+        $extraChildCharge = 0;
+        if ($request->child_ages){
+            foreach ($request->child_ages as $age){
+                if ($age > 6){
+                    $extraChildCharge += 500 * $request->days;
+                }
+            }
+        }
+
+        // 👉 Extra person calculation
+        $extraAdults = max(0, $request->adults - 2);
+        $extraPersonAmount = $extraAdults * 1500 * $request->days;
+
+        if($roomTotal >= 7500){
+            $gst = 18/100;
+        }else{
+            $gst = 12/100;
+        }
+        // 👉 Final calculation
+        $subTotal = $roomTotal + $serviceCharge + $extraPersonAmount + $extraChildCharge;
+        $tax = round($subTotal * $gst, 2);
         $totalAmount = round($subTotal + $tax, 2);
 
+        // 👉 Save booking
         $booking = Booking::create([
+            'booking_id' => 'KRI' . now()->format('His') . rand(1000, 9999),
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
@@ -286,6 +329,12 @@ class HomeController extends Controller
             'adults' => $request->adults,
             'children' => $request->children,
             'status' => 'pending',
+            'rooms' => $request->rooms,
+            'extra_person' => $extraPersonAmount,
+            'gst_number' => $request->gst_number,
+            'company_name' => $request->company_name,
+            'child_ages' => $request->child_ages,
+            'extra_child_charge' => $extraChildCharge,
         ]);
 
         // Step 7: Save selected services
@@ -300,7 +349,7 @@ class HomeController extends Controller
         }
 
         foreach ($roomType->selectedDateAvailabilities($request->check_in_date, $request->check_out_date) as $availability){
-            $booking->availablities()->create([
+            $booking->availabilities()->create([
                 'availability_rate_id' => $availability->id,
                 'price' => $availability->price,
             ]);
@@ -316,8 +365,10 @@ class HomeController extends Controller
             'status' => 'pending',
         ]);
 
-
-        $path = storage_path() . "/json/worldline_AdminData.json";
+        //$path = asset('storage/json/worldline_AdminData.json');
+        // $path = storage_path() . "/json/worldline_AdminData.json";
+        // $mer_array = json_decode(file_get_contents($path), true);
+        $path = public_path('json/worldline_adminData.json');
         $mer_array = json_decode(file_get_contents($path), true);
         $txnId = $transactionId;
         $consumerId = $user->id;
@@ -341,13 +392,13 @@ class HomeController extends Controller
 
         $datastring = $mer_array['merchantCode'] . "|" . $txnId . "|" . $amount . "|" . "|" . $consumerId . "|" . $mobile . "|" . $email . "||||||||||" . $mer_array['salt'];
 
-//        if($mer_array['enableEmandate'] == 1){
-//            $datastring = $mer_array['merchantCode'] . "|" . $txnId . "|" . $amount . "|" . "|" . $consumerId . "|" . $mobile . "|" . $email . "||||||||||" . $mer_array['salt'];
-//        }
-//        if($mer_array['enableEmandate'] == 1 && $mer_array['enableSIDetailsAtMerchantEnd'] == 1 )
-//        {
-//            $datastring = $mer_array['merchantCode']."|".$txnId."|".$amount."|".$request->accNo."|".$consumerId."|".$mobile . "|" . $email."|".$request->debitStartDate."|".$request->debitEndDate."|".$request->maxAmount."|".$amountType."|".$request->frequency."|".$request->cardNumber."|".$request->expMonth."|".$request->expYear."|".$request->cvvCode."|".$mer_array['salt'];
-//        }
+        //        if($mer_array['enableEmandate'] == 1){
+        //            $datastring = $mer_array['merchantCode'] . "|" . $txnId . "|" . $amount . "|" . "|" . $consumerId . "|" . $mobile . "|" . $email . "||||||||||" . $mer_array['salt'];
+        //        }
+        //        if($mer_array['enableEmandate'] == 1 && $mer_array['enableSIDetailsAtMerchantEnd'] == 1 )
+        //        {
+        //            $datastring = $mer_array['merchantCode']."|".$txnId."|".$amount."|".$request->accNo."|".$consumerId."|".$mobile . "|" . $email."|".$request->debitStartDate."|".$request->debitEndDate."|".$request->maxAmount."|".$amountType."|".$request->frequency."|".$request->cardNumber."|".$request->expMonth."|".$request->expYear."|".$request->cvvCode."|".$mer_array['salt'];
+        //        }
 
         $hashVal = hash('sha512', $datastring);
         $paymentDetails = array(
@@ -357,7 +408,7 @@ class HomeController extends Controller
             'currencycode' => 'INR',
             'schemecode' => $mer_array['merchantSchemeCode'],
             'consumerId' => $consumerId,
-            'mobileNumber' => $user->mobile_number ?? $request->phone,
+            'mobileNumber' => $request->phone,
             'email' => $user->email,
             'customerName' => $user->name,
             'accNo' => '',

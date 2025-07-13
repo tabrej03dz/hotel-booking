@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\BookingConfirmationMail;
+use App\Mail\BookingMail;
 use App\Models\Booking;
 use App\Models\Payment;
 use Illuminate\Http\Request;
@@ -70,13 +71,24 @@ class PaymentController extends Controller
             if ($statusCode === '0300') {
                 $payment->status = 'paid';
                 $payment->booking->update(['status' => 'confirmed']);
-                $payment->booking->availabilityRate->update(['rooms' => $payment->booking->availabilityRate->rooms -1]);
+//                $payment->booking->availabilityRate->update(['rooms' => $payment->booking->availabilityRate->rooms -1]);
+                foreach ($payment->booking->roomType->selectedDateAvailabilities($payment->booking->check_in_date, $payment->booking->check_out_date) as $availability){
+                    $availability->update(['rooms' => $availability->rooms - $payment->booking->rooms]);
+                }
             } else {
                 $payment->status = 'failed';
                 $payment->response_data = $rawMsg;
                 $payment->booking->update(['status' => 'failed']);
             }
             $payment->save();
+
+            // Send mail to customer
+            Mail::to($payment->booking->email)->send(new BookingMail($payment->booking, 'user'));
+
+            // Send mail to admin
+            Mail::to('info@krinoscco.com')->send(new BookingMail($payment->booking, 'admin'));
+            Mail::to('accounts@krinoscco.com')->send(new BookingMail($payment->booking, 'admin'));
+
         }
 
         // Redirect with appropriate message

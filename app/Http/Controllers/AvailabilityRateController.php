@@ -26,24 +26,43 @@ class AvailabilityRateController extends Controller
         return view('availability-rate', compact('dates', 'roomTypes', 'month'));
     }
 
-    public function store(Request $request){
-        $request->validate([
-            'date' => 'required|date',
-            'rooms' => 'nullable',
-            'price' => 'nullable',
-        ]);
+//    public function store(Request $request){
+//        $request->validate([
+//            'date' => 'required|date',
+//            'rooms' => 'nullable',
+//            'price' => 'nullable',
+//        ]);
+//
+//        AvailabilityRate::create($request->all());
+//        return back()->with('success', 'Record saved successfully');
+//    }
 
-        AvailabilityRate::create($request->all());
-        return back()->with('success', 'Record saved successfully');
+    public function store(Request $request)
+    {
+        $record = AvailabilityRate::where(['date' => $request->date, 'room_type_id' => $request->room_type_id])->first();
+        if ($record){
+            $record->update($request->only('room_type_id', 'date', 'rooms', 'price'));
+        }else{
+            $record = AvailabilityRate::create($request->only('room_type_id', 'date', 'rooms', 'price'));
+        }
+        return response()->json(['message' => 'Created', 'id' => $record->id]);
     }
 
-    public function update(Request $request, AvailabilityRate $record){
-        $request->validate([
-            'rooms' => 'required',
-            'price' => 'required',
-        ]);
 
-        $record->update($request->all());
-        return back()->with('success', 'Record Updated successfully');
+//    public function update(Request $request, AvailabilityRate $record){
+//        $request->validate([
+//            'rooms' => 'required',
+//            'price' => 'required',
+//        ]);
+//
+//        $record->update($request->all());
+//        return back()->with('success', 'Record Updated successfully');
+//    }
+
+    public function update(Request $request, $id)
+    {
+        $record = AvailabilityRate::findOrFail($id);
+        $record->update($request->only('rooms', 'price'));
+        return response()->json(['message' => 'Updated']);
     }
 }

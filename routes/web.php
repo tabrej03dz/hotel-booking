@@ -141,7 +141,7 @@ Route::middleware('auth')->group(function () {
         Route::prefix('availability-rate')->name('availability-rate.')->controller(\App\Http\Controllers\AvailabilityRateController::class)->group(function(){
            Route::get('/', 'index')->name('index');
            Route::post('store', 'store')->name('store');
-           Route::post('update/{record}', 'update')->name('update');
+           Route::post('update/{id}', 'update')->name('update');
         });
 
         Route::prefix('additional-service')->name('additional-service.')->controller(\App\Http\Controllers\AdditionalServiceController::class)->group(function(){
@@ -151,6 +151,12 @@ Route::middleware('auth')->group(function () {
            Route::get('edit/{service}', 'edit')->name('edit');
            Route::post('update/{service}', 'update')->name('update');
            Route::post('destroy/{service}', 'delete')->name('destroy');
+        });
+
+        Route::prefix('package-booking')->name('package-booking.')->controller(\App\Http\Controllers\PackageBookingController::class)->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::post('destroy/{booking}', 'destroy')->name('destroy');
+            Route::get('show/{booking}', 'show')->name('show');
         });
     });
 
@@ -209,6 +215,7 @@ Route::get('/accommodation/suite-room', [HomeController::class, 'suiteRoom'])->n
 // Banquets and Meetings Routes
 Route::get('/banquets/lawn-package', [HomeController::class, 'lawnPackage'])->name('banquets.lawn');
 Route::get('/banquets/ballroom-package', [HomeController::class, 'ballroomPackage'])->name('banquets.ballroom');
+Route::get('/banquets/ontherock', [HomeController::class, 'ontherock'])->name('banquets.ontherock');
 Route::get('/banquets/elite1', [HomeController::class, 'elite1'])->name('banquets.elite1');
 Route::get('/banquets/elite2', [HomeController::class, 'elite2'])->name('banquets.elite2');
 
@@ -232,6 +239,9 @@ Route::post('booking/save/{roomType}', [HomeController::class, 'bookingSave'])->
 
 Route::get('/bookingdetail', [HomeController::class, 'bookingdetail'])->name('bookingdetail');
 Route::get('/roomdetail', [HomeController::class, 'roomdetail'])->name('frontend.roomdetail');
+
+Route::post('package-booking/store', [\App\Http\Controllers\PackageBookingController::class, 'store'])->name('package-booking.store');
+
 
 // profile page::::
 Route::prefix('user')->name('user.')->middleware('auth')->group(function(){

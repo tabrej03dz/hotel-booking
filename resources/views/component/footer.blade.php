@@ -77,7 +77,7 @@
             <!-- Hotel Info -->
             <div class="space-y-4">
                 <img src="{{ asset('asset/images/logo.png') }}" alt="Hotel Krinoscco Logo" class="w-24 h-auto mb-6" />
-                <h3 class="text-2xl font-bold text-white mb-6">Hotel Krinoscco</h3>
+                <h3 class="text-2xl font-bold text-white mb-6">Hotel Krinoscco </h3>
                <div class="flex items-center space-x-2">
     <a href="https://www.google.com/maps/place/Hotel+Krinoscco/@26.783073,82.165321,16z/data=!4m9!3m8!1s0x399a0796e56fb899:0xffa1558e88f0d349!5m2!4m1!1i2!8m2!3d26.7830727!4d82.1653206!16s%2Fg%2F11ry4tcm_l?hl=en&entry=ttu" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 text-sm text-white hover:underline">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -86,7 +86,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
         </svg>
-        <span>Hotel Krinossco,Rampath, Amaniganj, Ayodhya (U.P.), 224001.
+        <span>Hotel Krinoscco Rampath Amaniganj Ayodhya U.P 224001
 </span>
     </a>
 </div>
@@ -96,8 +96,8 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
-                    <span class="text-sm">+91-7275002525 ;</span>
-                    <span class="text-sm">+91-7275112525</span>
+                    <p class="text-white">7275092525 ;</p><br>
+                    <p class="text-white">7275002525</p>
                 </div>
                 <div class="flex items-center space-x-2">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

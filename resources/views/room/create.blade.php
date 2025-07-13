@@ -77,21 +77,6 @@
                         </select>
                     </div>
 
-                    <div>
-                        <label class="block text-gray-700 font-medium mb-2">Price (optional)</label>
-                        <input type="number" name="price"
-                               value="{{ old('price', isset($room) ? $room->price : '') }}"
-                               class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-200"
-                               placeholder="Enter room price">
-                    </div>
-
-                    <div>
-                        <label class="block text-gray-700 font-medium mb-2">Discounted Price (optional)</label>
-                        <input type="number" name="discounted_price"
-                               value="{{ old('discounted_price', isset($room) ? $room->discounted_price : '') }}"
-                               class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-200"
-                               placeholder="Enter room discounted price">
-                    </div>
 
                     <div>
                         <label class="block text-gray-700 font-medium mb-2">Status</label>
@@ -106,19 +91,6 @@
                             @endforeach
                         </select>
                     </div>
-
-                    <div>
-                        <label class="block text-gray-700 font-medium mb-2">Amenities</label>
-                        <select name="amenities[]" multiple class="select2 w-full" id="select2" required>
-                            @foreach($amenities as $amenity)
-                                <option value="{{ $amenity->id }}"
-                                    {{ in_array($amenity->id, old('amenities', isset($room) ? $room->amenities->pluck('id')->toArray() : [])) ? 'selected' : '' }}>
-                                    {{ $amenity->name }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-
 
                     <div>
                         <label class="block text-gray-700 font-medium mb-2">Room Images</label>

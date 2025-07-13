@@ -8,7 +8,7 @@
 
         <div class="relative container mx-auto text-center z-10">
             <h1 class="text-5xl font-extrabold uppercase leading-tight mb-4 text-[#ecf0f1] drop-shadow-lg">
-                Crescent Facilities
+                Dining
             </h1>
             <div class="w-32 h-1 bg-gradient-to-r from-[#e67e22] to-[#f39c12] mx-auto rounded-full"></div>
         </div>
@@ -105,101 +105,6 @@
             </div>
         </div>
 
-        <!-- Gym Section -->
-        <div class="py-16 px-8 lg:px-16">
-            <div class="text-center py-10">
-                <!-- Title of the Restaurant without shadow, with hover effect on text -->
-                <h2
-                    class="text-4xl font-semibold text-[#2c3e50] mb-6 transform transition-all hover:scale-105 hover:text-[#e67e22]">
-                    Gym
-                </h2>
-
-                <!-- Gradient line with smooth animation -->
-                <div
-                    class="w-32 h-1 bg-gradient-to-r from-[#e67e22] to-[#f39c12] mx-auto rounded-full transition-all duration-500 hover:w-40">
-                </div>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-                <div
-                    class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-transform duration-700 ease-in-out hover:scale-105">
-                    <img src="{{ asset('asset/gym/gym (1).jpg') }}" alt="Gym Image 1"
-                        class="w-full h-[250px] object-cover hover:scale-110 transition-transform duration-1000">
-                </div>
-                <div
-                    class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-transform duration-700 ease-in-out hover:scale-105">
-                    <img src="{{ asset('asset/gym/gym (2).jpg') }}" alt="Gym Image 2"
-                        class="w-full h-[250px] object-cover hover:scale-110 transition-transform duration-1000">
-                </div>
-                <div
-                    class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-transform duration-700 ease-in-out hover:scale-105">
-                    <img src="{{ asset('asset/gym/gym (3).jpg') }}" alt="Gym Image 3"
-                        class="w-full h-[250px] object-cover hover:scale-110 transition-transform duration-1000">
-                </div>
-                <div
-                    class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-transform duration-700 ease-in-out hover:scale-105">
-                    <img src="{{ asset('asset/gym/gym (4).jpg') }}" alt="Gym Image 4"
-                        class="w-full h-[250px] object-cover hover:scale-110 transition-transform duration-1000">
-                </div>
-                {{-- <div
-                    class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-transform duration-700 ease-in-out hover:scale-105">
-                    <img src="{{ asset('asset/cafe/cafe (5).jpg') }}" alt="Gym Image 5"
-                        class="w-full h-[250px] object-cover hover:scale-110 transition-transform duration-1000">
-                </div> --}}
-            </div>
-        </div>
-
-        <!-- Conference Room Elite 1 & Elite 2 Section -->
-        <div class="py-16 px-8 lg:px-16">
-            <div class="text-center py-10">
-                <!-- Title of the Restaurant without shadow, with hover effect on text -->
-                <h2
-                    class="text-4xl font-semibold text-[#2c3e50] mb-6 transform transition-all hover:scale-105 hover:text-[#e67e22]">
-                    Conference Room Elite 1 & Elite 2
-                </h2>
-
-                <!-- Gradient line with smooth animation -->
-                <div
-                    class="w-32 h-1 bg-gradient-to-r from-[#e67e22] to-[#f39c12] mx-auto rounded-full transition-all duration-500 hover:w-40">
-                </div>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-                <div
-                    class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-transform duration-700 ease-in-out hover:scale-105">
-                    <img src="{{ asset('asset/confrence-hall/hall (1).jpg') }}" alt="Conference Room Image 1"
-                        class="w-full h-[250px] object-cover hover:scale-110 transition-transform duration-1000">
-                </div>
-                <div
-                    class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-transform duration-700 ease-in-out hover:scale-105">
-                    <img src="{{ asset('asset/confrence-hall/hall (2).jpg') }}" alt="Conference Room Image 2"
-                        class="w-full h-[250px] object-cover hover:scale-110 transition-transform duration-1000">
-                </div>
-                <div
-                    class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-transform duration-700 ease-in-out hover:scale-105">
-                    <img src="{{ asset('asset/confrence-hall/hall (3).jpg') }}" alt="Conference Room Image 3"
-                        class="w-full h-[250px] object-cover hover:scale-110 transition-transform duration-1000">
-                </div>
-                <div
-                    class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-transform duration-700 ease-in-out hover:scale-105">
-                    <img src="{{ asset('asset/confrence-hall/hall (4).jpg') }}" alt="Conference Room Image 4"
-                        class="w-full h-[250px] object-cover hover:scale-110 transition-transform duration-1000">
-                </div>
-                <div
-                    class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-transform duration-700 ease-in-out hover:scale-105">
-                    <img src="{{ asset('asset/confrence-hall/hall (5).jpg') }}" alt="Conference Room Image 5"
-                        class="w-full h-[250px] object-cover hover:scale-110 transition-transform duration-1000">
-                </div>
-                <div
-                    class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-transform duration-700 ease-in-out hover:scale-105">
-                    <img src="{{ asset('asset/confrence-hall/hall (6).jpg') }}" alt="Conference Room Image 6"
-                        class="w-full h-[250px] object-cover hover:scale-110 transition-transform duration-1000">
-                </div>
-                <div
-                    class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-transform duration-700 ease-in-out hover:scale-105">
-                    <img src="{{ asset('asset/confrence-hall/hall (7).jpg') }}" alt="Conference Room Image 7"
-                        class="w-full h-[250px] object-cover hover:scale-110 transition-transform duration-1000">
-                </div>
-            </div>
-        </div>
 
         {{-- <!-- Optional CTA Section -->
         <div class="my-10 text-center">
@@ -209,6 +114,47 @@
                 <i class="fas fa-arrow-right ml-2"></i>
             </a>
         </div> --}}
+
+            <!-- Cafe:::::::-->
+            <div class="py-16 px-8 lg:px-16">
+                <div class="text-center py-10">
+                    <!-- Title of the Restaurant without shadow, with hover effect on text -->
+                    <h2
+                        class="text-4xl font-semibold text-[#2c3e50] mb-6 transform transition-all hover:scale-105 hover:text-[#e67e22]">
+                        Tit Bit
+                    </h2>
+
+                    <!-- Gradient line with smooth animation -->
+                    <div
+                        class="w-32 h-1 bg-gradient-to-r from-[#e67e22] to-[#f39c12] mx-auto rounded-full transition-all duration-500 hover:w-40">
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+
+
+                    <div
+                        class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-transform duration-700 ease-in-out hover:scale-105">
+                        <img src="{{asset('asset/images/cafe.jpg')}}" alt="Conference Room Image 3"
+                            class="w-full h-[250px] object-cover hover:scale-110 transition-transform duration-1000">
+                    </div>
+
+                    <div
+                        class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-transform duration-700 ease-in-out hover:scale-105">
+                        <img src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4noMkekZe8EKtx2-H3GCnFy3wy7_aQ9EY98QEF0SAZ1ESUvRg8QsssHOsvO96oVEqp1lBLdlviL4qKjRg45Yflv7njeWATwZ6ktgT7hoKzYu2cQOaIfKchh9ml51ha4mtu_xunSgnQ=s1360-w1360-h1020-rw" alt="Conference Room Image 5"
+                            class="w-full h-[250px] object-cover hover:scale-110 transition-transform duration-1000">
+                    </div>
+                    <div
+                        class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-transform duration-700 ease-in-out hover:scale-105">
+                        <img src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nogYLpC1L_btqGHCJCQxWqUfalvraZrilputSu5zH2tD0ZJsR_DTmbwyohMYldvoYNWUyaQQLX_e8Wd27f5rVtZQ_N9BsbHZPaYhhXqsR7HWhNabUGJaXWEwv4fxXt8rvvBVfOl=s1360-w1360-h1020-rw" alt="Conference Room Image 6"
+                            class="w-full h-[250px] object-cover hover:scale-110 transition-transform duration-1000">
+                    </div>
+                    <div
+                        class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-transform duration-700 ease-in-out hover:scale-105">
+                        <img src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4noh9auOcnnK0G7nXH2iBOpR-0IQX3NgC84_B05N4IxNit_fw2sHf2FSc-k7uEg-TzbNXjpY79Pf-0sX-FHzPtutSS3MZuqaF4OMg5ZN3XUKElS0lTLFXMn5iu2iyWHJhNT37dGL=s1360-w1360-h1020-rw" alt="Conference Room Image 7"
+                            class="w-full h-[250px] object-cover hover:scale-110 transition-transform duration-1000">
+                    </div>
+                </div>
+            </div>
 
     </section>
 @endsection

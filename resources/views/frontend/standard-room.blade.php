@@ -115,22 +115,21 @@
                             <span class="text-[#8B4513] font-semibold uppercase tracking-wider">Standard Room</span>
                         </div>
                         <h2 class="text-4xl lg:text-5xl font-bold text-[#1a1a2e] leading-tight">
-                            Where Every Moment
-                            <span class="relative">Resonates
+                            Every Stay,
+                            <span class="relative">A Serene Experience
                                 <div class="absolute bottom-0 left-0 w-full h-[8px] bg-[#8B4513]/20"></div>
                             </span>
                         </h2>
+
                     </div>
 
                     <div class="space-y-6">
                         <p class="text-lg text-gray-700 leading-relaxed">
-                            The Suite has all the essential conveniences and is tastefully designed for your enjoyable stay.
-                            Hotel Krinoscco redefines suite with an unwavering commitment to international standards of
-                            service and style.
+                            The Standard Room offers essential comforts with a cozy, inviting design crafted to make your stay pleasant and restful.
+                            At Hotel Krinoscco, we prioritize your comfort while maintaining our commitment to quality and attentive service.
                         </p>
                         <p class="text-lg text-gray-700 leading-relaxed">
-                            Setting a new benchmark for unparalleled accommodation and exceptional value, it embodies the
-                            epitome of contemporary elegance.
+                            Combining practical amenities with a warm ambiance, the Standard Room sets the perfect foundation for a relaxing and affordable stay.
                         </p>
 
                         <div class="grid grid-cols-2 gap-6 py-6">
@@ -139,8 +138,8 @@
                                     <i class="fas fa-map-marker-alt text-[#8B4513] text-xl"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-semibold text-[#1a1a2e]">Prime Location</h4>
-                                    <p class="text-sm text-gray-600">Heart of Ayodhya</p>
+                                    <h4 class="font-semibold text-[#1a1a2e]">Convenient Location</h4>
+                                    <p class="text-sm text-gray-600">Close to City Center</p>
                                 </div>
                             </div>
                             <div class="flex items-center gap-4">
@@ -148,8 +147,8 @@
                                     <i class="fas fa-clock text-[#8B4513] text-xl"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-semibold text-[#1a1a2e]">Quick Access</h4>
-                                    <p class="text-sm text-gray-600">15min from stations</p>
+                                    <h4 class="font-semibold text-[#1a1a2e]">Easy Access</h4>
+                                    <p class="text-sm text-gray-600">Minutes from transport hubs</p>
                                 </div>
                             </div>
                         </div>
@@ -160,7 +159,7 @@
                                 <div
                                     class="absolute inset-0 bg-[#6B3410] transform translate-y-full transition-transform duration-300 group-hover:translate-y-0">
                                 </div>
-                                <span class="relative z-10 font-semibold">Discover More</span>
+                                <span class="relative z-10 font-semibold">Explore Our Rooms</span>
                             </a>
                             <a href="{{ route('gallery') }}"
                                 class="group flex items-center gap-3 text-[#1a1a2e] font-semibold hover:text-[#8B4513] transition-colors duration-300">
@@ -170,6 +169,7 @@
                             </a>
                         </div>
                     </div>
+
                 </div>
 
             </div>
@@ -199,8 +199,7 @@
                     </div>
                     <div class="flex items-start gap-4">
                         <div class="w-5 h-5 bg-[#8B4513] rounded-full"></div>
-                        <p class="text-lg text-gray-700">Telephone with intercoms, speakerphone, voicemail & wake-up call
-                            facilities</p>
+                        <p class="text-lg text-gray-700">Telephone with intercoms, speakerphone</p>
                     </div>
                     <div class="flex items-start gap-4">
                         <div class="w-5 h-5 bg-[#8B4513] rounded-full"></div>
@@ -214,12 +213,88 @@
                         <div class="w-5 h-5 bg-[#8B4513] rounded-full"></div>
                         <p class="text-lg text-gray-700">Mini Bar</p>
                     </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-5 h-5 bg-[#8B4513] rounded-full"></div>
+                        <p class="text-lg text-gray-700">Slippers (on request)
+                        </p>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-5 h-5 bg-[#8B4513] rounded-full"></div>
+                        <p class="text-lg text-gray-700">iron (on request)
+
+                        </p>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-5 h-5 bg-[#8B4513] rounded-full"></div>
+                        <p class="text-lg text-gray-700">Bath amenities and toiletry items
+
+                        </p>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-5 h-5 bg-[#8B4513] rounded-full"></div>
+                        <p class="text-lg text-gray-700">32 inch flat Screen television
+
+                        </p>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-5 h-5 bg-[#8B4513] rounded-full"></div>
+                        <p class="text-lg text-gray-700">hair dryer (on request)
+
+                        </p>
+                    </div>
+
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Real-time Availability Section -->
+  {{-- booking section --}}
+{{--  <section id="booking" class="py-12 animated-gradient bg-[#151127]">--}}
+{{--    <div class="container mx-auto px-4">--}}
+{{--        <!-- Title Section -->--}}
+{{--        <h2 class="text-3xl font-bold text-white mb-8 text-center">--}}
+{{--            Book Your Stay--}}
+{{--            <div class="w-16 h-1 bg-gradient-to-r from-[#8B4513] to-[#D4A017] mx-auto mt-2 rounded-full"></div>--}}
+{{--        </h2>--}}
+{{--        <div class="w-full max-w-7xl mx-auto bg-white rounded-lg shadow-lg p-6">--}}
+
+{{--            <form action="{{ route('rooms.available') }}" method="GET"--}}
+{{--                class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">--}}
+{{--                @csrf--}}
+
+{{--                <!-- Check-in Date Picker -->--}}
+{{--                <div class="flex flex-col">--}}
+{{--                    <label class="text-gray-700 font-medium">Check-in</label>--}}
+{{--                    <input type="date" id="checkin" name="check_in_date" placeholder="Select Check-in" required--}}
+{{--                        class="border border-gray-300 rounded-md p-2 bg-white outline-none--}}
+{{--                                   focus:border-[#8B4513] focus:ring-2 focus:ring-[#8B4513]">--}}
+{{--                </div>--}}
+
+{{--                <!-- Check-out Date Picker -->--}}
+{{--                <div class="flex flex-col">--}}
+{{--                    <label class="text-gray-700 font-medium">Check-out</label>--}}
+{{--                    <input type="date" id="checkout" name="check_out_date" placeholder="Select Check-out"--}}
+{{--                        required--}}
+{{--                        class="border border-gray-300 rounded-md p-2 bg-white outline-none--}}
+{{--                                   focus:border-[#8B4513] focus:ring-2 focus:ring-[#8B4513]">--}}
+{{--                </div>--}}
+
+{{--                <div class="flex flex-col">--}}
+{{--                    <br>--}}
+{{--                    <button type="submit"--}}
+{{--                        class="px-6 py-2 bg-gradient-to-r from-[#8B4513] to-[#D4A017] text-white rounded-md transition--}}
+{{--                                hover:from-[#D4A017] hover:to-[#8B4513]">--}}
+{{--                        Search--}}
+{{--                    </button>--}}
+{{--                </div>--}}
+
+{{--            </form>--}}
+
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</section>--}}
+
     @include('component.booking')
 
     <!-- Add SwiperJS -->

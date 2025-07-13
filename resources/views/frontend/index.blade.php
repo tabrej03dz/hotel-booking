@@ -146,7 +146,8 @@
     <section class="relative h-screen overflow-hidden">
         <!-- Video Background with improved loading -->
         <video autoplay muted loop playsinline class="absolute w-full h-full object-cover filter brightness-75">
-            <source src="{{ asset('asset/images/Full Hotel C3.m4v.mp4') }}" type="video/mp4">
+{{--            <source src="{{ asset('asset/images/Full Hotel C3.m4v.mp4') }}" type="video/mp4">--}}
+            <source src="{{ asset('asset/video/61 MB.m4v.mp4') }}" type="video/mp4">
         </video>
 
         <!-- Enhanced glass effect overlay -->
@@ -714,12 +715,12 @@
         <div class="container mx-auto px-4 relative z-10">
             <!-- Section Heading -->
             <h2 class="text-5xl font-extrabold text-[#1a1a2e] mb-16 text-center tracking-tight">
-                Crescent Facilities
+                Dining
                 <div class="w-24 h-1 bg-gradient-to-r from-[#8B4513] to-[#D4A017] mx-auto mt-4 rounded-full"></div>
             </h2>
 
             <!-- Facility Cards Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 md:gap-12 px-8">
                 <!-- Crescent Restaurant -->
                 <div
                     class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-transform duration-700 ease-in-out hover:scale-105">
@@ -727,7 +728,7 @@
                         class="w-full h-[300px] object-cover hover:scale-110 transition-transform duration-1000">
                     <div
                         class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex items-end p-4">
-                        <h3 class="text-white text-lg md:text-xl font-semibold uppercase tracking-wide">Crescent Restaurant
+                        <h3 class="text-white text-lg md:text-xl font-semibold uppercase tracking-wide">Dining Restaurant
                         </h3>
                     </div>
                 </div>
@@ -743,7 +744,7 @@
                     </div>
                 </div>
 
-                <!-- Gym -->
+                {{-- <!-- Gym -->
                 <div
                     class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-transform duration-700 ease-in-out hover:scale-105">
                     <img src="{{ asset('asset/gym/gym (1).jpg') }}" alt="Gym"
@@ -764,12 +765,12 @@
                         <h3 class="text-white text-lg md:text-xl font-semibold uppercase tracking-wide">Conference Room
                             Elite 1 & 2</h3>
                     </div>
-                </div>
+                </div> --}}
             </div>
 
             <!-- Optional CTA Section -->
             <div class="mt-20 text-center">
-                <a href="{{route('crescentfacilities')}}"
+                <a href="{{ route('crescentfacilities') }}"
                     class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#8B4513] to-[#D4A017] text-white rounded-lg transition-all duration-500 ease-in-out transform hover:from-[#D4A017] hover:to-[#8B4513] hover:scale-105 shadow-2xl hover:shadow-2xl">
                     Explore All Facilities
                     <i class="fas fa-arrow-right ml-2"></i>
@@ -892,173 +893,131 @@
             </div>
         </div>
     </section>
+{{-- booking section --}}
 
-    <section id="booking" class="py-12 animated-gradient">
-        <div class="container mx-auto px-4">
-            <!-- Title Section -->
-            <h2 class="text-3xl font-bold text-white mb-8 text-center">
-                Book Your Stay
-                <div class="w-16 h-1 bg-gradient-to-r from-[#8B4513] to-[#D4A017] mx-auto mt-2 rounded-full"></div>
-            </h2>
-            <div class="w-full max-w-7xl mx-auto bg-white rounded-lg shadow-lg p-6">
+    {{--    <section id="booking" class="py-12 bg-gradient-to-br from-[#3c2a21] via-[#5d4037] to-[#1e1810] relative overflow-hidden"> --}}
+    {{--    <!-- Background decorative elements --> --}}
+    {{--    <div class="absolute inset-0 overflow-hidden opacity-10"> --}}
+    {{--        <div class="absolute top-0 left-0 w-64 h-64 bg-[#D4A017] rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div> --}}
+    {{--        <div class="absolute bottom-0 right-0 w-96 h-96 bg-[#8B4513] rounded-full blur-3xl translate-x-1/3 translate-y-1/3"></div> --}}
+    {{--    </div> --}}
 
-                <form action="{{ route('rooms.available') }}" method="GET"
-                      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                    @csrf
+    {{--    --}}{{-- <div class="container mx-auto px-4 relative z-10"> --}}
+    {{--        <!-- Title Section with animation --> --}}
+    {{--        <div class="mb-8 text-center"> --}}
+    {{--            <h2 class="text-3xl md:text-4xl font-bold text-white inline-block"> --}}
+    {{--                Book Your Stay --}}
+    {{--            </h2> --}}
+    {{--            <div class="w-24 h-1 bg-gradient-to-r from-[#8B4513] to-[#D4A017] mx-auto mt-3 rounded-full"></div> --}}
+    {{--            <p class="text-amber-200 mt-3 max-w-2xl mx-auto">Experience luxury and comfort with our premium accommodations</p> --}}
+    {{--        </div> --}}
 
-                    <!-- Check-in Date Picker -->
-                    <div class="flex flex-col">
-                        <label class="text-gray-700 font-medium">Check-in</label>
-                        <input type="date" id="checkin" name="check_in_date" placeholder="Select Check-in" required
-                               class="border border-gray-300 rounded-md p-2 bg-white outline-none
-                                       focus:border-[#8B4513] focus:ring-2 focus:ring-[#8B4513]">
-                    </div>
+    {{--        <!-- Card with subtle shadow and glass effect --> --}}
+    {{--        <div class="w-full max-w-4xl mx-auto bg-white bg-opacity-95 backdrop-blur-sm rounded-xl shadow-2xl p-6 md:p-8 transform transition-all hover:shadow-xl"> --}}
+    {{--            <!-- Elegant booking form --> --}}
+    {{--            <form action="{{ route('rooms.available') }}" method="POST" class="space-y-6"> --}}
+    {{--                @csrf --}}
+    {{--                <div class="grid grid-cols-1 md:grid-cols-3 gap-6"> --}}
+    {{--                    <!-- Check-in Date Picker with icon --> --}}
+    {{--                    <div class="flex flex-col"> --}}
+    {{--                        <label class="text-gray-700 font-medium mb-2 flex items-center"> --}}
+    {{--                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-amber-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"> --}}
+    {{--                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /> --}}
+    {{--                            </svg> --}}
+    {{--                            Check-in Date --}}
+    {{--                        </label> --}}
+    {{--                        <input type="date" id="checkin" name="check_in_date" required --}}
+    {{--                               class="border border-gray-300 rounded-lg p-3 bg-white outline-none w-full --}}
+    {{--                                      focus:border-amber-600 focus:ring-2 focus:ring-amber-500 focus:ring-opacity-50 --}}
+    {{--                                      transition-all duration-300 shadow-sm"> --}}
+    {{--                    </div> --}}
 
-                    <!-- Check-out Date Picker -->
-                    <div class="flex flex-col">
-                        <label class="text-gray-700 font-medium">Check-out</label>
-                        <input type="date" id="checkout" name="check_out_date" placeholder="Select Check-out" required
-                               class="border border-gray-300 rounded-md p-2 bg-white outline-none
-                                       focus:border-[#8B4513] focus:ring-2 focus:ring-[#8B4513]">
-                    </div>
+    {{--                    <!-- Check-out Date Picker with icon --> --}}
+    {{--                    <div class="flex flex-col"> --}}
+    {{--                        <label class="text-gray-700 font-medium mb-2 flex items-center"> --}}
+    {{--                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-amber-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"> --}}
+    {{--                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /> --}}
+    {{--                            </svg> --}}
+    {{--                            Check-out Date --}}
+    {{--                        </label> --}}
+    {{--                        <input type="date" id="checkout" name="check_out_date" required --}}
+    {{--                               class="border border-gray-300 rounded-lg p-3 bg-white outline-none w-full --}}
+    {{--                                      focus:border-amber-600 focus:ring-2 focus:ring-amber-500 focus:ring-opacity-50 --}}
+    {{--                                      transition-all duration-300 shadow-sm"> --}}
+    {{--                    </div> --}}
 
-                    <div class="flex flex-col">
-                        <br>
-                        <button type="submit"
-                                class="px-6 py-2 bg-gradient-to-r from-[#8B4513] to-[#D4A017] text-white rounded-md transition
-                                    hover:from-[#D4A017] hover:to-[#8B4513]">
-                            Search
-                        </button>
-                    </div>
+    {{--                    <!-- Guests dropdown with icon --> --}}
+    {{--                    <div class="flex flex-col"> --}}
+    {{--                        <label class="text-gray-700 font-medium mb-2 flex items-center"> --}}
+    {{--                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-amber-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"> --}}
+    {{--                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /> --}}
+    {{--                            </svg> --}}
+    {{--                            Guests --}}
+    {{--                        </label> --}}
+    {{--                        <select name="guests" class="border border-gray-300 rounded-lg p-3 bg-white outline-none w-full --}}
+    {{--                                                   focus:border-amber-600 focus:ring-2 focus:ring-amber-500 focus:ring-opacity-50 --}}
+    {{--                                                   transition-all duration-300 shadow-sm appearance-none"> --}}
+    {{--                            <option value="1">1 Guest</option> --}}
+    {{--                            <option value="2">2 Guests</option> --}}
+    {{--                            <option value="3">3 Guests</option> --}}
+    {{--                            <option value="4">4 Guests</option> --}}
+    {{--                            <option value="5">5+ Guests</option> --}}
+    {{--                        </select> --}}
+    {{--                    </div> --}}
+    {{--                </div> --}}
 
-                </form>
+    {{--                <!-- Submit button with hover effect --> --}}
+    {{--                <div class="flex justify-center mt-6"> --}}
+    {{--                    <button type="submit" --}}
+    {{--                            class="px-8 py-3 bg-gradient-to-r from-[#8B4513] to-[#D4A017] text-white font-medium rounded-lg --}}
+    {{--                                   transition-all duration-300 transform hover:scale-105 hover:shadow-lg --}}
+    {{--                                   focus:outline-none focus:ring-4 focus:ring-amber-500 focus:ring-opacity-50 w-full md:w-auto"> --}}
+    {{--                        <span class="flex items-center justify-center"> --}}
+    {{--                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"> --}}
+    {{--                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /> --}}
+    {{--                            </svg> --}}
+    {{--                            Search Available Rooms --}}
+    {{--                        </span> --}}
+    {{--                    </button> --}}
+    {{--                </div> --}}
+    {{--            </form> --}}
 
-            </div>
-        </div>
-    </section>
-{{--    <section id="booking" class="py-12 bg-gradient-to-br from-[#3c2a21] via-[#5d4037] to-[#1e1810] relative overflow-hidden">--}}
-{{--    <!-- Background decorative elements -->--}}
-{{--    <div class="absolute inset-0 overflow-hidden opacity-10">--}}
-{{--        <div class="absolute top-0 left-0 w-64 h-64 bg-[#D4A017] rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>--}}
-{{--        <div class="absolute bottom-0 right-0 w-96 h-96 bg-[#8B4513] rounded-full blur-3xl translate-x-1/3 translate-y-1/3"></div>--}}
-{{--    </div>--}}
+    {{--            <!-- Visual indicator for premium booking --> --}}
+    {{--            <div class="mt-6 pt-6 border-t border-gray-200"> --}}
+    {{--                <div class="flex flex-col md:flex-row items-center justify-center text-center md:text-left space-y-3 md:space-y-0 md:space-x-6"> --}}
+    {{--                    <div class="flex items-center text-amber-800"> --}}
+    {{--                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"> --}}
+    {{--                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /> --}}
+    {{--                        </svg> --}}
+    {{--                        <span class="font-medium">Best Rate Guarantee</span> --}}
+    {{--                    </div> --}}
+    {{--                    <div class="flex items-center text-amber-800"> --}}
+    {{--                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"> --}}
+    {{--                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /> --}}
+    {{--                        </svg> --}}
+    {{--                        <span class="font-medium">Instant Confirmation</span> --}}
+    {{--                    </div> --}}
+    {{--                    <div class="flex items-center text-amber-800"> --}}
+    {{--                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"> --}}
+    {{--                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" /> --}}
+    {{--                        </svg> --}}
+    {{--                        <span class="font-medium">Secure Payment</span> --}}
+    {{--                    </div> --}}
+    {{--                </div> --}}
+    {{--            </div> --}}
+    {{--        </div> --}}
 
-{{--    --}}{{-- <div class="container mx-auto px-4 relative z-10">--}}
-{{--        <!-- Title Section with animation -->--}}
-{{--        <div class="mb-8 text-center">--}}
-{{--            <h2 class="text-3xl md:text-4xl font-bold text-white inline-block">--}}
-{{--                Book Your Stay--}}
-{{--            </h2>--}}
-{{--            <div class="w-24 h-1 bg-gradient-to-r from-[#8B4513] to-[#D4A017] mx-auto mt-3 rounded-full"></div>--}}
-{{--            <p class="text-amber-200 mt-3 max-w-2xl mx-auto">Experience luxury and comfort with our premium accommodations</p>--}}
-{{--        </div>--}}
+    {{--        <!-- Visual promotional badge --> --}}
+    {{--        <div class="absolute -top-2 -right-2 md:top-4 md:right-12 z-20 transform rotate-12 hidden md:block"> --}}
+    {{--            <div class="bg-amber-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg"> --}}
+    {{--                SPECIAL OFFERS AVAILABLE --}}
+    {{--            </div> --}}
+    {{--        </div> --}}
+    {{--    </div> --}}
+    {{-- </section> --}}
 
-{{--        <!-- Card with subtle shadow and glass effect -->--}}
-{{--        <div class="w-full max-w-4xl mx-auto bg-white bg-opacity-95 backdrop-blur-sm rounded-xl shadow-2xl p-6 md:p-8 transform transition-all hover:shadow-xl">--}}
-{{--            <!-- Elegant booking form -->--}}
-{{--            <form action="{{ route('rooms.available') }}" method="POST" class="space-y-6">--}}
-{{--                @csrf--}}
-{{--                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">--}}
-{{--                    <!-- Check-in Date Picker with icon -->--}}
-{{--                    <div class="flex flex-col">--}}
-{{--                        <label class="text-gray-700 font-medium mb-2 flex items-center">--}}
-{{--                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-amber-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">--}}
-{{--                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />--}}
-{{--                            </svg>--}}
-{{--                            Check-in Date--}}
-{{--                        </label>--}}
-{{--                        <input type="date" id="checkin" name="check_in_date" required--}}
-{{--                               class="border border-gray-300 rounded-lg p-3 bg-white outline-none w-full--}}
-{{--                                      focus:border-amber-600 focus:ring-2 focus:ring-amber-500 focus:ring-opacity-50--}}
-{{--                                      transition-all duration-300 shadow-sm">--}}
-{{--                    </div>--}}
-
-{{--                    <!-- Check-out Date Picker with icon -->--}}
-{{--                    <div class="flex flex-col">--}}
-{{--                        <label class="text-gray-700 font-medium mb-2 flex items-center">--}}
-{{--                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-amber-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">--}}
-{{--                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />--}}
-{{--                            </svg>--}}
-{{--                            Check-out Date--}}
-{{--                        </label>--}}
-{{--                        <input type="date" id="checkout" name="check_out_date" required--}}
-{{--                               class="border border-gray-300 rounded-lg p-3 bg-white outline-none w-full--}}
-{{--                                      focus:border-amber-600 focus:ring-2 focus:ring-amber-500 focus:ring-opacity-50--}}
-{{--                                      transition-all duration-300 shadow-sm">--}}
-{{--                    </div>--}}
-
-{{--                    <!-- Guests dropdown with icon -->--}}
-{{--                    <div class="flex flex-col">--}}
-{{--                        <label class="text-gray-700 font-medium mb-2 flex items-center">--}}
-{{--                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-amber-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">--}}
-{{--                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />--}}
-{{--                            </svg>--}}
-{{--                            Guests--}}
-{{--                        </label>--}}
-{{--                        <select name="guests" class="border border-gray-300 rounded-lg p-3 bg-white outline-none w-full--}}
-{{--                                                   focus:border-amber-600 focus:ring-2 focus:ring-amber-500 focus:ring-opacity-50--}}
-{{--                                                   transition-all duration-300 shadow-sm appearance-none">--}}
-{{--                            <option value="1">1 Guest</option>--}}
-{{--                            <option value="2">2 Guests</option>--}}
-{{--                            <option value="3">3 Guests</option>--}}
-{{--                            <option value="4">4 Guests</option>--}}
-{{--                            <option value="5">5+ Guests</option>--}}
-{{--                        </select>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-
-{{--                <!-- Submit button with hover effect -->--}}
-{{--                <div class="flex justify-center mt-6">--}}
-{{--                    <button type="submit"--}}
-{{--                            class="px-8 py-3 bg-gradient-to-r from-[#8B4513] to-[#D4A017] text-white font-medium rounded-lg--}}
-{{--                                   transition-all duration-300 transform hover:scale-105 hover:shadow-lg--}}
-{{--                                   focus:outline-none focus:ring-4 focus:ring-amber-500 focus:ring-opacity-50 w-full md:w-auto">--}}
-{{--                        <span class="flex items-center justify-center">--}}
-{{--                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">--}}
-{{--                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />--}}
-{{--                            </svg>--}}
-{{--                            Search Available Rooms--}}
-{{--                        </span>--}}
-{{--                    </button>--}}
-{{--                </div>--}}
-{{--            </form>--}}
-
-{{--            <!-- Visual indicator for premium booking -->--}}
-{{--            <div class="mt-6 pt-6 border-t border-gray-200">--}}
-{{--                <div class="flex flex-col md:flex-row items-center justify-center text-center md:text-left space-y-3 md:space-y-0 md:space-x-6">--}}
-{{--                    <div class="flex items-center text-amber-800">--}}
-{{--                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">--}}
-{{--                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />--}}
-{{--                        </svg>--}}
-{{--                        <span class="font-medium">Best Rate Guarantee</span>--}}
-{{--                    </div>--}}
-{{--                    <div class="flex items-center text-amber-800">--}}
-{{--                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">--}}
-{{--                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />--}}
-{{--                        </svg>--}}
-{{--                        <span class="font-medium">Instant Confirmation</span>--}}
-{{--                    </div>--}}
-{{--                    <div class="flex items-center text-amber-800">--}}
-{{--                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">--}}
-{{--                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />--}}
-{{--                        </svg>--}}
-{{--                        <span class="font-medium">Secure Payment</span>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-
-{{--        <!-- Visual promotional badge -->--}}
-{{--        <div class="absolute -top-2 -right-2 md:top-4 md:right-12 z-20 transform rotate-12 hidden md:block">--}}
-{{--            <div class="bg-amber-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">--}}
-{{--                SPECIAL OFFERS AVAILABLE--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div> --}}
-{{--</section>--}}
-
-<!-- Add JavaScript for enhanced date picker experience -->
-{{-- <script>
+    <!-- Add JavaScript for enhanced date picker experience -->
+    {{-- <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Set minimum dates for check-in (today)
         const today = new Date();
@@ -1098,7 +1057,7 @@
     });
 </script> --}}
 
-{{--   @include('component.booking')--}}
+       @include('component.booking')
 
     <!-- Our Accommodation Section -->
     <section class="py-20 bg-gradient-to-b from-[#1a1a2e] via-[#16213e] to-[#1a1a2e]">
@@ -1306,10 +1265,12 @@
                     <div class="flex items-start space-x-4">
                         <span class="material-icons text-[#8B4513] text-3xl sm:text-4xl">location_on</span>
                         <div>
-                            <a href="https://www.google.com/maps/place/Hotel+Krinoscco/@26.783073,82.165321,16z/data=!4m9!3m8!1s0x399a0796e56fb899:0xffa1558e88f0d349!5m2!4m1!1i2!8m2!3d26.7830727!4d82.1653206!16s%2Fg%2F11ry4tcm_l?hl=en&entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D"><h4 class="font-semibold text-gray-800 text-lg">Our Location</h4>
-                            <p class="text-gray-600">Hotel Krinossco,Rampath, Amaniganj, Ayodhya (U.P.), 224001.
-</p>
-                        </a>
+                            <a
+                                href="https://www.google.com/maps/place/Hotel+Krinoscco/@26.783073,82.165321,16z/data=!4m9!3m8!1s0x399a0796e56fb899:0xffa1558e88f0d349!5m2!4m1!1i2!8m2!3d26.7830727!4d82.1653206!16s%2Fg%2F11ry4tcm_l?hl=en&entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D">
+                                <h4 class="font-semibold text-gray-800 text-lg">Our Location</h4>
+                                <p class="text-gray-600">Hotel Krinoscco Rampath Amaniganj Ayodhya U.P 224001
+                                </p>
+                            </a>
                         </div>
                     </div>
 
@@ -1325,7 +1286,8 @@
                         <span class="material-icons text-[#8B4513] text-3xl sm:text-4xl">phone</span>
                         <div>
                             <h4 class="font-semibold text-gray-800 text-lg">Call Us</h4>
-                            <p class="text-gray-600">+91-7275002525</p>
+                            <p class="text-gray-600">7275092525</p>
+                            <p class="text-gray-600">7275002525</p>
                         </div>
                     </div>
 
@@ -1386,13 +1348,14 @@
             </div>
 
             <!-- Map Section -->
-            <a href="https://www.google.com/maps/dir//Hotel+Krinoscco+249,+Ayodhya+-+Faizabad+Rd+Awadhpuri+Colony,+Amanigunj+Faizabad,+Uttar+Pradesh+224001/@26.7830727,82.1653206,16z/data=!4m8!4m7!1m0!1m5!1m1!1s0x399a0796e56fb899:0xffa1558e88f0d349!2m2!1d82.1653206!2d26.7830727?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D">
+            <a
+                href="https://www.google.com/maps/dir//Hotel+Krinoscco+249,+Ayodhya+-+Faizabad+Rd+Awadhpuri+Colony,+Amanigunj+Faizabad,+Uttar+Pradesh+224001/@26.7830727,82.1653206,16z/data=!4m8!4m7!1m0!1m5!1m1!1s0x399a0796e56fb899:0xffa1558e88f0d349!2m2!1d82.1653206!2d26.7830727?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D">
                 <div class="mt-12 sm:mt-16">
-                <iframe
-                    class="w-full h-64 sm:h-80 lg:h-96 rounded-lg shadow-lg transition-transform duration-700 hover:shadow-2xl hover:scale-105"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3561.786563827908!2d82.162745675435!3d26.78307267672456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399a0796e56fb899%3A0xffa1558e88f0d349!2sHotel%20Krinoscco!5e0!3m2!1sen!2sin!4v1739181698814!5m2!1sen!2sin"
-                    frameborder="0" allowfullscreen=""></iframe>
-            </div>
+                    <iframe
+                        class="w-full h-64 sm:h-80 lg:h-96 rounded-lg shadow-lg transition-transform duration-700 hover:shadow-2xl hover:scale-105"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3561.786563827908!2d82.162745675435!3d26.78307267672456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399a0796e56fb899%3A0xffa1558e88f0d349!2sHotel%20Krinoscco!5e0!3m2!1sen!2sin!4v1739181698814!5m2!1sen!2sin"
+                        frameborder="0" allowfullscreen=""></iframe>
+                </div>
             </a>
         </div>
     </section>
