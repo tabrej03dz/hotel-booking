@@ -2,57 +2,14 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-
-  <title>Hotel Krinoscco – Book Luxury Stays in Ayodhya</title>
-
-  <!-- ✅ SEO Meta Tags -->
-  <meta name="description" content="Hotel Krinoscco offers luxury accommodation in Ayodhya with comfort, hospitality, and top-class amenities. Book your stay now!" />
-  <meta name="keywords" content="Hotel Krinoscco, hotel in Ayodhya, book hotel Ayodhya, Crescent Restaurant, luxury rooms, best hotel Ayodhya" />
-  <meta name="author" content="Hotel Krinoscco" />
-  <meta name="application-name" content="Hotel Krinoscco" />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://krinoscco.com/" />
-
-  <!-- ✅ Favicon -->
-  <link rel="icon" type="image/png" href="{{ asset('asset/images/favicon.png') }}" />
-
-  <!-- ✅ Open Graph (Facebook / LinkedIn) -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://krinoscco.com/" />
-  <meta property="og:title" content="Hotel Krinoscco – Luxury Stay in Ayodhya" />
-  <meta property="og:description" content="Book luxury rooms at Hotel Krinoscco in Ayodhya. Ideal for family, solo, and business stays." />
-  <meta property="og:image" content="https://krinoscco.com/asset/images/og-image.jpg" />
-
-  <!-- ✅ Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:url" content="https://krinoscco.com/" />
-  <meta name="twitter:title" content="Hotel Krinoscco – Luxury Stay in Ayodhya" />
-  <meta name="twitter:description" content="Enjoy comfort, food, and hospitality at Hotel Krinoscco in Ayodhya." />
-  <meta name="twitter:image" content="https://krinoscco.com/asset/images/og-image.jpg" />
-
-  <!-- ✅ Schema.org JSON-LD (Google Rich Snippet) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Hotel",
-    "name": "Hotel Krinoscco",
-    "image": "https://krinoscco.com/asset/images/logo.png",
-    "description": "Book luxury rooms at Hotel Krinoscco in Ayodhya. Perfect for family, solo and business travelers.",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Near Railway Station",
-      "addressLocality": "Ayodhya",
-      "addressRegion": "Uttar Pradesh",
-      "postalCode": "224123",
-      "addressCountry": "IN"
-    },
-    "telephone": "+917275092525",
-    "url": "https://krinoscco.com"
-  }
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Hotel Krinoscco Booking Website">
+    <title>Hotel Krinoscco</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ asset('asset/images/favicon.png') }}">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
