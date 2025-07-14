@@ -63,8 +63,7 @@
                 </div>
 
                 <p class="text-lg text-gray-700 leading-relaxed">
-                    Profile should have details such as nature of the business and tenure in the business. – Private Limited Company (Since 2010)
-                    <br><br>
+                    
                     The 60-room hotel, with its Roman-styled facade, is located on the famous Hotel Krinoscco Amaniganj Rampath ayodhya 224001
                     , the main thoroughfare of Ayodhya leading directly to the world-famous Ram Janmabhoomi.
                     <br><br>

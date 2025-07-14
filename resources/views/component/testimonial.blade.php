@@ -71,7 +71,7 @@
                     </div>
 
                     <!-- Testimonial 3 -->
-                    <div
+                    {{-- <div
                         class="swiper-slide bg-[#16213e] p-8 rounded-xl shadow-2xl border border-white/5 h-full flex flex-col">
                         <h4 class="text-xl font-bold text-white">Ananya Verma</h4>
                         <span class="text-sm text-gray-400">Luxury Enthusiast</span>
@@ -86,7 +86,7 @@
                             <i class="fas fa-star text-[#D4A017]"></i>
                             <i class="fas fa-star text-[#D4A017]"></i>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
 
                 <div class="swiper-pagination"></div>

@@ -5,7 +5,7 @@
         <div class="absolute inset-0 bg-black opacity-40"></div>
         <div class="relative container mx-auto text-center z-10">
             <h1 class="text-5xl font-extrabold uppercase drop-shadow-md mb-2">Hotel Krinoscco</h1>
-            <p class="text-lg font-medium text-[#ecf0f1]">Amanigunj, Ayodhya</p>
+            <p class="text-lg font-medium text-[#ecf0f1]">Amaniganj, Ayodhya</p>
         </div>
     </div>
 
@@ -15,7 +15,7 @@
         <section>
             <h2 class="text-2xl font-bold mb-3 border-b-2 border-yellow-600 inline-block">Overview</h2>
             <p class="leading-relaxed">
-                The 60-room hotel, with its Roman styled facade, is located on the famous Rampath at Amanigunj — the main
+                The 60-room hotel, with its Roman styled facade, is located on the famous Rampath at Amaniganj — the main
                 thoroughfare of Ayodhya leading directly to the world-famous Ram Janmabhoomi.
             </p>
             <p class="mt-2">
@@ -29,7 +29,7 @@
             <h2 class="text-2xl font-bold mb-3 border-b-2 border-yellow-600 inline-block">Location</h2>
             <p class="leading-relaxed">
                 Located in the heart of Ayodhya, just 15 minutes by taxi from Ayodhya Cantt. and Ayodhya railway stations,
-                and near the upcoming airport. Also just 2 hours by road from Lucknow Airport.
+                and near the airport. Also just 25 minutes by road from Ayodhya Airport.
             </p>
         </section>
 
@@ -72,8 +72,8 @@
                 <li>Keycard access to all rooms</li>
                 <li>King or Double bedded rooms with sofa chairs</li>
                 <li>High-speed Wireless Internet access</li>
-                <li>Telephone with intercoms, speakerphone, voicemail & wake-up call facilities</li>
-                <li>Coffee maker with complimentary coffee, tea & milk sachets</li>
+                <li>Telephone with intercoms</li>
+                <li>Tea Coffee maker with complimentary coffee, tea & milk sachets</li>
                 <li>Bottled Water</li>
                 <li>Mini Bar</li>
                 <li>Wall Safe</li>
@@ -113,9 +113,9 @@
                             <td class="border px-4 py-2">Royal Ballroom</td>
                             <td class="border px-4 py-2">100</td>
                             <td class="border px-4 py-2">150</td>
-                            <td class="border px-4 py-2">350</td>
-                            <td class="border px-4 py-2">80</td>
-                            <td class="border px-4 py-2">400</td>
+                            <td class="border px-4 py-2">300</td>
+                            <td class="border px-4 py-2">100</td>
+                            <td class="border px-4 py-2">300</td>
                         </tr>
                         <tr>
                             <td class="border px-4 py-2">Elite-1</td>
@@ -131,7 +131,7 @@
                             <td class="border px-4 py-2">50</td>
                             <td class="border px-4 py-2">70</td>
                             <td class="border px-4 py-2">35</td>
-                            <td class="border px-4 py-2">100</td>
+                            <td class="border px-4 py-2">70</td>
                         </tr>
                         <tr>
                             <td class="border px-4 py-2">On The Rocks</td>
@@ -139,7 +139,7 @@
                             <td class="border px-4 py-2">70</td>
                             <td class="border px-4 py-2">100</td>
                             <td class="border px-4 py-2">-</td>
-                            <td class="border px-4 py-2">-</td>
+                            <td class="border px-4 py-2">100</td>
                         </tr>
                         <tr>
                             <td class="border px-4 py-2">Swayamvar Lawn</td>

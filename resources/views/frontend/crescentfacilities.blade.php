@@ -56,6 +56,11 @@
                     <img src="{{ asset('asset/restaurant/restaurant (5).jpg') }}" alt="Crescent Restaurant Image 5"
                         class="w-full h-[250px] object-cover hover:scale-110 transition-transform duration-1000">
                 </div>
+                 <div
+                    class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-transform duration-700 ease-in-out hover:scale-105">
+                    <img src="{{ asset('asset/images/creden.jpg') }}" alt="Tit Bit Cafe Image 2"
+                        class="w-full h-[250px] object-cover hover:scale-110 transition-transform duration-1000">
+                </div>
             </div>
         </div>
 
@@ -102,6 +107,7 @@
                     <img src="{{ asset('asset/cafe/cafe (5).jpg') }}" alt="Tit Bit Cafe Image 5"
                         class="w-full h-[250px] object-cover hover:scale-110 transition-transform duration-1000">
                 </div>
+               
             </div>
         </div>
 
@@ -140,19 +146,16 @@
 
                     <div
                         class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-transform duration-700 ease-in-out hover:scale-105">
-                        <img src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4noMkekZe8EKtx2-H3GCnFy3wy7_aQ9EY98QEF0SAZ1ESUvRg8QsssHOsvO96oVEqp1lBLdlviL4qKjRg45Yflv7njeWATwZ6ktgT7hoKzYu2cQOaIfKchh9ml51ha4mtu_xunSgnQ=s1360-w1360-h1020-rw" alt="Conference Room Image 5"
+                        <img src="{{asset('asset/images/tit1.jpg')}}" alt="Conference Room Image 5"
                             class="w-full h-[250px] object-cover hover:scale-110 transition-transform duration-1000">
                     </div>
-                    <div
+                     <div
                         class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-transform duration-700 ease-in-out hover:scale-105">
-                        <img src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nogYLpC1L_btqGHCJCQxWqUfalvraZrilputSu5zH2tD0ZJsR_DTmbwyohMYldvoYNWUyaQQLX_e8Wd27f5rVtZQ_N9BsbHZPaYhhXqsR7HWhNabUGJaXWEwv4fxXt8rvvBVfOl=s1360-w1360-h1020-rw" alt="Conference Room Image 6"
+                        <img src="{{asset('asset/images/tit2.jpg')}}" alt="Conference Room Image 5"
                             class="w-full h-[250px] object-cover hover:scale-110 transition-transform duration-1000">
                     </div>
-                    <div
-                        class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-transform duration-700 ease-in-out hover:scale-105">
-                        <img src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4noh9auOcnnK0G7nXH2iBOpR-0IQX3NgC84_B05N4IxNit_fw2sHf2FSc-k7uEg-TzbNXjpY79Pf-0sX-FHzPtutSS3MZuqaF4OMg5ZN3XUKElS0lTLFXMn5iu2iyWHJhNT37dGL=s1360-w1360-h1020-rw" alt="Conference Room Image 7"
-                            class="w-full h-[250px] object-cover hover:scale-110 transition-transform duration-1000">
-                    </div>
+                    
+                   
                 </div>
             </div>
 

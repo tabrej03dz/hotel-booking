@@ -338,7 +338,7 @@
                                 class="w-full h-full object-cover transition-opacity duration-700">
                         </div>
                         <div class="room-image" id="bathroomImage">
-                            <img src="{{ asset('asset/luxury/luxury-5.jpg') }}"
+                            <img src="{{ asset('asset/images/bath.jpg') }}"
                                 class="w-full h-full object-cover transition-opacity duration-700">
                         </div>
                         <div class="room-image" id="livingareaImage">
@@ -467,7 +467,7 @@
                     </div>
                     <h3 class="text-2xl font-bold text-white mb-4">Concierge Services</h3>
                     <p class="text-gray-300 mb-6">Experience world-class hospitality with our 24/7 concierge, ready to
-                        assist with dining reservations, local tips, and personalized services to enhance your stay.</p>
+                        assist with dining reservations, local tips and personalized services to enhance your stay.</p>
                     <ul class="space-y-3 text-sm text-gray-400 mb-6">
                         <li class="flex items-center">
                             <i class="fas fa-check text-[#8B4513] mr-2"></i>
@@ -500,7 +500,7 @@
                         </div>
                     </div>
                     <h3 class="text-2xl font-bold text-white mb-4">Smart Room Control</h3>
-                    <p class="text-gray-300 mb-6">Take control of your comfort with our smart room technology, allowing you
+                    <p class="text-gray-300 mb-6">Take control of your comfort with our smart room technology allowing you
                         to adjust your environment with ease.</p>
                     <ul class="space-y-3 text-sm text-gray-400 mb-6">
                         <li class="flex items-center">
@@ -631,7 +631,7 @@
                 <!-- Smart Room Experience Card -->
                 <div
                     class="relative overflow-hidden rounded-2xl shadow-lg transition-transform duration-700 ease-in-out hover:translate-y-[-10px] hover:shadow-2xl">
-                    <img src="{{ asset('asset/standard/standard-2.jpg') }}" alt="Smart Room Experience"
+                    <img src="{{ asset('asset/images/smart .jpg') }}" alt="Smart Room Experience"
                         class="w-full h-[400px] object-cover transition-transform duration-1000 ease-in-out hover:scale-105">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent">
                         <div class="p-8 h-full flex flex-col justify-end">
@@ -728,7 +728,7 @@
                         class="w-full h-[300px] object-cover hover:scale-110 transition-transform duration-1000">
                     <div
                         class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex items-end p-4">
-                        <h3 class="text-white text-lg md:text-xl font-semibold uppercase tracking-wide">Dining Restaurant
+                        <h3 class="text-white text-lg md:text-xl font-semibold uppercase tracking-wide">Crescent Restaurant
                         </h3>
                     </div>
                 </div>
@@ -838,7 +838,7 @@
                     </div>
                     <h3 class="text-xl font-semibold text-[#1a1a2e] mb-3">24/7 Accessibility</h3>
                     <p class="text-gray-600 leading-relaxed">
-                        Our services are available around the clock to cater to your needs.
+                        Our services are available around the clock cater to your needs.
                     </p>
                 </div>
 
@@ -855,7 +855,7 @@
                     </p>
                 </div>
 
-                <div
+                {{-- <div
                     class="offering-item p-6 bg-white rounded-2xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 group">
                     <div
                         class="w-16 h-16 bg-gradient-to-tr from-[#8B4513] to-[#D4A017] flex items-center justify-center rounded-full mb-6 mx-auto border-4 border-white shadow-lg group-hover:scale-105 transition-transform">
@@ -865,7 +865,7 @@
                     <p class="text-gray-600 leading-relaxed">
                         Enjoy various entertainment options during your stay, including TV, music, and more.
                     </p>
-                </div>
+                </div> --}}
 
                 <div
                     class="offering-item p-6 bg-white rounded-2xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 group">
@@ -1405,7 +1405,7 @@
 
                 <div
                     class="faq-item bg-white rounded-lg shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl">
-                    <button
+                    {{-- <button
                         class="faq-toggle w-full text-left p-6 font-medium text-gray-800 hover:bg-[#F4F4F4] focus:outline-none focus:ring-2 focus:ring-[#8B4513] flex justify-between items-center">
                         <span class="text-lg font-semibold">Can I cancel my booking?</span>
                         <svg class="w-6 h-6 text-[#8B4513] transform transition-transform duration-300 rotate-0 faq-icon"
@@ -1413,14 +1413,14 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
                             </path>
                         </svg>
-                    </button>
+                    </button> --}}
                     <div class="faq-content p-6 text-gray-600 hidden">
                         <p>Yes, cancellations are allowed with a 24-hour notice. Please check the terms for full details.
                         </p>
                     </div>
                 </div>
 
-                <div
+                {{-- <div
                     class="faq-item bg-white rounded-lg shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl">
                     <button
                         class="faq-toggle w-full text-left p-6 font-medium text-gray-800 hover:bg-[#F4F4F4] focus:outline-none focus:ring-2 focus:ring-[#8B4513] flex justify-between items-center">
@@ -1435,7 +1435,7 @@
                         <p>Yes, we provide shuttle service to and from the airport. Please contact reception for bookings.
                         </p>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>
