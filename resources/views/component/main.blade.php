@@ -24,14 +24,14 @@
   <meta property="og:url" content="https://krinoscco.com/" />
   <meta property="og:title" content="Hotel Krinoscco – Luxury Stay in Ayodhya" />
   <meta property="og:description" content="Book luxury rooms at Hotel Krinoscco in Ayodhya. Ideal for family, solo, and business stays." />
-  <meta property="og:image" content="https://krinoscco.com/asset/images/og-image.jpg" />
+  <meta property="og:image" content="https://krinoscco.com/asset/images/logo.png" />
 
   <!-- ✅ Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:url" content="https://krinoscco.com/" />
   <meta name="twitter:title" content="Hotel Krinoscco – Luxury Stay in Ayodhya" />
   <meta name="twitter:description" content="Enjoy comfort, food, and hospitality at Hotel Krinoscco in Ayodhya." />
-  <meta name="twitter:image" content="https://krinoscco.com/asset/images/og-image.jpg" />
+  <meta name="twitter:image" content="https://krinoscco.com/asset/images/logo.png" />
 
   <!-- ✅ Schema.org JSON-LD (Google Rich Snippet) -->
   <script type="application/ld+json">
