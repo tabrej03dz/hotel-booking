@@ -49,7 +49,7 @@
       "postalCode": "224123",
       "addressCountry": "IN"
     },
-    "telephone": "+917275092525",
+    "telephone": "+917275002525",
     "url": "https://krinoscco.com"
   }
   </script>
