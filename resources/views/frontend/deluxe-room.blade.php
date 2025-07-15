@@ -202,11 +202,11 @@
                     </div>
                     <div class="flex items-start gap-4">
                         <div class="w-5 h-5 bg-[#8B4513] rounded-full"></div>
-                        <p class="text-lg text-gray-700">Telephone with intercoms, speakerphone</p>
+                        <p class="text-lg text-gray-700">Telephone with intercoms</p>
                     </div>
                     <div class="flex items-start gap-4">
                         <div class="w-5 h-5 bg-[#8B4513] rounded-full"></div>
-                        <p class="text-lg text-gray-700">Coffee maker with complimentary coffee, tea & milk sachets</p>
+                        <p class="text-lg text-gray-700">Tea Coffee maker with complimentary coffee, tea & milk sachets</p>
                     </div>
                     <div class="flex items-start gap-4">
                         <div class="w-5 h-5 bg-[#8B4513] rounded-full"></div>

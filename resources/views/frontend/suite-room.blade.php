@@ -127,7 +127,7 @@
 
                     <div class="space-y-6">
                         <p class="text-lg text-gray-700 leading-relaxed">
-                            Welcome to the Suite Room, designed to offer the perfect blend of sophistication, comfort, and personalized service. Whether you're traveling for business or leisure, our suite ensures a memorable stay with premium amenities and refined interiors.
+                            Welcome to the Suite Room, designed to offer the perfect blend of sophistication, comfort and personalized service. Whether you're traveling for business or leisure, our suite ensures a memorable stay with premium amenities and refined interiors.
                         </p>
                         <p class="text-lg text-gray-700 leading-relaxed">
                             Redefining modern rooms, it offers unmatched comfort and outstanding value, representing the pinnacle of contemporary sophistication.
@@ -199,11 +199,11 @@
                     </div>
                     <div class="flex items-start gap-4">
                         <div class="w-5 h-5 bg-[#8B4513] rounded-full"></div>
-                        <p class="text-lg text-gray-700">Telephone with intercoms, speakerphone</p>
+                        <p class="text-lg text-gray-700">Telephone with intercoms</p>
                     </div>
                     <div class="flex items-start gap-4">
                         <div class="w-5 h-5 bg-[#8B4513] rounded-full"></div>
-                        <p class="text-lg text-gray-700">Coffee maker with complimentary coffee, tea & milk sachets</p>
+                        <p class="text-lg text-gray-700">Tea Coffee maker with complimentary coffee, tea & milk sachets</p>
                     </div>
                     <div class="flex items-start gap-4">
                         <div class="w-5 h-5 bg-[#8B4513] rounded-full"></div>

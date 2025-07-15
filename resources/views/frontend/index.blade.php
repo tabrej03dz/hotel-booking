@@ -255,7 +255,7 @@
                     <div class="space-y-6">
                         <p class="text-lg text-gray-700 leading-relaxed">
                             The standard room has all the essential conveniences and is tastefully designed for your
-                            enjoyable stay.Hotel Krinoscco redefines luxury with an unwavering commitment to international
+                            enjoyable stay. Hotel Krinoscco redefines luxury with an unwavering commitment to international
                             standards of service and style. Setting a new benchmark for unparalleled accommodation and
                             exceptional value, it embodies the epitome of contemporary elegance. Here, the fusion of “high
                             tech” amenities seamlessly intertwines with an unparalleled “high touch” service ethos—a rarity
@@ -263,9 +263,9 @@
                         </p>
                         <p class="text-lg text-gray-700 leading-relaxed">
                             Centrally located in the heart of Ayodhya, a mere 15-minute taxi ride from Ayodhya Cantt. &
-                            Ayodhya railway stations, and conveniently proximate to the burgeoning ayodhya airport, Hotel
+                            Ayodhya railway stations and conveniently proximate to the burgeoning ayodhya airport Hotel
                             Krinoscco stands as an epitome of accessibility. Merely two hours by road from the bustling
-                            Lucknow airport, it offers a gateway to seamless luxury and unmatched convenience in this
+                            Lucknow airport it offers a gateway to seamless luxury and unmatched convenience in this
                             historical city. We are delivering the highest level of pleasure and a wonderful experience.
                         </p>
 
@@ -338,7 +338,7 @@
                                 class="w-full h-full object-cover transition-opacity duration-700">
                         </div>
                         <div class="room-image" id="bathroomImage">
-                            <img src="{{ asset('asset/luxury/luxury-5.jpg') }}"
+                            <img src="{{ asset('asset/images/bath.jpg') }}"
                                 class="w-full h-full object-cover transition-opacity duration-700">
                         </div>
                         <div class="room-image" id="livingareaImage">
@@ -377,7 +377,7 @@
                                 </div>
                                 <div>
                                     <h4 class="text-white font-semibold">Smart Bed System</h4>
-                                    <p class="text-sm text-gray-400">Adjustable firmness with ambient lighting control.</p>
+                                    <p class="text-sm text-gray-400">Sizes and Type commonly found in rooms (Twin, Queen, King)</p>
                                 </div>
                             </li>
                             <li class="flex items-center space-x-4">
@@ -386,7 +386,7 @@
                                 </div>
                                 <div>
                                     <h4 class="text-white font-semibold">Room Automation</h4>
-                                    <p class="text-sm text-gray-400">Control the entire room with voice commands.</p>
+                                    <p class="text-sm text-gray-400">Effortless entry, intelligent living: Home automation powered by digital cards</p>
                                 </div>
                             </li>
                             <li class="flex items-center space-x-4">
@@ -395,19 +395,19 @@
                                 </div>
                                 <div>
                                     <h4 class="text-white font-semibold">Luxury Bathroom</h4>
-                                    <p class="text-sm text-gray-400">Digital shower with customizable settings.</p>
+                                    <p class="text-sm text-gray-400">Level up by reaching the bathroom to grow stronger</p>
                                 </div>
                             </li>
                         </ul>
 
                         <!-- Room Specifications -->
-                        <div class="mt-8 grid grid-cols-2 gap-4 bg-black/20 p-4 rounded-lg">
-                            <div class="text-center">
+                        <div class="mt-8 grid grid-cols-1 gap-4 bg-black/20 p-4 rounded-lg">
+                            {{-- <div class="text-center">
                                 <div class="text-[#D4A017] font-bold text-xl">45m²</div>
                                 <div class="text-gray-400 text-sm">Room Size</div>
-                            </div>
+                            </div> --}}
                             <div class="text-center">
-                                <div class="text-[#D4A017] font-bold text-xl">4</div>
+                                <div class="text-[#D4A017] font-bold text-xl">3</div>
                                 <div class="text-gray-400 text-sm">Max Guests</div>
                             </div>
                         </div>
@@ -452,7 +452,7 @@
             </div>
 
             <!-- Service Cards Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
 
                 <!-- Concierge Service Card -->
                 <div
@@ -467,7 +467,7 @@
                     </div>
                     <h3 class="text-2xl font-bold text-white mb-4">Concierge Services</h3>
                     <p class="text-gray-300 mb-6">Experience world-class hospitality with our 24/7 concierge, ready to
-                        assist with dining reservations, local tips, and personalized services to enhance your stay.</p>
+                        assist with dining reservations, local tips and personalized services to enhance your stay.</p>
                     <ul class="space-y-3 text-sm text-gray-400 mb-6">
                         <li class="flex items-center">
                             <i class="fas fa-check text-[#8B4513] mr-2"></i>
@@ -482,12 +482,12 @@
                             Multilingual support
                         </li>
                     </ul>
-                    <a href="#"
+                    {{-- <a href="#"
                         class="inline-flex items-center text-white hover:text-[#8B4513] transition-colors duration-300">
                         Learn More
                         <i
                             class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform duration-300"></i>
-                    </a>
+                    </a> --}}
                 </div>
 
                 <!-- Smart Room Control Card -->
@@ -500,7 +500,7 @@
                         </div>
                     </div>
                     <h3 class="text-2xl font-bold text-white mb-4">Smart Room Control</h3>
-                    <p class="text-gray-300 mb-6">Take control of your comfort with our smart room technology, allowing you
+                    <p class="text-gray-300 mb-6">Take control of your comfort with our smart room technology allowing you
                         to adjust your environment with ease.</p>
                     <ul class="space-y-3 text-sm text-gray-400 mb-6">
                         <li class="flex items-center">
@@ -513,19 +513,19 @@
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-check text-[#8B4513] mr-2"></i>
-                            Entertainment systems
+                            Entertainment systems (TV)
                         </li>
                     </ul>
-                    <a href="#"
+                    {{-- <a href="#"
                         class="inline-flex items-center text-white hover:text-[#8B4513] transition-colors duration-300">
                         Learn More
                         <i
                             class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform duration-300"></i>
-                    </a>
+                    </a> --}}
                 </div>
 
                 <!-- Digital Key Card -->
-                <div
+                {{-- <div
                     class="bg-gradient-to-br from-[#1a1a2e] to-[#16213e] p-8 rounded-xl border border-white/5 shadow-xl group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
                     <div class="mb-6">
                         <div
@@ -556,12 +556,12 @@
                         <i
                             class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform duration-300"></i>
                     </a>
-                </div>
+                </div> --}}
 
             </div>
 
             <!-- Features Counter -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20">
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-20">
                 <div class="text-center">
                     <div class="text-4xl font-bold text-[#8B4513] mb-2">100+</div>
                     <div class="text-gray-400">Smart Features</div>
@@ -570,10 +570,10 @@
                     <div class="text-4xl font-bold text-[#8B4513] mb-2">98%</div>
                     <div class="text-gray-400">Guest Satisfaction</div>
                 </div>
-                <div class="text-center">
+                {{-- <div class="text-center">
                     <div class="text-4xl font-bold text-[#8B4513] mb-2">0.5s</div>
                     <div class="text-gray-400">Response Time</div>
-                </div>
+                </div> --}}
                 <div class="text-center">
                     <div class="text-4xl font-bold text-[#8B4513] mb-2">24/7</div>
                     <div class="text-gray-400">Support</div>
@@ -581,13 +581,13 @@
             </div>
 
             <!-- CTA Section -->
-            <div class="mt-20 text-center">
+            {{-- <div class="mt-20 text-center">
                 <a href="#"
                     class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#8B4513] to-[#D4A017] text-white rounded-lg hover:from-[#D4A017] hover:to-[#8B4513] transition-all duration-300 transform hover:scale-105">
                     Experience Smart Living
                     <i class="fas fa-arrow-right ml-2"></i>
                 </a>
-            </div>
+            </div> --}}
         </div>
     </section>
 
@@ -606,9 +606,9 @@
             </h2>
 
             <!-- Experience Cards Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 md:gap-12">
                 <!-- VR Spa Experience Card -->
-                <div
+                {{-- <div
                     class="relative overflow-hidden rounded-2xl shadow-lg transition-transform duration-700 ease-in-out hover:translate-y-[-10px] hover:shadow-2xl">
                     <img src="{{ asset('asset/images/s7.jpg') }}" alt="VR Spa Experience"
                         class="w-full h-[400px] object-cover transition-transform duration-1000 ease-in-out hover:scale-105">
@@ -626,12 +626,12 @@
                             </a>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 <!-- Smart Room Experience Card -->
                 <div
                     class="relative overflow-hidden rounded-2xl shadow-lg transition-transform duration-700 ease-in-out hover:translate-y-[-10px] hover:shadow-2xl">
-                    <img src="{{ asset('asset/images/s8.jpg') }}" alt="Smart Room Experience"
+                    <img src="{{ asset('asset/images/smart .jpg') }}" alt="Smart Room Experience"
                         class="w-full h-[400px] object-cover transition-transform duration-1000 ease-in-out hover:scale-105">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent">
                         <div class="p-8 h-full flex flex-col justify-end">
@@ -652,7 +652,7 @@
                 <!-- Culinary Journey Card -->
                 <div
                     class="relative overflow-hidden rounded-2xl shadow-lg transition-transform duration-700 ease-in-out hover:translate-y-[-10px] hover:shadow-2xl">
-                    <img src="{{ asset('asset/images/s9.jpg') }}" alt="Culinary Experience"
+                    <img src="https://cdn.pixabay.com/photo/2020/05/06/23/23/kitchen-5139609_1280.jpg" alt="Culinary Experience"
                         class="w-full h-[400px] object-cover transition-transform duration-1000 ease-in-out hover:scale-105">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent">
                         <div class="p-8 h-full flex flex-col justify-end">
@@ -728,7 +728,7 @@
                         class="w-full h-[300px] object-cover hover:scale-110 transition-transform duration-1000">
                     <div
                         class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex items-end p-4">
-                        <h3 class="text-white text-lg md:text-xl font-semibold uppercase tracking-wide">Dining Restaurant
+                        <h3 class="text-white text-lg md:text-xl font-semibold uppercase tracking-wide">Crescent Restaurant
                         </h3>
                     </div>
                 </div>
@@ -740,7 +740,7 @@
                         class="w-full h-[300px] object-cover hover:scale-110 transition-transform duration-1000">
                     <div
                         class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex items-end p-4">
-                        <h3 class="text-white text-lg md:text-xl font-semibold uppercase tracking-wide">Open Trace</h3>
+                        <h3 class="text-white text-lg md:text-xl font-semibold uppercase tracking-wide">Open Terrace</h3>
                     </div>
                 </div>
 
@@ -838,7 +838,7 @@
                     </div>
                     <h3 class="text-xl font-semibold text-[#1a1a2e] mb-3">24/7 Accessibility</h3>
                     <p class="text-gray-600 leading-relaxed">
-                        Our services are available around the clock to cater to your needs.
+                        Our services are available around the clock cater to your needs.
                     </p>
                 </div>
 
@@ -855,7 +855,7 @@
                     </p>
                 </div>
 
-                <div
+                {{-- <div
                     class="offering-item p-6 bg-white rounded-2xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 group">
                     <div
                         class="w-16 h-16 bg-gradient-to-tr from-[#8B4513] to-[#D4A017] flex items-center justify-center rounded-full mb-6 mx-auto border-4 border-white shadow-lg group-hover:scale-105 transition-transform">
@@ -865,7 +865,7 @@
                     <p class="text-gray-600 leading-relaxed">
                         Enjoy various entertainment options during your stay, including TV, music, and more.
                     </p>
-                </div>
+                </div> --}}
 
                 <div
                     class="offering-item p-6 bg-white rounded-2xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 group">
@@ -1405,7 +1405,7 @@
 
                 <div
                     class="faq-item bg-white rounded-lg shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl">
-                    <button
+                    {{-- <button
                         class="faq-toggle w-full text-left p-6 font-medium text-gray-800 hover:bg-[#F4F4F4] focus:outline-none focus:ring-2 focus:ring-[#8B4513] flex justify-between items-center">
                         <span class="text-lg font-semibold">Can I cancel my booking?</span>
                         <svg class="w-6 h-6 text-[#8B4513] transform transition-transform duration-300 rotate-0 faq-icon"
@@ -1413,14 +1413,14 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
                             </path>
                         </svg>
-                    </button>
+                    </button> --}}
                     <div class="faq-content p-6 text-gray-600 hidden">
                         <p>Yes, cancellations are allowed with a 24-hour notice. Please check the terms for full details.
                         </p>
                     </div>
                 </div>
 
-                <div
+                {{-- <div
                     class="faq-item bg-white rounded-lg shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl">
                     <button
                         class="faq-toggle w-full text-left p-6 font-medium text-gray-800 hover:bg-[#F4F4F4] focus:outline-none focus:ring-2 focus:ring-[#8B4513] flex justify-between items-center">
@@ -1435,7 +1435,7 @@
                         <p>Yes, we provide shuttle service to and from the airport. Please contact reception for bookings.
                         </p>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>
