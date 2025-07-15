@@ -21,7 +21,17 @@ class AvailabilityRateController extends Controller
             $endOfMonth = Carbon::now()->endOfMonth();
         }
 
-        $dates = CarbonPeriod::create($startOfMonth, $endOfMonth)->toArray();
+        if ($request->month){
+            $dates = CarbonPeriod::create($startOfMonth, $endOfMonth)->toArray();
+        }else{
+            $today = Carbon::today();
+            $dates = collect(CarbonPeriod::create($startOfMonth, $endOfMonth))
+                ->filter(fn($date) => $date->gte($today))
+                ->values(); // Reset the index
+        }
+
+
+
         $roomTypes = RoomType::all();
         return view('availability-rate', compact('dates', 'roomTypes', 'month'));
     }

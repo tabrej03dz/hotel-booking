@@ -10,11 +10,11 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    function __construct() {
-        AvailabilityRate::where('date', '<', today())
-            ->where('rooms', '>', 0)
-            ->update(['rooms' => 0]);
-    }
+//    function __construct() {
+//        AvailabilityRate::where('date', '<', today())
+//            ->where('rooms', '>', 0)
+//            ->update(['rooms' => 0]);
+//    }
 
     public function dashboard()
     {
