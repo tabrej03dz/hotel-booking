@@ -78,8 +78,8 @@
                         </div>
                         <div>
                             <h4 class="font-semibold text-gray-800 text-lg">Contact Number</h4>
-                            <p class="text-gray-600">7275092525</p>
                             <p class="text-gray-600">7275002525</p>
+                            <p class="text-gray-600">7275092525</p>
                         </div>
                     </div>
                 </div>

@@ -254,7 +254,7 @@
                     <!-- Content -->
                     <div class="space-y-6">
                         <p class="text-lg text-gray-700 leading-relaxed">
-                            The standard room has all the essential conveniences and is tastefully designed for your
+                            The room has all the essential conveniences and is tastefully designed for your
                             enjoyable stay. Hotel Krinoscco redefines luxury with an unwavering commitment to international
                             standards of service and style. Setting a new benchmark for unparalleled accommodation and
                             exceptional value, it embodies the epitome of contemporary elegance. Here, the fusion of “high
@@ -263,7 +263,7 @@
                         </p>
                         <p class="text-lg text-gray-700 leading-relaxed">
                             Centrally located in the heart of Ayodhya, a mere 15-minute taxi ride from Ayodhya Cantt. &
-                            Ayodhya railway stations and conveniently proximate to the burgeoning ayodhya airport Hotel
+                            Ayodhya railway stations and conveniently proximate to the burgeoning Ayodhya airport Hotel
                             Krinoscco stands as an epitome of accessibility. Merely two hours by road from the bustling
                             Lucknow airport it offers a gateway to seamless luxury and unmatched convenience in this
                             historical city. We are delivering the highest level of pleasure and a wonderful experience.
@@ -377,7 +377,7 @@
                                 </div>
                                 <div>
                                     <h4 class="text-white font-semibold">Smart Bed System</h4>
-                                    <p class="text-sm text-gray-400">Sizes and Type commonly found in rooms (Twin, Queen, King)</p>
+                                    <p class="text-sm text-gray-400">Sizes and Type commonly found in rooms (Twin, King)</p>
                                 </div>
                             </li>
                             <li class="flex items-center space-x-4">
@@ -394,8 +394,8 @@
                                     <i class="fas fa-bath text-[#D4A017] text-xl"></i>
                                 </div>
                                 <div>
-                                    <h4 class="text-white font-semibold">Luxury Bathroom</h4>
-                                    <p class="text-sm text-gray-400">Level up by reaching the bathroom to grow stronger</p>
+                                    <h4 class="text-white font-semibold">Luxury Washroom</h4>
+                                    <p class="text-sm text-gray-400">The Everyday routine transcends into a luxurious ritual </p>
                                 </div>
                             </li>
                         </ul>
@@ -509,7 +509,7 @@
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-check text-[#8B4513] mr-2"></i>
-                            Lighting scenes
+                            Smart lock and keyless entry systems provide secure access
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-check text-[#8B4513] mr-2"></i>
@@ -875,7 +875,7 @@
                     </div>
                     <h3 class="text-xl font-semibold text-[#1a1a2e] mb-3">Room Service</h3>
                     <p class="text-gray-600 leading-relaxed">
-                        Enjoy 24/7 room service for meals, beverages, and more, delivered right to your door.
+                        Enjoy 24/7 room service for meals, beverages and more, delivered right to your door.
                     </p>
                 </div>
 
@@ -1070,7 +1070,7 @@
             <p class="text-lg text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed">
                 Whether traveling for business or vacation, Hotel Krinoscco offers rooms thoughtfully designed for comfort
                 and luxury.
-                Experience classically styled rooms with contemporary touches, backed by round-the-clock service.
+                Experience classically styled rooms with contemporary touches, backed by round-the-clock services.
             </p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -1405,26 +1405,9 @@
 
                 <div
                     class="faq-item bg-white rounded-lg shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl">
-                    {{-- <button
-                        class="faq-toggle w-full text-left p-6 font-medium text-gray-800 hover:bg-[#F4F4F4] focus:outline-none focus:ring-2 focus:ring-[#8B4513] flex justify-between items-center">
-                        <span class="text-lg font-semibold">Can I cancel my booking?</span>
-                        <svg class="w-6 h-6 text-[#8B4513] transform transition-transform duration-300 rotate-0 faq-icon"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
-                            </path>
-                        </svg>
-                    </button> --}}
-                    <div class="faq-content p-6 text-gray-600 hidden">
-                        <p>Yes, cancellations are allowed with a 24-hour notice. Please check the terms for full details.
-                        </p>
-                    </div>
-                </div>
-
-                {{-- <div
-                    class="faq-item bg-white rounded-lg shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl">
                     <button
                         class="faq-toggle w-full text-left p-6 font-medium text-gray-800 hover:bg-[#F4F4F4] focus:outline-none focus:ring-2 focus:ring-[#8B4513] flex justify-between items-center">
-                        <span class="text-lg font-semibold">Do you have a shuttle service?</span>
+                        <span class="text-lg font-semibold">What makes this hotel unique? </span>
                         <svg class="w-6 h-6 text-[#8B4513] transform transition-transform duration-300 rotate-0 faq-icon"
                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
@@ -1432,10 +1415,27 @@
                         </svg>
                     </button>
                     <div class="faq-content p-6 text-gray-600 hidden">
-                        <p>Yes, we provide shuttle service to and from the airport. Please contact reception for bookings.
+                        <p>Focus on offer exclusive dinig option, unique design elements in their rooms.
                         </p>
                     </div>
-                </div> --}}
+                </div>
+
+                <div
+                    class="faq-item bg-white rounded-lg shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl">
+                    <button
+                        class="faq-toggle w-full text-left p-6 font-medium text-gray-800 hover:bg-[#F4F4F4] focus:outline-none focus:ring-2 focus:ring-[#8B4513] flex justify-between items-center">
+                        <span class="text-lg font-semibold">What are the golden rules of hotel?</span>
+                        <svg class="w-6 h-6 text-[#8B4513] transform transition-transform duration-300 rotate-0 faq-icon"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <div class="faq-content p-6 text-gray-600 hidden">
+                        <p>Never be surly or arrogant is the golden rule for a good service.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

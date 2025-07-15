@@ -127,7 +127,7 @@
 
                     <div class="space-y-6">
                         <p class="text-lg text-gray-700 leading-relaxed">
-                            Welcome to the Suite Room, designed to offer the perfect blend of sophistication, comfort and personalized service. Whether you're traveling for business or leisure, our suite ensures a memorable stay with premium amenities and refined interiors.
+                            Welcome to the Suite Room designed to offer the perfect blend of sophistication, comfort and personalized service. Whether you're traveling for business or leisure, our suite ensures a memorable stay with premium amenities and refined interiors.
                         </p>
                         <p class="text-lg text-gray-700 leading-relaxed">
                             Redefining modern rooms, it offers unmatched comfort and outstanding value, representing the pinnacle of contemporary sophistication.
@@ -160,7 +160,7 @@
                                 <div
                                     class="absolute inset-0 bg-[#6B3410] transform translate-y-full transition-transform duration-300 group-hover:translate-y-0">
                                 </div>
-                                <span class="relative z-10 font-semibold">Discover More</span>
+                                <span class="relative z-10 font-semibold">Explore Our Rooms</span>
                             </a>
                             <a href="{{ route('gallery') }}"
                                 class="group flex items-center gap-3 text-[#1a1a2e] font-semibold hover:text-[#8B4513] transition-colors duration-300">
@@ -176,7 +176,7 @@
 
             <!-- Room Features -->
             <div class="space-y-6 py-12">
-                <h1 class="text-3xl text-gray-800">The suite room has all the essential conveniences and is tastefully
+                <h1 class="text-3xl text-gray-800">The Suite room has all the essential conveniences and is tastefully
                     designed for your enjoyable stay. We are delivering the highest level of pleasure and a wonderful
                     experience.</h1>
                 <h3 class="text-2xl font-semibold text-[#1a1a2e]">Room Features</h3>
@@ -215,11 +215,11 @@
                     </div>
                     <div class="flex items-start gap-4">
                         <div class="w-5 h-5 bg-[#8B4513] rounded-full"></div>
-                        <p class="text-lg text-gray-700">Bath amenities and toiletry items</p>
+                        <p class="text-lg text-gray-700">Slippers available (on request)</p>
                     </div>
                     <div class="flex items-start gap-4">
                         <div class="w-5 h-5 bg-[#8B4513] rounded-full"></div>
-                        <p class="text-lg text-gray-700">Slippers available (on request)</p>
+                        <p class="text-lg text-gray-700">Bath amenities and toiletry items</p>
                     </div>
                     <div class="flex items-start gap-4">
                         <div class="w-5 h-5 bg-[#8B4513] rounded-full"></div>
@@ -237,7 +237,6 @@
                         <div class="w-5 h-5 bg-[#8B4513] rounded-full"></div>
                         <p class="text-lg text-gray-700">English, Hindi and other regional language channels</p>
                     </div>
-
                     <div class="flex items-start gap-4">
                         <div class="w-5 h-5 bg-[#8B4513] rounded-full"></div>
                         <p class="text-lg text-gray-700">Jacuzzi</p>

@@ -163,7 +163,7 @@
                                 <div
                                     class="absolute inset-0 bg-[#6B3410] transform translate-y-full transition-transform duration-300 group-hover:translate-y-0">
                                 </div>
-                                <span class="relative z-10 font-semibold">Discover More</span>
+                                <span class="relative z-10 font-semibold">Explore Our Rooms</span>
                             </a>
                             <a href="{{ route('gallery') }}"
                                 class="group flex items-center gap-3 text-[#1a1a2e] font-semibold hover:text-[#8B4513] transition-colors duration-300">

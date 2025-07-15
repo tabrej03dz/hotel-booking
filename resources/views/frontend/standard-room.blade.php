@@ -147,8 +147,8 @@
                                     <i class="fas fa-clock text-[#8B4513] text-xl"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-semibold text-[#1a1a2e]">Easy Access</h4>
-                                    <p class="text-sm text-gray-600">Minutes from transport hubs</p>
+                                    <h4 class="font-semibold text-[#1a1a2e]">Quick Access</h4>
+                                    <p class="text-sm text-gray-600">15 Minutues from stations</p>
                                 </div>
                             </div>
                         </div>
@@ -176,7 +176,7 @@
 
             <!-- Room Features -->
             <div class="space-y-6 py-12">
-                <h1 class="text-3xl text-gray-800">The standard room has all the essential conveniences and is tastefully
+                <h1 class="text-3xl text-gray-800">The Standard room has all the essential conveniences and is tastefully
                     designed for your enjoyable stay. We are delivering the highest level of pleasure and a wonderful
                     experience.</h1>
                 <h3 class="text-2xl font-semibold text-[#1a1a2e]">Room Features</h3>
@@ -215,38 +215,28 @@
                     </div>
                     <div class="flex items-start gap-4">
                         <div class="w-5 h-5 bg-[#8B4513] rounded-full"></div>
-                        <p class="text-lg text-gray-700">Slippers (on request)
-                        </p>
+                        <p class="text-lg text-gray-700">Slippers available (on request)</p>
                     </div>
                     <div class="flex items-start gap-4">
                         <div class="w-5 h-5 bg-[#8B4513] rounded-full"></div>
-                        <p class="text-lg text-gray-700">iron (on request)
-
-                        </p>
+                        <p class="text-lg text-gray-700">Bath amenities and toiletry items</p>
                     </div>
                     <div class="flex items-start gap-4">
                         <div class="w-5 h-5 bg-[#8B4513] rounded-full"></div>
-                        <p class="text-lg text-gray-700">Bath amenities and toiletry items
-
-                        </p>
+                        <p class="text-lg text-gray-700">Hair Dryer (on request)</p>
                     </div>
                     <div class="flex items-start gap-4">
                         <div class="w-5 h-5 bg-[#8B4513] rounded-full"></div>
-                        <p class="text-lg text-gray-700">32 inch flat Screen television
-
-                        </p>
+                        <p class="text-lg text-gray-700">Iron and Board (on request)</p>
                     </div>
                     <div class="flex items-start gap-4">
                         <div class="w-5 h-5 bg-[#8B4513] rounded-full"></div>
-                        <p class="text-lg text-gray-700">hair dryer (on request)
-
-                        </p>
+                        <p class="text-lg text-gray-700">32 inch flat screen television</p>
                     </div>
-                      <div class="flex items-start gap-4">
+                    <div class="flex items-start gap-4">
                         <div class="w-5 h-5 bg-[#8B4513] rounded-full"></div>
                         <p class="text-lg text-gray-700">English, Hindi and other regional language channels</p>
                     </div>
-
                 </div>
             </div>
         </div>
