@@ -187,7 +187,7 @@
                                             <!-- Repeat these blocks with real luxury room images -->
                                             <div
                                                 class="rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
-                                                <img src="{{ asset('asset/images/Standerd-room.jpg') }}" alt="Luxury Room 1"
+                                                <img src="{{asset('asset/standard/new-stardard1.jpg')}}" alt="Luxury Room 1"
                                                     class="w-full h-64 object-cover">
                                             </div>
                                             <div
@@ -207,7 +207,7 @@
                                             </div>
                                             <div
                                                 class="rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
-                                                <img src="{{ asset('asset/standard/standard-2.jpg') }}" alt="Luxury Room 5"
+                                                <img src="{{asset('asset/standard/new-starsard2.jpg')}}" alt="Luxury Room 5"
                                                     class="w-full h-64 object-cover">
                                             </div>
                                             <div

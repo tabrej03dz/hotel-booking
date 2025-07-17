@@ -68,7 +68,7 @@
                                         class="w-full h-[500px] object-cover" />
                                 </div>
                                 <div class="swiper-slide">
-                                    <img src="{{ asset('asset/luxury/luxury-2.jpg') }}" alt="Hotel Detail 2"
+                                    <img src="{{ asset('asset/luxury/luxury-4.jpg') }}" alt="Hotel Detail 2"
                                         class="w-full h-[500px] object-cover" />
                                 </div>
                                 <div class="swiper-slide">
@@ -193,7 +193,7 @@
                                             </div>
                                             <div
                                                 class="rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
-                                                <img src="{{ asset('asset/images/suite2.jpg') }}" alt="Luxury Room 2"
+                                                <img src="{{ asset('asset/deluxe/suite-new.jpg') }}" alt="Luxury Room 2"
                                                     class="w-full h-64 object-cover">
                                             </div>
                                             <div

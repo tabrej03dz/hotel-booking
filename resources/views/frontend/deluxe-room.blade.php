@@ -213,7 +213,7 @@
                                         </div>
                                         <div
                                             class="rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
-                                            <img src="{{ asset('asset/deluxe/deluxe-7.jpg') }}" alt="Luxury Room 6"
+                                            <img src="{{ asset('asset/deluxe/deluxenew 2.jpg') }}" alt="Luxury Room 6"
                                                 class="w-full h-64 object-cover">
                                         </div>
                                     </div>
