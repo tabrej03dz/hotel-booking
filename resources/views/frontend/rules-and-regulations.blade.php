@@ -31,7 +31,7 @@
 
                     <li>Company’s lien on guest luggage and belongings – In case of default in payment of dues by a guest, the Management shall have the lien on their luggage and belongings and be entitled to detain the same, and to sell or auction such property at any time without reference to the guest. The net sale proceeds will be appropriated towards the amount due by the guest without prejudice to the Management’s right to adopt such further recovery proceedings as may be required.</li>
 
-                    <li>Luggage storage: Luggage stored in the  luggage room is solely at the owner’s risk as to loss or damage from any cause. Luggage may not be stored for a period of over 7 days. Guest shall hold the Hotel harmless for the loss of or giving away/selling any possessions of the guest left behind at the Hotel upon failure to retrieve the same within 7 days of the departure from the Hotel.</li>
+                    <li>Luggage storage: Luggage stored in the  luggage room is solely at the guest’s risk as to loss or damage from any cause. Luggage may not be stored for a period of over 7 days. Guest shall hold the Hotel harmless for the loss of or giving away/selling any possessions of the guest left behind at the Hotel upon failure to retrieve the same within 7 days of the departure from the Hotel.</li>
 
                     <li>Guest belongings: The guests are particularly requested to lock the door of their room. The Hotel will not, in any way whatsoever be responsible for the loss of the resident’s goods or any other property not entrusted to the management or for the damage thereof, whether due to neglect of hotel employees or agents or any other cause whatsoever including theft or pilferage.</li>
 
