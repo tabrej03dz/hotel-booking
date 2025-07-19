@@ -151,7 +151,7 @@
                                 </div>
                                 <div>
                                     <h4 class="font-semibold text-[#1a1a2e]">Quick Access</h4>
-                                    <p class="text-sm text-gray-600">15 Minutues from stations</p>
+                                    <p class="text-sm text-gray-600">15 Minutes from stations</p>
                                 </div>
                             </div>
                         </div>
