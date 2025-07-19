@@ -652,7 +652,7 @@
                 <!-- Culinary Journey Card -->
                 <div
                     class="relative overflow-hidden rounded-2xl shadow-lg transition-transform duration-700 ease-in-out hover:translate-y-[-10px] hover:shadow-2xl">
-                    <img src="https://cdn.pixabay.com/photo/2020/05/06/23/23/kitchen-5139609_1280.jpg" alt="Culinary Experience"
+                    <img src="{{asset('asset/images/kitchen.jpg')}}" alt="Culinary Experience"
                         class="w-full h-[400px] object-cover transition-transform duration-1000 ease-in-out hover:scale-105">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent">
                         <div class="p-8 h-full flex flex-col justify-end">
