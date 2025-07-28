@@ -152,19 +152,74 @@
                                 </div>
                                 <div>
                                     <h4 class="font-semibold text-[#1a1a2e]">Quick Access</h4>
-                                    <p class="text-sm text-gray-600">15min from stations</p>
+                                    <p class="text-sm text-gray-600">15 minutes from stations</p>
                                 </div>
                             </div>
                         </div>
 
                         <div class="flex items-center gap-6 pt-4">
-                            <a href="{{ route('gallery') }}"
-                                class="group relative px-8 py-4 bg-[#8B4513] text-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
-                                <div
-                                    class="absolute inset-0 bg-[#6B3410] transform translate-y-full transition-transform duration-300 group-hover:translate-y-0">
+                            <a href="javascript:void(0)" onclick="toggleGalleryModal()"
+                            class="group relative px-8 py-4 bg-[#8B4513] text-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
+                            <div
+                                class="absolute inset-0 bg-[#6B3410] transform translate-y-full transition-transform duration-300 group-hover:translate-y-0">
+                            </div>
+                            <span class="relative z-10 font-semibold">Explore Our Rooms</span>
+                        </a>
+
+                        <!-- Modal Overlay -->
+                        <div id="galleryModal"
+                            class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 backdrop-blur-sm p-4">
+                            <div
+                                class="relative bg-white rounded-2xl shadow-2xl w-full max-w-6xl max-h-[90vh] overflow-y-auto">
+
+                                <!-- Close Button -->
+                                <button onclick="toggleGalleryModal()"
+                                    class="absolute top-4 right-4 text-white bg-black hover:bg-gray-600 rounded-full w-10 h-10 flex items-center justify-center z-10 shadow-lg">
+                                    &times;
+                                </button>
+
+                                <!-- Modal Content -->
+                                <div class="p-6 sm:p-10">
+                                    <h2 class="text-3xl font-bold text-center text-[#8B4513] mb-6">Our
+                                        Deluxe Rooms
+                                    </h2>
+
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                                        <!-- Repeat these blocks with real luxury room images -->
+                                        <div
+                                            class="rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
+                                            <img src="{{ asset('asset/deluxe/deluxe-6.jpg') }}" alt="Luxury Room 1"
+                                                class="w-full h-64 object-cover">
+                                        </div>
+                                        <div
+                                            class="rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
+                                            <img src="{{ asset('asset/deluxe/deluxe-5.jpg') }}" alt="Luxury Room 2"
+                                                class="w-full h-64 object-cover">
+                                        </div>
+                                        <div
+                                            class="rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
+                                            <img src="{{ asset('asset/deluxe/deluxe-4.jpg') }}" alt="Luxury Room 3"
+                                                class="w-full h-64 object-cover">
+                                        </div>
+                                        <div
+                                            class="rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
+                                            <img src="{{ asset('asset/deluxe/deluxe-3.jpg') }}" alt="Luxury Room 4"
+                                                class="w-full h-64 object-cover">
+                                        </div>
+                                        <div
+                                            class="rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
+                                            <img src="{{ asset('asset/deluxe/deluxe-2.jpg') }}" alt="Luxury Room 5"
+                                                class="w-full h-64 object-cover">
+                                        </div>
+                                        <div
+                                            class="rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
+                                            <img src="{{ asset('asset/deluxe/deluxenew 2.jpg') }}" alt="Luxury Room 6"
+                                                class="w-full h-64 object-cover">
+                                        </div>
+                                    </div>
                                 </div>
-                                <span class="relative z-10 font-semibold">Discover More</span>
-                            </a>
+                            </div>
+                        </div>
                             <a href="{{ route('gallery') }}"
                                 class="group flex items-center gap-3 text-[#1a1a2e] font-semibold hover:text-[#8B4513] transition-colors duration-300">
                                 <span>View Gallery</span>
@@ -330,4 +385,13 @@
             mainImage.src = element.src;
         }
     </script>
+
+        <!-- JavaScript pop up-->
+        <script>
+            function toggleGalleryModal() {
+                const modal = document.getElementById('galleryModal');
+                modal.classList.toggle('hidden');
+                modal.classList.toggle('flex');
+            }
+        </script>
 @endsection

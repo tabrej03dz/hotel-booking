@@ -58,18 +58,19 @@
                         <span class="text-[#8B4513] font-semibold uppercase tracking-wider">About Us</span>
                     </div>
                     <h2 class="text-4xl lg:text-5xl font-bold text-[#1a1a2e] leading-tight">
-                        D P R ENTERPRISES
+                        HOTEL KRINOSCCO
                     </h2>
+                    <p class="text-xl lg:text-2xl font-medium text-black ">A UNIT OF  D P R ENTERPRISES PVT. LTD.</p>
                 </div>
 
                 <p class="text-lg text-gray-700 leading-relaxed">
-                    
-                    The 60-room hotel, with its Roman-styled facade, is located on the famous Hotel Krinoscco Amaniganj Rampath ayodhya 224001
+
+                    The 60-room hotel, with its Roman-styled facade, is located on Rampath  Amaniganj ayodhya 224001
                     , the main thoroughfare of Ayodhya leading directly to the world-famous Ram Janmabhoomi.
                     <br><br>
                     Hotel Krinoscco at Ayodhya takes the hospitality concept to a new level with international standards of service and style. It sets a new standard for great accommodation and added values, offering “High tech” amenities with “high touch” levels of service unmatched in Ayodhya.
                     <br><br>
-                    In the heart of Ayodhya, 15 minutes by taxi from Ayodhya Cantt. & Ayodhya railway stations as well as the Ayodhya airport & two hours by road from the Lucknow airport.
+                    In the heart of Ayodhya, 15 minutes by taxi from Ayodhya Cantt. & Ayodhya railway stations as well as the 25 minutes by road  from Ayodhya airport   & two hours by road from the Lucknow airport.
                 </p>
 
                 <!-- Features Section -->

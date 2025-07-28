@@ -28,8 +28,8 @@
         <section>
             <h2 class="text-2xl font-bold mb-3 border-b-2 border-yellow-600 inline-block">Location</h2>
             <p class="leading-relaxed">
-                Located in the heart of Ayodhya, just 15 minutes by taxi from Ayodhya Cantt. and Ayodhya railway stations,
-                and near the airport. Also just 25 minutes by road from Ayodhya Airport.
+                Located in the heart of Ayodhya, just 15 minutes by taxi from Ayodhya Cantt. and Ayodhya railway stations
+                and  just 25 minutes by road from Ayodhya Airport.
             </p>
         </section>
 
@@ -51,13 +51,13 @@
         <section>
             <h2 class="text-2xl font-bold mb-3 border-b-2 border-yellow-600 inline-block">Hotel Services</h2>
             <ul class="list-disc pl-6 space-y-1">
-                <li>Cooked-to-order / Buffet Breakfast for Registered & Walk-in guests</li>
+                <li>Cooked-to-order / Buffet Breakfast for In-House & Walk-in guests</li>
                 <li>High-speed Wireless Internet access in all rooms, function rooms, and public areas</li>
                 <li>Travel and Concierge Desk</li>
                 <li>Multi-lingual staff</li>
                 <li>24-hour In-room dining</li>
                 <li>Crescent - The multicuisine restaurant</li>
-                <li>Tit-Bit the Café (in-house specialty serving bakery products, fast food & a sumptuous variety of tea &
+                <li>Tit-Bit the Café (in-house speciality serving bakery products, fast food & a sumptuous variety of tea &
                     coffee)</li>
                 <li>Laundry Service</li>
                 <li>Airport & railway station taxi service (chargeable)</li>
@@ -79,19 +79,14 @@
                 <li>Wall Safe</li>
                 <li>Slippers available (on request)</li>
                 <li>Bath amenities and toiletry items</li>
-                <li>Hair Dryer</li>
+                <li>Hair Dryer (on request)</li>
                 <li>Iron and Board (on request)</li>
                 <li>32-inch flat-screen television with English, Hindi, and other regional language channels</li>
             </ul>
         </section>
 
 
-        <!-- Reservations -->
-        <section>
-            <h2 class="text-2xl font-bold mb-3 border-b-2 border-yellow-600 inline-block">Reservations</h2>
-            <p>Telephone No.: ………………………</p>
-            <p>Email: …………………………………..</p>
-        </section>
+
 
         <!-- Banquet Capacities -->
         <section>

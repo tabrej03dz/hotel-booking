@@ -125,11 +125,14 @@
 
                     <div class="space-y-6">
                         <p class="text-lg text-gray-700 leading-relaxed">
-                            The Standard Room offers essential comforts with a cozy, inviting design crafted to make your stay pleasant and restful.
-                            At Hotel Krinoscco, we prioritize your comfort while maintaining our commitment to quality and attentive service.
+                            The Standard Room offers essential comforts with a cozy, inviting design crafted to make your
+                            stay pleasant and restful.
+                            At Hotel Krinoscco, we prioritize your comfort while maintaining our commitment to quality and
+                            attentive service.
                         </p>
                         <p class="text-lg text-gray-700 leading-relaxed">
-                            Combining practical amenities with a warm ambiance, the Standard Room sets the perfect foundation for a relaxing and affordable stay.
+                            Combining practical amenities with a warm ambiance, the Standard Room sets the perfect
+                            foundation for a relaxing and affordable stay.
                         </p>
 
                         <div class="grid grid-cols-2 gap-6 py-6">
@@ -147,20 +150,78 @@
                                     <i class="fas fa-clock text-[#8B4513] text-xl"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-semibold text-[#1a1a2e]">Easy Access</h4>
-                                    <p class="text-sm text-gray-600">Minutes from transport hubs</p>
+                                    <h4 class="font-semibold text-[#1a1a2e]">Quick Access</h4>
+                                    <p class="text-sm text-gray-600">15 Minutes from stations</p>
                                 </div>
                             </div>
                         </div>
 
                         <div class="flex items-center gap-6 pt-4">
-                            <a href="{{ route('gallery') }}"
+                            <!-- Trigger Button -->
+                            <a href="javascript:void(0)" onclick="toggleGalleryModal()"
                                 class="group relative px-8 py-4 bg-[#8B4513] text-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
                                 <div
                                     class="absolute inset-0 bg-[#6B3410] transform translate-y-full transition-transform duration-300 group-hover:translate-y-0">
                                 </div>
                                 <span class="relative z-10 font-semibold">Explore Our Rooms</span>
                             </a>
+
+                            <!-- Modal Overlay -->
+                            <div id="galleryModal"
+                                class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 backdrop-blur-sm p-4">
+                                <div
+                                    class="relative bg-white rounded-2xl shadow-2xl w-full max-w-6xl max-h-[90vh] overflow-y-auto">
+
+                                    <!-- Close Button -->
+                                    <button onclick="toggleGalleryModal()"
+                                        class="absolute top-4 right-4 text-white bg-black hover:bg-gray-600 rounded-full w-10 h-10 flex items-center justify-center z-10 shadow-lg">
+                                        &times;
+                                    </button>
+
+                                    <!-- Modal Content -->
+                                    <div class="p-6 sm:p-10">
+                                        <h2 class="text-3xl font-bold text-center text-[#8B4513] mb-6">Our Standard Rooms
+                                        </h2>
+
+                                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                                            <!-- Repeat these blocks with real luxury room images -->
+                                            <div
+                                                class="rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
+                                                <img src="{{asset('asset/standard/new-stardard1.jpg')}}" alt="Luxury Room 1"
+                                                    class="w-full h-64 object-cover">
+                                            </div>
+                                            <div
+                                                class="rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
+                                                <img src="{{ asset('asset/standard/standard-2.jpg') }}" alt="Luxury Room 2"
+                                                    class="w-full h-64 object-cover">
+                                            </div>
+                                            <div
+                                                class="rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
+                                                <img src="{{ asset('asset/standard/standard-3.jpg') }}" alt="Luxury Room 3"
+                                                    class="w-full h-64 object-cover">
+                                            </div>
+                                            <div
+                                                class="rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
+                                                <img src="{{ asset('asset/standard/standard-4.jpg') }}" alt="Luxury Room 4"
+                                                    class="w-full h-64 object-cover">
+                                            </div>
+                                            <div
+                                                class="rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
+                                                <img src="{{asset('asset/standard/new-starsard2.jpg')}}" alt="Luxury Room 5"
+                                                    class="w-full h-64 object-cover">
+                                            </div>
+                                            <div
+                                                class="rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
+                                                <img src="{{ asset('asset/standard/standard-3.jpg') }}"
+                                                    alt="Luxury Room 6" class="w-full h-64 object-cover">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
                             <a href="{{ route('gallery') }}"
                                 class="group flex items-center gap-3 text-[#1a1a2e] font-semibold hover:text-[#8B4513] transition-colors duration-300">
                                 <span>View Gallery</span>
@@ -176,7 +237,7 @@
 
             <!-- Room Features -->
             <div class="space-y-6 py-12">
-                <h1 class="text-3xl text-gray-800">The standard room has all the essential conveniences and is tastefully
+                <h1 class="text-3xl text-gray-800">The Standard room has all the essential conveniences and is tastefully
                     designed for your enjoyable stay. We are delivering the highest level of pleasure and a wonderful
                     experience.</h1>
                 <h3 class="text-2xl font-semibold text-[#1a1a2e]">Room Features</h3>
@@ -215,89 +276,79 @@
                     </div>
                     <div class="flex items-start gap-4">
                         <div class="w-5 h-5 bg-[#8B4513] rounded-full"></div>
-                        <p class="text-lg text-gray-700">Slippers (on request)
-                        </p>
+                        <p class="text-lg text-gray-700">Slippers available (on request)</p>
                     </div>
                     <div class="flex items-start gap-4">
                         <div class="w-5 h-5 bg-[#8B4513] rounded-full"></div>
-                        <p class="text-lg text-gray-700">iron (on request)
-
-                        </p>
+                        <p class="text-lg text-gray-700">Bath amenities and toiletry items</p>
                     </div>
                     <div class="flex items-start gap-4">
                         <div class="w-5 h-5 bg-[#8B4513] rounded-full"></div>
-                        <p class="text-lg text-gray-700">Bath amenities and toiletry items
-
-                        </p>
+                        <p class="text-lg text-gray-700">Hair Dryer (on request)</p>
                     </div>
                     <div class="flex items-start gap-4">
                         <div class="w-5 h-5 bg-[#8B4513] rounded-full"></div>
-                        <p class="text-lg text-gray-700">32 inch flat Screen television
-
-                        </p>
+                        <p class="text-lg text-gray-700">Iron and Board (on request)</p>
                     </div>
                     <div class="flex items-start gap-4">
                         <div class="w-5 h-5 bg-[#8B4513] rounded-full"></div>
-                        <p class="text-lg text-gray-700">hair dryer (on request)
-
-                        </p>
+                        <p class="text-lg text-gray-700">32 inch flat screen television</p>
                     </div>
-                      <div class="flex items-start gap-4">
+                    <div class="flex items-start gap-4">
                         <div class="w-5 h-5 bg-[#8B4513] rounded-full"></div>
                         <p class="text-lg text-gray-700">English, Hindi and other regional language channels</p>
                     </div>
-
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Real-time Availability Section -->
-  {{-- booking section --}}
-{{--  <section id="booking" class="py-12 animated-gradient bg-[#151127]">--}}
-{{--    <div class="container mx-auto px-4">--}}
-{{--        <!-- Title Section -->--}}
-{{--        <h2 class="text-3xl font-bold text-white mb-8 text-center">--}}
-{{--            Book Your Stay--}}
-{{--            <div class="w-16 h-1 bg-gradient-to-r from-[#8B4513] to-[#D4A017] mx-auto mt-2 rounded-full"></div>--}}
-{{--        </h2>--}}
-{{--        <div class="w-full max-w-7xl mx-auto bg-white rounded-lg shadow-lg p-6">--}}
+    {{-- booking section --}}
+    {{--  <section id="booking" class="py-12 animated-gradient bg-[#151127]"> --}}
+    {{--    <div class="container mx-auto px-4"> --}}
+    {{--        <!-- Title Section --> --}}
+    {{--        <h2 class="text-3xl font-bold text-white mb-8 text-center"> --}}
+    {{--            Book Your Stay --}}
+    {{--            <div class="w-16 h-1 bg-gradient-to-r from-[#8B4513] to-[#D4A017] mx-auto mt-2 rounded-full"></div> --}}
+    {{--        </h2> --}}
+    {{--        <div class="w-full max-w-7xl mx-auto bg-white rounded-lg shadow-lg p-6"> --}}
 
-{{--            <form action="{{ route('rooms.available') }}" method="GET"--}}
-{{--                class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">--}}
-{{--                @csrf--}}
+    {{--            <form action="{{ route('rooms.available') }}" method="GET" --}}
+    {{--                class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"> --}}
+    {{--                @csrf --}}
 
-{{--                <!-- Check-in Date Picker -->--}}
-{{--                <div class="flex flex-col">--}}
-{{--                    <label class="text-gray-700 font-medium">Check-in</label>--}}
-{{--                    <input type="date" id="checkin" name="check_in_date" placeholder="Select Check-in" required--}}
-{{--                        class="border border-gray-300 rounded-md p-2 bg-white outline-none--}}
-{{--                                   focus:border-[#8B4513] focus:ring-2 focus:ring-[#8B4513]">--}}
-{{--                </div>--}}
+    {{--                <!-- Check-in Date Picker --> --}}
+    {{--                <div class="flex flex-col"> --}}
+    {{--                    <label class="text-gray-700 font-medium">Check-in</label> --}}
+    {{--                    <input type="date" id="checkin" name="check_in_date" placeholder="Select Check-in" required --}}
+    {{--                        class="border border-gray-300 rounded-md p-2 bg-white outline-none --}}
+    {{--                                   focus:border-[#8B4513] focus:ring-2 focus:ring-[#8B4513]"> --}}
+    {{--                </div> --}}
 
-{{--                <!-- Check-out Date Picker -->--}}
-{{--                <div class="flex flex-col">--}}
-{{--                    <label class="text-gray-700 font-medium">Check-out</label>--}}
-{{--                    <input type="date" id="checkout" name="check_out_date" placeholder="Select Check-out"--}}
-{{--                        required--}}
-{{--                        class="border border-gray-300 rounded-md p-2 bg-white outline-none--}}
-{{--                                   focus:border-[#8B4513] focus:ring-2 focus:ring-[#8B4513]">--}}
-{{--                </div>--}}
+    {{--                <!-- Check-out Date Picker --> --}}
+    {{--                <div class="flex flex-col"> --}}
+    {{--                    <label class="text-gray-700 font-medium">Check-out</label> --}}
+    {{--                    <input type="date" id="checkout" name="check_out_date" placeholder="Select Check-out" --}}
+    {{--                        required --}}
+    {{--                        class="border border-gray-300 rounded-md p-2 bg-white outline-none --}}
+    {{--                                   focus:border-[#8B4513] focus:ring-2 focus:ring-[#8B4513]"> --}}
+    {{--                </div> --}}
 
-{{--                <div class="flex flex-col">--}}
-{{--                    <br>--}}
-{{--                    <button type="submit"--}}
-{{--                        class="px-6 py-2 bg-gradient-to-r from-[#8B4513] to-[#D4A017] text-white rounded-md transition--}}
-{{--                                hover:from-[#D4A017] hover:to-[#8B4513]">--}}
-{{--                        Search--}}
-{{--                    </button>--}}
-{{--                </div>--}}
+    {{--                <div class="flex flex-col"> --}}
+    {{--                    <br> --}}
+    {{--                    <button type="submit" --}}
+    {{--                        class="px-6 py-2 bg-gradient-to-r from-[#8B4513] to-[#D4A017] text-white rounded-md transition --}}
+    {{--                                hover:from-[#D4A017] hover:to-[#8B4513]"> --}}
+    {{--                        Search --}}
+    {{--                    </button> --}}
+    {{--                </div> --}}
 
-{{--            </form>--}}
+    {{--            </form> --}}
 
-{{--        </div>--}}
-{{--    </div>--}}
-{{--</section>--}}
+    {{--        </div> --}}
+    {{--    </div> --}}
+    {{-- </section> --}}
 
     @include('component.booking')
 
@@ -336,4 +387,13 @@
             mainImage.src = element.src;
         }
     </script>
+
+        <!-- JavaScript pop up-->
+        <script>
+            function toggleGalleryModal() {
+                const modal = document.getElementById('galleryModal');
+                modal.classList.toggle('hidden');
+                modal.classList.toggle('flex');
+            }
+        </script>
 @endsection
