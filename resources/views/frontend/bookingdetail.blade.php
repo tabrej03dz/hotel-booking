@@ -374,8 +374,7 @@
                 <div class="space-y-6">
                     <div>
                         <h4 class="font-medium text-gray-900 mb-2">Cancellation Policy</h4>
-                        <p class="text-gray-700">Free cancellation until 72 hours before check-in. Cancellations within 72
-                            hours will incur a fee equivalent to one night's stay.</p>
+                        <p class="text-gray-700">Despite previous successes, we're facing issues with email delivery, receiving 'Undelivered' notifications. Could you please assist us in sending the email in a proper professional format.</p>
                     </div>
                     <div>
                         <h4 class="font-medium text-gray-900 mb-2">Check-In Requirements</h4>
