@@ -374,7 +374,7 @@
                 <div class="space-y-6">
                     <div>
                         <h4 class="font-medium text-gray-900 mb-2">Cancellation Policy</h4>
-                        <p class="text-gray-700">Despite previous successes, we're facing issues with email delivery, receiving 'Undelivered' notifications. Could you please assist us in sending the email in a proper professional format.</p>
+                        <p class="text-gray-700">As per our cancellation policy is if booking get cancel the Amount has been non-refundable.</p>
                     </div>
                     <div>
                         <h4 class="font-medium text-gray-900 mb-2">Check-In Requirements</h4>
