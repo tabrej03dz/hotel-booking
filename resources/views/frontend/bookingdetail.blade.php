@@ -374,8 +374,7 @@
                 <div class="space-y-6">
                     <div>
                         <h4 class="font-medium text-gray-900 mb-2">Cancellation Policy</h4>
-                        <p class="text-gray-700">Free cancellation until 72 hours before check-in. Cancellations within 72
-                            hours will incur a fee equivalent to one night's stay.</p>
+                        <p class="text-gray-700">All bookings made through our website are non-refundable. This means that once the reservation is made and the payment is processed, no refunds will be issued for any reason, including but not limited to changes in travel plans, cancellations, or early departures.</p>
                     </div>
                     <div>
                         <h4 class="font-medium text-gray-900 mb-2">Check-In Requirements</h4>

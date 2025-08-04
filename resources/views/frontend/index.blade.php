@@ -1302,9 +1302,11 @@
                 </div>
 
                 <!-- Contact Form -->
-                <form action="#" method="POST"
+                <form action="{{ route('contact.save') }}" method="POST"
                     class="bg-white p-6 sm:p-8 rounded-xl shadow-lg transition-transform duration-700
        hover:shadow-2xl hover:-translate-y-2 space-y-4">
+
+                @csrf
 
                     <div>
                         <label for="name" class="block text-sm font-medium text-gray-700">Your Name</label>
