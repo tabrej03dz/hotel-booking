@@ -17,9 +17,9 @@ class ContactController extends Controller
             'phone' => ['required', 'regex:/^[0-9]{10,15}$/'], // allows only numbers between 10-15 digits
             'message' => ['nullable', 'string', 'max:1000'],
         ]);
-        $admin = User::find(1);
+        $admin = "info@krinoscco.com";
         $contact = Contact::create($request->all());
-        Mail::to($admin->email)->send(new ContactMail($contact));
+        Mail::to($admin)->send(new ContactMail($contact));
         return back()->with('success', 'Your message has sent successfully');
     }
 }
