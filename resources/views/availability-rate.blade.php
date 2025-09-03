@@ -160,13 +160,13 @@
                                                     <input type="number" name="rooms" placeholder="Rooms"
                                                        value="{{ $record->rooms ?? '' }}"
                                                        max="{{ $roomType->name === 'Standard' ? 57 : ($roomType->name === 'Deluxe' ? 1 : 2) }}" min="1"
-                                                       class="w-20 border border-gray-300 rounded text-center mb-1 room-input"
+                                                       class="w-32 border border-gray-300 rounded text-center mb-1 room-input"
                                                        required /> <br>
 
 
                                                     <input type="number" name="price" placeholder="Price"
                                                            value="{{ $record->price ?? '' }}"
-                                                           class="w-20 border border-gray-300 rounded text-center price-input"
+                                                           class="w-32 border border-gray-300 rounded text-center price-input"
                                                            required />
                                             </form>
                                                 @endforeach
