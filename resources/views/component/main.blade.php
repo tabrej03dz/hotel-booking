@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-  <title>Hotel Krinoscco – Book Luxury Stays in Ayodhya</title>
+  <title>Hotel Krinoscco – Book Luxury Stay in Ayodhya</title>
 
   <!-- ✅ SEO Meta Tags -->
   <meta name="description" content="Hotel Krinoscco offers luxury accommodation in Ayodhya with comfort, hospitality, and top-class amenities. Book your stay now!" />
@@ -23,7 +23,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://krinoscco.com/" />
   <meta property="og:title" content="Hotel Krinoscco – Luxury Stay in Ayodhya" />
-  <meta property="og:description" content="Book luxury rooms at Hotel Krinoscco in Ayodhya. Ideal for family, solo, and business stays." />
+  <meta property="og:description" content="Book luxury rooms at Hotel Krinoscco in Ayodhya. Ideal for family, solo, and business stay." />
   <meta property="og:image" content="https://krinoscco.com/asset/images/logo.png" />
 
   <!-- ✅ Twitter Card -->

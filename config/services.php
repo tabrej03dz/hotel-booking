@@ -35,4 +35,9 @@ return [
         ],
     ],
 
+    'payumoney' => [
+        'key'   => env('PAYUMONEY_MERCHANT_KEY'),
+        'salt'  => env('PAYUMONEY_MERCHANT_SALT'),
+    ],
+
 ];

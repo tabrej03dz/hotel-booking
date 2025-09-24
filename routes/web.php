@@ -16,6 +16,8 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
 use Nette\Utils\ImageColor;
+use App\Http\Controllers\PayUMoneyController;
+
 
 // Route::get('/', function () {
 //     return view('front.index');
@@ -31,6 +33,15 @@ use Nette\Utils\ImageColor;
 
 // Routes that require authentication
 Route::middleware('auth')->group(function () {
+
+    // PAYUMONEY PAYMENT GATEWAY ROUTES
+
+    Route::get('pay-u-money-view',[PayUMoneyController::class,'payUMoneyViewa']);
+    Route::post('pay-u-response',[PayUMoneyController::class,'payUResponse'])->name('pay.u.response');
+    Route::post('pay-u-cancel',[PayUMoneyController::class,'payUCancel'])->name('pay.u.cancel');
+
+
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -234,7 +245,8 @@ Route::get('/thank-you', [BookingController::class, 'thankyou'])->name('thankyou
 
 Route::get('rooms/available', [HomeController::class, 'availableRoom'])->name('rooms.available');
 Route::get('booking/room/{roomType}', [HomeController::class, 'bookingRoom'])->name('booking.room');
-Route::post('booking/save/{roomType}', [HomeController::class, 'bookingSave'])->name('booking.save');
+//Route::post('booking/save/{roomType}', [HomeController::class, 'bookingSave'])->name('booking.save');
+Route::post('booking/save/{roomType}', [PayUMoneyController::class, 'payUMoneyView'])->name('booking.save');
 
 
 Route::get('/bookingdetail', [HomeController::class, 'bookingdetail'])->name('bookingdetail');
