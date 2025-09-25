@@ -446,10 +446,11 @@ class PayUMoneyController extends Controller
 //        $MERCHANT_KEY  = "xqFUnS";
 //        $SALT          = "okmVfGZXaaDHKWulMKjXSygDU3py5drJ";
 
+//        dd(env('PAYUMONEY_MERCHANT_KEY'));
         $MERCHANT_KEY  = env('PAYUMONEY_MERCHANT_KEY');
         $SALT          = env('PAYUMONEY_MERCHANT_SALT'); // ← यह असली वाला SALT डालो
-        $PAYU_BASE_URL = "https://test.payu.in"; // production में secure.payu.in
-//        $PAYU_BASE_URL = "https://secure.payu.in"; // production में secure.payu.in
+//        $PAYU_BASE_URL = "https://test.payu.in"; // production में secure.payu.in
+        $PAYU_BASE_URL = "https://secure.payu.in"; // production में secure.payu.in
 
         // Required fields
         $amount      = number_format((float)$totalAmount, 2, '.', ''); // "12980.00"
