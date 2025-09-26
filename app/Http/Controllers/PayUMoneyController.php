@@ -381,7 +381,7 @@ class PayUMoneyController extends Controller
         $extraAdults = max(0, $request->adults - 2);
         $extraPersonAmount = $extraAdults * 1500 * $request->days;
 
-        $gst = ($roomTotal >= 7500) ? 0.18 : 0.12;
+        $gst = ($roomTotal >= 7500) ? 0.18 : 0.05;
 
         $subTotal    = $roomTotal + $serviceCharge + $extraPersonAmount + $extraChildCharge;
         $tax         = round($subTotal * $gst, 2);

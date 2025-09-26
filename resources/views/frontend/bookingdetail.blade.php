@@ -302,7 +302,7 @@
                                 $price += $availability->price;
                             }
 
-                            $taxRate = $price < 7500 ? 0.12 : 0.18;
+                            $taxRate = $price < 7500 ? 0.05 : 0.18;
                             $tax = $price * $taxRate;
                         @endphp
                         <div class="space-y-4">
@@ -580,7 +580,7 @@
             // const updatedSubtotal = totalRoomPrice + totalServiceCost + extraPersonCharge;
             const updatedSubtotal = totalRoomPrice + totalServiceCost + extraPersonCharge + extraChildCharge;
 
-            const appliedTaxRate = totalRoomPrice < 7500 ? 0.12 : 0.18;
+            const appliedTaxRate = totalRoomPrice < 7500 ? 0.05 : 0.18;
             const tax = updatedSubtotal * appliedTaxRate;
             const grandTotal = updatedSubtotal + tax;
 

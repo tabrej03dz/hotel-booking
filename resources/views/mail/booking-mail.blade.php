@@ -165,7 +165,7 @@
         $grandSubtotal = $booking->extra_child_charge + $roomTotal + $totalServicePrices + $extraPersonCharges;
 
         // Tax rate based on total amount
-        $taxRate = ($booking->amount < 7500 ? 0.12 : 0.18);
+        $taxRate = ($booking->amount < 7500 ? 0.05 : 0.18);
 
         // Tax and total
         $grandTax = $grandSubtotal * $taxRate;
@@ -201,7 +201,7 @@
                 $extraPerDay = $booking->extra_person / $booking->staying_days;
                 $extraChildCharge = $booking->extra_child_charge/$booking->staying_days;
                 $dailySubtotal = $extraChildCharge + $singleRoomPrice + $dailyServiceTotal + $extraPerDay;
-                $taxRate = $booking->amount < 7500 ? 0.12 : 0.18;
+                $taxRate = $booking->amount < 7500 ? 0.05 : 0.18;
                 $dailyTax = $dailySubtotal * $taxRate;
                 $dailyTotal = $dailySubtotal + $dailyTax;
             @endphp

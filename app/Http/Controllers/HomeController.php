@@ -304,7 +304,7 @@ class HomeController extends Controller
         if($roomTotal >= 7500){
             $gst = 18/100;
         }else{
-            $gst = 12/100;
+            $gst = 5/100;
         }
         // 👉 Final calculation
         $subTotal = $roomTotal + $serviceCharge + $extraPersonAmount + $extraChildCharge;
