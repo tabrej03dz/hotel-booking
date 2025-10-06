@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\BookingMail;
 use App\Mail\UserRegistrationMail;
 use App\Models\AdditionalService;
 use App\Models\Booking;
@@ -785,7 +786,12 @@ class PayUMoneyController extends Controller
         // 7) Notifications (optional)
         try {
             if ($payment->booking && $payment->booking->email) {
-                // Mail::to($payment->booking->email)->send(new BookingConfirmedMail($payment->booking));
+//                 Mail::to($payment->booking->email)->send(new BookingConfirmedMail($payment->booking));
+                Mail::to($payment->booking->email)->send(new BookingMail($payment->booking, 'user'));
+
+                // Send mail to admin
+                Mail::to('info@krinoscco.com')->send(new BookingMail($payment->booking, 'admin'));
+                Mail::to('accounts@krinoscco.com')->send(new BookingMail($payment->booking, 'admin'));
             }
         } catch (\Throwable $e) {
             Log::error('Mail send failed after PayU success', ['e' => $e->getMessage()]);
