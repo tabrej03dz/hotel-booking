@@ -29,6 +29,9 @@ use App\Http\Controllers\PayUMoneyController;
 
 
 
+Route::get('pay-u-money-view',[PayUMoneyController::class,'payUMoneyViewa']);
+Route::post('pay-u-response',[PayUMoneyController::class,'payUResponse'])->name('pay.u.response');
+Route::post('pay-u-cancel',[PayUMoneyController::class,'payUCancel'])->name('pay.u.cancel');
 
 
 // Routes that require authentication
@@ -36,9 +39,6 @@ Route::middleware('auth')->group(function () {
 
     // PAYUMONEY PAYMENT GATEWAY ROUTES
 
-    Route::get('pay-u-money-view',[PayUMoneyController::class,'payUMoneyViewa']);
-    Route::post('pay-u-response',[PayUMoneyController::class,'payUResponse'])->name('pay.u.response');
-    Route::post('pay-u-cancel',[PayUMoneyController::class,'payUCancel'])->name('pay.u.cancel');
 
 
 

@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
@@ -19,18 +20,18 @@ class PayUMoneyController extends Controller
 {
     public function payUMoneyViewa()
     {
-//        $MERCHANT_KEY = env('PAYUMONEY_MERCHANT_KEY');
-//        $SALT = env('PAYUMONEY_MERCHANT_SALT');
-        $MERCHANT_KEY = 'TegtFB';
-        $SALT = 'MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDt9lhoxyR/zkQaebqM8tbK8CNYrcYloMHA5CvLkPSRgDN0WZwOFcPywLpLWWOqTMz2/Hb8UmV4gRmROUQksq7CjKxvaKZ4U07SHqn65eRyuVhPum7Evd3+4Wm7NbsxNPR5h2kTtRmyVCkRhjzmhhAndcRaIT9v4Dx6NlXWTeEmDg0SLnCRQM/MClf2QV1ICQwm8LbZaRFz1LjeF+aC8VzsAU6odk/zuIhQDdMFWw1oIu+K/e8g/xUf/n/Ibv77yUiZQMmXM0pvPE4z/Rwe0p1n9biMP4v5nX7QsIhpKRkTOWH+vzoOLRX1q+CdDcSleijSrHyXFfGuH8fg6PlYI+1FAgMBAAECggEAPffBZSO65wdlZ8mcYXkZo0ZuxfiW2ZSn8B3bI8tPTRaoD5wITgiv+ubifJ2+HQqb85OiPqoMX5mq+U0C6FWZufMdMnP7qejz5Tb0B/DXEWMf0r9XeieBiI7V1Fk1Mqa6JW20WNv34Z8WBMjC0jtGOKhr5hazaORpi1/b8Y9dWuWcRzNJ4acjbnX/5fsedBSQEtmcyfXzAtHSLTyH60XH54I9rNVlBrl3tYFbkRltEUlyKEAGsV536Ms2g2oJ2aqLlB2BsVf/zMgB8cQ/h/qYp2Hk8DAtusL/FoY+tiMcvesqVoCYI1/ueI5nlgmUaArP6cXq/1+PKeOQA4i5nnzrTwKBgQD02uOZHkG9fuPfGQ+KX2IlIOwPX5wioDImQfIeNB82jtsN0BXDW+DPN145j+JuYpGdIS8RYn25Pfp/pc4xLd4GaGqn6bnMLqJqz3mlLYjBOh9lJeZr9AXVDNKMbvr28s2VTx7PPXZz6kbOockIkAx8Mg8h6NxxbEYAqRbpREuUgwKBgQD4yyPqPN44S5Vz6/odQvPdqitj1spUsEwW40wz94ZIseIRP6bwgeAC+PmBC/mqOUIKHBMWdCtvFEG8jNnUnIKTjJVk0CMVKiQr1Ov3VyM5pxzYGtfY+Xvil8TqXm3H3sv93IurgP58arUleZ6nZ3fri1MRxoYkyYBJ7YlHoJsclwKBgQCdESyetEIHhLY4DqNhZ/5VQuEqm3JU495HnFXr+hNrtAfgvHK5dt6nDiVrV1kw5hnyaa7/v+ZWRePCrmGuOnYKNkD0pYGB8QhO6/hkdOkcymQJRl6hMU/scuU9IJPshaRK+w4QcqThho8VTcLfs0fPA22hmvaN656cHduMlzrEcQKBgD+kz6ozKfGivDesTQ5BO1sgFftzTcz+UGimeq7sigh8oMUi0FTEFIcOI910L8jw3sjxR5y92QKQXwSZz3uJEgoms2zXpbHbVudzj211eAhejI1nyIGzyJI9mt0NjO3NO8fULFKSLAet0GsmwoQ2fsHdoUFx1I0CkvPWdQDCwAs/AoGBAIHYiMUMZvYRy7o/+tV3rHDOkM4B2PGD2aced1/mokL8AcFhow5ae/uSw5qDbPZcDz2fyGmcnr/15FlASEKtBBqVZIr4Jd5sZTKwfJ2aTekbZBCpF/T5kPb0AQhSZJsU8laqHxEChwhkZSsCKJr7r9mOlDJpCL2p4fHxTX+5CtOg';
+        $MERCHANT_KEY = env('PAYUMONEY_MERCHANT_KEY');
+        $SALT = env('PAYUMONEY_MERCHANT_SALT');
+
+        dd(auth()->user());
 
         $PAYU_BASE_URL = "https://test.payu.in";
 
 //        $PAYU_BASE_URL = "https://secure.payu.in"; // PRODUCATION
-        $name = 'Haresh Chauhan';
+        $name = auth()->user()->name;
         $successURL = route('pay.u.response');
         $failURL = route('pay.u.cancel');
-        $email = 'example@gmail.com';
+        $email = auth()->user()->email;
         $amount = 1000;
 
         $action = '';
@@ -513,122 +514,296 @@ class PayUMoneyController extends Controller
 
 
 
+//    public function payUResponse(Request $request)
+//    {
+//        $posted = $request->all();
+//
+//        $key   = env('PAYUMONEY_MERCHANT_KEY');
+//        $salt  = env('PAYUMONEY_MERCHANT_SALT');
+//
+//        $status       = $posted['status']       ?? null;   // success/failed
+//        $txnid        = $posted['txnid']        ?? null;   // our payu_txnid
+//        $amount       = $posted['amount']       ?? null;
+//        $productinfo  = $posted['productinfo']  ?? null;
+//        $firstname    = $posted['firstname']    ?? null;
+//        $email        = $posted['email']        ?? null;
+//        $receivedHash = $posted['hash']         ?? null;
+//        $additional   = $posted['additionalCharges'] ?? null;
+//        $mihpayid     = $posted['mihpayid']     ?? null;   // PayU payment id
+//
+//        // 1) Recompute hash (reverse sequence)
+//        $hashSeqTail = implode('|', [
+//            $email,
+//            $firstname,
+//            $productinfo,
+//            $amount,
+//            $txnid,
+//            $key
+//        ]);
+//
+//        $udfs = [];
+//        for ($i=1; $i<=10; $i++) {
+//            $udfs[] = $posted['udf'.$i] ?? '';
+//        }
+//        // order: udf10 ... udf1 (reverse)
+//        $udfsReversed = array_reverse($udfs); // udf10 down to udf1
+//
+//        $base = $salt.'|'.$status.'|'.implode('|', $udfsReversed).'|'.$hashSeqTail;
+//
+//        if (!empty($additional)) {
+//            $base = $additional.'|'.$base;  // prepend
+//        }
+//
+//        $computedHash = strtolower(hash('sha512', $base));
+//
+//        if (!$receivedHash || $computedHash !== strtolower($receivedHash)) {
+//            // Hash mismatch → do NOT confirm
+//            // Optional: log raw payload for investigation
+//            if (isset($txnid)) {
+//                Payment::where('transaction_id', $txnid)->update([
+//                    'status'      => 'failed',
+//                    'raw_request' => json_encode($posted),
+//                ]);
+//            }
+//            return redirect()->route('booking.failed')->with('error', 'Payment verification failed.');
+//        }
+//
+//        // 2) Idempotent DB update
+//        // Find our payment by payu_txnid
+//        $payment = Payment::where('transaction_id', $txnid)->first();
+//
+//        if (!$payment) {
+//            // Fallback: try by amount + mihpayid (rare)
+//            return redirect()->route('booking.failed')->with('error', 'Payment reference not found.');
+//        }
+//
+//        if ($payment->status === 'paid') {
+//            // Already processed
+//            return redirect()->route('booking.success', $payment->booking_id)->with('success', 'Payment already confirmed.');
+//        }
+//
+//        // 3) Only accept success
+//        if ($status !== 'success') {
+//            $payment->update([
+//                'status'      => 'failed',
+//                'payu_mihpayid' => $mihpayid,
+//                'raw_request' => json_encode($posted),
+//            ]);
+////            return redirect()->route('booking.failed')->with('error', 'Payment failed.');
+//            return redirect()->route('user.dashboard')->with('error', 'Invalid response from payment gateway.');
+//
+//        }
+//
+//        DB::transaction(function () use ($payment, $posted, $mihpayid) {
+//            // (a) Mark payment paid
+//            $payment->update([
+//                'status'        => 'paid',
+//                'payu_mihpayid' => $mihpayid,
+//                'raw_request'   => json_encode($posted),
+//            ]);
+//
+//            // (b) Confirm booking
+//            $booking = $payment->booking()->lockForUpdate()->first(); // lock to avoid race
+//            if ($booking && $booking->status !== 'confirmed') {
+//                $booking->update(['status' => 'confirmed']);
+//            }
+//
+//            // (c) Optional: decrement inventory (rooms) on each availability date
+//            //   Only if aap availability table me "rooms" count manage karte ho.
+//            //   Aapne create time pe pivot save kiya tha; ab actual stock ghata do:
+//            foreach ($booking->availabilities as $pivot) {
+//                $rate = $pivot->availabilityRate()->lockForUpdate()->first();
+//                if ($rate) {
+//                    // reduce by number of rooms booked (per day)
+//                    $new = max(0, ($rate->rooms - $booking->rooms));
+//                    $rate->update(['rooms' => $new]);
+//                }
+//            }
+//        });
+//
+//        // (d) Send confirmations (mail/SMS/WhatsApp) – optional
+//        // Mail::to($payment->booking->email)->send(new BookingConfirmedMail($payment->booking));
+//
+////        return redirect()->route('booking.success', $payment->booking_id)->with('success', 'Payment successful & booking confirmed.');
+//        return redirect()->route('user.dashboard')->with(
+//            $statusCode === 'success' ? 'success' : 'error',
+//            $statusCode === 'success' ? 'Payment successful' : 'Payment failed: ' . $statusMessage
+//        );
+//    }
+
+
+
+
+
     public function payUResponse(Request $request)
     {
+        // 0) Capture all & log once
         $posted = $request->all();
+        Log::info('PayU Redirect Response', $posted);
 
-        $key   = env('PAYUMONEY_MERCHANT_KEY');
-        $salt  = env('PAYUMONEY_MERCHANT_SALT');
+        // 1) Basic pulls
+        $key        = config('services.payu.key', env('PAYUMONEY_MERCHANT_KEY'));
+        $salt       = config('services.payu.salt', env('PAYUMONEY_MERCHANT_SALT'));
 
-        $status       = $posted['status']       ?? null;   // success/failed
-        $txnid        = $posted['txnid']        ?? null;   // our payu_txnid
-        $amount       = $posted['amount']       ?? null;
-        $productinfo  = $posted['productinfo']  ?? null;
-        $firstname    = $posted['firstname']    ?? null;
-        $email        = $posted['email']        ?? null;
-        $receivedHash = $posted['hash']         ?? null;
+        $status       = $posted['status']        ?? null;   // 'success' | 'failure' etc.
+        $txnid        = $posted['txnid']         ?? null;   // your txn reference
+        $amount       = $posted['amount']        ?? null;
+        $productinfo  = $posted['productinfo']   ?? null;
+        $firstname    = $posted['firstname']     ?? null;
+        $email        = $posted['email']         ?? null;
+        $receivedHash = $posted['hash']          ?? null;
+        $mihpayid     = $posted['mihpayid']      ?? null;   // PayU payment id
         $additional   = $posted['additionalCharges'] ?? null;
-        $mihpayid     = $posted['mihpayid']     ?? null;   // PayU payment id
 
-        // 1) Recompute hash (reverse sequence)
+        // Safety: minimal fields present?
+        foreach (['status','txnid','amount','productinfo','firstname','email','hash'] as $f) {
+            if (!isset($posted[$f])) {
+                Log::warning('PayU missing field', ['missing' => $f, 'txnid' => $txnid]);
+                return redirect()->route('user.dashboard')->with('error', 'Invalid response from payment gateway.');
+            }
+        }
+
+        // 2) Recompute reverse hash (supports udf1..udf10 + additionalCharges)
+        $udfs = [];
+        for ($i = 1; $i <= 10; $i++) {
+            $udfs[] = $posted['udf'.$i] ?? '';
+        }
+        $udfsReversed = array_reverse($udfs); // udf10 ... udf1
+
+        // tail = email|firstname|productinfo|amount|txnid|key
         $hashSeqTail = implode('|', [
             $email,
             $firstname,
             $productinfo,
             $amount,
             $txnid,
-            $key
+            $key,
         ]);
 
-        $udfs = [];
-        for ($i=1; $i<=10; $i++) {
-            $udfs[] = $posted['udf'.$i] ?? '';
-        }
-        // order: udf10 ... udf1 (reverse)
-        $udfsReversed = array_reverse($udfs); // udf10 down to udf1
-
+        // base = salt|status|udf10...udf1|tail
         $base = $salt.'|'.$status.'|'.implode('|', $udfsReversed).'|'.$hashSeqTail;
 
+        // If additionalCharges present, prepend it
         if (!empty($additional)) {
-            $base = $additional.'|'.$base;  // prepend
+            $base = $additional.'|'.$base;
         }
 
         $computedHash = strtolower(hash('sha512', $base));
-
         if (!$receivedHash || $computedHash !== strtolower($receivedHash)) {
-            // Hash mismatch → do NOT confirm
-            // Optional: log raw payload for investigation
-            if (isset($txnid)) {
-                Payment::where('transaction_id', $txnid)->update([
+            Log::warning('PayU hash mismatch', [
+                'txnid' => $txnid,
+                'mihpayid' => $mihpayid,
+                'computed' => $computedHash,
+                'received' => $receivedHash,
+            ]);
+
+            if ($txnid) {
+                \App\Models\Payment::where('transaction_id', $txnid)->update([
                     'status'      => 'failed',
                     'raw_request' => json_encode($posted),
                 ]);
             }
-            return redirect()->route('booking.failed')->with('error', 'Payment verification failed.');
+            return redirect()->route('user.dashboard')->with('error', 'Payment verification failed.');
         }
 
-        // 2) Idempotent DB update
-        // Find our payment by payu_txnid
-        $payment = Payment::where('transaction_id', $txnid)->first();
+        // 3) Find payment
+        /** @var \App\Models\Payment|null $payment */
+        $payment = \App\Models\Payment::where('transaction_id', $txnid)->first();
+        $user = $payment->booking->user;
+        Auth::login($user);
 
         if (!$payment) {
-            // Fallback: try by amount + mihpayid (rare)
-            return redirect()->route('booking.failed')->with('error', 'Payment reference not found.');
+            // Rare fallback: try mihpayid if you store it earlier (optional)
+            Log::warning('PayU payment not found', ['txnid' => $txnid, 'mihpayid' => $mihpayid]);
+            return redirect()->route('user.dashboard')->with('error', 'Payment reference not found.');
         }
 
+        // Idempotent: if already paid—just show success
         if ($payment->status === 'paid') {
-            // Already processed
-            return redirect()->route('booking.success', $payment->booking_id)->with('success', 'Payment already confirmed.');
+
+            return redirect()
+                ->route('user.dashboard', $payment->booking_id)
+                ->with('success', 'Payment already confirmed.');
         }
 
-        // 3) Only accept success
-        if ($status !== 'success') {
+        // 4) Reject non-success
+        if (strtolower($status) !== 'success') {
             $payment->update([
-                'status'      => 'failed',
-                'payu_mihpayid' => $mihpayid,
-                'raw_request' => json_encode($posted),
+                'status'         => 'failed',
+                'payu_mihpayid'  => $mihpayid,
+                'raw_request'    => json_encode($posted),
             ]);
-//            return redirect()->route('booking.failed')->with('error', 'Payment failed.');
-            return redirect()->route('user.dashboard')->with('error', 'Invalid response from payment gateway.');
 
+            if ($payment->booking) {
+                $payment->booking->update(['status' => 'failed']);
+            }
+
+            return redirect()->route('user.dashboard')->with('error', 'Payment failed.');
         }
 
+        // 5) Optional: Amount sanity check (recommended)
+        // Compare numeric values (2-decimal compare if you store as decimal(10,2))
+        if ((float)$payment->amount != (float)$amount) {
+            Log::warning('PayU amount mismatch', [
+                'txnid' => $txnid,
+                'expected' => $payment->amount,
+                'received' => $amount,
+            ]);
+
+            // You can decide to fail or just log. Here we fail to be safe.
+            return redirect()->route('user.dashboard')->with('error', 'Payment amount mismatch.');
+        }
+
+        // 6) Atomic status update + inventory ops
         DB::transaction(function () use ($payment, $posted, $mihpayid) {
             // (a) Mark payment paid
             $payment->update([
-                'status'        => 'paid',
-                'payu_mihpayid' => $mihpayid,
-                'raw_request'   => json_encode($posted),
+                'status'         => 'paid',
+                'payu_mihpayid'  => $mihpayid,
+                'raw_request'    => json_encode($posted),
+                'paid_at'        => now(),
             ]);
 
-            // (b) Confirm booking
-            $booking = $payment->booking()->lockForUpdate()->first(); // lock to avoid race
+            // (b) Confirm booking (with lock)
+            $booking = $payment->booking()->lockForUpdate()->first();
             if ($booking && $booking->status !== 'confirmed') {
                 $booking->update(['status' => 'confirmed']);
             }
 
-            // (c) Optional: decrement inventory (rooms) on each availability date
-            //   Only if aap availability table me "rooms" count manage karte ho.
-            //   Aapne create time pe pivot save kiya tha; ab actual stock ghata do:
-            foreach ($booking->availabilities as $pivot) {
-                $rate = $pivot->availabilityRate()->lockForUpdate()->first();
-                if ($rate) {
-                    // reduce by number of rooms booked (per day)
-                    $new = max(0, ($rate->rooms - $booking->rooms));
-                    $rate->update(['rooms' => $new]);
+            // (c) Decrement availability safely (your existing logic)
+            if ($booking) {
+                foreach ($booking->availabilities as $pivot) {
+                    $rate = $pivot->availabilityRate()->lockForUpdate()->first();
+                    if ($rate) {
+                        $newRooms = max(0, ($rate->rooms - $booking->rooms));
+                        $rate->update(['rooms' => $newRooms]);
+                    }
                 }
             }
         });
 
-        // (d) Send confirmations (mail/SMS/WhatsApp) – optional
-        // Mail::to($payment->booking->email)->send(new BookingConfirmedMail($payment->booking));
+        // 7) Notifications (optional)
+        try {
+            if ($payment->booking && $payment->booking->email) {
+                // Mail::to($payment->booking->email)->send(new BookingConfirmedMail($payment->booking));
+            }
+        } catch (\Throwable $e) {
+            Log::error('Mail send failed after PayU success', ['e' => $e->getMessage()]);
+        }
 
-//        return redirect()->route('booking.success', $payment->booking_id)->with('success', 'Payment successful & booking confirmed.');
-        return redirect()->route('user.dashboard')->with(
-            $statusCode === 'success' ? 'success' : 'error',
-            $statusCode === 'success' ? 'Payment successful' : 'Payment failed: ' . $statusMessage
-        );
+
+        // 8) Redirect to success
+        return redirect()
+            ->route('user.dashboard', $payment->booking_id)
+            ->with('success', 'Payment successful & booking confirmed.');
     }
+
+
+
+
+
+
+
 
     public function payUCancel(Request $request)
     {
@@ -636,13 +811,16 @@ class PayUMoneyController extends Controller
         $txnid  = $posted['txnid'] ?? null;
 
         if ($txnid) {
-            Payment::where('payu_txnid', $txnid)->update([
+            Payment::where('transaction_id', $txnid)->update([
                 'status'      => 'failed',
                 'raw_request' => json_encode($posted),
             ]);
+            $payment = Payment::where('transaction_id', $txnid)->first();
+            $user = $payment->booking->user;
+            Auth::login($user);
         }
 
-        return redirect()->route('booking.failed')->with('error', 'Payment cancelled/failed.');
+        return redirect()->route('user.dashboard')->with('error', 'Payment cancelled/failed.');
     }
 
 
