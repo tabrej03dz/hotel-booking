@@ -125,7 +125,7 @@
     <div class="premium-shimmer"></div>
 
     <!-- Rest of the header content remains the same but with updated classes -->
-    <div class="relative mx-auto max-w-7xl">
+    <div class="relative mx-auto max-w-9xl">
         <div class="px-4 py-2 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <!-- Logo Section with 3D effect -->
@@ -172,10 +172,13 @@
                         </div>
                     </div>
 
+                    <a href="{{ route('banquets.lawn') }}"
+                     class="nav-item text-gray-300 hover:text-white px-3 py-2 text-sm font-medium inline-flex items-center">Dining
+                    </a>
                     <!-- Banquets And Meetings Dropdown -->
                     <div class="dropdown relative group">
                         <button
-                            class="nav-item text-gray-300 hover:text-white px-3 py-2 text-sm font-medium inline-flex items-center">
+                            class="nav-item text-gray-300 hover:text-white px-2 py-2 text-sm font-medium inline-flex items-center">
                             <span>Banquets And Meetings</span>
                             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -203,12 +206,41 @@
                                 <div class="py-1">
                                     <a href="{{ route('banquets.lawn') }}"
                                         class="block px-4 py-2 text-sm text-gray-300 hover:bg-purple-600/20 hover:text-white">Lawn</a>
-                                    <a href="{{ route('banquets.ballroom') }}"
+                                    {{-- <a href="{{ route('banquets.ballroom') }}"
                                         class="block px-4 py-2 text-sm text-gray-300 hover:bg-purple-600/20 hover:text-white">Banquet
-                                        Hall</a>
+                                        Hall
+                                    </a>
 
-                                        <a href="{{route('banquets.ontherock')}}"
-                                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-purple-600/20 hover:text-white">On The Rock</a>
+                                    <a href="{{ route('banquets.ontherock') }}"
+                                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-purple-600/20 hover:text-white">On
+                                        The Rock
+                                    </a> --}}
+
+                                    <div class="flex items-center justify-center h-auto">
+                                        <div x-data="{ open: false }" class="relative inline-block text-left">
+                                            <button @click="open = !open"
+                                                class="inline-flex justify-between w-56 px-4 py-2 text-sm font-medium text-gray-300 hover:bg-purple-600/20 hover:text-white focus:outline-none focus:ring-offset-gray-100">
+                                                Banquet Hall
+                                                <svg class="h-5 w-5 ml-2 transform transition-transform duration-200"
+                                                    :class="{ 'rotate-0': open, '-rotate-180': !open }" fill="none"
+                                                    stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                                </svg>
+                                            </button>
+
+                                            <div x-show="open" @click.away="open = false" x-transition
+                                                class="origin-top-left absolute left-full top-0 ml-2 w-56 rounded-md shadow-lg bg-[#0D0630] text-gray-300 hover:text-white px-2 py-2 z-10">
+                                                <a href="{{ route('banquets.ballroom') }}"
+                                                    class="block px-4 py-2 text-sm text-gray-300 hover:bg-purple-600/20 hover:text-white focus:outline-none focus:ring-offset-gray-100 rounded-md">Royal Ballroom
+                                                    </a>
+                                                <a href="{{ route('banquets.ontherock') }}"
+                                                    class="block px-4 py-2 text-sm text-gray-300 hover:bg-purple-600/20 hover:text-white focus:outline-none focus:ring-offset-gray-100 rounded-md">On the Rocks
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
 
                                     <!-- Submenu: Conference Room -->
                                     <div class="flex items-center justify-center h-auto">
@@ -262,7 +294,8 @@
                         Contact Us
                     </a>
 
-                    <a href="{{ route('dashboard') }}" class="nav-item text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">
+                    <a href="{{ route('dashboard') }}"
+                        class="nav-item text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">
                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
                             fill="#e3e3e3">
                             <path
@@ -342,6 +375,12 @@
                     </div>
                 </div> --}}
 
+                <a href="{{ route('crescentfacilities') }}"
+                    class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5">
+                    Dining
+                </a>
+
+
                 <div class="space-y-1">
                     <!-- Banquets And Meetings -->
                     <button
@@ -358,14 +397,33 @@
                             class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5">
                             Lawn Package
                         </a>
-                        <a href="{{ route('banquets.ballroom') }}"
+                        {{-- <a href="{{ route('banquets.ballroom') }}"
                             class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5">
                             Ballroom Package
                         </a>
-                        <a href="{{route('banquets.ontherock')}}"
-                        class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5">
+                        <a href="{{ route('banquets.ontherock') }}"
+                            class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5">
                             On The Rock
-                    </a>
+                        </a> --}}
+                        <button
+                            class="w-full text-left text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5 flex justify-between items-center"
+                            onclick="toggleSubmenu('conference-submenu1')">
+                            Banquet Hall
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div id="conference-submenu1" class="hidden pl-4">
+                            <a href="{{ route('banquets.ballroom') }}"
+                                class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5">
+                                Royal Ballroom
+                            </a>
+                            <a href="{{ route('banquets.ontherock') }}"
+                                class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5">
+                                On the Rocks
+                            </a>
+                        </div>
                     </div>
 
                     <!-- Conference Room -->
@@ -402,7 +460,12 @@
                     class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5">Contact
                     Us</a>
                 <a href="#"
-                    class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"/></svg></a>
+                    class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5"><svg
+                        xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                        fill="#e3e3e3">
+                        <path
+                            d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z" />
+                    </svg></a>
             </div>
         </div>
     </div>
