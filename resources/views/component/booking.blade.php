@@ -239,25 +239,25 @@
             Book Your Stay
             <div class="w-16 h-1 bg-gradient-to-r from-[#8B4513] to-[#D4A017] mx-auto mt-2 rounded-full"></div>
         </h2>
-        <div class="w-full max-w-7xl mx-auto bg-white rounded-lg shadow-lg p-6">
+        <div class="w-full max-w-7xl mx-auto transparent rounded-lg shadow-lg p-6">
 
-            <form action="{{ route('rooms.available') }}" method="GET"
+            {{-- <form action="{{ route('rooms.available') }}" method="GET"
                   class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 @csrf
 
                 <!-- Check-in Date Picker -->
                 <div class="flex flex-col">
-                    <label class="text-gray-700 font-medium">Check-in</label>
+                    <label class="text-gray-700 font-medium text-[#8B4513]">Check-in</label>
                     <input type="date" id="checkin" name="check_in_date" placeholder="Select Check-in" required
-                           class="border border-gray-300 rounded-md p-2 bg-white outline-none
+                           class="border border-yellow-300 rounded-md p-2 bg-white outline-none
                    focus:border-[#8B4513] focus:ring-2 focus:ring-[#8B4513]">
                 </div>
 
                 <!-- Check-out Date Picker -->
                 <div class="flex flex-col">
-                    <label class="text-gray-700 font-medium">Check-out</label>
+                    <label class="text-gray-700 font-medium text-[#8B4513]">Check-out</label>
                     <input type="date" id="checkout" name="check_out_date" placeholder="Select Check-out" required
-                           class="border border-gray-300 rounded-md p-2 bg-white outline-none
+                           class="border border-yellow-300 rounded-md p-2 bg-white outline-none
                    focus:border-[#8B4513] focus:ring-2 focus:ring-[#8B4513]">
                 </div>
 
@@ -269,7 +269,46 @@
                         Search
                     </button>
                 </div>
-            </form>
+            </form> --}}
+
+            <form action="{{ route('rooms.available') }}" method="GET"
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-8 bg-gradient-to-tr from-yellow-50 to-yellow-100 rounded-xl shadow-2xl
+             transform transition-transform duration-300 hover:scale-[1.02]">
+
+    @csrf
+
+    <!-- Check-in Date Picker -->
+    <div class="flex flex-col">
+        <label for="checkin" class="text-[#8B4513] font-semibold mb-2 text-lg drop-shadow-sm">Check-in</label>
+        <input type="date" id="checkin" name="check_in_date" placeholder="Select Check-in" required
+               class="border border-yellow-400 rounded-lg p-3 bg-white outline-none
+               focus:border-[#8B4513] focus:ring-4 focus:ring-yellow-300
+               shadow-md hover:shadow-lg transition-shadow duration-300
+               active:translate-y-0.5 active:shadow-inner">
+    </div>
+
+    <!-- Check-out Date Picker -->
+    <div class="flex flex-col">
+        <label for="checkout" class="text-[#8B4513] font-semibold mb-2 text-lg drop-shadow-sm">Check-out</label>
+        <input type="date" id="checkout" name="check_out_date" placeholder="Select Check-out" required
+               class="border border-yellow-400 rounded-lg p-3 bg-white outline-none
+               focus:border-[#8B4513] focus:ring-4 focus:ring-yellow-300
+               shadow-md hover:shadow-lg transition-shadow duration-300
+               active:translate-y-0.5 active:shadow-inner">
+    </div>
+
+    <!-- Submit Button -->
+    <div class="flex items-end">
+        <button type="submit"
+                class="w-full py-3 bg-gradient-to-r from-[#8B4513] to-[#D4A017] text-white font-semibold rounded-xl
+                shadow-lg hover:from-[#D4A017] hover:to-[#8B4513] hover:shadow-xl
+                transition-all duration-300 active:translate-y-1 active:shadow-inner">
+            Search
+        </button>
+    </div>
+
+</form>
+
 
             <!-- ✅ Script to Set Min Dates and Enforce Logic -->
             <script>
