@@ -7,7 +7,7 @@
         <div class="absolute inset-0 bg-white bg-opacity-20 backdrop-blur-md z-0"></div>
         <div class="relative container mx-auto text-center z-10">
             <h1 class="text-5xl font-extrabold uppercase leading-tight mb-4 text-[#ecf0f1] drop-shadow-lg">
-              On The Rock
+              On The Rocks
             </h1>
             <p class="text-lg font-medium mb-6 text-[#bdc3c7] opacity-90 tracking-wide max-w-xl mx-auto">
                 We’d love to hear from you! Reach out to us anytime.
@@ -20,7 +20,7 @@
     <div class="container mx-auto py-16 px-6">
         <div class="py-4">
             <h2 class="text-4xl font-bold text-center text-gray-700 mb-4">
-                On The Rock
+                On The Rocks
             </h2>
             <span class="block border-b-4 border-gray-700 w-1/6 mx-auto"></span>
         </div>

@@ -172,7 +172,7 @@
                         </div>
                     </div>
 
-                    <a href="{{ route('banquets.lawn') }}"
+                    <a href="{{ route('crescentfacilities') }}"
                      class="nav-item text-gray-300 hover:text-white px-3 py-2 text-sm font-medium inline-flex items-center">Dining
                     </a>
                     <!-- Banquets And Meetings Dropdown -->

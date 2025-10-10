@@ -707,77 +707,7 @@
     </section>
 
     <!-- Crescent Facilities Section -->
-    <section class="py-20 bg-gradient-to-b from-white via-gray-50 to-white relative overflow-hidden">
-        <!-- Decorative background elements -->
-        <div class="absolute top-0 right-0 w-64 h-64 bg-[#D4A017]/10 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-0 left-0 w-96 h-96 bg-[#8B4513]/5 rounded-full blur-3xl"></div>
-
-        <div class="container mx-auto px-4 relative z-10">
-            <!-- Section Heading -->
-            <h2 class="text-5xl font-extrabold text-[#1a1a2e] mb-16 text-center tracking-tight">
-                Dining
-                <div class="w-24 h-1 bg-gradient-to-r from-[#8B4513] to-[#D4A017] mx-auto mt-4 rounded-full"></div>
-            </h2>
-
-            <!-- Facility Cards Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 md:gap-12 px-8">
-                <!-- Crescent Restaurant -->
-                <div
-                    class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-transform duration-700 ease-in-out hover:scale-105">
-                    <img src="{{ asset('asset/restaurant/restaurant (1).jpg') }}" alt="Crescent Restaurant"
-                        class="w-full h-[300px] object-cover hover:scale-110 transition-transform duration-1000">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex items-end p-4">
-                        <h3 class="text-white text-lg md:text-xl font-semibold uppercase tracking-wide">Crescent Restaurant
-                        </h3>
-                    </div>
-                </div>
-
-                <!-- Open TRace -->
-                <div
-                    class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-transform duration-700 ease-in-out hover:scale-105">
-                    <img src="{{ asset('asset/cafe/cafe (1).jpg') }}" alt="Tit Bit Cafe"
-                        class="w-full h-[300px] object-cover hover:scale-110 transition-transform duration-1000">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex items-end p-4">
-                        <h3 class="text-white text-lg md:text-xl font-semibold uppercase tracking-wide">Open Terrace</h3>
-                    </div>
-                </div>
-
-                {{-- <!-- Gym -->
-                <div
-                    class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-transform duration-700 ease-in-out hover:scale-105">
-                    <img src="{{ asset('asset/gym/gym (1).jpg') }}" alt="Gym"
-                        class="w-full h-[300px] object-cover hover:scale-110 transition-transform duration-1000">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex items-end p-4">
-                        <h3 class="text-white text-lg md:text-xl font-semibold uppercase tracking-wide">Modern Gym</h3>
-                    </div>
-                </div>
-
-                <!-- Conference Room Elite 1 & 2 -->
-                <div
-                    class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-transform duration-700 ease-in-out hover:scale-105">
-                    <img src="{{ asset('asset/confrence-hall/hall (1).jpg') }}" alt="Conference Room Elite"
-                        class="w-full h-[300px] object-cover hover:scale-110 transition-transform duration-1000">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex items-end p-4">
-                        <h3 class="text-white text-lg md:text-xl font-semibold uppercase tracking-wide">Conference Room
-                            Elite 1 & 2</h3>
-                    </div>
-                </div> --}}
-            </div>
-
-            <!-- Optional CTA Section -->
-            <div class="mt-20 text-center">
-                <a href="{{ route('crescentfacilities') }}"
-                    class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#8B4513] to-[#D4A017] text-white rounded-lg transition-all duration-500 ease-in-out transform hover:from-[#D4A017] hover:to-[#8B4513] hover:scale-105 shadow-2xl hover:shadow-2xl">
-                    Explore All Facilities
-                    <i class="fas fa-arrow-right ml-2"></i>
-                </a>
-            </div>
-        </div>
-    </section>
+   
 
 
     <!-- Our Signature Offerings -->
