@@ -791,6 +791,7 @@ class PayUMoneyController extends Controller
 
                 // Send mail to admin
                 Mail::to('info@krinoscco.com')->send(new BookingMail($payment->booking, 'admin'));
+
                 Mail::to('accounts@krinoscco.com')->send(new BookingMail($payment->booking, 'admin'));
             }
         } catch (\Throwable $e) {
