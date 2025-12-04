@@ -20,7 +20,13 @@ class BookingMail extends Mailable
     public $role;
     public function __construct($booking, $role = 'user')
     {
-        $this->booking = $booking;
+//        $this->booking = $booking;
+        $this->booking = $booking->fresh([
+            'payment',
+            'services.service',
+            'availabilities.availabilityRate',
+            'roomType',
+        ]);
         $this->role = $role;
     }
 

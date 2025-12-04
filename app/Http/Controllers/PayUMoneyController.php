@@ -802,7 +802,7 @@ class PayUMoneyController extends Controller
         // 8) Redirect to success
         return redirect()
             ->route('user.dashboard', $payment->booking_id)
-            ->with('success', 'Payment successful & booking confirmed.');
+            ->with('success', 'Payment successful and booking confirmed.');
     }
 
 

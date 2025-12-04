@@ -16,17 +16,21 @@
 </head>
 <body class="bg-white py-8 px-4 text-[13px] text-black">
 <div class="max-w-5xl mx-auto border border-gray-400 shadow p-6">
-    <div class="flex items-center justify-between mb-4">
-        <div>
-            <h1 class="text-xl font-bold mb-1">Hotelier Voucher</h1>
-            <div class="text-sm font-semibold">VoucherHotelier</div>
-        </div>
-
-        <!-- RIGHT SIDE LOGO -->
-        <img src="https://krinoscco.com/asset/images/logo.png"
+    <div class="mb-4 text-center">
+        <!-- CENTER LOGO -->
+{{--        <img src="https://krinoscco.com/asset/images/logo.png"--}}
+{{--             alt="Hotel Logo"--}}
+{{--             class="h-20 mx-auto object-contain">--}}
+        <img src="{{asset('asset/LOGOWS.jpg')}}"
              alt="Hotel Logo"
-             class="h-16 object-contain bg-black">
+             class="h-20 mx-auto object-contain">
     </div>
+
+    <div class="mb-4">
+        <h1 class="text-xl font-bold mb-1">Hotelier Voucher</h1>
+        <div class="text-sm font-semibold">VoucherHotelier</div>
+    </div>
+
 
 
     <div class="mb-6">
