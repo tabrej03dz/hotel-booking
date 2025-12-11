@@ -784,6 +784,19 @@ class PayUMoneyController extends Controller
             }
         });
 
+
+        // 10) Ab dubara fresh booking + relations load karo
+        $payment->refresh();
+        $payment->load([
+            'booking.payment',
+            'booking.roomType',
+            'booking.availabilities.availabilityRate',
+            'booking.services.service',
+            'booking.user',
+        ]);
+
+        $booking = $payment->booking;
+
         // 7) Notifications (optional)
         try {
             if ($payment->booking && $payment->booking->email) {
