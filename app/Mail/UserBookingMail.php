@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class BookingMail extends Mailable
+class UserBookingMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -19,14 +19,7 @@ class BookingMail extends Mailable
     public $booking;
     public function __construct($booking)
     {
-//        $this->booking = $booking;
-        $this->booking = $booking->fresh([
-            'payment',
-            'services.service',
-            'availabilities.availabilityRate',
-            'roomType',
-        ]);
-
+        $this->booking = $booking;
     }
 
     /**
@@ -35,7 +28,7 @@ class BookingMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Booking Mail',
+            subject: 'User Booking Mail',
         );
     }
 
@@ -45,7 +38,7 @@ class BookingMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.booking-mail',
+            view: 'mail.user-booking-mail',
         );
     }
 

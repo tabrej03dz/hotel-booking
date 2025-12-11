@@ -162,7 +162,7 @@
 
             <th>Extra Person</th>
             @if($booking->children)
-            <th>Children</th>
+                <th>Children</th>
             @endif
             <th>Taxes (T)</th>
             <th>Amount</th>
