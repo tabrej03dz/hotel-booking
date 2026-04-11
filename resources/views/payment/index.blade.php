@@ -38,7 +38,7 @@
                                 <td class="px-6 py-4 font-medium text-gray-800">{{ $loop->iteration }}</td>
                                 <td class="px-6 py-4 text-gray-700">{{ $payment->booking_id }}</td>
                                 <td class="px-6 py-4 text-gray-700">
-                                    {{ $payment->booking->customer->name ?? '-' }}
+                                    {{ $payment->booking->user->name ?? '-' }}
                                 </td>
                                 <td class="px-6 py-4 text-gray-700 capitalize">{{ $payment->payment_method }}</td>
                                 <td class="px-6 py-4 text-gray-700">₹{{ number_format($payment->amount, 2) }}</td>
