@@ -78,6 +78,7 @@
             <div class="space-y-4">
                 <img src="{{ asset('asset/images/logo.png') }}" alt="Hotel Krinoscco Logo" class="w-24 h-auto mb-6" />
                 <h3 class="text-2xl font-bold text-white mb-6">Hotel Krinoscco </h3>
+                <p>A UNIT OF D P R ENTERPRISES PVT. LTD.</p>
                <div class="flex items-center space-x-2">
     <a href="https://www.google.com/maps/place/Hotel+Krinoscco/@26.783073,82.165321,16z/data=!4m9!3m8!1s0x399a0796e56fb899:0xffa1558e88f0d349!5m2!4m1!1i2!8m2!3d26.7830727!4d82.1653206!16s%2Fg%2F11ry4tcm_l?hl=en&entry=ttu" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 text-sm text-white hover:underline">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
