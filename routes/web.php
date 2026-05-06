@@ -121,6 +121,9 @@ Route::middleware('auth')->group(function () {
             Route::post('/destroy/{booking}', 'destroy')->name('destroy');
             Route::post('/cancel/{booking}', 'cancel')->name('cancel');
         });
+        // Route::get('/bookings/export/excel', [BookingController::class, 'exportExcel'])->name('booking.export.excel');
+        // Route::get('/bookings/export/pdf', [BookingController::class, 'exportPdf'])->name('booking.export.pdf');
+        Route::get('/bookings/export', [BookingController::class, 'export'])->name('booking.export');
 
 
         Route::prefix('payment')->name('payment.')->controller(\App\Http\Controllers\PaymentController::class)->group(function(){
@@ -133,7 +136,10 @@ Route::middleware('auth')->group(function () {
             Route::post('/update/{payment}', 'update')->name('update');
             Route::post('/update/{payment}', 'update')->name('update');
             Route::post('/destroy/{payment}', 'destroy')->name('destroy');
+            Route::get('export',  'export')->name('export');
         });
+
+        
 
 
         Route::prefix('amenity')->name('amenity.')->controller(\App\Http\Controllers\AmenityController::class)->group(function(){

@@ -10,13 +10,25 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Exports\BookingsExport;
+use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class BookingController extends Controller
 {
-    public function index()
+    // public function index()
+    // {
+    //     $bookings = Booking::with(['user', 'room'])->latest()->get();
+    //     return view('booking.index', compact('bookings'));
+    // }
+
+    public function index(Request $request)
     {
-        $bookings = Booking::with(['user', 'room'])->latest()->get();
-        return view('booking.index', compact('bookings'));
+        $bookings = $this->bookingFilterQuery($request)->get();
+        $roomTypes = RoomType::all();
+
+        return view('booking.index', compact('bookings', 'roomTypes'));
     }
 
     // 🟢 Show booking creation form
@@ -142,6 +154,84 @@ class BookingController extends Controller
         $booking->room->update(['status', 'available']);
         $booking->update(['status' => 'cancelled']);
         return back()->with('success', 'Booking cancelled succcessfully');
+    }
+
+
+    // public function exportExcel()
+    // {
+    //     return Excel::download(new BookingsExport, 'bookings-report.xlsx');
+    // }
+
+    // public function exportPdf()
+    // {
+    //     $bookings = Booking::with(['user', 'roomType'])->latest()->get();
+
+    //     $pdf = Pdf::loadView('booking.pdf', compact('bookings'))
+    //         ->setPaper('a4', 'landscape');
+
+    //     return $pdf->download('bookings-report.pdf');
+    // }
+
+
+    public function export(Request $request)
+    {
+        $request->validate([
+            'download_type' => 'required|in:excel,pdf',
+        ]);
+
+        $bookings = $this->bookingFilterQuery($request)->get();
+
+        if ($request->download_type === 'excel') {
+            return Excel::download(new BookingsExport($bookings), 'bookings-report.xlsx');
+        }
+
+        $pdf = Pdf::loadView('booking.pdf', compact('bookings'))
+            ->setPaper('a4', 'landscape');
+
+        return $pdf->download('bookings-report.pdf');
+    }
+
+
+    private function bookingFilterQuery(Request $request)
+    {
+        return Booking::with(['user', 'roomType', 'payment'])
+            ->when($request->filled('booking_id'), function ($q) use ($request) {
+                $q->where('booking_id', 'like', '%' . $request->booking_id . '%');
+            })
+            ->when($request->filled('name'), function ($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->name . '%');
+            })
+            ->when($request->filled('email'), function ($q) use ($request) {
+                $q->where('email', 'like', '%' . $request->email . '%');
+            })
+            ->when($request->filled('phone'), function ($q) use ($request) {
+                $q->where('phone', 'like', '%' . $request->phone . '%');
+            })
+            ->when($request->filled('status'), function ($q) use ($request) {
+                $q->where('status', $request->status);
+            })
+            ->when($request->filled('room_type_id'), function ($q) use ($request) {
+                $q->where('room_type_id', $request->room_type_id);
+            })
+            ->when($request->filled('check_in_from'), function ($q) use ($request) {
+                $q->whereDate('check_in_date', '>=', $request->check_in_from);
+            })
+            ->when($request->filled('check_in_to'), function ($q) use ($request) {
+                $q->whereDate('check_in_date', '<=', $request->check_in_to);
+            })
+            ->when($request->filled('created_from'), function ($q) use ($request) {
+                $q->whereDate('created_at', '>=', $request->created_from);
+            })
+            ->when($request->filled('created_to'), function ($q) use ($request) {
+                $q->whereDate('created_at', '<=', $request->created_to);
+            })
+            ->when($request->filled('min_amount'), function ($q) use ($request) {
+                $q->where('total_amount', '>=', $request->min_amount);
+            })
+            ->when($request->filled('max_amount'), function ($q) use ($request) {
+                $q->where('total_amount', '<=', $request->max_amount);
+            })
+            ->latest();
     }
 
 }

@@ -4,6 +4,18 @@
             <h2 class="font-bold text-2xl text-gray-800">
                 {{ __('Bookings') }}
             </h2>
+
+            {{-- <a href="{{ route('booking.export.excel') }}"
+                class="inline-block px-5 py-2.5 bg-green-600 text-white font-medium text-sm uppercase rounded-lg shadow-md hover:bg-green-700 transition">
+                Excel Download
+            </a>
+
+            <a href="{{ route('booking.export.pdf') }}"
+                class="inline-block px-5 py-2.5 bg-red-600 text-white font-medium text-sm uppercase rounded-lg shadow-md hover:bg-red-700 transition">
+                PDF Download
+            </a> --}}
+
+
             @can('create booking')
                 <a href="{{ route('booking.create') }}"
                    class="inline-block px-6 py-2.5 bg-gradient-to-r from-[#c21108] to-[#000308] text-white font-medium text-sm leading-tight uppercase rounded-lg shadow-md hover:from-[#000308] hover:to-[#c21108] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#c21108] transition duration-300 ease-in-out">
@@ -11,6 +23,168 @@
                 </a>
             @endcan
         </div>
+
+
+        <div class="bg-white shadow-lg rounded-2xl border border-gray-100 p-5 mb-6">
+
+            <form method="GET" action="{{ route('booking.index') }}">
+
+                <div class="grid grid-cols-1 md:grid-cols-6 gap-4">
+
+                    {{-- Booking ID --}}
+                    <div>
+                        <label class="text-sm font-semibold text-gray-700 mb-1 block">
+                            Booking ID
+                        </label>
+
+                        <input type="text"
+                            name="booking_id"
+                            value="{{ request('booking_id') }}"
+                            placeholder="BK001"
+                            class="w-full rounded-xl border-gray-300 focus:ring-indigo-500 focus:border-indigo-500">
+                    </div>
+
+                    {{-- Customer Name --}}
+                    <div>
+                        <label class="text-sm font-semibold text-gray-700 mb-1 block">
+                            Customer
+                        </label>
+
+                        <input type="text"
+                            name="name"
+                            value="{{ request('name') }}"
+                            placeholder="Customer Name"
+                            class="w-full rounded-xl border-gray-300 focus:ring-indigo-500 focus:border-indigo-500">
+                    </div>
+
+                    {{-- Phone --}}
+                    <div>
+                        <label class="text-sm font-semibold text-gray-700 mb-1 block">
+                            Phone
+                        </label>
+
+                        <input type="text"
+                            name="phone"
+                            value="{{ request('phone') }}"
+                            placeholder="9876543210"
+                            class="w-full rounded-xl border-gray-300 focus:ring-indigo-500 focus:border-indigo-500">
+                    </div>
+
+                    {{-- Status --}}
+                    <div>
+                        <label class="text-sm font-semibold text-gray-700 mb-1 block">
+                            Status
+                        </label>
+
+                        <select name="status"
+                                class="w-full rounded-xl border-gray-300 focus:ring-indigo-500 focus:border-indigo-500">
+
+                            <option value="">All</option>
+
+                            <option value="pending"
+                                {{ request('status') == 'pending' ? 'selected' : '' }}>
+                                Pending
+                            </option>
+
+                            <option value="confirmed"
+                                {{ request('status') == 'confirmed' ? 'selected' : '' }}>
+                                Confirmed
+                            </option>
+
+                            <option value="cancelled"
+                                {{ request('status') == 'cancelled' ? 'selected' : '' }}>
+                                Cancelled
+                            </option>
+
+                            <option value="completed"
+                                {{ request('status') == 'completed' ? 'selected' : '' }}>
+                                Completed
+                            </option>
+
+                        </select>
+                    </div>
+
+                    {{-- Checkin From --}}
+                    <div>
+                        <label class="text-sm font-semibold text-gray-700 mb-1 block">
+                            Check-In From
+                        </label>
+
+                        <input type="date"
+                            name="check_in_from"
+                            value="{{ request('check_in_from') }}"
+                            class="w-full rounded-xl border-gray-300 focus:ring-indigo-500 focus:border-indigo-500">
+                    </div>
+
+                    {{-- Checkin To --}}
+                    <div>
+                        <label class="text-sm font-semibold text-gray-700 mb-1 block">
+                            Check-In To
+                        </label>
+
+                        <input type="date"
+                            name="check_in_to"
+                            value="{{ request('check_in_to') }}"
+                            class="w-full rounded-xl border-gray-300 focus:ring-indigo-500 focus:border-indigo-500">
+                    </div>
+
+                </div>
+
+                <div class="flex flex-wrap items-center gap-3 mt-5">
+
+                    {{-- Filter Button --}}
+                    <button type="submit"
+                            class="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl shadow-md font-medium transition">
+                        Filter
+                    </button>
+
+                    {{-- Reset --}}
+                    <a href="{{ route('booking.index') }}"
+                    class="px-6 py-2.5 bg-gray-600 hover:bg-gray-700 text-white rounded-xl shadow-md font-medium transition">
+                        Reset
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+<div class="flex flex-wrap items-center gap-3 mb-6">
+
+    <form method="GET"
+          action="{{ route('booking.export') }}"
+          class="flex flex-wrap items-center gap-3">
+
+        {{-- Current Filters Hidden --}}
+        <input type="hidden" name="booking_id" value="{{ request('booking_id') }}">
+        <input type="hidden" name="name" value="{{ request('name') }}">
+        <input type="hidden" name="phone" value="{{ request('phone') }}">
+        <input type="hidden" name="status" value="{{ request('status') }}">
+        <input type="hidden" name="check_in_from" value="{{ request('check_in_from') }}">
+        <input type="hidden" name="check_in_to" value="{{ request('check_in_to') }}">
+
+        {{-- Download Type --}}
+        <select name="download_type"
+                required
+                class="rounded-xl border-gray-300 focus:ring-green-500 focus:border-green-500">
+
+            <option value="">Select Format</option>
+            <option value="excel">Excel</option>
+            <option value="pdf">PDF</option>
+
+        </select>
+
+        {{-- Download Button --}}
+        <button type="submit"
+                class="px-6 py-2.5 bg-green-600 hover:bg-green-700 text-white rounded-xl shadow-md font-medium transition">
+
+            Download Report
+
+        </button>
+
+    </form>
+
+</div>
     </x-slot>
 
     <div class="py-12">

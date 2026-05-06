@@ -16,6 +16,97 @@
                 </div>
             @endif
 
+            <div class="bg-gray-50 border border-gray-200 rounded-2xl p-5 mb-6">
+
+    <form method="GET" action="{{ route('payment.index') }}">
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+
+            <div>
+                <label class="text-sm font-semibold text-gray-700 mb-1 block">Booking ID</label>
+                <input type="text"
+                       name="booking_id"
+                       value="{{ request('booking_id') }}"
+                       placeholder="Booking ID"
+                       class="w-full rounded-xl border-gray-300">
+            </div>
+
+            <div>
+                <label class="text-sm font-semibold text-gray-700 mb-1 block">Status</label>
+                <select name="status" class="w-full rounded-xl border-gray-300">
+                    <option value="">All</option>
+                    <option value="paid" {{ request('status') == 'paid' ? 'selected' : '' }}>Paid</option>
+                    <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Pending</option>
+                    <option value="failed" {{ request('status') == 'failed' ? 'selected' : '' }}>Failed</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="text-sm font-semibold text-gray-700 mb-1 block">Payment Method</label>
+                <input type="text"
+                       name="payment_method"
+                       value="{{ request('payment_method') }}"
+                       placeholder="cash / online"
+                       class="w-full rounded-xl border-gray-300">
+            </div>
+
+            <div>
+                <label class="text-sm font-semibold text-gray-700 mb-1 block">From Date</label>
+                <input type="date"
+                       name="from_date"
+                       value="{{ request('from_date') }}"
+                       class="w-full rounded-xl border-gray-300">
+            </div>
+
+            <div>
+                <label class="text-sm font-semibold text-gray-700 mb-1 block">To Date</label>
+                <input type="date"
+                       name="to_date"
+                       value="{{ request('to_date') }}"
+                       class="w-full rounded-xl border-gray-300">
+            </div>
+
+        </div>
+
+        <div class="flex flex-wrap gap-3 mt-5">
+            <button type="submit"
+                    class="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl shadow-md">
+                Filter
+            </button>
+
+            <a href="{{ route('payment.index') }}"
+               class="px-6 py-2.5 bg-gray-600 hover:bg-gray-700 text-white rounded-xl shadow-md">
+                Reset
+            </a>
+        </div>
+    </form>
+
+</div>
+
+<div class="flex flex-wrap items-center gap-3 mb-6">
+    <form method="GET"
+          action="{{ route('payment.export') }}"
+          class="flex flex-wrap items-center gap-3">
+
+        <input type="hidden" name="booking_id" value="{{ request('booking_id') }}">
+        <input type="hidden" name="status" value="{{ request('status') }}">
+        <input type="hidden" name="payment_method" value="{{ request('payment_method') }}">
+        <input type="hidden" name="from_date" value="{{ request('from_date') }}">
+        <input type="hidden" name="to_date" value="{{ request('to_date') }}">
+
+        <select name="download_type"
+                required
+                class="rounded-xl border-gray-300">
+            <option value="">Select Format</option>
+            <option value="excel">Excel</option>
+            <option value="pdf">PDF</option>
+        </select>
+
+        <button type="submit"
+                class="px-6 py-2.5 bg-green-600 hover:bg-green-700 text-white rounded-xl shadow-md">
+            Download Report
+        </button>
+    </form>
+</div>
             <div class="bg-white shadow-xl rounded-2xl p-6 border border-gray-100">
                 <h2 class="text-2xl font-bold text-gray-800 mb-6">💰 Payment Records</h2>
 

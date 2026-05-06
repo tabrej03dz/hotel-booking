@@ -9,14 +9,17 @@ use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use App\Exports\PaymentsExport;
+use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PaymentController extends Controller
 {
-    public function index()
-    {
-        $payments = Payment::orderBy('created_at', 'desc')->get();
-        return view('payment.index', compact('payments'));
-    }
+    // public function index()
+    // {
+    //     $payments = Payment::orderBy('created_at', 'desc')->get();
+    //     return view('payment.index', compact('payments'));
+    // }
 
     public function create(Booking $booking){
         return view('payment.create', compact('booking'));
@@ -124,6 +127,52 @@ class PaymentController extends Controller
 public function paymentFailed()
 {
     return view('payment.failed');
+}
+
+private function paymentFilterQuery(Request $request)
+{
+    return Payment::with(['booking.user'])
+        ->when($request->filled('booking_id'), function ($q) use ($request) {
+            $q->where('booking_id', $request->booking_id);
+        })
+        ->when($request->filled('status'), function ($q) use ($request) {
+            $q->where('status', $request->status);
+        })
+        ->when($request->filled('payment_method'), function ($q) use ($request) {
+            $q->where('payment_method', $request->payment_method);
+        })
+        ->when($request->filled('from_date'), function ($q) use ($request) {
+            $q->whereDate('created_at', '>=', $request->from_date);
+        })
+        ->when($request->filled('to_date'), function ($q) use ($request) {
+            $q->whereDate('created_at', '<=', $request->to_date);
+        })
+        ->latest();
+}
+
+public function index(Request $request)
+{
+    $payments = $this->paymentFilterQuery($request)->get();
+
+    return view('payment.index', compact('payments'));
+}
+
+public function export(Request $request)
+{
+    $request->validate([
+        'download_type' => 'required|in:excel,pdf',
+    ]);
+
+    $payments = $this->paymentFilterQuery($request)->get();
+
+    if ($request->download_type === 'excel') {
+        return Excel::download(new PaymentsExport($payments), 'payments-report.xlsx');
+    }
+
+    $pdf = Pdf::loadView('payment.pdf', compact('payments'))
+        ->setPaper('a4', 'landscape');
+
+    return $pdf->download('payments-report.pdf');
 }
 
 }
