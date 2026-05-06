@@ -23,11 +23,21 @@ class BookingController extends Controller
     //     return view('booking.index', compact('bookings'));
     // }
 
+    // public function index(Request $request)
+    // {
+    //     $bookings = $this->bookingFilterQuery($request)->get();
+    //     $roomTypes = RoomType::all();
+
+    //     return view('booking.index', compact('bookings', 'roomTypes'));
+    // }
+
     public function index(Request $request)
     {
-        $bookings = $this->bookingFilterQuery($request)->get();
-        $roomTypes = RoomType::all();
+        $bookings = $this->bookingFilterQuery($request)
+            ->paginate(20)
+            ->withQueryString();
 
+        $roomTypes = RoomType::all();
         return view('booking.index', compact('bookings', 'roomTypes'));
     }
 

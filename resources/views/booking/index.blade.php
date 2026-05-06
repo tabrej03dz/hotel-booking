@@ -296,6 +296,9 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="mt-6">
+                    {{ $bookings->links() }}
+                </div>
             </div>
 
         </div>

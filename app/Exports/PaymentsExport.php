@@ -21,8 +21,8 @@ class PaymentsExport implements FromCollection, WithHeadings
             return [
                 'Booking ID' => $payment->booking_id,
                 'Customer' => $payment->booking->name ?? $payment->booking->user->name ?? '-',
-                // 'Phone' => $payment->booking->phone ?? '-',
-                'Phone' => " " . ($payment->booking->phone ?? '-'),
+                'Phone' => $payment->booking->phone ?? '-',
+                // 'Phone' => " " . ($payment->booking->phone ?? '-'),
                 'Payment Method' => $payment->payment_method,
                 'Gateway' => $payment->gateway,
                 // 'Transaction ID' => $payment->transaction_id,

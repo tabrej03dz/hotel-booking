@@ -150,9 +150,18 @@ private function paymentFilterQuery(Request $request)
         ->latest();
 }
 
+// public function index(Request $request)
+// {
+//     $payments = $this->paymentFilterQuery($request)->get();
+
+//     return view('payment.index', compact('payments'));
+// }
+
 public function index(Request $request)
 {
-    $payments = $this->paymentFilterQuery($request)->get();
+    $payments = $this->paymentFilterQuery($request)
+        ->paginate(10)
+        ->withQueryString();
 
     return view('payment.index', compact('payments'));
 }
