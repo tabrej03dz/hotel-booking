@@ -151,7 +151,11 @@
 
                                 </td>
 
-                                <td class="px-6 py-4 text-gray-700">{{ $payment->created_at->format('d M Y') }}</td>
+                                <td class="px-6 py-4 text-gray-700">
+                                    {{ $payment->created_at->format('d M Y') }} 
+                                    <a href="{{ route('payment.show', $payment->id) }}" class="text-blue-500 hover:text-blue-700">View</a>
+
+                                </td>
                             </tr>
                         @empty
                             <tr>

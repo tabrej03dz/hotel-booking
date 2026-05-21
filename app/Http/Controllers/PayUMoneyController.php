@@ -446,8 +446,8 @@ class PayUMoneyController extends Controller
 
         // ==================== PayU config ====================
 
-//        $MERCHANT_KEY  = "xqFUnS";
-//        $SALT          = "okmVfGZXaaDHKWulMKjXSygDU3py5drJ";
+        //  $MERCHANT_KEY  = "xqFUnS";
+        //  $SALT          = "okmVfGZXaaDHKWulMKjXSygDU3py5drJ";
 
 //        dd(env('PAYUMONEY_MERCHANT_KEY'));
         $MERCHANT_KEY  = env('PAYUMONEY_MERCHANT_KEY');
@@ -800,7 +800,7 @@ class PayUMoneyController extends Controller
         // 7) Notifications (optional)
         try {
             if ($payment->booking && $payment->booking->email) {
-//                 Mail::to($payment->booking->email)->send(new BookingConfirmedMail($payment->booking));
+            //  Mail::to($payment->booking->email)->send(new BookingConfirmedMail($payment->booking));
                 Mail::to($payment->booking->email)->send(new UserBookingMail($payment->booking));
 
                 // Send mail to admin

@@ -166,6 +166,11 @@ public function index(Request $request)
     return view('payment.index', compact('payments'));
 }
 
+    public function show(Payment $payment)
+    {
+        return view('payment.show', compact('payment'));
+    }
+
 public function export(Request $request)
 {
     $request->validate([
