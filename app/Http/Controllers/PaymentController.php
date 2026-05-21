@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Exports\PaymentsExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\DB;
 
 class PaymentController extends Controller
 {
@@ -171,22 +172,99 @@ public function index(Request $request)
         return view('payment.show', compact('payment'));
     }
 
-public function export(Request $request)
-{
-    $request->validate([
-        'download_type' => 'required|in:excel,pdf',
-    ]);
+    public function export(Request $request)
+    {
+        $request->validate([
+            'download_type' => 'required|in:excel,pdf',
+        ]);
 
-    $payments = $this->paymentFilterQuery($request)->get();
+        $payments = $this->paymentFilterQuery($request)->get();
 
-    if ($request->download_type === 'excel') {
-        return Excel::download(new PaymentsExport($payments), 'payments-report.xlsx');
+        if ($request->download_type === 'excel') {
+            return Excel::download(new PaymentsExport($payments), 'payments-report.xlsx');
+        }
+
+        $pdf = Pdf::loadView('payment.pdf', compact('payments'))
+            ->setPaper('a4', 'landscape');
+
+        return $pdf->download('payments-report.pdf');
     }
 
-    $pdf = Pdf::loadView('payment.pdf', compact('payments'))
-        ->setPaper('a4', 'landscape');
 
-    return $pdf->download('payments-report.pdf');
-}
+    public function payUWebhook(Request $request)
+    {
+        $posted = $request->all();
+
+        Log::info('PayU Webhook Response', $posted);
+
+        $txnid = $posted['txnid'] ?? null;
+        $status = strtolower($posted['status'] ?? '');
+        $mihpayid = $posted['mihpayid'] ?? null;
+
+        if (!$txnid) {
+            return response()->json([
+                'status' => false,
+                'message' => 'txnid missing',
+            ], 422);
+        }
+
+        $payment = \App\Models\Payment::where('transaction_id', $txnid)->first();
+
+        if (!$payment) {
+            Log::warning('PayU webhook payment not found', [
+                'txnid' => $txnid,
+                'raw' => $posted,
+            ]);
+
+            return response()->json([
+                'status' => false,
+                'message' => 'payment not found',
+            ], 404);
+        }
+
+        if ($payment->status === 'paid') {
+            return response()->json([
+                'status' => true,
+                'message' => 'already paid',
+            ]);
+        }
+
+        if ($status === 'success') {
+            DB::transaction(function () use ($payment, $posted, $mihpayid) {
+                $payment->update([
+                    'status' => 'paid',
+                    'payu_mihpayid' => $mihpayid,
+                    'raw_request' => json_encode($posted),
+                    'paid_at' => now(),
+                ]);
+
+                $booking = $payment->booking()->lockForUpdate()->first();
+
+                if ($booking && $booking->status !== 'confirmed') {
+                    $booking->update(['status' => 'confirmed']);
+                }
+            });
+
+            return response()->json([
+                'status' => true,
+                'message' => 'payment updated successfully',
+            ]);
+        }
+
+        $payment->update([
+            'status' => 'failed',
+            'payu_mihpayid' => $mihpayid,
+            'raw_request' => json_encode($posted),
+        ]);
+
+        if ($payment->booking) {
+            $payment->booking->update(['status' => 'failed']);
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'payment marked failed',
+        ]);
+    }
 
 }

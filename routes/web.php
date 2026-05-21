@@ -183,6 +183,9 @@ Route::post('/payment/response', [App\Http\Controllers\PaymentController::class,
 Route::get('/payment/success', [App\Http\Controllers\PaymentController::class, 'paymentSuccess'])->name('payment.success');
 Route::get('/payment/failed', [App\Http\Controllers\PaymentController::class, 'paymentFailed'])->name('payment.failed');
 
+Route::post('/payu-webhook', [App\Http\Controllers\PaymentController::class, 'payUWebhook'])
+    ->name('payu.webhook');
+
 
 Route::get('carriar', [CarriarController::class, 'index'])->name('carriar.index');
 Route::get('carriar/create', [CarriarController::class, 'create'])->name('carriar.create');
