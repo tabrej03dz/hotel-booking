@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use App\Models\PayuWebhookLog;
 
 class PayUMoneyController extends Controller
 {
@@ -1209,27 +1210,52 @@ class PayUMoneyController extends Controller
     {
         Log::info('PayU WEBHOOK HIT', $request->all());
 
+        $webhookLog = null;
+
         try {
 
             $posted = $request->all();
 
-            $txnid   = $posted['txnid'] ?? null;
-            $status  = strtolower($posted['status'] ?? '');
+            $txnid    = $posted['txnid'] ?? null;
+            $status   = strtolower($posted['status'] ?? '');
             $mihpayid = $posted['mihpayid'] ?? null;
 
+            $webhookLog = PayuWebhookLog::create([
+                'txnid'          => $txnid,
+                'mihpayid'       => $mihpayid,
+                'status'         => $posted['status'] ?? null,
+                'event'          => $posted['event'] ?? 'Payments Successful',
+                'payload'        => $posted,
+                'process_status' => 'received',
+                'message'        => 'Webhook received',
+            ]);
+
             if (!$txnid) {
+
+                $webhookLog->update([
+                    'process_status' => 'failed',
+                    'message' => 'Transaction ID missing',
+                ]);
+
                 return response()->json([
                     'success' => false,
                     'message' => 'Transaction ID missing'
                 ], 400);
             }
 
-            $payment = \App\Models\Payment::where('transaction_id', $txnid)->first();
+            $payment = \App\Models\Payment::with('booking')
+                ->where('transaction_id', $txnid)
+                ->first();
 
             if (!$payment) {
 
                 Log::warning('Webhook Payment Not Found', [
                     'txnid' => $txnid
+                ]);
+
+                $webhookLog->update([
+                    'process_status' => 'failed',
+                    'message' => 'Payment not found',
                 ]);
 
                 return response()->json([
@@ -1238,8 +1264,12 @@ class PayUMoneyController extends Controller
                 ], 404);
             }
 
-            // Already processed
             if ($payment->status === 'paid') {
+
+                $webhookLog->update([
+                    'process_status' => 'processed',
+                    'message' => 'Already processed',
+                ]);
 
                 return response()->json([
                     'success' => true,
@@ -1247,19 +1277,21 @@ class PayUMoneyController extends Controller
                 ]);
             }
 
-            // Success payment
             if ($status === 'success') {
 
                 DB::transaction(function () use ($payment, $posted, $mihpayid) {
 
                     $payment->update([
-                        'status'         => 'paid',
-                        'payu_mihpayid'  => $mihpayid,
-                        'raw_request'    => json_encode($posted),
-                        'paid_at'        => now(),
+                        'status'        => 'paid',
+                        'payu_mihpayid' => $mihpayid,
+                        'raw_request'   => json_encode($posted),
+                        'paid_at'       => now(),
                     ]);
 
-                    $booking = $payment->booking()->lockForUpdate()->first();
+                    $booking = $payment->booking()
+                        ->with('availabilities')
+                        ->lockForUpdate()
+                        ->first();
 
                     if ($booking && $booking->status !== 'confirmed') {
 
@@ -1275,10 +1307,7 @@ class PayUMoneyController extends Controller
 
                             if ($rate) {
 
-                                $newRooms = max(
-                                    0,
-                                    ($rate->rooms - $booking->rooms)
-                                );
+                                $newRooms = max(0, ($rate->rooms - $booking->rooms));
 
                                 $rate->update([
                                     'rooms' => $newRooms
@@ -1288,7 +1317,11 @@ class PayUMoneyController extends Controller
                     }
                 });
 
-                // Mail
+                $webhookLog->update([
+                    'process_status' => 'processed',
+                    'message' => 'Payment processed and booking confirmed',
+                ]);
+
                 try {
 
                     $payment->refresh();
@@ -1312,6 +1345,10 @@ class PayUMoneyController extends Controller
                     Log::error('Webhook Mail Error', [
                         'error' => $e->getMessage()
                     ]);
+
+                    $webhookLog->update([
+                        'message' => 'Payment processed but mail failed: ' . $e->getMessage(),
+                    ]);
                 }
 
                 return response()->json([
@@ -1320,10 +1357,21 @@ class PayUMoneyController extends Controller
                 ]);
             }
 
-            // Failed payment
             $payment->update([
-                'status' => 'failed',
+                'status'      => 'failed',
+                'payu_mihpayid' => $mihpayid,
                 'raw_request' => json_encode($posted),
+            ]);
+
+            if ($payment->booking) {
+                $payment->booking->update([
+                    'status' => 'failed'
+                ]);
+            }
+
+            $webhookLog->update([
+                'process_status' => 'failed',
+                'message' => 'Payment failed',
             ]);
 
             return response()->json([
@@ -1338,6 +1386,13 @@ class PayUMoneyController extends Controller
                 'line' => $e->getLine(),
             ]);
 
+            if ($webhookLog) {
+                $webhookLog->update([
+                    'process_status' => 'failed',
+                    'message' => $e->getMessage(),
+                ]);
+            }
+
             return response()->json([
                 'success' => false,
                 'message' => $e->getMessage()
@@ -1346,7 +1401,12 @@ class PayUMoneyController extends Controller
     }
 
 
+    public function webhookLogs()
+    {
+        $logs = \App\Models\PayuWebhookLog::latest()->paginate(20);
 
+        return view('payu-webhooks.index', compact('logs'));
+    }
 
 
 

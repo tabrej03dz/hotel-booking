@@ -258,6 +258,8 @@ Route::get('rooms/available', [HomeController::class, 'availableRoom'])->name('r
 Route::get('booking/room/{roomType}', [HomeController::class, 'bookingRoom'])->name('booking.room');
 //Route::post('booking/save/{roomType}', [HomeController::class, 'bookingSave'])->name('booking.save');
 Route::post('booking/save/{roomType}', [PayUMoneyController::class, 'payUMoneyView'])->name('booking.save');
+Route::get('payu-webhooks/logs', [PayUMoneyController::class, 'webhookLogs'])
+    ->name('payu.webhooks.logs');
 
 
 

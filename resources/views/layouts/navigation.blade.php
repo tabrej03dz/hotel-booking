@@ -51,6 +51,10 @@
                             </x-nav-link>
                             @endcan
 
+                            <x-nav-link :href="route('payu.webhooks.logs')" :active="request()->routeIs('payu.webhooks.logs')" class="block px-4 py-2 text-left">
+                                <i class="fas fa-users mr-1"></i> Webhook Logs
+                            </x-nav-link>
+
                         </div>
                     </div>
 
