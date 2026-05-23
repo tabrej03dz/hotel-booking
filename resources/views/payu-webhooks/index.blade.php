@@ -17,7 +17,7 @@
             @endif
 
             <div class="bg-gray-50 border border-gray-200 rounded-2xl p-5 mb-6">
-                <form method="GET" action="{{ route('admin.payu.webhooks') }}">
+                <form method="GET" action="{{ route('payu.webhooks.logs') }}">
                     <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
 
                         <div>
@@ -82,7 +82,7 @@
                             Filter
                         </button>
 
-                        <a href="{{ route('admin.payu.webhooks') }}"
+                        <a href="{{ route('payu.webhooks.logs') }}"
                            class="px-6 py-2.5 bg-gray-600 hover:bg-gray-700 text-white rounded-xl shadow-md">
                             Reset
                         </a>
