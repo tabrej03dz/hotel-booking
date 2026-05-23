@@ -32,6 +32,8 @@ use App\Http\Controllers\PayUMoneyController;
 Route::get('pay-u-money-view',[PayUMoneyController::class,'payUMoneyViewa']);
 Route::post('pay-u-response',[PayUMoneyController::class,'payUResponse'])->name('pay.u.response');
 Route::post('pay-u-cancel',[PayUMoneyController::class,'payUCancel'])->name('pay.u.cancel');
+Route::post('/payu/webhook', [PayUMoneyController::class, 'payuWebhook'])
+    ->name('payu.webhook');
 
 
 // Routes that require authentication
@@ -256,6 +258,7 @@ Route::get('rooms/available', [HomeController::class, 'availableRoom'])->name('r
 Route::get('booking/room/{roomType}', [HomeController::class, 'bookingRoom'])->name('booking.room');
 //Route::post('booking/save/{roomType}', [HomeController::class, 'bookingSave'])->name('booking.save');
 Route::post('booking/save/{roomType}', [PayUMoneyController::class, 'payUMoneyView'])->name('booking.save');
+
 
 
 Route::get('/bookingdetail', [HomeController::class, 'bookingdetail'])->name('bookingdetail');
