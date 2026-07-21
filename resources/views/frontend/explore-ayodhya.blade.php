@@ -358,7 +358,8 @@
                     <h2 class="mt-3 text-4xl font-bold text-[#1a1a2e] md:text-5xl">Ayodhya visitor overview</h2>
                 </div>
 
-                <div class="mt-12 flex gap-3 overflow-x-auto pb-3 ayodhya-reveal" id="ayodhyaTabs">
+                <div id="ayodhyaTabs"
+                    class="mt-12 flex flex-wrap justify-center gap-3 pb-3 ayodhya-reveal">
                     <button type="button" class="ayodhya-tab-button active whitespace-nowrap rounded-xl border border-[#8B4513]/15 bg-white px-5 py-3 font-semibold" data-tab="reach-panel">
                         How to Reach
                     </button>
