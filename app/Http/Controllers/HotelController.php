@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 class HotelController extends Controller
 {
     public function index(){
-        $hotels = Hotel::all();
+        dd('hello');
         return view('hotel.index', compact('hotels'));
     }
 

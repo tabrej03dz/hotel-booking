@@ -51,6 +51,11 @@
                             </x-nav-link>
                             @endcan
 
+                            {{-- @can('add places') --}}
+                            <x-nav-link :href="route('ayodhya-places.index')" :active="request()->routeIs('ayodhya-places.index')" class="block px-4 py-2 text-left">
+                                <i class="fas fa-users mr-1"></i> Ayodhya Places
+                            </x-nav-link>
+                            {{-- @endcan --}}
                             <x-nav-link :href="route('payu.webhooks.logs')" :active="request()->routeIs('payu.webhooks.logs')" class="block px-4 py-2 text-left">
                                 <i class="fas fa-users mr-1"></i> Webhook Logs
                             </x-nav-link>

@@ -20,8 +20,10 @@ class DatabaseSeeder extends Seeder
         $this->call(RolesTableSeeder::class);
         $this->call(PermissionsTableSeeder::class);
           $this->call([
-        HotelRoomSeeder::class,
-    ]);
+                HotelRoomSeeder::class,
+            ]);
+
+            $this->call(AyodhyaPlaceSeeder::class);
         // Role::create(['name' => 'Super Admin']);
         User::create([
             'name' => 'Admin User',

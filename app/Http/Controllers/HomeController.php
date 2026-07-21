@@ -22,12 +22,23 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use App\Models\AyodhyaPlace;
 
 class HomeController extends Controller
 {
     public function home()
     {
         return view('frontend.index');
+    }
+
+    public function exploreAyodhya()
+    {
+        $places = AyodhyaPlace::query()
+            ->where('status', true)
+            ->orderBy('sort_order')
+            ->orderBy('name')
+            ->get();
+        return view('frontend.explore-ayodhya', compact('places'));
     }
 
     public function about()

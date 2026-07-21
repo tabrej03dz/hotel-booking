@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
 use Nette\Utils\ImageColor;
 use App\Http\Controllers\PayUMoneyController;
+use App\Http\Controllers\AyodhyaController;
+use App\Http\Controllers\AyodhyaPlaceController;
 
 
 // Route::get('/', function () {
@@ -179,6 +181,16 @@ Route::middleware('auth')->group(function () {
         });
     });
 
+
+    Route::prefix('ayodhya-places')->name('ayodhya-places.')->controller(AyodhyaPlaceController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/store', 'store')->name('store');
+        Route::get('/edit/{ayodhyaPlace}', 'edit')->name('edit');
+        Route::put('/update/{ayodhyaPlace}', 'update')->name('update');
+        Route::delete('/destroy/{ayodhyaPlace}', 'destroy')->name('destroy');
+    });
+
 });
 
 Route::post('/payment/response', [App\Http\Controllers\PaymentController::class, 'handleResponse'])->name('payment.response');
@@ -201,6 +213,8 @@ require __DIR__.'/auth.php';
 
 // Home route
 Route::get('/', [HomeController::class, 'home'])->name('home');
+Route::get('/explore-ayodhya', [HomeController::class, 'exploreAyodhya'])->name('explore-ayodhya');
+Route::get('/explore-ayodhya/{place:slug}', [AyodhyaController::class, 'show'])->name('ayodhya.places.show');
 
 // About route
 Route::get('/about', [HomeController::class, 'about'])->name('about');
