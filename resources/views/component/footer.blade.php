@@ -76,7 +76,9 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- Hotel Info -->
             <div class="space-y-4">
-                <img src="{{ asset('asset/images/logo.png') }}" alt="Hotel Krinoscco Logo" class="w-24 h-auto mb-6" />
+                <a href="{{ route('home') }}">
+                    <img src="{{ asset('asset/images/logo.png') }}" alt="Hotel Krinoscco Logo" class="w-24 h-auto mb-6" />
+                </a>
                 <h3 class="text-2xl font-bold text-white mb-6">Hotel Krinoscco </h3>
                 <p>A UNIT OF D P R ENTERPRISES PVT. LTD.</p>
                <div class="flex items-center space-x-2">
@@ -153,6 +155,12 @@
                             class="footer-link text-sm hover:text-white transition-colors duration-300">Crescent
                             Facilities</a>
                     </li>
+
+                    <li>
+                        <a href="{{ route('careers') }}"
+                            class="footer-link text-sm hover:text-white transition-colors duration-300">Career</a>
+                    </li>
+                    
                 </ul>
             </div>
 

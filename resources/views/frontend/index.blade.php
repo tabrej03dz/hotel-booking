@@ -170,7 +170,7 @@
                         class="ripple-button bg-[#8B4513] text-white px-10 py-4 rounded-lg text-lg font-semibold hover:bg-[#6B3410] transition-all duration-300 transform hover:scale-105 hover:shadow-xl active:scale-95">
                         Book Now
                     </a>
-                    <a href="#virtual-tour"
+                    <a href="{{ route('explore-ayodhya')}}"
                         class="ripple-button bg-transparent border-2 border-white text-white px-10 py-4 rounded-lg text-lg font-semibold hover:bg-white/10 hover:text-white transition-all duration-300 transform hover:scale-105 hover:shadow-xl active:scale-95">
                         Virtual Tour
                     </a>

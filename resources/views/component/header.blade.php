@@ -281,10 +281,10 @@
                         class="nav-item text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">
                         Rules & Regulations
                     </a>
-                    <a href="{{ route('careers') }}"
+                    {{-- <a href="{{ route('careers') }}"
                         class="nav-item text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">
                         Careers
-                    </a>
+                    </a> --}}
                     <a href="{{ route('gallery') }}"
                         class="nav-item text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">
                         Gallery
