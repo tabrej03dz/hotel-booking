@@ -236,6 +236,8 @@
             </div>
         </section>
 
+
+
         {{-- QUICK HIGHLIGHTS --}}
         <section class="bg-[#1a1a2e] py-12 text-white">
             <div class="ayodhya-container grid grid-cols-2 gap-8 md:grid-cols-4">
@@ -346,46 +348,8 @@
 
         @include('ayodhya-places.places-section', ['places' => $places])
 
-        {{-- VIDEO / THROUGH LENS --}}
-        <section class="relative overflow-hidden bg-[#17120f] py-20 text-white md:py-28">
-            <div class="absolute inset-0 opacity-25">
-                <img src="{{ $ayodhyaImages['hero'] }}"
-                    alt="Deepotsav Ayodhya"
-                    class="h-full w-full object-cover">
-            </div>
-            <div class="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-black/55"></div>
 
-            <div class="ayodhya-container relative grid items-center gap-12 lg:grid-cols-2">
-                <div class="ayodhya-reveal">
-                    <div class="flex items-center gap-4">
-                        <div class="ayodhya-title-line"></div>
-                        <span class="font-semibold uppercase tracking-[.2em] text-[#f3c55b]">Through the lens</span>
-                    </div>
-                    <h2 class="mt-5 text-4xl font-bold leading-tight md:text-5xl">Feel the divine energy of Ayodhya</h2>
-                    <p class="mt-6 max-w-xl text-lg leading-8 text-white/70">
-                        Watch the sacred ghats, temple architecture, festive lights and timeless traditions that make
-                        Ayodhya one of India's most unforgettable destinations.
-                    </p>
-                    <div class="mt-8 flex flex-wrap gap-3 text-sm text-white/75">
-                        <span class="rounded-full border border-white/15 px-4 py-2">Sacred Temples</span>
-                        <span class="rounded-full border border-white/15 px-4 py-2">Saryu Aarti</span>
-                        <span class="rounded-full border border-white/15 px-4 py-2">Deepotsav</span>
-                    </div>
-                </div>
-
-                <div class="overflow-hidden rounded-[28px] border border-white/10 bg-white/5 p-2 shadow-2xl ayodhya-reveal">
-                    <video class="aspect-video w-full rounded-[22px] bg-black object-cover"
-                        controls
-                        preload="metadata"
-                        poster="{{ $ayodhyaImages['video_poster'] }}">
-                        <source src="{{ asset('asset/video/ayodhya.mp4') }}" type="video/mp4">
-                        Your browser does not support HTML video.
-                    </video>
-                </div>
-            </div>
-        </section>
-
-        {{-- OVERVIEW TABS --}}
+                {{-- OVERVIEW TABS --}}
         <section id="reach" class="ayodhya-pattern bg-[#fff8ec] py-20 md:py-28">
             <div class="ayodhya-container">
                 <div class="mx-auto max-w-3xl text-center ayodhya-reveal">
@@ -602,6 +566,81 @@
             </div>
         </section>
 
+
+                {{-- STAY CTA --}}
+        <section class="px-3 pb-20 md:pb-28">
+            <div class="ayodhya-container relative overflow-hidden rounded-[32px] bg-[#8B4513] px-6 py-14 text-white shadow-2xl md:px-14 md:py-16">
+                <img src="{{ asset('asset/images/cafe.jpg') }}"
+                    alt="Stay near Ayodhya attractions"
+                    class="absolute inset-0 h-full w-full object-cover opacity-25">
+                <div class="absolute inset-0 bg-gradient-to-r from-[#5e2d0d] via-[#8B4513]/95 to-[#8B4513]/65"></div>
+
+                <div class="relative grid items-center gap-8 lg:grid-cols-[1fr_auto] ayodhya-reveal">
+                    <div>
+                        <p class="font-semibold uppercase tracking-[.2em] text-[#f7d675]">Stay in comfort</p>
+                        <h2 class="mt-3 max-w-3xl text-3xl font-bold leading-tight md:text-5xl">
+                            Make Hotel Krinoscco your comfortable base in Ayodhya
+                        </h2>
+                        <p class="mt-5 max-w-2xl text-lg leading-8 text-white/80">
+                            Relax in modern rooms, enjoy warm hospitality and explore Ayodhya's leading attractions with convenient city access.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-4 lg:flex-col">
+                        <a href="{{ url('/') }}#booking"
+                            class="rounded-xl bg-white px-7 py-3.5 text-center font-bold text-[#8B4513] transition hover:-translate-y-1 hover:shadow-xl">
+                            Book Your Stay
+                        </a>
+                        <a href="{{ url('/contact') }}"
+                            class="rounded-xl border border-white/50 bg-white/10 px-7 py-3.5 text-center font-bold text-white backdrop-blur transition hover:bg-white hover:text-[#8B4513]">
+                            Contact Hotel
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        {{-- VIDEO / THROUGH LENS --}}
+        <section class="relative overflow-hidden bg-[#17120f] py-20 text-white md:py-28">
+            <div class="absolute inset-0 opacity-25">
+                <img src="{{ $ayodhyaImages['hero'] }}"
+                    alt="Deepotsav Ayodhya"
+                    class="h-full w-full object-cover">
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-black/55"></div>
+
+            <div class="ayodhya-container relative grid items-center gap-12 lg:grid-cols-2">
+                <div class="ayodhya-reveal">
+                    <div class="flex items-center gap-4">
+                        <div class="ayodhya-title-line"></div>
+                        <span class="font-semibold uppercase tracking-[.2em] text-[#f3c55b]">Through the lens</span>
+                    </div>
+                    <h2 class="mt-5 text-4xl font-bold leading-tight md:text-5xl">Feel the divine energy of Ayodhya</h2>
+                    <p class="mt-6 max-w-xl text-lg leading-8 text-white/70">
+                        Watch the sacred ghats, temple architecture, festive lights and timeless traditions that make
+                        Ayodhya one of India's most unforgettable destinations.
+                    </p>
+                    <div class="mt-8 flex flex-wrap gap-3 text-sm text-white/75">
+                        <span class="rounded-full border border-white/15 px-4 py-2">Sacred Temples</span>
+                        <span class="rounded-full border border-white/15 px-4 py-2">Saryu Aarti</span>
+                        <span class="rounded-full border border-white/15 px-4 py-2">Deepotsav</span>
+                    </div>
+                </div>
+
+                <div class="overflow-hidden rounded-[28px] border border-white/10 bg-white/5 p-2 shadow-2xl ayodhya-reveal">
+                    <video class="aspect-video w-full rounded-[22px] bg-black object-cover"
+                        controls
+                        preload="metadata"
+                        poster="{{ $ayodhyaImages['video_poster'] }}">
+                        <source src="{{ asset('asset/video/ayodhya.mp4') }}" type="video/mp4">
+                        Your browser does not support HTML video.
+                    </video>
+                </div>
+            </div>
+        </section>
+
+
         {{-- ITINERARY --}}
         <section class="py-20 md:py-28">
             <div class="ayodhya-container grid gap-14 lg:grid-cols-[.9fr_1.1fr]">
@@ -656,37 +695,7 @@
             </div>
         </section>
 
-        {{-- STAY CTA --}}
-        <section class="px-3 pb-20 md:pb-28">
-            <div class="ayodhya-container relative overflow-hidden rounded-[32px] bg-[#8B4513] px-6 py-14 text-white shadow-2xl md:px-14 md:py-16">
-                <img src="{{ asset('asset/images/cafe.jpg') }}"
-                    alt="Stay near Ayodhya attractions"
-                    class="absolute inset-0 h-full w-full object-cover opacity-25">
-                <div class="absolute inset-0 bg-gradient-to-r from-[#5e2d0d] via-[#8B4513]/95 to-[#8B4513]/65"></div>
 
-                <div class="relative grid items-center gap-8 lg:grid-cols-[1fr_auto] ayodhya-reveal">
-                    <div>
-                        <p class="font-semibold uppercase tracking-[.2em] text-[#f7d675]">Stay in comfort</p>
-                        <h2 class="mt-3 max-w-3xl text-3xl font-bold leading-tight md:text-5xl">
-                            Make Hotel Krinoscco your comfortable base in Ayodhya
-                        </h2>
-                        <p class="mt-5 max-w-2xl text-lg leading-8 text-white/80">
-                            Relax in modern rooms, enjoy warm hospitality and explore Ayodhya's leading attractions with convenient city access.
-                        </p>
-                    </div>
-                    <div class="flex flex-wrap gap-4 lg:flex-col">
-                        <a href="{{ url('/booking') }}"
-                            class="rounded-xl bg-white px-7 py-3.5 text-center font-bold text-[#8B4513] transition hover:-translate-y-1 hover:shadow-xl">
-                            Book Your Stay
-                        </a>
-                        <a href="{{ url('/contact') }}"
-                            class="rounded-xl border border-white/50 bg-white/10 px-7 py-3.5 text-center font-bold text-white backdrop-blur transition hover:bg-white hover:text-[#8B4513]">
-                            Contact Hotel
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
     </div>
 
     <script>
