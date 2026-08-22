@@ -134,94 +134,98 @@
     {{-- =========================================================
         HOTEL STRUCTURED DATA
     ========================================================== --}}
-    @verbatim
-
+    <?php
+        $hotelSchema = [
+            '@context' => 'https://schema.org',
+            '@type' => 'Hotel',
+            '@id' => url('/') . '#hotel',
+            'name' => 'Hotel Krinoscco',
+            'alternateName' => 'Hotel Krinoscco in Ayodhya',
+            'url' => url('/'),
+            'logo' => asset('asset/images/logo.png'),
+            'image' => asset('asset/images/logo.png'),
+            'description' => 'Hotel Krinoscco is a luxury hotel located on Ram Path, Amaniganj, Ayodhya, offering premium rooms, suites, restaurant, banquet halls, conference facilities and modern amenities.',
+            'telephone' => [
+                '+91-7275002525',
+                '+91-7275092525',
+            ],
+            'email' => 'info@krinoscco.com',
+            'priceRange' => '₹₹₹',
+            'address' => [
+                '@type' => 'PostalAddress',
+                'streetAddress' => 'Ram Path, Amaniganj',
+                'addressLocality' => 'Ayodhya',
+                'addressRegion' => 'Uttar Pradesh',
+                'postalCode' => '224001',
+                'addressCountry' => 'IN',
+            ],
+            'geo' => [
+                '@type' => 'GeoCoordinates',
+                'latitude' => 26.7922,
+                'longitude' => 82.1998,
+            ],
+            'amenityFeature' => [
+                [
+                    '@type' => 'LocationFeatureSpecification',
+                    'name' => 'Free Wi-Fi',
+                    'value' => true,
+                ],
+                [
+                    '@type' => 'LocationFeatureSpecification',
+                    'name' => 'Restaurant',
+                    'value' => true,
+                ],
+                [
+                    '@type' => 'LocationFeatureSpecification',
+                    'name' => 'Room Service',
+                    'value' => true,
+                ],
+                [
+                    '@type' => 'LocationFeatureSpecification',
+                    'name' => 'Free Parking',
+                    'value' => true,
+                ],
+                [
+                    '@type' => 'LocationFeatureSpecification',
+                    'name' => 'Banquet Hall',
+                    'value' => true,
+                ],
+                [
+                    '@type' => 'LocationFeatureSpecification',
+                    'name' => 'Conference Hall',
+                    'value' => true,
+                ],
+                [
+                    '@type' => 'LocationFeatureSpecification',
+                    'name' => 'Gymnasium',
+                    'value' => true,
+                ],
+            ],
+            'containsPlace' => [
+                [
+                    '@type' => 'HotelRoom',
+                    'name' => 'Standard Room',
+                ],
+                [
+                    '@type' => 'HotelRoom',
+                    'name' => 'Deluxe Room',
+                ],
+                [
+                    '@type' => 'HotelRoom',
+                    'name' => 'Suite Room',
+                ],
+            ],
+        ];
+    ?>
 
     <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "Hotel",
-            "@id": "{{ url('/') }}#hotel",
-            "name": "Hotel Krinoscco",
-            "alternateName": "Hotel Krinoscco in Ayodhya",
-            "url": "{{ url('/') }}",
-            "logo": "{{ asset('asset/images/logo.png') }}",
-            "image": "{{ asset('asset/images/logo.png') }}",
-            "description": "Hotel Krinoscco is a luxury hotel located on Ram Path, Amaniganj, Ayodhya, offering premium rooms, suites, restaurant, banquet halls, conference facilities and modern amenities.",
-            "telephone": [
-                "+91-7275002525",
-                "+91-7275092525"
-            ],
-            "email": "info@krinoscco.com",
-            "priceRange": "₹₹₹",
-            "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Ram Path, Amaniganj",
-                "addressLocality": "Ayodhya",
-                "addressRegion": "Uttar Pradesh",
-                "postalCode": "224001",
-                "addressCountry": "IN"
-            },
-            "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": "26.7922",
-                "longitude": "82.1998"
-            },
-            "amenityFeature": [
-                {
-                    "@type": "LocationFeatureSpecification",
-                    "name": "Free Wi-Fi",
-                    "value": true
-                },
-                {
-                    "@type": "LocationFeatureSpecification",
-                    "name": "Restaurant",
-                    "value": true
-                },
-                {
-                    "@type": "LocationFeatureSpecification",
-                    "name": "Room Service",
-                    "value": true
-                },
-                {
-                    "@type": "LocationFeatureSpecification",
-                    "name": "Free Parking",
-                    "value": true
-                },
-                {
-                    "@type": "LocationFeatureSpecification",
-                    "name": "Banquet Hall",
-                    "value": true
-                },
-                {
-                    "@type": "LocationFeatureSpecification",
-                    "name": "Conference Hall",
-                    "value": true
-                },
-                {
-                    "@type": "LocationFeatureSpecification",
-                    "name": "Gymnasium",
-                    "value": true
-                }
-            ],
-            "containsPlace": [
-                {
-                    "@type": "HotelRoom",
-                    "name": "Standard Room"
-                },
-                {
-                    "@type": "HotelRoom",
-                    "name": "Deluxe Room"
-                },
-                {
-                    "@type": "HotelRoom",
-                    "name": "Suite Room"
-                }
-            ]
-        }
+        {!! json_encode(
+            $hotelSchema,
+            JSON_UNESCAPED_SLASHES |
+            JSON_UNESCAPED_UNICODE |
+            JSON_PRETTY_PRINT
+        ) !!}
     </script>
-
-  @endverbatim
     {{-- =========================================================
         GOOGLE ADS
     ========================================================== --}}
