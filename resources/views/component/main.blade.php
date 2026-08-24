@@ -150,7 +150,7 @@
                 '+91-7275092525',
             ],
             'email' => 'info@krinoscco.com',
-            'priceRange' => '₹₹₹',
+            'priceRange' => '1999 - 4999 INR',
             'address' => [
                 '@type' => 'PostalAddress',
                 'streetAddress' => 'Ram Path, Amaniganj',
