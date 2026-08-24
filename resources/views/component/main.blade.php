@@ -13,16 +13,16 @@
         PRIMARY SEO
     ========================================================== --}}
     <title>
-        @yield('title', 'Hotel Krinoscco in Ayodhya | Luxury Hotel Near Ram Mandir')
+        @yield('title', 'Hotel Krinoscco Ayodhya | Luxury Hotel Near Ram Mandir')
     </title>
 
     <meta name="description"
-          content="@yield('meta_description', 'Book your stay at Hotel Krinoscco in Ayodhya. Located at Ram Path, Amaniganj, near Shri Ram Janmabhoomi, the hotel offers luxury rooms, suites, restaurant, banquet halls, lawn, free Wi-Fi and modern amenities.')">
+          content="@yield('meta_description', 'Book your stay at Hotel Krinoscco Ayodhya. Located at Ram Path, Amaniganj, near Shri Ram Janmabhoomi, the hotel offers luxury rooms, suites, restaurant, banquet halls, lawn, free Wi-Fi and modern amenities.')">
 
     <meta name="keywords"
-          content="@yield('meta_keywords', 'Hotel Krinoscco in Ayodhya, Hotel Krinoscco Ayodhya, hotels in Ayodhya, luxury hotel in Ayodhya, hotel near Ram Mandir Ayodhya, hotel near Ram Janmabhoomi, hotel on Ram Path Ayodhya, accommodation in Ayodhya, banquet hall in Ayodhya, best hotel in Ayodhya')">
+          content="@yield('meta_keywords', 'Hotel Krinoscco Ayodhya, Hotel Krinoscco Ayodhya, hotels in Ayodhya, luxury hotel in Ayodhya, hotel near Ram Mandir Ayodhya, hotel near Ram Janmabhoomi, hotel on Ram Path Ayodhya, accommodation in Ayodhya, banquet hall in Ayodhya, best hotel in Ayodhya')">
 
-    <meta name="author" content="Hotel Krinoscco">
+    <meta name="author" content="Hotel Krinoscco Ayodhya">
 
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 
@@ -32,9 +32,9 @@
 
     <meta name="theme-color" content="#8B4513">
 
-    <meta name="application-name" content="Hotel Krinoscco">
+    <meta name="application-name" content="Hotel Krinoscco Ayodhya">
 
-    <meta name="apple-mobile-web-app-title" content="Hotel Krinoscco">
+    <meta name="apple-mobile-web-app-title" content="Hotel Krinoscco Ayodhya">
 
     <link rel="canonical" href="@yield('canonical', url()->current())">
 
@@ -81,13 +81,13 @@
     ========================================================== --}}
     <meta property="og:type" content="website">
 
-    <meta property="og:site_name" content="Hotel Krinoscco">
+    <meta property="og:site_name" content="Hotel Krinoscco Ayodhya">
 
     <meta property="og:title"
-          content="@yield('og_title', 'Hotel Krinoscco in Ayodhya | Luxury Hotel Near Ram Mandir')">
+          content="@yield('og_title', 'Hotel Krinoscco Ayodhya | Luxury Hotel Near Ram Mandir')">
 
     <meta property="og:description"
-          content="@yield('og_description', 'Experience luxury and comfort at Hotel Krinoscco in Ayodhya. Located on Ram Path, Amaniganj, close to Shri Ram Janmabhoomi, railway stations and Ayodhya Airport.')">
+          content="@yield('og_description', 'Experience luxury and comfort at Hotel Krinoscco Ayodhya. Located on Ram Path, Amaniganj, close to Shri Ram Janmabhoomi, railway stations and Ayodhya Airport.')">
 
     <meta property="og:url"
           content="@yield('canonical', url()->current())">
@@ -99,7 +99,7 @@
           content="@yield('og_image', asset('asset/images/logo.png'))">
 
     <meta property="og:image:alt"
-          content="Hotel Krinoscco in Ayodhya">
+          content="Hotel Krinoscco Ayodhya">
 
     <meta property="og:locale" content="en_IN">
 
@@ -110,10 +110,10 @@
     <meta name="twitter:card" content="summary_large_image">
 
     <meta name="twitter:title"
-          content="@yield('twitter_title', 'Hotel Krinoscco in Ayodhya | Luxury Hotel Near Ram Mandir')">
+          content="@yield('twitter_title', 'Hotel Krinoscco Ayodhya | Luxury Hotel Near Ram Mandir')">
 
     <meta name="twitter:description"
-          content="@yield('twitter_description', 'Stay at Hotel Krinoscco on Ram Path, Amaniganj, Ayodhya. Luxury rooms, suites, dining, banquets and modern hotel facilities.')">
+          content="@yield('twitter_description', 'Stay at Hotel Krinoscco Ayodhya on Ram Path, Amaniganj. Luxury rooms, suites, dining, banquets and modern hotel facilities.')">
 
     <meta name="twitter:image"
           content="@yield('og_image', asset('asset/images/logo.png'))">
@@ -139,12 +139,12 @@
             '@context' => 'https://schema.org',
             '@type' => 'Hotel',
             '@id' => url('/') . '#hotel',
-            'name' => 'Hotel Krinoscco',
-            'alternateName' => 'Hotel Krinoscco in Ayodhya',
+            'name' => 'Hotel Krinoscco Ayodhya',
+            'alternateName' => 'Hotel Krinoscco Ayodhya',
             'url' => url('/'),
             'logo' => asset('asset/images/logo.png'),
             'image' => asset('asset/images/logo.png'),
-            'description' => 'Hotel Krinoscco is a luxury hotel located on Ram Path, Amaniganj, Ayodhya, offering premium rooms, suites, restaurant, banquet halls, conference facilities and modern amenities.',
+            'description' => 'Hotel Krinoscco  is a luxury hotel located on Ram Path, Amaniganj, Ayodhya, offering premium rooms, suites, restaurant, banquet halls, conference facilities and modern amenities.',
             'telephone' => [
                 '+91-7275002525',
                 '+91-7275092525',
