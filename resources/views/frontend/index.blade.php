@@ -172,7 +172,7 @@
                     </a>
                     <a href="{{ route('explore-ayodhya')}}"
                         class="ripple-button bg-transparent border-2 border-white text-white px-10 py-4 rounded-lg text-lg font-semibold hover:bg-white/10 hover:text-white transition-all duration-300 transform hover:scale-105 hover:shadow-xl active:scale-95">
-                        Exploare Ayodhya
+                        Explore Ayodhya
                     </a>
                 </div>
             </div>
@@ -707,7 +707,7 @@
     </section>
 
     <!-- Crescent Facilities Section -->
-   
+
 
 
     <!-- Our Signature Offerings -->
