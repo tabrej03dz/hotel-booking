@@ -13,11 +13,11 @@
         PRIMARY SEO
     ========================================================== --}}
     <title>
-        @yield('title', 'Hotel Krinoscco Ayodhya | Luxury Hotel Near Ram Mandir')
+        @yield('title', 'Hotel Krinoscco Ayodhya – Among the Top-Rated Luxury Hotels in Ayodhya')
     </title>
 
     <meta name="description"
-          content="@yield('meta_description', 'Book your stay at Hotel Krinoscco Ayodhya. Located at Ram Path, Amaniganj, near Shri Ram Janmabhoomi, the hotel offers luxury rooms, suites, restaurant, banquet halls, lawn, free Wi-Fi and modern amenities.')">
+          content="@yield('meta_description', 'Experience world-class hospitality, elegant accommodations, and unmatched convenience in the heart of Ayodhya, just minutes from Shri Ram Janmabhoomi Temple, Hanuman Garhi, Ayodhya Dham Junction, Ayodhya Cantt Railway Station, and Maharishi Valmiki International Airport.')">
 
     <meta name="keywords"
           content="@yield('meta_keywords', 'Hotel Krinoscco Ayodhya, Hotel Krinoscco Ayodhya, hotels in Ayodhya, luxury hotel in Ayodhya, hotel near Ram Mandir Ayodhya, hotel near Ram Janmabhoomi, hotel on Ram Path Ayodhya, accommodation in Ayodhya, banquet hall in Ayodhya, best hotel in Ayodhya')">
@@ -84,10 +84,10 @@
     <meta property="og:site_name" content="Hotel Krinoscco Ayodhya">
 
     <meta property="og:title"
-          content="@yield('og_title', 'Hotel Krinoscco Ayodhya | Luxury Hotel Near Ram Mandir')">
+          content="@yield('og_title', 'Hotel Krinoscco Ayodhya – Among the Top-Rated Luxury Hotels in Ayodhya')">
 
     <meta property="og:description"
-          content="@yield('og_description', 'Experience luxury and comfort at Hotel Krinoscco Ayodhya. Located on Ram Path, Amaniganj, close to Shri Ram Janmabhoomi, railway stations and Ayodhya Airport.')">
+          content="@yield('og_description', 'Experience world-class hospitality, elegant accommodations, and unmatched convenience in the heart of Ayodhya, just minutes from Shri Ram Janmabhoomi Temple, Hanuman Garhi, Ayodhya Dham Junction, Ayodhya Cantt Railway Station, and Maharishi Valmiki International Airport.')">
 
     <meta property="og:url"
           content="@yield('canonical', url()->current())">
@@ -110,10 +110,10 @@
     <meta name="twitter:card" content="summary_large_image">
 
     <meta name="twitter:title"
-          content="@yield('twitter_title', 'Hotel Krinoscco Ayodhya | Luxury Hotel Near Ram Mandir')">
+          content="@yield('twitter_title', 'Hotel Krinoscco Ayodhya – Among the Top-Rated Luxury Hotels in Ayodhya')">
 
     <meta name="twitter:description"
-          content="@yield('twitter_description', 'Stay at Hotel Krinoscco Ayodhya on Ram Path, Amaniganj. Luxury rooms, suites, dining, banquets and modern hotel facilities.')">
+          content="@yield('twitter_description', 'Experience world-class hospitality, elegant accommodations, and unmatched convenience in the heart of Ayodhya, just minutes from Shri Ram Janmabhoomi Temple, Hanuman Garhi, Ayodhya Dham Junction, Ayodhya Cantt Railway Station, and Maharishi Valmiki International Airport.')">
 
     <meta name="twitter:image"
           content="@yield('og_image', asset('asset/images/logo.png'))">
