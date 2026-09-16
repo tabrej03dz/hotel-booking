@@ -642,56 +642,162 @@
         </section>
 
 
-        {{-- ITINERARY --}}
-        <section class="py-20 md:py-28">
-            <div class="ayodhya-container grid gap-14 lg:grid-cols-[.9fr_1.1fr]">
-                <div class="ayodhya-reveal">
-                    <div class="flex items-center gap-4">
-                        <div class="ayodhya-title-line"></div>
-                        <span class="font-semibold uppercase tracking-[.2em] text-[#8B4513]">Suggested Plan</span>
+        {{-- AYODHYA SPIRITUAL TOUR PACKAGE --}}
+        <section class="relative overflow-hidden bg-gradient-to-b from-[#fffaf1] to-white py-20 md:py-28">
+            <div class="absolute -left-24 top-24 h-72 w-72 rounded-full bg-[#D4A017]/10 blur-3xl"></div>
+            <div class="absolute -right-24 bottom-10 h-80 w-80 rounded-full bg-[#8B4513]/10 blur-3xl"></div>
+
+            <div class="ayodhya-container relative">
+                <div class="mx-auto max-w-3xl text-center ayodhya-reveal">
+                    <div class="inline-flex items-center gap-3 rounded-full border border-[#8B4513]/15 bg-white px-5 py-2 text-sm font-semibold uppercase tracking-[.18em] text-[#8B4513] shadow-sm">
+                        <span class="h-2 w-2 rounded-full bg-[#D4A017]"></span>
+                        2 Nights / 3 Days
                     </div>
-                    <h2 class="mt-5 text-4xl font-bold leading-tight text-[#1a1a2e] md:text-5xl">A peaceful 2-day Ayodhya itinerary</h2>
-                    <p class="mt-6 text-lg leading-8 text-gray-600">
-                        Cover the major spiritual sites without rushing and reserve enough time for Saryu Aarti, local food and shopping.
+                    <h2 class="mt-5 text-4xl font-bold leading-tight text-[#1a1a2e] md:text-5xl">
+                        Ayodhya Spiritual Tour Package
+                    </h2>
+                    <p class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-gray-600">
+                        Experience the sacred temples, serene ghats and divine atmosphere of Ayodhya with a comfortable stay, delicious meals and private sightseeing.
                     </p>
-                    <div class="mt-8 overflow-hidden rounded-[26px] ayodhya-image-zoom">
-                        <img src="{{ $ayodhyaImages['hero'] }}"
-                            alt="Ayodhya city view"
-                            class="h-72 w-full object-cover">
+                </div>
+
+                {{-- Package summary --}}
+                <div class="mt-12 grid gap-6 lg:grid-cols-[.8fr_1.2fr] ayodhya-reveal">
+                    <div class="relative overflow-hidden rounded-[28px] bg-[#1a1a2e] p-8 text-white shadow-xl md:p-10">
+                        <div class="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-[#D4A017]/20"></div>
+                        <div class="relative">
+                            <p class="text-sm font-semibold uppercase tracking-[.2em] text-[#f3c55b]">Package Cost</p>
+                            <div class="mt-3 flex flex-wrap items-end gap-2">
+                                <span class="text-5xl font-bold text-white">₹5,000</span>
+                                <span class="pb-1 text-sm text-white/70">per person / per day</span>
+                            </div>
+                            <div class="mt-8 border-t border-white/15 pt-6">
+                                <p class="text-sm uppercase tracking-wider text-white/60">Package Validity</p>
+                                <p class="mt-2 text-xl font-semibold">July to September</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="rounded-[28px] border border-[#8B4513]/10 bg-white p-8 shadow-lg md:p-10">
+                        <p class="text-sm font-semibold uppercase tracking-[.2em] text-[#8B4513]">Package Includes</p>
+                        <div class="mt-6 grid gap-4 sm:grid-cols-2">
+                            @foreach ([
+                                ['🏨', 'Hotel Stay'],
+                                ['🍽️', 'Breakfast, Lunch & Dinner'],
+                                ['🛕', 'Sightseeing'],
+                                ['🚕', 'Private Cab'],
+                            ] as $inclusion)
+                                <div class="flex items-center gap-4 rounded-2xl bg-[#fff8ec] p-4">
+                                    <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-xl shadow-sm">{{ $inclusion[0] }}</span>
+                                    <span class="font-semibold text-[#1a1a2e]">{{ $inclusion[1] }}</span>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
 
-                <div class="space-y-6 ayodhya-reveal">
-                    <div class="rounded-2xl border border-[#8B4513]/10 bg-white p-7 shadow-sm">
-                        <div class="flex gap-5">
-                            <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#8B4513] text-xl font-bold text-white">01</div>
-                            <div>
-                                <h3 class="text-2xl font-bold text-[#1a1a2e]">Day One – Temples & Saryu Aarti</h3>
-                                <p class="mt-3 leading-7 text-gray-600">
-                                    Shri Ram Janmabhoomi Mandir → Hanuman Garhi → Kanak Bhawan → Dashrath Mahal → local lunch → Ram Ki Paidi → Saryu Aarti.
-                                </p>
+                {{-- Daily itinerary --}}
+                <div class="mt-14 space-y-8">
+                    {{-- Day 1 --}}
+                    <article class="overflow-hidden rounded-[28px] border border-[#8B4513]/10 bg-white shadow-lg ayodhya-reveal">
+                        <div class="grid lg:grid-cols-[260px_1fr]">
+                            <div class="flex flex-col justify-center bg-[#8B4513] p-8 text-white md:p-10">
+                                <span class="text-sm font-semibold uppercase tracking-[.2em] text-[#f3c55b]">Day 1</span>
+                                <h3 class="mt-3 text-3xl font-bold">Arrival & Temple Visit</h3>
+                            </div>
+                            <div class="p-6 md:p-9">
+                                <div class="grid gap-4 md:grid-cols-2">
+                                    @foreach ([
+                                        ['1:00 PM', 'Hotel Check-in', '🏨'],
+                                        ['2:00 PM', 'Lunch at Crescent Restaurant', '🍽️'],
+                                        ['4:00 PM', 'Hanuman Garhi, followed by Ram Janmabhoomi', '🛕'],
+                                        ['6:00 PM', 'Divine Saryu Aarti at Ram Ki Paidi', '🪔'],
+                                        ['Evening', 'Return to the hotel and relax', '🌆'],
+                                        ['8:00 PM', 'Dinner at Crescent Restaurant', '🍴'],
+                                    ] as $item)
+                                        <div class="flex gap-4 rounded-2xl bg-[#fffaf1] p-4">
+                                            <span class="text-2xl">{{ $item[2] }}</span>
+                                            <div>
+                                                <p class="text-xs font-bold uppercase tracking-wider text-[#8B4513]">{{ $item[0] }}</p>
+                                                <p class="mt-1 leading-6 text-gray-700">{{ $item[1] }}</p>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <p class="mt-5 rounded-xl bg-[#1a1a2e] px-5 py-3 text-sm font-medium text-white">🌙 Overnight stay at the hotel.</p>
                             </div>
                         </div>
-                    </div>
+                    </article>
 
-                    <div class="rounded-2xl border border-[#8B4513]/10 bg-white p-7 shadow-sm">
-                        <div class="flex gap-5">
-                            <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#D4A017] text-xl font-bold text-white">02</div>
-                            <div>
-                                <h3 class="text-2xl font-bold text-[#1a1a2e]">Day Two – Heritage & Riverside</h3>
-                                <p class="mt-3 leading-7 text-gray-600">
-                                    Nageshwarnath Temple → Tulsi Smarak Bhawan → Ram Katha Museum → Guptar Ghat → local markets → relaxed dinner at Hotel Krinoscco.
-                                </p>
+                    {{-- Day 2 --}}
+                    <article class="overflow-hidden rounded-[28px] border border-[#D4A017]/20 bg-white shadow-lg ayodhya-reveal">
+                        <div class="grid lg:grid-cols-[260px_1fr]">
+                            <div class="flex flex-col justify-center bg-[#D4A017] p-8 text-white md:p-10">
+                                <span class="text-sm font-semibold uppercase tracking-[.2em] text-white/80">Day 2</span>
+                                <h3 class="mt-3 text-3xl font-bold">Sightseeing Tour</h3>
+                            </div>
+                            <div class="p-6 md:p-9">
+                                <div class="grid gap-4 md:grid-cols-2">
+                                    <div class="flex gap-4 rounded-2xl bg-[#fffaf1] p-4">
+                                        <span class="text-2xl">🍳</span>
+                                        <div><p class="text-xs font-bold uppercase tracking-wider text-[#8B4513]">Morning</p><p class="mt-1 leading-6 text-gray-700">Enjoy breakfast at the hotel</p></div>
+                                    </div>
+                                    <div class="flex gap-4 rounded-2xl bg-[#fffaf1] p-4">
+                                        <span class="text-2xl">🕘</span>
+                                        <div>
+                                            <p class="text-xs font-bold uppercase tracking-wider text-[#8B4513]">9:00 AM</p>
+                                            <p class="mt-1 leading-6 text-gray-700">Nageshwarnath Temple, Mani Parvat and Bharat Kund</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex gap-4 rounded-2xl bg-[#fffaf1] p-4">
+                                        <span class="text-2xl">🍽️</span>
+                                        <div><p class="text-xs font-bold uppercase tracking-wider text-[#8B4513]">1:00 PM</p><p class="mt-1 leading-6 text-gray-700">Lunch at Crescent Restaurant</p></div>
+                                    </div>
+                                    <div class="flex gap-4 rounded-2xl bg-[#fffaf1] p-4">
+                                        <span class="text-2xl">☕</span>
+                                        <div><p class="text-xs font-bold uppercase tracking-wider text-[#8B4513]">Afternoon</p><p class="mt-1 leading-6 text-gray-700">Evening high tea at the hotel</p></div>
+                                    </div>
+                                    <div class="flex gap-4 rounded-2xl bg-[#fffaf1] p-4 md:col-span-2">
+                                        <span class="text-2xl">🌅</span>
+                                        <div><p class="text-xs font-bold uppercase tracking-wider text-[#8B4513]">4:00 PM</p><p class="mt-1 leading-6 text-gray-700">Visit Guptar Ghat, then return to the hotel for dinner</p></div>
+                                    </div>
+                                </div>
+                                <p class="mt-5 rounded-xl bg-[#1a1a2e] px-5 py-3 text-sm font-medium text-white">🌙 Relax and enjoy a comfortable overnight stay.</p>
                             </div>
                         </div>
-                    </div>
+                    </article>
 
-                    <div class="rounded-2xl bg-[#1a1a2e] p-7 text-white">
-                        <h3 class="text-xl font-bold">Hotel guest assistance</h3>
-                        <p class="mt-3 leading-7 text-white/70">
-                            Our team can assist with local travel guidance, cab arrangements, temple visit planning and packed meals, subject to availability.
-                        </p>
-                    </div>
+                    {{-- Day 3 --}}
+                    <article class="overflow-hidden rounded-[28px] border border-[#8B4513]/10 bg-white shadow-lg ayodhya-reveal">
+                        <div class="grid lg:grid-cols-[260px_1fr]">
+                            <div class="flex flex-col justify-center bg-gradient-to-br from-[#6B3410] to-[#8B4513] p-8 text-white md:p-10">
+                                <span class="text-sm font-semibold uppercase tracking-[.2em] text-[#f3c55b]">Day 3</span>
+                                <h3 class="mt-3 text-3xl font-bold">Departure</h3>
+                            </div>
+                            <div class="p-6 md:p-9">
+                                <div class="grid gap-4 sm:grid-cols-3">
+                                    <div class="rounded-2xl bg-[#fffaf1] p-5 text-center">
+                                        <span class="text-3xl">🍳</span>
+                                        <p class="mt-3 font-semibold text-[#1a1a2e]">Early morning breakfast</p>
+                                    </div>
+                                    <div class="rounded-2xl bg-[#fffaf1] p-5 text-center">
+                                        <span class="text-3xl">🧳</span>
+                                        <p class="mt-3 font-semibold text-[#1a1a2e]">Check out from the hotel</p>
+                                    </div>
+                                    <div class="rounded-2xl bg-[#fffaf1] p-5 text-center">
+                                        <span class="text-3xl">👋</span>
+                                        <p class="mt-3 font-semibold text-[#1a1a2e]">Depart with beautiful memories</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="mt-10 rounded-[26px] bg-[#1a1a2e] px-6 py-8 text-center text-white shadow-xl md:px-10 ayodhya-reveal">
+                    <p class="text-xl font-semibold leading-8 md:text-2xl">
+                        ✨ We wish you a pleasant stay and look forward to welcoming you again!
+                    </p>
                 </div>
             </div>
         </section>
