@@ -1,503 +1,339 @@
 <style>
-    /* Enhanced 3D and premium effects */
     .premium-header {
-        background: linear-gradient(135deg,
-                rgba(13, 6, 48, 0.95) 0%,
-                rgba(25, 12, 90, 0.95) 100%);
+        background: linear-gradient(135deg, rgba(13, 6, 48, .98), rgba(25, 12, 90, .98));
         position: relative;
-        z-index: 20;
-        border-bottom: 4px solid burlywood;
-        /* overflow: hidden; */
-        /* Added brown border to the bottom */
+        z-index: 50;
+        border-bottom: 3px solid burlywood;
     }
 
-    .nav-item {
-        position: relative;
-        perspective: 1000px;
-        transform-style: preserve-3d;
-        transition: transform 0.3s ease;
-    }
-
-    .nav-item:hover {
-        transform: translateZ(20px);
-    }
-
-    .nav-item::before {
-        content: '';
-        position: absolute;
-        inset: -2px;
-        background: linear-gradient(45deg,
-                rgba(255, 187, 36, 0),
-                rgba(255, 187, 36, 0.3),
-                rgba(255, 187, 36, 0));
-        transform: translateZ(-1px);
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        border-radius: 4px;
-    }
-
-    .nav-item:hover::before {
-        opacity: 1;
-    }
-
-    .nav-item::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        width: 0;
-        height: 2px;
-        background: linear-gradient(90deg,
-                transparent,
-                #FBBF24,
-                transparent);
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        transform: translateX(-50%);
-    }
-
-    .nav-item:hover::after {
-        width: 100%;
-    }
-
-    .dropdown-menu {
-        backdrop-filter: blur(12px);
-        background: rgba(13, 6, 48, 0.85);
-        border: 1px solid rgba(147, 51, 234, 0.1);
-        box-shadow:
-            0 10px 15px -3px rgba(0, 0, 0, 0.3),
-            0 4px 6px -4px rgba(0, 0, 0, 0.2),
-            0 0 20px rgba(147, 51, 234, 0.15);
-        transform: translateY(-10px) translateZ(30px);
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .dropdown:hover .dropdown-menu {
-        transform: translateY(0) translateZ(30px);
-        opacity: 1;
-        visibility: visible;
-    }
-
-    .glass-effect {
-        backdrop-filter: blur(12px);
-        background: rgba(13, 6, 48, 0.85);
-        box-shadow:
-            0 10px 30px -10px rgba(147, 51, 234, 0.3),
-            0 0 20px rgba(147, 51, 234, 0.15);
-    }
-
-    .logo-container {
-        position: relative;
-        perspective: 1000px;
-    }
-
-    .logo-container img {
-        transform-style: preserve-3d;
-        transition: transform 0.5s ease;
-        box-shadow: 0 0 20px rgba(147, 51, 234, 0.2);
-    }
-
-    .logo-container:hover img {
-        transform: rotateY(10deg) translateZ(20px);
-    }
-
-    /* Enhanced shimmer animation */
-    .premium-shimmer {
-        background: linear-gradient(90deg,
-                transparent,
-                rgba(147, 51, 234, 0.1),
-                transparent);
+    .header-shimmer {
         position: absolute;
         inset: 0;
-        transform: translateX(-100%);
-        animation: shimmer 3s infinite;
+        overflow: hidden;
+        pointer-events: none;
     }
 
-    @keyframes shimmer {
+    .header-shimmer::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .06), transparent);
+        transform: translateX(-100%);
+        animation: headerShimmer 4s infinite;
+    }
+
+    @keyframes headerShimmer {
         100% {
             transform: translateX(100%);
         }
     }
+
+    .desktop-nav-link {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        white-space: nowrap;
+        color: #d1d5db;
+        padding: .65rem .35rem;
+        font-size: .82rem;
+        font-weight: 500;
+        transition: color .2s ease;
+    }
+
+    .desktop-nav-link:hover {
+        color: #fff;
+    }
+
+    .desktop-nav-link::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: 3px;
+        width: 0;
+        height: 2px;
+        transform: translateX(-50%);
+        background: #fbbf24;
+        transition: width .25s ease;
+    }
+
+    .desktop-nav-link:hover::after {
+        width: 100%;
+    }
+
+    .desktop-dropdown-menu {
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 0;
+        width: 210px;
+        padding: .5rem;
+        border-radius: .75rem;
+        background: rgba(13, 6, 48, .98);
+        border: 1px solid rgba(251, 191, 36, .22);
+        box-shadow: 0 18px 40px rgba(0, 0, 0, .35);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+        transition: opacity .2s ease, transform .2s ease, visibility .2s ease;
+    }
+
+    .desktop-dropdown:hover>.desktop-dropdown-menu,
+    .desktop-dropdown:focus-within>.desktop-dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .desktop-dropdown-item {
+        display: block;
+        padding: .7rem .8rem;
+        border-radius: .5rem;
+        color: #d1d5db;
+        font-size: .875rem;
+        transition: background .2s ease, color .2s ease;
+    }
+
+    .desktop-dropdown-item:hover {
+        color: #fff;
+        background: rgba(147, 51, 234, .2);
+    }
+
+    .mobile-menu-panel {
+        max-height: calc(100vh - 84px);
+        overflow-y: auto;
+        background: rgba(13, 6, 48, .99);
+        box-shadow: 0 18px 35px rgba(0, 0, 0, .35);
+    }
 </style>
 
-<header class="premium-header border-b border-purple-500/30">
-    <div class="premium-shimmer"></div>
+<header class="premium-header">
+    <div class="header-shimmer"></div>
 
-    <!-- Rest of the header content remains the same but with updated classes -->
-    <div class="relative mx-auto max-w-9xl">
-        <div class="px-4 py-2 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <!-- Logo Section with 3D effect -->
-                <div class="logo-container flex-shrink-0 flex items-center space-x-4 ">
-                    <a href="/"> <img src="{{ asset('asset/images/logo.png') }}" alt="Hotel Krinoscco Logo"
-                            class="w-20 h-20 rounded-full flex items-center justify-center">
-                        </img></a>
-                </div>
+    <div class="relative mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
+        <div class="flex h-20 items-center justify-between gap-3">
 
-                <!-- Desktop Navigation remains the same but will use the enhanced nav-item styles -->
-                <!-- Desktop Navigation -->
-                <nav class="hidden lg:flex items-center space-x-6">
-                    <a href="/" class="nav-item text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">
-                        Home
-                    </a>
-                    <a href="{{ route('about') }}"
-                        class="nav-item text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">
-                        About
-                    </a>
-
-                    <!-- Accommodation Dropdown -->
-                    <div class="dropdown relative group">
-                        <button
-                            class="nav-item text-gray-300 hover:text-white px-3 py-2 text-sm font-medium inline-flex items-center">
-                            <span>Accommodation</span>
-                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </button>
-                        <div
-                            class="dropdown-menu absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-[#0D0630] ring-1 ring-black ring-opacity-5 z-50">
-                            <div class="py-1">
-                                <a href="{{ route('accommodation.standard') }}"
-                                    class="block px-4 py-2 text-sm text-gray-300 hover:bg-purple-600/20 hover:text-white">Standard
-                                    Room​</a>
-                                <a href="{{ route('accommodation.deluxe') }}"
-                                    class="block px-4 py-2 text-sm text-gray-300 hover:bg-purple-600/20 hover:text-white">Deluxe
-                                    Room</a>
-                                <a href="{{ route('accommodation.suite') }}"
-                                    class="block px-4 py-2 text-sm text-gray-300 hover:bg-purple-600/20 hover:text-white">
-                                    Suite Room</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <a href="{{ route('crescentfacilities') }}"
-                     class="nav-item text-gray-300 hover:text-white px-3 py-2 text-sm font-medium inline-flex items-center">Dining
-                    </a>
-                    <!-- Banquets And Meetings Dropdown -->
-                    <div class="dropdown relative group">
-                        <button
-                            class="nav-item text-gray-300 hover:text-white px-2 py-2 text-sm font-medium inline-flex items-center">
-                            <span>Banquets And Meetings</span>
-                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </button>
-                        {{-- <div
-                            class="dropdown-menu absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-[#0D0630] ring-1 ring-black ring-opacity-5 z-50">
-                            <div class="py-1">
-                                <a href="{{ route('banquets.lawn') }}"
-                                    class="block px-4 py-2 text-sm text-gray-300 hover:bg-purple-600/20 hover:text-white">Lawn
-                                    </a>
-                                <a href="{{ route('banquets.ballroom') }}"
-                                    class="block px-4 py-2 text-sm text-gray-300 hover:bg-purple-600/20 hover:text-white">Ballroom
-                                    </a>
-                            </div>
-                        </div> --}}
-                        <div class="relative group">
-                            {{-- <button
-                                class="text-white px-4 py-2 text-sm hover:text-purple-300 focus:outline-none focus:text-purple-300">
-                                Banquets
-                            </button> --}}
-                            <div
-                                class="dropdown-menu absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-[#0D0630] ring-1 ring-black ring-opacity-5 z-50 hidden group-hover:block md:block">
-                                <div class="py-1">
-                                    <a href="{{ route('banquets.lawn') }}"
-                                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-purple-600/20 hover:text-white">Lawn</a>
-                                    {{-- <a href="{{ route('banquets.ballroom') }}"
-                                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-purple-600/20 hover:text-white">Banquet
-                                        Hall
-                                    </a>
-
-                                    <a href="{{ route('banquets.ontherock') }}"
-                                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-purple-600/20 hover:text-white">On
-                                        The Rock
-                                    </a> --}}
-
-                                    <div class="flex items-center justify-center h-auto">
-                                        <div x-data="{ open: false }" class="relative inline-block text-left">
-                                            <button @click="open = !open"
-                                                class="inline-flex justify-between w-56 px-4 py-2 text-sm font-medium text-gray-300 hover:bg-purple-600/20 hover:text-white focus:outline-none focus:ring-offset-gray-100">
-                                                Banquet Hall
-                                                <svg class="h-5 w-5 ml-2 transform transition-transform duration-200"
-                                                    :class="{ 'rotate-0': open, '-rotate-180': !open }" fill="none"
-                                                    stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                                </svg>
-                                            </button>
-
-                                            <div x-show="open" @click.away="open = false" x-transition
-                                                class="origin-top-left absolute left-full top-0 ml-2 w-56 rounded-md shadow-lg bg-[#0D0630] text-gray-300 hover:text-white px-2 py-2 z-10">
-                                                <a href="{{ route('banquets.ballroom') }}"
-                                                    class="block px-4 py-2 text-sm text-gray-300 hover:bg-purple-600/20 hover:text-white focus:outline-none focus:ring-offset-gray-100 rounded-md">Royal Ballroom
-                                                    </a>
-                                                <a href="{{ route('banquets.ontherock') }}"
-                                                    class="block px-4 py-2 text-sm text-gray-300 hover:bg-purple-600/20 hover:text-white focus:outline-none focus:ring-offset-gray-100 rounded-md">On the Rocks
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <!-- Submenu: Conference Room -->
-                                    <div class="flex items-center justify-center h-auto">
-                                        <div x-data="{ open: false }" class="relative inline-block text-left">
-                                            <button @click="open = !open"
-                                                class="inline-flex justify-between w-56 px-4 py-2 text-sm font-medium text-gray-300 hover:bg-purple-600/20 hover:text-white focus:outline-none focus:ring-offset-gray-100">
-                                                Conference Hall
-                                                <svg class="h-5 w-5 ml-2 transform transition-transform duration-200"
-                                                    :class="{ 'rotate-0': open, '-rotate-180': !open }" fill="none"
-                                                    stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                                </svg>
-                                            </button>
-
-                                            <div x-show="open" @click.away="open = false" x-transition
-                                                class="origin-top-left absolute left-full top-0 ml-2 w-56 rounded-md shadow-lg bg-[#0D0630] text-gray-300 hover:text-white px-2 py-2 z-10">
-                                                <a href="{{ route('banquets.elite1') }}"
-                                                    class="block px-4 py-2 text-sm text-gray-300 hover:bg-purple-600/20 hover:text-white focus:outline-none focus:ring-offset-gray-100 rounded-md">Elite
-                                                    1</a>
-                                                <a href="{{ route('banquets.elite2') }}"
-                                                    class="block px-4 py-2 text-sm text-gray-300 hover:bg-purple-600/20 hover:text-white focus:outline-none focus:ring-offset-gray-100 rounded-md">Elite
-                                                    2</a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
-                                    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <a href="{{ route('rules-and-regulations') }}"
-                        class="nav-item text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">
-                        Rules & Regulations
-                    </a>
-                    {{-- <a href="{{ route('careers') }}"
-                        class="nav-item text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">
-                        Careers
-                    </a> --}}
-                    <a href="{{ route('gallery') }}"
-                        class="nav-item text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">
-                        Gallery
-                    </a>
-                    <a href="{{ route('contact-us') }}"
-                        class="nav-item text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">
-                        Contact Us
-                    </a>
-
-                    <a href="{{ route('explore-ayodhya') }}"
-                        class="nav-item text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">
-                        Explore Ayodhya
-                    </a>
-
-                    <a href="{{ route('dashboard') }}"
-                        class="nav-item text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                            fill="#e3e3e3">
-                            <path
-                                d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z" />
-                        </svg>
-                    </a>
-
-                </nav>
-
-                <!-- Mobile menu button with enhanced styling -->
-                <div class="flex lg:hidden">
-                    <button type="button"
-                        class="text-gray-300 hover:text-white transform transition-transform hover:scale-105"
-                        id="mobile-menu-button">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Mobile menu remains the same but will use the enhanced glass-effect -->
-
-        <!-- Mobile menu -->
-        <div class="hidden lg:hidden absolute top-full left-0 w-full bg-[#0D0630] border-t border-purple-500/30 glass-effect"
-            id="mobile-menu">
-            <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="/"
-                    class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5">Home</a>
-                <a href="{{ route('about') }}"
-                    class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5">About</a>
-
-                <!-- Mobile Accommodation submenu -->
-                <div class="space-y-1">
-                    <button
-                        class="w-full text-left text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5 flex justify-between items-center"
-                        onclick="toggleSubmenu('accommodation-submenu')">
-                        Accommodation
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </button>
-                    <div id="accommodation-submenu" class="hidden pl-4">
-                        <a href="{{ route('accommodation.standard') }}"
-                            class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5">Standard
-                            Room</a>
-                        <a href="{{ route('accommodation.deluxe') }}"
-                            class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5">Deluxe
-                            Room</a>
-                        <a href="{{ route('accommodation.suite') }}"
-                            class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5">Suite
-                            Room</a>
-                    </div>
-                </div>
-
-                <!-- Mobile Banquets submenu -->
-                {{-- <div class="space-y-1">
-                    <button
-                        class="w-full text-left text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5 flex justify-between items-center"
-                        onclick="toggleSubmenu('banquets-submenu')">
-                        Banquets And Meetings
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </button>
-                    <div id="banquets-submenu" class="hidden pl-4">
-                        <a href="{{ route('banquets.lawn') }}"
-                            class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5">Lawn
-                            Package</a>
-                        <a href="{{ route('banquets.ballroom') }}"
-                            class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5">Ballroom
-                            Package</a>
-                    </div>
-                </div> --}}
-
-                <a href="{{ route('crescentfacilities') }}"
-                    class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5">
-                    Dining
+            <!-- Logo and hotel title (mobile + desktop) -->
+            <div class="flex min-w-0 flex-shrink-0 items-center gap-3">
+                <a href="/" class="flex-shrink-0" aria-label="Hotel Krinoscco Home">
+                    <img src="{{ asset('asset/images/logo.png') }}" alt="Hotel Krinoscco Logo"
+                        class="h-14 w-14 rounded-full object-contain sm:h-16 sm:w-16 lg:h-20 lg:w-20">
                 </a>
 
-
-                <div class="space-y-1">
-                    <!-- Banquets And Meetings -->
-                    <button
-                        class="w-full text-left text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5 flex justify-between items-center"
-                        onclick="toggleSubmenu('banquets-submenu')">
-                        Banquets And Meetings
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </button>
-                    <div id="banquets-submenu" class="hidden pl-4">
-                        <a href="{{ route('banquets.lawn') }}"
-                            class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5">
-                            Lawn Package
-                        </a>
-                        {{-- <a href="{{ route('banquets.ballroom') }}"
-                            class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5">
-                            Ballroom Package
-                        </a>
-                        <a href="{{ route('banquets.ontherock') }}"
-                            class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5">
-                            On The Rock
-                        </a> --}}
-                        <button
-                            class="w-full text-left text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5 flex justify-between items-center"
-                            onclick="toggleSubmenu('conference-submenu1')">
-                            Banquet Hall
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </button>
-                        <div id="conference-submenu1" class="hidden pl-4">
-                            <a href="{{ route('banquets.ballroom') }}"
-                                class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5">
-                                Royal Ballroom
-                            </a>
-                            <a href="{{ route('banquets.ontherock') }}"
-                                class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5">
-                                On the Rocks
-                            </a>
-                        </div>
+                <div class="min-w-0 leading-tight">
+                    <div
+                        class="whitespace-nowrap text-base font-semibold tracking-wide text-white sm:text-lg lg:text-base xl:text-lg">
+                        Hotel Krinoscco
                     </div>
+                    <div
+                        class="mt-1 whitespace-nowrap text-xs tracking-wide text-amber-300 sm:text-sm lg:text-xs xl:text-sm">
+                        Crescent Restaurant
+                    </div>
+                </div>
+            </div>
 
-                    <!-- Conference Room -->
-                    <button
-                        class="w-full text-left text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5 flex justify-between items-center"
-                        onclick="toggleSubmenu('conference-submenu')">
-                        Conference Room
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M19 9l-7 7-7-7" />
+            <!-- Desktop navigation -->
+            <nav class="hidden items-center gap-2 lg:flex xl:gap-4" aria-label="Main navigation">
+                <a href="/" class="desktop-nav-link">Home</a>
+
+                <!-- About dropdown -->
+                <div class="desktop-dropdown relative">
+                    <button type="button" class="desktop-nav-link gap-1">
+                        About
+                        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
-                    <div id="conference-submenu" class="hidden pl-4">
-                        <a href="{{ route('banquets.elite1') }}"
-                            class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5">
-                            Elite 1
-                        </a>
-                        <a href="{{ route('banquets.elite2') }}"
-                            class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5">
-                            Elite 2
-                        </a>
+                    <div class="desktop-dropdown-menu">
+                        <a href="{{ route('about') }}" class="desktop-dropdown-item">About Us</a>
+                        <a href="{{ route('careers') }}" class="desktop-dropdown-item">Careers</a>
+                        <a href="{{ route('gallery') }}" class="desktop-dropdown-item">Gallery</a>
+                        <a href="{{ route('contact-us') }}" class="desktop-dropdown-item">Contact Us</a>
                     </div>
                 </div>
 
+                <!-- Accommodation dropdown -->
+                <div class="desktop-dropdown relative">
+                    <button type="button" class="desktop-nav-link gap-1">
+                        Accommodation
+                        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="desktop-dropdown-menu">
+                        <a href="{{ route('accommodation.standard') }}" class="desktop-dropdown-item">Standard Room</a>
+                        <a href="{{ route('accommodation.deluxe') }}" class="desktop-dropdown-item">Deluxe Room</a>
+                        <a href="{{ route('accommodation.suite') }}" class="desktop-dropdown-item">Suite Room</a>
+                    </div>
+                </div>
 
-                <a href="{{ route('rules-and-regulations') }}"
-                    class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5">Rules
-                    & Regulations</a>
-                <a href="{{ route('careers') }}"
-                    class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5">Careers</a>
-                <a href="{{ route('gallery') }}"
-                    class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5">Gallery</a>
-                <a href="{{ route('contact-us') }}"
-                    class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5">Contact
-                    Us</a>
-                <a href="#"
-                    class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium hover:bg-white/5"><svg
-                        xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                        fill="#e3e3e3">
+                <a href="{{ route('crescentfacilities') }}" class="desktop-nav-link">Dining</a>
+
+                <!-- Banquets dropdown -->
+                <div class="desktop-dropdown relative">
+                    <button type="button" class="desktop-nav-link gap-1">
+                        Banquets & Meetings
+                        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="desktop-dropdown-menu">
+                        <a href="{{ route('banquets.lawn') }}" class="desktop-dropdown-item">Lawn</a>
+                        <a href="{{ route('banquets.ballroom') }}" class="desktop-dropdown-item">Royal Ballroom</a>
+                        <a href="{{ route('banquets.ontherock') }}" class="desktop-dropdown-item">On the Rocks</a>
+                        <a href="{{ route('banquets.elite1') }}" class="desktop-dropdown-item">Elite 1</a>
+                        <a href="{{ route('banquets.elite2') }}" class="desktop-dropdown-item">Elite 2</a>
+                    </div>
+                </div>
+
+                <a href="{{ route('rules-and-regulations') }}" class="desktop-nav-link">Rules & Regulations</a>
+                <a href="{{ route('explore-ayodhya') }}" class="desktop-nav-link">Explore Ayodhya</a>
+
+                <a href="{{ route('dashboard') }}" class="desktop-nav-link" aria-label="Dashboard">
+                    <svg class="h-6 w-6" viewBox="0 -960 960 960" fill="currentColor">
                         <path
-                            d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z" />
-                    </svg></a>
-            </div>
+                            d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Z" />
+                    </svg>
+                </a>
+            </nav>
+
+            <!-- Mobile menu button -->
+            <button type="button" id="mobile-menu-button"
+                class="inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-md border border-amber-300/50 text-white transition hover:bg-white/10 lg:hidden"
+                aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu">
+                <svg id="menu-open-icon" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+                <svg id="menu-close-icon" class="hidden h-6 w-6" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
         </div>
+    </div>
+
+    <!-- Mobile navigation -->
+    <div id="mobile-menu"
+        class="mobile-menu-panel absolute left-0 top-full hidden w-full border-t border-purple-500/30 lg:hidden">
+        <nav class="space-y-1 px-3 py-3" aria-label="Mobile navigation">
+            <a href="/"
+                class="block rounded-lg px-3 py-2.5 font-medium text-gray-200 hover:bg-white/10 hover:text-white">Home</a>
+
+            <div>
+                <button type="button"
+                    class="mobile-submenu-button flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-left font-medium text-gray-200 hover:bg-white/10 hover:text-white"
+                    data-target="mobile-about-submenu">
+                    <span>About</span>
+                    <svg class="submenu-arrow h-4 w-4 transition-transform" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div id="mobile-about-submenu" class="hidden space-y-1 py-1 pl-4">
+                    <a href="{{ route('about') }}"
+                        class="block rounded-lg px-3 py-2 text-sm text-gray-300 hover:bg-white/10 hover:text-white">About
+                        Us</a>
+                    <a href="{{ route('careers') }}"
+                        class="block rounded-lg px-3 py-2 text-sm text-gray-300 hover:bg-white/10 hover:text-white">Careers</a>
+                    <a href="{{ route('gallery') }}"
+                        class="block rounded-lg px-3 py-2 text-sm text-gray-300 hover:bg-white/10 hover:text-white">Gallery</a>
+                    <a href="{{ route('contact-us') }}"
+                        class="block rounded-lg px-3 py-2 text-sm text-gray-300 hover:bg-white/10 hover:text-white">Contact
+                        Us</a>
+                </div>
+            </div>
+
+            <div>
+                <button type="button"
+                    class="mobile-submenu-button flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-left font-medium text-gray-200 hover:bg-white/10 hover:text-white"
+                    data-target="mobile-accommodation-submenu">
+                    <span>Accommodation</span>
+                    <svg class="submenu-arrow h-4 w-4 transition-transform" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div id="mobile-accommodation-submenu" class="hidden space-y-1 py-1 pl-4">
+                    <a href="{{ route('accommodation.standard') }}"
+                        class="block rounded-lg px-3 py-2 text-sm text-gray-300 hover:bg-white/10 hover:text-white">Standard
+                        Room</a>
+                    <a href="{{ route('accommodation.deluxe') }}"
+                        class="block rounded-lg px-3 py-2 text-sm text-gray-300 hover:bg-white/10 hover:text-white">Deluxe
+                        Room</a>
+                    <a href="{{ route('accommodation.suite') }}"
+                        class="block rounded-lg px-3 py-2 text-sm text-gray-300 hover:bg-white/10 hover:text-white">Suite
+                        Room</a>
+                </div>
+            </div>
+
+            <a href="{{ route('crescentfacilities') }}"
+                class="block rounded-lg px-3 py-2.5 font-medium text-gray-200 hover:bg-white/10 hover:text-white">Dining</a>
+
+            <div>
+                <button type="button"
+                    class="mobile-submenu-button flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-left font-medium text-gray-200 hover:bg-white/10 hover:text-white"
+                    data-target="mobile-banquets-submenu">
+                    <span>Banquets & Meetings</span>
+                    <svg class="submenu-arrow h-4 w-4 transition-transform" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div id="mobile-banquets-submenu" class="hidden space-y-1 py-1 pl-4">
+                    <a href="{{ route('banquets.lawn') }}"
+                        class="block rounded-lg px-3 py-2 text-sm text-gray-300 hover:bg-white/10 hover:text-white">Lawn</a>
+                    <a href="{{ route('banquets.ballroom') }}"
+                        class="block rounded-lg px-3 py-2 text-sm text-gray-300 hover:bg-white/10 hover:text-white">Royal
+                        Ballroom</a>
+                    <a href="{{ route('banquets.ontherock') }}"
+                        class="block rounded-lg px-3 py-2 text-sm text-gray-300 hover:bg-white/10 hover:text-white">On
+                        the Rocks</a>
+                    <a href="{{ route('banquets.elite1') }}"
+                        class="block rounded-lg px-3 py-2 text-sm text-gray-300 hover:bg-white/10 hover:text-white">Elite
+                        1</a>
+                    <a href="{{ route('banquets.elite2') }}"
+                        class="block rounded-lg px-3 py-2 text-sm text-gray-300 hover:bg-white/10 hover:text-white">Elite
+                        2</a>
+                </div>
+            </div>
+
+            <a href="{{ route('rules-and-regulations') }}"
+                class="block rounded-lg px-3 py-2.5 font-medium text-gray-200 hover:bg-white/10 hover:text-white">Rules
+                & Regulations</a>
+            <a href="{{ route('explore-ayodhya') }}"
+                class="block rounded-lg px-3 py-2.5 font-medium text-gray-200 hover:bg-white/10 hover:text-white">Explore
+                Ayodhya</a>
+            <a href="{{ route('dashboard') }}"
+                class="block rounded-lg px-3 py-2.5 font-medium text-gray-200 hover:bg-white/10 hover:text-white">Dashboard</a>
+        </nav>
     </div>
 </header>
 
 <script>
-    // Mobile menu toggle
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const openIcon = document.getElementById('menu-open-icon');
+        const closeIcon = document.getElementById('menu-close-icon');
 
-    mobileMenuButton.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-    });
-
-    // Mobile submenu toggle
-    function toggleSubmenu(id) {
-        const submenu = document.getElementById(id);
-        submenu.classList.toggle('hidden');
-    }
-
-    // Add scroll effect
-    window.addEventListener('scroll', () => {
-        const header = document.querySelector('header');
-        if (window.scrollY > 0) {
-            header.classList.add('glass-effect');
-        } else {
-            header.classList.remove('glass-effect');
+        if (menuButton && mobileMenu) {
+            menuButton.addEventListener('click', function() {
+                const isOpening = mobileMenu.classList.contains('hidden');
+                mobileMenu.classList.toggle('hidden');
+                openIcon.classList.toggle('hidden', isOpening);
+                closeIcon.classList.toggle('hidden', !isOpening);
+                menuButton.setAttribute('aria-expanded', isOpening ? 'true' : 'false');
+            });
         }
+
+        document.querySelectorAll('.mobile-submenu-button').forEach(function(button) {
+            button.addEventListener('click', function() {
+                const submenu = document.getElementById(button.dataset.target);
+                const arrow = button.querySelector('.submenu-arrow');
+                if (!submenu) return;
+
+                submenu.classList.toggle('hidden');
+                if (arrow) arrow.classList.toggle('rotate-180');
+            });
+        });
     });
 </script>
