@@ -194,10 +194,10 @@
                         </div>
                     </div>
 
-                    <div class="absolute -bottom-7 left-6 rounded-2xl border border-[#8B4513]/10 bg-white px-6 py-5 shadow-xl sm:left-12">
+                    {{-- <div class="absolute -bottom-7 left-6 rounded-2xl border border-[#8B4513]/10 bg-white px-6 py-5 shadow-xl sm:left-12">
                         <p class="text-3xl font-bold text-[#8B4513]">Saptapuri</p>
                         <p class="mt-1 text-sm text-gray-500">One of India's seven sacred cities</p>
-                    </div>
+                    </div> --}}
                 </div>
 
                 <div class="ayodhya-reveal">
@@ -223,13 +223,13 @@
                     </div>
 
                     <div class="mt-8 grid gap-4 sm:grid-cols-2">
-                        <div class="rounded-2xl border border-[#8B4513]/10 bg-white p-5 shadow-sm">
+                        {{-- <div class="rounded-2xl border border-[#8B4513]/10 bg-white p-5 shadow-sm">
                             <p class="text-sm text-gray-500">Best time to visit</p>
                             <p class="mt-1 font-bold text-[#1a1a2e]">October to March</p>
-                        </div>
+                        </div> --}}
                         <div class="rounded-2xl border border-[#8B4513]/10 bg-white p-5 shadow-sm">
                             <p class="text-sm text-gray-500">Ideal trip duration</p>
-                            <p class="mt-1 font-bold text-[#1a1a2e]">2 to 3 Days</p>
+                            <p class="mt-1 font-bold text-[#1a1a2e]">2 Days</p>
                         </div>
                     </div>
                 </div>
@@ -246,7 +246,7 @@
                     <div class="mt-2 text-sm text-white/65">Sacred Places</div>
                 </div>
                 <div class="text-center ayodhya-reveal">
-                    <div class="text-3xl font-bold text-[#f3c55b] md:text-4xl">2–3</div>
+                    <div class="text-3xl font-bold text-[#f3c55b] md:text-4xl">2</div>
                     <div class="mt-2 text-sm text-white/65">Days Recommended</div>
                 </div>
                 <div class="text-center ayodhya-reveal">
@@ -407,7 +407,7 @@
                                 <h3 class="mt-5 text-xl font-bold text-[#1a1a2e]">By Road</h3>
                                 <p class="mt-3 leading-7 text-gray-600">
                                     Ayodhya is connected by road with Lucknow, Varanasi, Prayagraj, Gorakhpur and other major
-                                    cities. Buses, taxis and private vehicles are readily available.
+                                    cities. Buses and taxis are readily available.
                                 </p>
                             </div>
                         </div>
@@ -433,7 +433,7 @@
                                     </div>
                                     <div class="flex justify-between gap-5 p-4">
                                         <span class="text-gray-500">Recommended Stay</span>
-                                        <strong class="text-right">2 to 3 Days</strong>
+                                        <strong class="text-right">2 Days</strong>
                                     </div>
                                     <div class="flex justify-between gap-5 p-4">
                                         <span class="text-gray-500">Main River</span>
