@@ -12,8 +12,10 @@
          */
         $ayodhyaImages = [
             'hero' => 'https://uptourism.gov.in/downloadmedia/PageGallary/PG_202401161030549074.jpg',
-            'lord_ram' => 'https://uptourism.gov.in/downloadmedia/siteContent/Year_2024/202401241658434109lord-ram-ayodhya.jpg',
-            'ram_mandir' => 'https://uptourism.gov.in/downloadmedia/siteContent/Year_2024/202401241609363984ram-mandir.jpg',
+            'lord_ram' =>
+                'https://uptourism.gov.in/downloadmedia/siteContent/Year_2024/202401241658434109lord-ram-ayodhya.jpg',
+            'ram_mandir' =>
+                'https://uptourism.gov.in/downloadmedia/siteContent/Year_2024/202401241609363984ram-mandir.jpg',
             'video_poster' => 'https://uptourism.gov.in/images/Ayodhya_video_poster.jpg',
         ];
     @endphp
@@ -119,16 +121,15 @@
     <div class="ayodhya-page bg-[#fffdf9]">
         {{-- HERO BANNER --}}
         <section class="relative min-h-[72vh] md:min-h-[82vh] flex items-end overflow-hidden">
-            <img src="{{ $ayodhyaImages['hero'] }}"
-                alt="Ayodhya Dham"
-                class="absolute inset-0 h-full w-full object-cover">
+            <img src="{{ $ayodhyaImages['hero'] }}" alt="Ayodhya Dham" class="absolute inset-0 h-full w-full object-cover">
 
             <div class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-black/20"></div>
             <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/20"></div>
 
             <div class="ayodhya-container relative z-10 pb-16 pt-36 md:pb-24">
                 <div class="max-w-3xl text-white ayodhya-reveal">
-                    <div class="mb-5 inline-flex items-center gap-3 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-sm backdrop-blur-md">
+                    <div
+                        class="mb-5 inline-flex items-center gap-3 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-sm backdrop-blur-md">
                         <span class="h-2 w-2 rounded-full bg-[#D4A017]"></span>
                         Discover the Spiritual Heart of India
                     </div>
@@ -139,7 +140,8 @@
                     </h1>
 
                     <p class="mt-6 max-w-2xl text-base leading-8 text-white/85 md:text-xl">
-                        Walk through sacred temples, timeless ghats, cultural landmarks and the divine stories of Lord Shri Ram.
+                        Walk through sacred temples, timeless ghats, cultural landmarks and the divine stories of Lord Shri
+                        Ram.
                     </p>
 
                     <div class="mt-8 flex flex-wrap gap-4">
@@ -176,19 +178,15 @@
                 <div class="relative ayodhya-reveal">
                     <div class="grid grid-cols-12 gap-4">
                         <div class="col-span-8 overflow-hidden rounded-[28px] shadow-2xl ayodhya-image-zoom">
-                            <img src="{{ $ayodhyaImages['ram_mandir'] }}"
-                                alt="Shri Ram Mandir Ayodhya"
+                            <img src="{{ $ayodhyaImages['ram_mandir'] }}" alt="Shri Ram Mandir Ayodhya"
                                 class="h-[430px] w-full object-cover">
                         </div>
                         <div class="col-span-4 flex flex-col gap-4 pt-12">
                             <div class="overflow-hidden rounded-[24px] shadow-xl ayodhya-image-zoom">
-                                <img src="{{ $ayodhyaImages['hero'] }}"
-                                    alt="Saryu Ghat"
-                                    class="h-44 w-full object-cover">
+                                <img src="{{ $ayodhyaImages['hero'] }}" alt="Saryu Ghat" class="h-44 w-full object-cover">
                             </div>
                             <div class="overflow-hidden rounded-[24px] shadow-xl ayodhya-image-zoom">
-                                <img src="{{ $ayodhyaImages['lord_ram'] }}"
-                                    alt="Hanuman Garhi"
+                                <img src="{{ $ayodhyaImages['lord_ram'] }}" alt="Hanuman Garhi"
                                     class="h-52 w-full object-cover">
                             </div>
                         </div>
@@ -349,7 +347,7 @@
         @include('ayodhya-places.places-section', ['places' => $places])
 
 
-                {{-- OVERVIEW TABS --}}
+        {{-- OVERVIEW TABS --}}
         <section id="reach" class="ayodhya-pattern bg-[#fff8ec] py-20 md:py-28">
             <div class="ayodhya-container">
                 <div class="mx-auto max-w-3xl text-center ayodhya-reveal">
@@ -358,24 +356,35 @@
                     <h2 class="mt-3 text-4xl font-bold text-[#1a1a2e] md:text-5xl">Ayodhya visitor overview</h2>
                 </div>
 
-                <div id="ayodhyaTabs"
-                    class="mt-12 flex flex-wrap justify-center gap-3 pb-3 ayodhya-reveal">
-                    <button type="button" class="ayodhya-tab-button active whitespace-nowrap rounded-xl border border-[#8B4513]/15 bg-white px-5 py-3 font-semibold" data-tab="reach-panel">
+                <div id="ayodhyaTabs" class="mt-12 flex flex-wrap justify-center gap-3 pb-3 ayodhya-reveal">
+                    <button type="button"
+                        class="ayodhya-tab-button active whitespace-nowrap rounded-xl border border-[#8B4513]/15 bg-white px-5 py-3 font-semibold"
+                        data-tab="reach-panel">
                         How to Reach
                     </button>
-                    <button type="button" class="ayodhya-tab-button whitespace-nowrap rounded-xl border border-[#8B4513]/15 bg-white px-5 py-3 font-semibold" data-tab="info-panel">
+                    <button type="button"
+                        class="ayodhya-tab-button whitespace-nowrap rounded-xl border border-[#8B4513]/15 bg-white px-5 py-3 font-semibold"
+                        data-tab="info-panel">
                         General Info
                     </button>
-                    <button type="button" class="ayodhya-tab-button whitespace-nowrap rounded-xl border border-[#8B4513]/15 bg-white px-5 py-3 font-semibold" data-tab="food-panel">
+                    <button type="button"
+                        class="ayodhya-tab-button whitespace-nowrap rounded-xl border border-[#8B4513]/15 bg-white px-5 py-3 font-semibold"
+                        data-tab="food-panel">
                         Food & Cuisine
                     </button>
-                    <button type="button" class="ayodhya-tab-button whitespace-nowrap rounded-xl border border-[#8B4513]/15 bg-white px-5 py-3 font-semibold" data-tab="shopping-panel">
+                    <button type="button"
+                        class="ayodhya-tab-button whitespace-nowrap rounded-xl border border-[#8B4513]/15 bg-white px-5 py-3 font-semibold"
+                        data-tab="shopping-panel">
                         Shopping
                     </button>
-                    <button type="button" class="ayodhya-tab-button whitespace-nowrap rounded-xl border border-[#8B4513]/15 bg-white px-5 py-3 font-semibold" data-tab="festival-panel">
+                    <button type="button"
+                        class="ayodhya-tab-button whitespace-nowrap rounded-xl border border-[#8B4513]/15 bg-white px-5 py-3 font-semibold"
+                        data-tab="festival-panel">
                         Fairs & Festivals
                     </button>
-                    <button type="button" class="ayodhya-tab-button whitespace-nowrap rounded-xl border border-[#8B4513]/15 bg-white px-5 py-3 font-semibold" data-tab="tips-panel">
+                    <button type="button"
+                        class="ayodhya-tab-button whitespace-nowrap rounded-xl border border-[#8B4513]/15 bg-white px-5 py-3 font-semibold"
+                        data-tab="tips-panel">
                         Travel Tips
                     </button>
                 </div>
@@ -384,32 +393,64 @@
                     {{-- HOW TO REACH --}}
                     <div id="reach-panel" class="ayodhya-tab-panel active">
                         <div class="grid gap-6 md:grid-cols-3">
-                            <div class="rounded-2xl bg-[#fff8ec] p-6">
-                                <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#8B4513] text-xl font-bold text-white">✈</div>
-                                <h3 class="mt-5 text-xl font-bold text-[#1a1a2e]">By Air</h3>
-                                <p class="mt-3 leading-7 text-gray-600">
-                                    Maharishi Valmiki International Airport, Ayodhya Dham provides convenient air access.
-                                    Travellers may also arrive through Lucknow and continue by road.
-                                </p>
+
+                            {{-- By Air --}}
+                            <div class="relative overflow-hidden rounded-2xl bg-cover bg-center p-6 min-h-[260px]"
+                                style="background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=80');">
+
+                                <div class="absolute inset-0 bg-white/75"></div>
+
+                                <div class="relative z-10">
+                                    <div
+                                        class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#8B4513] text-xl font-bold text-white">
+                                        ✈</div>
+                                    <h3 class="mt-5 text-xl font-bold text-[#1a1a2e]">By Air</h3>
+                                    <p class="mt-3 leading-7 font-bold text-[#8B4513]">
+                                        Maharishi Valmiki International Airport, Ayodhya Dham provides convenient air
+                                        access.
+                                        Travellers may also arrive through Lucknow and continue by road.
+                                    </p>
+                                </div>
                             </div>
 
-                            <div class="rounded-2xl bg-[#fff8ec] p-6">
-                                <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#8B4513] text-xl font-bold text-white">🚆</div>
-                                <h3 class="mt-5 text-xl font-bold text-[#1a1a2e]">By Rail</h3>
-                                <p class="mt-3 leading-7 text-gray-600">
-                                    Ayodhya Dham Junction and Ayodhya Cantt connect the city with major destinations across
-                                    India through regular express and passenger train services.
-                                </p>
+                            {{-- By Rail --}}
+                            <div class="relative overflow-hidden rounded-2xl bg-cover bg-center p-6 min-h-[260px]"
+                                style="background-image: url('https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=1200&q=80');">
+
+                                <div class="absolute inset-0 bg-white/75"></div>
+
+                                <div class="relative z-10">
+                                    <div
+                                        class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#8B4513] text-xl font-bold text-white">
+                                        🚆</div>
+                                    <h3 class="mt-5 text-xl font-bold text-[#1a1a2e]">By Rail</h3>
+                                    <p class="mt-3 leading-7 font-bold text-[#8B4513]">
+                                        Ayodhya Dham Junction and Ayodhya Cantt connect the city with major destinations
+                                        across
+                                        India through regular express and passenger train services.
+                                    </p>
+                                </div>
                             </div>
 
-                            <div class="rounded-2xl bg-[#fff8ec] p-6">
-                                <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#8B4513] text-xl font-bold text-white">🚌</div>
-                                <h3 class="mt-5 text-xl font-bold text-[#1a1a2e]">By Road</h3>
-                                <p class="mt-3 leading-7 text-gray-600">
-                                    Ayodhya is connected by road with Lucknow, Varanasi, Prayagraj, Gorakhpur and other major
-                                    cities. Buses and taxis are readily available.
-                                </p>
+                            {{-- By Road --}}
+                            <div class="relative overflow-hidden rounded-2xl bg-cover bg-center p-6 min-h-[260px]"
+                                style="background-image: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80');">
+
+                                <div class="absolute inset-0 bg-white/75"></div>
+
+                                <div class="relative z-10">
+                                    <div
+                                        class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#8B4513] text-xl font-bold text-white">
+                                        🚌</div>
+                                    <h3 class="mt-5 text-xl font-bold text-[#1a1a2e]">By Road</h3>
+                                    <p class="mt-3 leading-7 font-bold text-[#8B4513]">
+                                        Ayodhya is connected by road with Lucknow, Varanasi, Prayagraj, Gorakhpur and other
+                                        major
+                                        cities. Buses and taxis are readily available.
+                                    </p>
+                                </div>
                             </div>
+
                         </div>
                     </div>
 
@@ -445,7 +486,8 @@
                                 <h3 class="text-2xl font-bold">Weather guide</h3>
                                 <p class="mt-4 leading-7 text-white/70">
                                     Summers can be hot from April to June. Winters remain pleasant to cool from November to
-                                    February. Carry comfortable walking footwear, modest clothing and a light layer in winter.
+                                    February. Carry comfortable walking footwear, modest clothing and a light layer in
+                                    winter.
                                 </p>
                                 <div class="mt-7 grid grid-cols-2 gap-4">
                                     <div class="rounded-xl bg-white/10 p-4">
@@ -465,8 +507,7 @@
                     <div id="food-panel" class="ayodhya-tab-panel">
                         <div class="grid items-center gap-10 lg:grid-cols-2">
                             <div class="overflow-hidden rounded-2xl ayodhya-image-zoom">
-                                <img src="{{ asset('asset/images/kitchen.jpg') }}"
-                                    alt="Ayodhya food and cuisine"
+                                <img src="{{ asset('asset/images/kitchen.jpg') }}" alt="Ayodhya food and cuisine"
                                     class="h-80 w-full object-cover">
                             </div>
                             <div>
@@ -478,7 +519,8 @@
                                 </p>
                                 <div class="mt-6 flex flex-wrap gap-3">
                                     @foreach (['Kachori Sabzi', 'Sattvik Thali', 'Jalebi', 'Peda', 'Rabri', 'Lassi'] as $food)
-                                        <span class="rounded-full bg-[#8B4513]/10 px-4 py-2 text-sm font-semibold text-[#8B4513]">{{ $food }}</span>
+                                        <span
+                                            class="rounded-full bg-[#8B4513]/10 px-4 py-2 text-sm font-semibold text-[#8B4513]">{{ $food }}</span>
                                     @endforeach
                                 </div>
                             </div>
@@ -497,13 +539,14 @@
                                 </p>
                                 <ul class="mt-6 grid gap-3 sm:grid-cols-2">
                                     @foreach (['Ram Darbar idols', 'Brass & copper items', 'Religious books', 'Traditional textiles', 'Local sweets', 'Handcrafted souvenirs'] as $item)
-                                        <li class="rounded-xl border border-[#8B4513]/10 bg-[#fff8ec] px-4 py-3 font-medium text-gray-700">✓ {{ $item }}</li>
+                                        <li
+                                            class="rounded-xl border border-[#8B4513]/10 bg-[#fff8ec] px-4 py-3 font-medium text-gray-700">
+                                            ✓ {{ $item }}</li>
                                     @endforeach
                                 </ul>
                             </div>
                             <div class="overflow-hidden rounded-2xl ayodhya-image-zoom">
-                                <img src="{{ $ayodhyaImages['lord_ram'] }}"
-                                    alt="Shopping in Ayodhya"
+                                <img src="{{ $ayodhyaImages['lord_ram'] }}" alt="Shopping in Ayodhya"
                                     class="h-80 w-full object-cover">
                             </div>
                         </div>
@@ -515,32 +558,38 @@
                             <div class="rounded-2xl border border-[#8B4513]/10 p-6">
                                 <p class="text-sm font-bold uppercase tracking-wider text-[#8B4513]">Festival of Lights</p>
                                 <h3 class="mt-2 text-2xl font-bold text-[#1a1a2e]">Deepotsav</h3>
-                                <p class="mt-3 leading-7 text-gray-600">Lakhs of diyas, cultural performances, Ramleela and a magnificent Saryu Aarti illuminate the city.</p>
+                                <p class="mt-3 leading-7 text-gray-600">Lakhs of diyas, cultural performances, Ramleela and
+                                    a magnificent Saryu Aarti illuminate the city.</p>
                             </div>
                             <div class="rounded-2xl border border-[#8B4513]/10 p-6">
                                 <p class="text-sm font-bold uppercase tracking-wider text-[#8B4513]">Birth Celebration</p>
                                 <h3 class="mt-2 text-2xl font-bold text-[#1a1a2e]">Ram Navami</h3>
-                                <p class="mt-3 leading-7 text-gray-600">A major spiritual celebration marking the birth of Lord Shri Ram with prayers and processions.</p>
+                                <p class="mt-3 leading-7 text-gray-600">A major spiritual celebration marking the birth of
+                                    Lord Shri Ram with prayers and processions.</p>
                             </div>
                             <div class="rounded-2xl border border-[#8B4513]/10 p-6">
                                 <p class="text-sm font-bold uppercase tracking-wider text-[#8B4513]">Traditional Fair</p>
                                 <h3 class="mt-2 text-2xl font-bold text-[#1a1a2e]">Parikrama Mela</h3>
-                                <p class="mt-3 leading-7 text-gray-600">Devotees participate in sacred circumambulation routes and religious gatherings across Ayodhya.</p>
+                                <p class="mt-3 leading-7 text-gray-600">Devotees participate in sacred circumambulation
+                                    routes and religious gatherings across Ayodhya.</p>
                             </div>
                             <div class="rounded-2xl border border-[#8B4513]/10 p-6">
                                 <p class="text-sm font-bold uppercase tracking-wider text-[#8B4513]">Monsoon Festival</p>
                                 <h3 class="mt-2 text-2xl font-bold text-[#1a1a2e]">Shravan Jhoola Mela</h3>
-                                <p class="mt-3 leading-7 text-gray-600">Beautifully decorated swings, devotional songs and temple festivities create a vibrant atmosphere.</p>
+                                <p class="mt-3 leading-7 text-gray-600">Beautifully decorated swings, devotional songs and
+                                    temple festivities create a vibrant atmosphere.</p>
                             </div>
                             <div class="rounded-2xl border border-[#8B4513]/10 p-6">
                                 <p class="text-sm font-bold uppercase tracking-wider text-[#8B4513]">Divine Wedding</p>
                                 <h3 class="mt-2 text-2xl font-bold text-[#1a1a2e]">Ram Vivah</h3>
-                                <p class="mt-3 leading-7 text-gray-600">The sacred wedding of Lord Ram and Goddess Sita is celebrated with colourful rituals and devotion.</p>
+                                <p class="mt-3 leading-7 text-gray-600">The sacred wedding of Lord Ram and Goddess Sita is
+                                    celebrated with colourful rituals and devotion.</p>
                             </div>
                             <div class="rounded-2xl border border-[#8B4513]/10 p-6">
                                 <p class="text-sm font-bold uppercase tracking-wider text-[#8B4513]">Cultural Event</p>
                                 <h3 class="mt-2 text-2xl font-bold text-[#1a1a2e]">Ramayan Mela</h3>
-                                <p class="mt-3 leading-7 text-gray-600">Performances, discourses and exhibitions celebrate the teachings and cultural legacy of the Ramayana.</p>
+                                <p class="mt-3 leading-7 text-gray-600">Performances, discourses and exhibitions celebrate
+                                    the teachings and cultural legacy of the Ramayana.</p>
                             </div>
                         </div>
                     </div>
@@ -548,14 +597,7 @@
                     {{-- TIPS --}}
                     <div id="tips-panel" class="ayodhya-tab-panel">
                         <div class="grid gap-5 md:grid-cols-2">
-                            @foreach ([
-                                ['Respect temple rules', 'Follow security instructions, dress modestly and keep footwear only at designated counters.'],
-                                ['Start early', 'Visit major temples in the morning to avoid crowds and enjoy a calmer experience.'],
-                                ['Carry essentials', 'Keep water, ID proof, a small cash amount and comfortable walking shoes.'],
-                                ['Plan local transport', 'Use registered e-rickshaws, autos or taxis and confirm fares before starting.'],
-                                ['Protect belongings', 'Keep phones, wallets and documents secure in crowded temple and market areas.'],
-                                ['Check festival dates', 'During major festivals, book rooms and transport well in advance.'],
-                            ] as $tip)
+                            @foreach ([['Respect temple rules', 'Follow security instructions, dress modestly and keep footwear only at designated counters.'], ['Start early', 'Visit major temples in the morning to avoid crowds and enjoy a calmer experience.'], ['Carry essentials', 'Keep water, ID proof, a small cash amount and comfortable walking shoes.'], ['Plan local transport', 'Use registered e-rickshaws, autos or taxis and confirm fares before starting.'], ['Protect belongings', 'Keep phones, wallets and documents secure in crowded temple and market areas.'], ['Check festival dates', 'During major festivals, book rooms and transport well in advance.']] as $tip)
                                 <div class="rounded-2xl bg-[#fff8ec] p-5">
                                     <h3 class="font-bold text-[#1a1a2e]">{{ $tip[0] }}</h3>
                                     <p class="mt-2 text-sm leading-6 text-gray-600">{{ $tip[1] }}</p>
@@ -568,11 +610,11 @@
         </section>
 
 
-                {{-- STAY CTA --}}
+        {{-- STAY CTA --}}
         <section class="px-3 pb-20 md:pb-28">
-            <div class="ayodhya-container relative overflow-hidden rounded-[32px] bg-[#8B4513] px-6 py-14 text-white shadow-2xl md:px-14 md:py-16">
-                <img src="{{ asset('asset/images/cafe.jpg') }}"
-                    alt="Stay near Ayodhya attractions"
+            <div
+                class="ayodhya-container relative overflow-hidden rounded-[32px] bg-[#8B4513] px-6 py-14 text-white shadow-2xl md:px-14 md:py-16">
+                <img src="{{ asset('asset/images/cafe.jpg') }}" alt="Stay near Ayodhya attractions"
                     class="absolute inset-0 h-full w-full object-cover opacity-25">
                 <div class="absolute inset-0 bg-gradient-to-r from-[#5e2d0d] via-[#8B4513]/95 to-[#8B4513]/65"></div>
 
@@ -583,7 +625,8 @@
                             Make Hotel Krinoscco your comfortable base in Ayodhya
                         </h2>
                         <p class="mt-5 max-w-2xl text-lg leading-8 text-white/80">
-                            Relax in modern rooms, enjoy warm hospitality and explore Ayodhya's leading attractions with convenient city access.
+                            Relax in modern rooms, enjoy warm hospitality and explore Ayodhya's leading attractions with
+                            convenient city access.
                         </p>
                     </div>
                     <div class="flex flex-wrap gap-4 lg:flex-col">
@@ -605,9 +648,7 @@
         {{-- VIDEO / THROUGH LENS --}}
         <section class="relative overflow-hidden bg-[#17120f] py-20 text-white md:py-28">
             <div class="absolute inset-0 opacity-25">
-                <img src="{{ $ayodhyaImages['hero'] }}"
-                    alt="Deepotsav Ayodhya"
-                    class="h-full w-full object-cover">
+                <img src="{{ $ayodhyaImages['hero'] }}" alt="Deepotsav Ayodhya" class="h-full w-full object-cover">
             </div>
             <div class="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-black/55"></div>
 
@@ -629,10 +670,9 @@
                     </div>
                 </div>
 
-                <div class="overflow-hidden rounded-[28px] border border-white/10 bg-white/5 p-2 shadow-2xl ayodhya-reveal">
-                    <video class="aspect-video w-full rounded-[22px] bg-black object-cover"
-                        controls
-                        preload="metadata"
+                <div
+                    class="overflow-hidden rounded-[28px] border border-white/10 bg-white/5 p-2 shadow-2xl ayodhya-reveal">
+                    <video class="aspect-video w-full rounded-[22px] bg-black object-cover" controls preload="metadata"
                         poster="{{ $ayodhyaImages['video_poster'] }}">
                         <source src="{{ asset('asset/video/ayodhya.mp4') }}" type="video/mp4">
                         Your browser does not support HTML video.
@@ -649,7 +689,8 @@
 
             <div class="ayodhya-container relative">
                 <div class="mx-auto max-w-3xl text-center ayodhya-reveal">
-                    <div class="inline-flex items-center gap-3 rounded-full border border-[#8B4513]/15 bg-white px-5 py-2 text-sm font-semibold uppercase tracking-[.18em] text-[#8B4513] shadow-sm">
+                    <div
+                        class="inline-flex items-center gap-3 rounded-full border border-[#8B4513]/15 bg-white px-5 py-2 text-sm font-semibold uppercase tracking-[.18em] text-[#8B4513] shadow-sm">
                         <span class="h-2 w-2 rounded-full bg-[#D4A017]"></span>
                         2 Nights / 3 Days
                     </div>
@@ -657,7 +698,8 @@
                         Ayodhya Spiritual Tour Package
                     </h2>
                     <p class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-gray-600">
-                        Experience the sacred temples, serene ghats and divine atmosphere of Ayodhya with a comfortable stay, delicious meals and private sightseeing.
+                        Experience the sacred temples, serene ghats and divine atmosphere of Ayodhya with a comfortable
+                        stay, delicious meals and private sightseeing.
                     </p>
                 </div>
 
@@ -681,14 +723,10 @@
                     <div class="rounded-[28px] border border-[#8B4513]/10 bg-white p-8 shadow-lg md:p-10">
                         <p class="text-sm font-semibold uppercase tracking-[.2em] text-[#8B4513]">Package Includes</p>
                         <div class="mt-6 grid gap-4 sm:grid-cols-2">
-                            @foreach ([
-                                ['🏨', 'Hotel Stay'],
-                                ['🍽️', 'Breakfast, Lunch & Dinner'],
-                                ['🛕', 'Sightseeing'],
-                                ['🚕', 'Private Cab'],
-                            ] as $inclusion)
+                            @foreach ([['🏨', 'Hotel Stay'], ['🍽️', 'Breakfast, Lunch & Dinner'], ['🛕', 'Sightseeing'], ['🚕', 'Private Cab']] as $inclusion)
                                 <div class="flex items-center gap-4 rounded-2xl bg-[#fff8ec] p-4">
-                                    <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-xl shadow-sm">{{ $inclusion[0] }}</span>
+                                    <span
+                                        class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-xl shadow-sm">{{ $inclusion[0] }}</span>
                                     <span class="font-semibold text-[#1a1a2e]">{{ $inclusion[1] }}</span>
                                 </div>
                             @endforeach
@@ -699,7 +737,8 @@
                 {{-- Daily itinerary --}}
                 <div class="mt-14 space-y-8">
                     {{-- Day 1 --}}
-                    <article class="overflow-hidden rounded-[28px] border border-[#8B4513]/10 bg-white shadow-lg ayodhya-reveal">
+                    <article
+                        class="overflow-hidden rounded-[28px] border border-[#8B4513]/10 bg-white shadow-lg ayodhya-reveal">
                         <div class="grid lg:grid-cols-[260px_1fr]">
                             <div class="flex flex-col justify-center bg-[#8B4513] p-8 text-white md:p-10">
                                 <span class="text-sm font-semibold uppercase tracking-[.2em] text-[#f3c55b]">Day 1</span>
@@ -707,30 +746,26 @@
                             </div>
                             <div class="p-6 md:p-9">
                                 <div class="grid gap-4 md:grid-cols-2">
-                                    @foreach ([
-                                        ['1:00 PM', 'Hotel Check-in', '🏨'],
-                                        ['2:00 PM', 'Lunch at Crescent Restaurant', '🍽️'],
-                                        ['4:00 PM', 'Hanuman Garhi, followed by Ram Janmabhoomi', '🛕'],
-                                        ['6:00 PM', 'Divine Saryu Aarti at Ram Ki Paidi', '🪔'],
-                                        ['Evening', 'Return to the hotel and relax', '🌆'],
-                                        ['8:00 PM', 'Dinner at Crescent Restaurant', '🍴'],
-                                    ] as $item)
+                                    @foreach ([['1:00 PM', 'Hotel Check-in', '🏨'], ['2:00 PM', 'Lunch at Crescent Restaurant', '🍽️'], ['4:00 PM', 'Hanuman Garhi, followed by Ram Janmabhoomi', '🛕'], ['6:00 PM', 'Divine Saryu Aarti at Ram Ki Paidi', '🪔'], ['Evening', 'Return to the hotel and relax', '🌆'], ['8:00 PM', 'Dinner at Crescent Restaurant', '🍴']] as $item)
                                         <div class="flex gap-4 rounded-2xl bg-[#fffaf1] p-4">
                                             <span class="text-2xl">{{ $item[2] }}</span>
                                             <div>
-                                                <p class="text-xs font-bold uppercase tracking-wider text-[#8B4513]">{{ $item[0] }}</p>
+                                                <p class="text-xs font-bold uppercase tracking-wider text-[#8B4513]">
+                                                    {{ $item[0] }}</p>
                                                 <p class="mt-1 leading-6 text-gray-700">{{ $item[1] }}</p>
                                             </div>
                                         </div>
                                     @endforeach
                                 </div>
-                                <p class="mt-5 rounded-xl bg-[#1a1a2e] px-5 py-3 text-sm font-medium text-white">🌙 Overnight stay at the hotel.</p>
+                                <p class="mt-5 rounded-xl bg-[#1a1a2e] px-5 py-3 text-sm font-medium text-white">🌙
+                                    Overnight stay at the hotel.</p>
                             </div>
                         </div>
                     </article>
 
                     {{-- Day 2 --}}
-                    <article class="overflow-hidden rounded-[28px] border border-[#D4A017]/20 bg-white shadow-lg ayodhya-reveal">
+                    <article
+                        class="overflow-hidden rounded-[28px] border border-[#D4A017]/20 bg-white shadow-lg ayodhya-reveal">
                         <div class="grid lg:grid-cols-[260px_1fr]">
                             <div class="flex flex-col justify-center bg-[#D4A017] p-8 text-white md:p-10">
                                 <span class="text-sm font-semibold uppercase tracking-[.2em] text-white/80">Day 2</span>
@@ -740,37 +775,59 @@
                                 <div class="grid gap-4 md:grid-cols-2">
                                     <div class="flex gap-4 rounded-2xl bg-[#fffaf1] p-4">
                                         <span class="text-2xl">🍳</span>
-                                        <div><p class="text-xs font-bold uppercase tracking-wider text-[#8B4513]">Morning</p><p class="mt-1 leading-6 text-gray-700">Enjoy breakfast at the hotel</p></div>
+                                        <div>
+                                            <p class="text-xs font-bold uppercase tracking-wider text-[#8B4513]">Morning
+                                            </p>
+                                            <p class="mt-1 leading-6 text-gray-700">Enjoy breakfast at the hotel</p>
+                                        </div>
                                     </div>
                                     <div class="flex gap-4 rounded-2xl bg-[#fffaf1] p-4">
                                         <span class="text-2xl">🕘</span>
                                         <div>
-                                            <p class="text-xs font-bold uppercase tracking-wider text-[#8B4513]">9:00 AM</p>
-                                            <p class="mt-1 leading-6 text-gray-700">Nageshwarnath Temple, Mani Parvat and Bharat Kund</p>
+                                            <p class="text-xs font-bold uppercase tracking-wider text-[#8B4513]">9:00 AM
+                                            </p>
+                                            <p class="mt-1 leading-6 text-gray-700">Nageshwarnath Temple, Mani Parvat and
+                                                Bharat Kund</p>
                                         </div>
                                     </div>
                                     <div class="flex gap-4 rounded-2xl bg-[#fffaf1] p-4">
                                         <span class="text-2xl">🍽️</span>
-                                        <div><p class="text-xs font-bold uppercase tracking-wider text-[#8B4513]">1:00 PM</p><p class="mt-1 leading-6 text-gray-700">Lunch at Crescent Restaurant</p></div>
+                                        <div>
+                                            <p class="text-xs font-bold uppercase tracking-wider text-[#8B4513]">1:00 PM
+                                            </p>
+                                            <p class="mt-1 leading-6 text-gray-700">Lunch at Crescent Restaurant</p>
+                                        </div>
                                     </div>
                                     <div class="flex gap-4 rounded-2xl bg-[#fffaf1] p-4">
                                         <span class="text-2xl">☕</span>
-                                        <div><p class="text-xs font-bold uppercase tracking-wider text-[#8B4513]">Afternoon</p><p class="mt-1 leading-6 text-gray-700">Evening high tea at the hotel</p></div>
+                                        <div>
+                                            <p class="text-xs font-bold uppercase tracking-wider text-[#8B4513]">Afternoon
+                                            </p>
+                                            <p class="mt-1 leading-6 text-gray-700">Evening high tea at the hotel</p>
+                                        </div>
                                     </div>
                                     <div class="flex gap-4 rounded-2xl bg-[#fffaf1] p-4 md:col-span-2">
                                         <span class="text-2xl">🌅</span>
-                                        <div><p class="text-xs font-bold uppercase tracking-wider text-[#8B4513]">4:00 PM</p><p class="mt-1 leading-6 text-gray-700">Visit Guptar Ghat, then return to the hotel for dinner</p></div>
+                                        <div>
+                                            <p class="text-xs font-bold uppercase tracking-wider text-[#8B4513]">4:00 PM
+                                            </p>
+                                            <p class="mt-1 leading-6 text-gray-700">Visit Guptar Ghat, then return to the
+                                                hotel for dinner</p>
+                                        </div>
                                     </div>
                                 </div>
-                                <p class="mt-5 rounded-xl bg-[#1a1a2e] px-5 py-3 text-sm font-medium text-white">🌙 Relax and enjoy a comfortable overnight stay.</p>
+                                <p class="mt-5 rounded-xl bg-[#1a1a2e] px-5 py-3 text-sm font-medium text-white">🌙 Relax
+                                    and enjoy a comfortable overnight stay.</p>
                             </div>
                         </div>
                     </article>
 
                     {{-- Day 3 --}}
-                    <article class="overflow-hidden rounded-[28px] border border-[#8B4513]/10 bg-white shadow-lg ayodhya-reveal">
+                    <article
+                        class="overflow-hidden rounded-[28px] border border-[#8B4513]/10 bg-white shadow-lg ayodhya-reveal">
                         <div class="grid lg:grid-cols-[260px_1fr]">
-                            <div class="flex flex-col justify-center bg-gradient-to-br from-[#6B3410] to-[#8B4513] p-8 text-white md:p-10">
+                            <div
+                                class="flex flex-col justify-center bg-gradient-to-br from-[#6B3410] to-[#8B4513] p-8 text-white md:p-10">
                                 <span class="text-sm font-semibold uppercase tracking-[.2em] text-[#f3c55b]">Day 3</span>
                                 <h3 class="mt-3 text-3xl font-bold">Departure</h3>
                             </div>
@@ -794,7 +851,8 @@
                     </article>
                 </div>
 
-                <div class="mt-10 rounded-[26px] bg-[#1a1a2e] px-6 py-8 text-center text-white shadow-xl md:px-10 ayodhya-reveal">
+                <div
+                    class="mt-10 rounded-[26px] bg-[#1a1a2e] px-6 py-8 text-center text-white shadow-xl md:px-10 ayodhya-reveal">
                     <p class="text-xl font-semibold leading-8 md:text-2xl">
                         ✨ We wish you a pleasant stay and look forward to welcoming you again!
                     </p>
@@ -806,19 +864,19 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const tabButtons = document.querySelectorAll('.ayodhya-tab-button');
             const tabPanels = document.querySelectorAll('.ayodhya-tab-panel');
 
-            tabButtons.forEach(function (button) {
-                button.addEventListener('click', function () {
+            tabButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
                     const targetId = button.getAttribute('data-tab');
 
-                    tabButtons.forEach(function (item) {
+                    tabButtons.forEach(function(item) {
                         item.classList.remove('active');
                     });
 
-                    tabPanels.forEach(function (panel) {
+                    tabPanels.forEach(function(panel) {
                         panel.classList.remove('active');
                     });
 
@@ -833,8 +891,8 @@
             const revealItems = document.querySelectorAll('.ayodhya-reveal');
 
             if ('IntersectionObserver' in window) {
-                const observer = new IntersectionObserver(function (entries, observerInstance) {
-                    entries.forEach(function (entry) {
+                const observer = new IntersectionObserver(function(entries, observerInstance) {
+                    entries.forEach(function(entry) {
                         if (entry.isIntersecting) {
                             entry.target.classList.add('visible');
                             observerInstance.unobserve(entry.target);
@@ -844,11 +902,11 @@
                     threshold: 0.12
                 });
 
-                revealItems.forEach(function (item) {
+                revealItems.forEach(function(item) {
                     observer.observe(item);
                 });
             } else {
-                revealItems.forEach(function (item) {
+                revealItems.forEach(function(item) {
                     item.classList.add('visible');
                 });
             }
